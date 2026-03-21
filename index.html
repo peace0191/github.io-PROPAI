@@ -343,8 +343,287 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     <span class="vp">🤝 공동중개</span>
     <span class="vp">📊 포털 실시간비교</span>
   </div>
-  <button class="kkb" style="margin-top:14px" onclick="doLogin()"><span style="font-size:19px">💬</span>카카오 로그인으로 시작하기</button>
+  <button class="kkb" style="margin-top:14px" onclick="openKakaoAuth()"><span style="font-size:19px">💬</span>카카오 인증 로그인으로 시작하기</button>
+  <div style="display:flex;align-items:center;gap:8px;margin:10px 0 4px">
+    <div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div>
+    <span style="font-size:9px;color:#4A5568">수요·공급자 전용</span>
+    <div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div>
+  </div>
+  <div style="margin-top:10px;padding:13px 14px;background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.2);border-radius:13px">
+    <div style="font-size:10px;font-weight:900;color:#2DD4A0;margin-bottom:10px;text-align:center;letter-spacing:.5px">🤝 공동중개 파트너 전용</div>
+    <!-- 로그인 / 가입 탭 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid rgba(45,212,160,.25)">
+      <button id="jt-login" onclick="showJointTab('login')" style="padding:8px;border:none;background:rgba(45,212,160,.18);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer;border-bottom:2px solid #2DD4A0">🔑 로그인</button>
+      <button id="jt-signup" onclick="showJointTab('signup')" style="padding:8px;border:none;background:transparent;color:#4A5568;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer;border-bottom:2px solid transparent">📝 회원가입</button>
+    </div>
+
+    <!-- 로그인 패널 -->
+    <div id="jp-login">
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px">
+        <input id="jb-id" style="padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.25);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none" placeholder="공동중개 ID">
+        <input id="jb-pw" type="password" style="padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.25);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none" placeholder="비밀번호">
+      </div>
+      <button onclick="doLogin('joint')" style="width:100%;padding:11px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🤝 공동중개 파트너 로그인</button>
+      <div style="font-size:8px;color:#4A5568;text-align:center;margin-top:6px">승인된 계정만 로그인 가능 · 자신의 매물만 열람</div>
+    </div>
+
+    <!-- 회원가입 패널 -->
+    <div id="jp-signup" style="display:none">
+      <div id="jSignupForm">
+        <!-- 가입 단계 표시 -->
+        <div style="display:flex;margin-bottom:12px;background:rgba(8,16,28,.4);border-radius:7px;overflow:hidden">
+          <div id="jsp1" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#2DD4A0;background:rgba(45,212,160,.12);border-bottom:2px solid #2DD4A0">① 계정정보</div>
+          <div id="jsp2" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">② 사무소정보</div>
+          <div id="jsp3" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">③ 서류첨부</div>
+          <div id="jsp4" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">④ 완료</div>
+        </div>
+
+        <!-- 가입 STEP 1: 계정 정보 -->
+        <div id="jsf1">
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">공동중개 ID <span style="color:#EF4444">*</span></div>
+              <input id="js-id" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="영문+숫자 조합 6자 이상">
+            </div>
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">비밀번호 <span style="color:#EF4444">*</span></div>
+              <input id="js-pw" type="password" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="8자 이상 (영문+숫자+특수문자)">
+            </div>
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">비밀번호 확인 <span style="color:#EF4444">*</span></div>
+              <input id="js-pw2" type="password" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="비밀번호 재입력">
+            </div>
+          </div>
+          <button onclick="jSignupNext(2)" style="width:100%;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">다음 →</button>
+        </div>
+
+        <!-- 가입 STEP 2: 사무소 정보 -->
+        <div id="jsf2" style="display:none">
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">개설등록사무소 명 <span style="color:#EF4444">*</span></div>
+              <input id="js-officename" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="예: ○○부동산중개사무소">
+            </div>
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">대표 성명 <span style="color:#EF4444">*</span></div>
+              <input id="js-ceoname" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="공인중개사 대표 성명">
+            </div>
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">개설등록번호 <span style="color:#EF4444">*</span></div>
+              <input id="js-regnum" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="예: 11680-2023-XXXXX">
+            </div>
+            <div>
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">대표 연락처 <span style="color:#EF4444">*</span></div>
+              <input id="js-tel" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="010-0000-0000">
+            </div>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="jSignupNext(1)" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
+            <button onclick="jSignupNext(3)" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">다음 →</button>
+          </div>
+        </div>
+
+        <!-- 가입 STEP 3: 서류 첨부 -->
+        <div id="jsf3" style="display:none">
+          <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:9px;padding:10px 12px;margin-bottom:10px;font-size:9px;color:#FCD34D;line-height:1.7">
+            ⚠️ 아래 서류를 첨부하시면 관리자 확인 후 승인됩니다.<br>승인 완료 시 등록된 연락처로 안내드립니다.
+          </div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:10px">
+            <!-- 사업자등록증 -->
+            <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:9px;padding:11px 12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+                <div>
+                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">📄 사업자등록증</div>
+                  <div style="font-size:8px;color:#4A5568;margin-top:1px">JPG · PNG · PDF (10MB 이하)</div>
+                </div>
+                <span id="js-biz-lbl" style="font-size:8px;color:#4A5568">미첨부</span>
+              </div>
+              <label style="display:block;width:100%;padding:9px;border-radius:7px;background:rgba(45,212,160,.1);border:1px dashed rgba(45,212,160,.35);color:#2DD4A0;font-size:10px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;font-family:var(--sans)">
+                📎 파일 선택
+                <input type="file" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="setFileLabel(this,'js-biz-lbl')">
+              </label>
+            </div>
+            <!-- 중개업개설등록증 -->
+            <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:9px;padding:11px 12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+                <div>
+                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">🏢 중개업개설등록증</div>
+                  <div style="font-size:8px;color:#4A5568;margin-top:1px">JPG · PNG · PDF (10MB 이하)</div>
+                </div>
+                <span id="js-reg-lbl" style="font-size:8px;color:#4A5568">미첨부</span>
+              </div>
+              <label style="display:block;width:100%;padding:9px;border-radius:7px;background:rgba(45,212,160,.1);border:1px dashed rgba(45,212,160,.35);color:#2DD4A0;font-size:10px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;font-family:var(--sans)">
+                📎 파일 선택
+                <input type="file" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="setFileLabel(this,'js-reg-lbl')">
+              </label>
+            </div>
+          </div>
+          <!-- 공동중개 보안 동의 -->
+          <div style="background:rgba(8,16,28,.4);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;margin-bottom:10px">
+            <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:7px">📋 공동중개 파트너 필수 동의</div>
+            <div onclick="toggleJAg('jag1')" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer">
+              <div id="jag1" style="width:14px;height:14px;border-radius:3px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 개인정보 및 매물정보를 열람하거나 외부에 유출하지 않겠습니다 <span style="color:#EF4444">[필수]</span></div>
+            </div>
+            <div onclick="toggleJAg('jag2')" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer">
+              <div id="jag2" style="width:14px;height:14px;border-radius:3px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.5">공동중개 매물을 타 플랫폼에 무단 게재하지 않겠습니다 <span style="color:#EF4444">[필수]</span></div>
+            </div>
+            <div onclick="toggleJAg('jag3')" style="display:flex;align-items:flex-start;gap:8px;cursor:pointer">
+              <div id="jag3" style="width:14px;height:14px;border-radius:3px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.5">일 5건 한도 · 법정 중개보수 50:50 분배 원칙에 동의합니다 <span style="color:#EF4444">[필수]</span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="jSignupNext(2)" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
+            <button onclick="jSignupSubmit()" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">✅ 가입 신청</button>
+          </div>
+        </div>
+
+        <!-- 가입 STEP 4: 완료 -->
+        <div id="jsf4" style="display:none;text-align:center;padding:10px 0">
+          <div style="font-size:38px;margin-bottom:10px">✅</div>
+          <div style="font-size:13px;font-weight:900;color:#2DD4A0;margin-bottom:8px">가입 신청 완료!</div>
+          <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.18);border-radius:10px;padding:12px;text-align:left;margin-bottom:12px;font-size:9px;color:#8A9AB0;line-height:1.8">
+            📋 <strong style="color:#2DD4A0">검토 절차:</strong><br>
+            ① 제출 서류 확인 (1~2 영업일)<br>
+            ② 개설등록번호 진위 확인<br>
+            ③ 관리자 승인 후 연락처로 통보<br>
+            ④ 승인 완료 시 ID/비밀번호로 로그인 가능<br><br>
+            📞 문의: <strong style="color:#E8C97A">010-8985-8945 이대표</strong>
+          </div>
+          <button onclick="showJointTab('login')" style="width:100%;padding:10px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">🔑 로그인 화면으로</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="ldisclaim">본 플랫폼 이용 시 서비스 이용약관, 개인정보 처리방침,<br>플랫폼 규약(데이터·매물 자산 귀속 조항 포함)에 동의하게 됩니다.<br>법정 중개보수 원칙 · 광고 없는 투명 거래 플랫폼</div>
+</div>
+
+<!-- ══════ 카카오 인증 모달 ══════ -->
+<div id="kakaoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:flex-end;justify-content:center">
+  <div style="background:#1A1F2E;border-radius:20px 20px 0 0;width:100%;max-width:440px;padding:0 0 32px;overflow:hidden">
+
+    <!-- 카카오 헤더 -->
+    <div style="background:#FEE500;padding:16px 20px 14px;position:relative">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;background:#3C1E1E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">💬</div>
+        <div>
+          <div style="font-size:13px;font-weight:900;color:#3C1E1E">카카오 인증 로그인</div>
+          <div style="font-size:10px;color:#5C3E1E;margin-top:1px">PROPAI — 투명 부동산 플랫폼</div>
+        </div>
+      </div>
+      <button onclick="closeKakaoAuth()" style="position:absolute;top:14px;right:16px;background:rgba(0,0,0,.12);border:none;border-radius:50%;width:26px;height:26px;font-size:14px;cursor:pointer;color:#3C1E1E;display:flex;align-items:center;justify-content:center;font-family:var(--sans)">✕</button>
+    </div>
+
+    <!-- 인증 단계 -->
+    <div style="padding:16px 20px 0">
+      <!-- 단계 표시 -->
+      <div style="display:flex;align-items:center;margin-bottom:18px">
+        <div id="kst1" style="width:24px;height:24px;border-radius:50%;background:#FEE500;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#3C1E1E;flex-shrink:0">1</div>
+        <div style="flex:1;height:2px;background:#FEE500;opacity:.3"></div>
+        <div id="kst2" style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#4A5568;flex-shrink:0">2</div>
+        <div style="flex:1;height:2px;background:rgba(255,255,255,.08)"></div>
+        <div id="kst3" style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#4A5568;flex-shrink:0">3</div>
+        <div style="flex:1;height:2px;background:rgba(255,255,255,.08)"></div>
+        <div id="kst4" style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#4A5568;flex-shrink:0">✓</div>
+      </div>
+
+      <!-- STEP 1: 이용목적 선택 -->
+      <div id="ks1">
+        <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:4px">이용 목적을 선택해주세요</div>
+        <div style="font-size:10px;color:#8A9AB0;margin-bottom:14px">카카오 계정으로 안전하게 로그인합니다</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+          <button onclick="setKakaoRole('buy')" id="kr-buy" style="padding:13px 14px;border-radius:11px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;font-family:var(--sans);transition:.15s">
+            <span style="font-size:22px">🏠</span>
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#EDF2F7">매수·전세·임차 희망 (수요자)</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">아파트·오피스텔 구매 또는 임차 희망</div>
+            </div>
+          </button>
+          <button onclick="setKakaoRole('sell')" id="kr-sell" style="padding:13px 14px;border-radius:11px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;font-family:var(--sans);transition:.15s">
+            <span style="font-size:22px">📋</span>
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#EDF2F7">매도·임대·단기임대 (공급자)</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">보유 부동산 매도 또는 임대 등록</div>
+            </div>
+          </button>
+          <button onclick="setKakaoRole('both')" id="kr-both" style="padding:13px 14px;border-radius:11px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);display:flex;align-items:center;gap:12px;cursor:pointer;text-align:left;font-family:var(--sans);transition:.15s">
+            <span style="font-size:22px">🔄</span>
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#EDF2F7">매수·매도 동시 (수요+공급)</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">구매와 매도를 동시에 진행</div>
+            </div>
+          </button>
+        </div>
+        <button onclick="kakaoNext(2)" id="kNext1" style="width:100%;padding:13px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">다음 →</button>
+      </div>
+
+      <!-- STEP 2: 휴대폰 인증 -->
+      <div id="ks2" style="display:none">
+        <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:4px">휴대폰 번호 인증</div>
+        <div style="font-size:10px;color:#8A9AB0;margin-bottom:14px">카카오 연동 본인 인증을 진행합니다</div>
+        <div style="margin-bottom:10px">
+          <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:5px">이름 <span style="color:#EF4444">*</span></div>
+          <input id="k-name" style="width:100%;padding:11px 13px;border-radius:9px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);color:#EDF2F7;font-family:var(--sans);font-size:12px;outline:none;box-sizing:border-box" placeholder="실명 입력">
+        </div>
+        <div style="margin-bottom:10px">
+          <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:5px">휴대폰 번호 <span style="color:#EF4444">*</span></div>
+          <div style="display:flex;gap:7px">
+            <input id="k-phone" style="flex:1;padding:11px 13px;border-radius:9px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);color:#EDF2F7;font-family:var(--sans);font-size:12px;outline:none" placeholder="010-0000-0000" maxlength="13">
+            <button onclick="sendKakaoCode()" id="kSendBtn" style="padding:11px 13px;border-radius:9px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:10px;font-weight:900;border:none;cursor:pointer;white-space:nowrap">인증번호 받기</button>
+          </div>
+        </div>
+        <div id="k-codeArea" style="display:none;margin-bottom:10px">
+          <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:5px">인증번호 6자리 <span style="color:#EF4444">*</span></div>
+          <div style="display:flex;gap:7px">
+            <input id="k-code" style="flex:1;padding:11px 13px;border-radius:9px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);color:#EDF2F7;font-family:var(--sans);font-size:14px;font-weight:800;outline:none;letter-spacing:4px" placeholder="000000" maxlength="6">
+            <div id="k-timer" style="padding:11px 10px;font-size:11px;font-weight:800;color:#FEE500;white-space:nowrap">3:00</div>
+          </div>
+          <div id="k-codehint" style="font-size:9px;color:#4A5568;margin-top:4px"></div>
+        </div>
+        <div style="display:flex;gap:7px">
+          <button onclick="kakaoNext(1)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
+          <button onclick="verifyKakaoCode()" style="flex:2;padding:12px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">인증 확인 →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: 개인정보 동의 -->
+      <div id="ks3" style="display:none">
+        <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:4px">서비스 이용 동의</div>
+        <div style="font-size:10px;color:#8A9AB0;margin-bottom:14px">아래 항목에 동의 후 PROPAI를 이용하실 수 있습니다</div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:13px;margin-bottom:12px">
+          <!-- 전체 동의 -->
+          <div onclick="kakaoAgreeAll()" style="display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:10px;cursor:pointer">
+            <div id="ka-all" style="width:18px;height:18px;border-radius:50%;border:1.5px solid #FEE500;background:transparent;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0"></div>
+            <div style="font-size:11px;font-weight:900;color:#FEE500">아래 항목에 모두 동의합니다</div>
+          </div>
+          <div onclick="toggleKA('ka1')" style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;cursor:pointer">
+            <div id="ka1" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px"></div>
+            <div style="font-size:10px;color:#EDF2F7">[필수] 서비스 이용약관 동의 <span style="color:#4A5568;font-size:9px">→ 보기</span></div>
+          </div>
+          <div onclick="toggleKA('ka2')" style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;cursor:pointer">
+            <div id="ka2" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px"></div>
+            <div style="font-size:10px;color:#EDF2F7">[필수] 개인정보 수집·이용 동의</div>
+          </div>
+          <div onclick="toggleKA('ka3')" style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;cursor:pointer">
+            <div id="ka3" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px"></div>
+            <div style="font-size:10px;color:#EDF2F7">[필수] 플랫폼 데이터 자산 귀속 동의<br><span style="font-size:8px;color:#4A5568">매물·수요 데이터의 AI 학습 활용 동의</span></div>
+          </div>
+          <div onclick="toggleKA('ka4')" style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+            <div id="ka4" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px"></div>
+            <div style="font-size:10px;color:#8A9AB0">[선택] 마케팅·알림 수신 동의</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:7px">
+          <button onclick="kakaoNext(2)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
+          <button onclick="kakaoComplete()" style="flex:2;padding:12px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">동의 후 시작하기 🚀</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <!-- ══════ MAIN ══════ -->
@@ -2139,33 +2418,14 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
       <!-- STEP 표시 -->
       <div style="display:flex;gap:0;margin-bottom:12px;background:var(--ink4);border-radius:8px;overflow:hidden">
-        <div id="ps1" style="flex:1;padding:7px;text-align:center;background:rgba(201,168,76,.15);border-bottom:2px solid #C9A84C;font-size:9px;font-weight:800;color:#E8C97A">① 동의</div>
-        <div id="ps2" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;color:#4A5568">② 매물정보</div>
-        <div id="ps3" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;color:#4A5568">③ 상세조건</div>
+        <div id="ps1" style="flex:1;padding:7px;text-align:center;background:rgba(201,168,76,.15);border-bottom:2px solid #C9A84C;font-size:9px;font-weight:800;color:#E8C97A">① 매물정보</div>
+        <div id="ps2" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;color:#4A5568">② 상세조건</div>
+        <div id="ps3" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;color:#4A5568">③ 동의</div>
         <div id="ps4" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;color:#4A5568">④ 완료</div>
       </div>
 
-      <!-- ── STEP 1: 동의 ── -->
+      <!-- ── STEP 1: 매물 기본정보 ── -->
       <div id="msf1" class="sf on">
-        <div class="mini-consent">
-          <div class="mc-title">📋 등록 전 필수 동의</div>
-          <div class="mc-row" onclick="toggleMc('mc1')"><div class="mc-chk" id="mc1"></div><div class="mc-lbl">개인정보 수집·이용 동의<span class="mc-req">[필수]</span></div></div>
-          <div class="mc-row" onclick="toggleMc('mc2')"><div class="mc-chk" id="mc2"></div><div class="mc-lbl">플랫폼 데이터 자산 귀속 동의<span class="mc-req">[필수]</span><br><span style="font-size:9px;color:var(--txt2)">등록 매물·수요 데이터 AI 학습 활용 동의</span></div></div>
-          <div class="mc-row" onclick="toggleMc('mc3')"><div class="mc-chk" id="mc3"></div><div class="mc-lbl">서비스 이용약관 동의<span class="mc-req">[필수]</span></div></div>
-          <div class="mc-row" onclick="toggleMc('mc4')"><div class="mc-chk" id="mc4"></div><div class="mc-lbl">법정 중개보수 원칙 확인<span class="mc-req">[필수]</span></div></div>
-          <div id="jointExtra" style="display:none">
-            <div class="mc-row" onclick="toggleMc('mc5')"><div class="mc-chk" id="mc5"></div><div class="mc-lbl">공동중개 매물 보안 동의<span class="mc-req">[공동중개 필수]</span></div></div>
-            <div class="mc-row" onclick="toggleMc('mc6')"><div class="mc-chk" id="mc6"></div><div class="mc-lbl">1일 5건 한도 · 50:50 보수 분배 확인<span class="mc-req">[공동중개 필수]</span></div></div>
-          </div>
-        </div>
-        <div class="mbtns">
-          <button class="mbtn-prev" onclick="closeModal({target:null})">취소</button>
-          <button class="mbtn-next mbn-d" id="mnext1" onclick="nextStep(2)">다음 →</button>
-        </div>
-      </div>
-
-      <!-- ── STEP 2: 매물 기본정보 (파발마 스타일) ── -->
-      <div id="msf2" class="sf">
         <!-- 매물종류 + 거래구분 -->
         <div class="frow2">
           <div class="fg">
@@ -2220,19 +2480,19 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           <label class="flbl">제목</label>
           <input class="fi" id="fi-title" placeholder="예: 대치동 은마 31평 급매 구합니다">
         </div>
-        <!-- 보낼 메세지 (구합니다/있습니다) -->
+        <!-- 보낼 메세지 -->
         <div class="fg">
           <label class="flbl">보낼 메세지</label>
           <div style="background:var(--ink4);border:1px solid var(--line2);border-radius:8px;padding:10px 12px;font-size:12px;font-weight:700" id="msgDisplay">🙋 AI 구합니다</div>
         </div>
         <div class="mbtns">
-          <button class="mbtn-prev" onclick="nextStep(1)">← 이전</button>
-          <button class="mbtn-next mbn-d" onclick="nextStep(3)">다음 →</button>
+          <button class="mbtn-prev" onclick="closeModal({target:null})">취소</button>
+          <button class="mbtn-next mbn-d" onclick="nextStep(2)">다음 →</button>
         </div>
       </div>
 
-      <!-- ── STEP 3: 상세 조건 (파발마 상세정보) ── -->
-      <div id="msf3" class="sf">
+      <!-- ── STEP 2: 상세 조건 ── -->
+      <div id="msf2" class="sf">
         <!-- 연락처 -->
         <div class="frow2">
           <div class="fg"><label class="flbl">이름</label><input class="fi" id="fi-name" placeholder="홍길동"></div>
@@ -2244,11 +2504,11 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           <div style="display:flex;flex-direction:column;gap:6px">
             <div style="display:flex;align-items:center;gap:6px">
               <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">공급면적</span>
-              <input class="fi" style="flex:1;padding:6px 8px;font-size:11px" placeholder="0" id="fi-area-supply">
+              <input class="fi" style="flex:1;padding:6px 8px;font-size:11px" placeholder="0">
               <span style="font-size:9px;color:#8A9AB0">~</span>
               <input class="fi" style="flex:1;padding:6px 8px;font-size:11px" placeholder="0">
               <span style="font-size:9px;color:#8A9AB0">m²</span>
-              <button onclick="" style="padding:4px 8px;border-radius:5px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">평변환</button>
+              <button style="padding:4px 8px;border-radius:5px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">평변환</button>
             </div>
             <div style="display:flex;align-items:center;gap:6px">
               <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">전용면적</span>
@@ -2256,7 +2516,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
               <span style="font-size:9px;color:#8A9AB0">~</span>
               <input class="fi" style="flex:1;padding:6px 8px;font-size:11px" placeholder="0">
               <span style="font-size:9px;color:#8A9AB0">m²</span>
-              <button onclick="" style="padding:4px 8px;border-radius:5px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">평변환</button>
+              <button style="padding:4px 8px;border-radius:5px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">평변환</button>
             </div>
           </div>
         </div>
@@ -2310,10 +2570,10 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             <input class="fi" style="padding:6px 8px;font-size:11px" placeholder="예: 2025-05" id="fi-movedate">
           </div>
         </div>
-        <!-- 옵션 버튼 (파발마 스타일) -->
+        <!-- 옵션 버튼 -->
         <div style="margin-bottom:10px">
-          <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:7px">⚙️ 옵션 선택 (복수 선택 가능)</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px" id="optionBtns">
+          <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:7px">⚙️ 옵션 선택</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
             <button onclick="toggleOpt(this)" class="opt-btn">금액조절 가능한</button>
             <button onclick="toggleOpt(this)" class="opt-btn">바로 볼 수 있는</button>
             <button onclick="toggleOpt(this)" class="opt-btn">새로 지은</button>
@@ -2334,11 +2594,33 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <!-- 특이사항 -->
         <div class="fg">
           <label class="flbl">특이사항·요청사항</label>
-          <textarea class="fi" id="fi-note" style="height:56px;resize:none;line-height:1.5" placeholder="예: 학원가 도보 5분 이내, 복층 선호, 반려동물 가능 여부 확인 필요..."></textarea>
+          <textarea class="fi" id="fi-note" style="height:56px;resize:none;line-height:1.5" placeholder="예: 학원가 도보 5분 이내, 복층 선호..."></textarea>
+        </div>
+        <div class="mbtns">
+          <button class="mbtn-prev" onclick="nextStep(1)">← 이전</button>
+          <button class="mbtn-next mbn-d" id="mnext3" onclick="nextStep(3)">다음 →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: 동의 ── -->
+      <div id="msf3" class="sf">
+        <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:10px;color:#8A9AB0;line-height:1.6">
+          거의 다 됐어요! 아래 필수 동의 후 등록이 완료됩니다 😊
+        </div>
+        <div class="mini-consent">
+          <div class="mc-title">📋 필수 동의 항목</div>
+          <div class="mc-row" onclick="toggleMc('mc1')"><div class="mc-chk" id="mc1"></div><div class="mc-lbl">개인정보 수집·이용 동의<span class="mc-req">[필수]</span></div></div>
+          <div class="mc-row" onclick="toggleMc('mc2')"><div class="mc-chk" id="mc2"></div><div class="mc-lbl">플랫폼 데이터 자산 귀속 동의<span class="mc-req">[필수]</span><br><span style="font-size:9px;color:var(--txt2)">등록 매물·수요 데이터 AI 학습 활용 동의</span></div></div>
+          <div class="mc-row" onclick="toggleMc('mc3')"><div class="mc-chk" id="mc3"></div><div class="mc-lbl">서비스 이용약관 동의<span class="mc-req">[필수]</span></div></div>
+          <div class="mc-row" onclick="toggleMc('mc4')"><div class="mc-chk" id="mc4"></div><div class="mc-lbl">법정 중개보수 원칙 확인<span class="mc-req">[필수]</span></div></div>
+          <div id="jointExtra" style="display:none">
+            <div class="mc-row" onclick="toggleMc('mc5')"><div class="mc-chk" id="mc5"></div><div class="mc-lbl">공동중개 매물 보안 동의<span class="mc-req">[공동중개 필수]</span></div></div>
+            <div class="mc-row" onclick="toggleMc('mc6')"><div class="mc-chk" id="mc6"></div><div class="mc-lbl">1일 5건 한도 · 50:50 보수 분배 확인<span class="mc-req">[공동중개 필수]</span></div></div>
+          </div>
         </div>
         <div class="mbtns">
           <button class="mbtn-prev" onclick="nextStep(2)">← 이전</button>
-          <button class="mbtn-next mbn-d" id="mnext3" onclick="nextStep(4)">AI 등록 완료 →</button>
+          <button class="mbtn-next mbn-d" id="mnext1" onclick="nextStep(4)">동의 후 등록 완료 →</button>
         </div>
       </div>
 
@@ -2365,15 +2647,82 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
 <script>
 let curTab=0,adminOn=false,mType='demand',mStep=1;
+let userRole='user'; // 'user' | 'joint' | 'admin'
+let jbMyListings=[]; // 공동중개업자 자신의 매물만
 
 /* ─── LOGIN ─── */
-function doLogin(){
-  var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
-  document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
-  document.getElementById('app').className='logged';
-  goTab(0);
-  toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
+function doLogin(role){
+  role=role||'user';
+  userRole=role;
+  if(role==='joint'){
+    var id=document.getElementById('jb-id').value.trim();
+    var pw=document.getElementById('jb-pw').value.trim();
+    if(!id||!pw){toast('⚠️ 공동중개 ID와 비밀번호를 입력해주세요');return;}
+    // 공동중개 파트너 이름 설정
+    document.getElementById('un').textContent=id+' (공동)';
+    var _uav=document.querySelector('.uav');if(_uav)_uav.textContent='🤝';
+    applyJointBrokerSecurity();
+    document.getElementById('app').className='logged';
+    goTab(0);
+    toast('🤝 공동중개 파트너 로그인 · 내 매물만 열람 가능합니다');
+  } else {
+    var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
+    document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
+    document.getElementById('app').className='logged';
+    goTab(0);
+    toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
+  }
   setTimeout(initReveal,150);
+}
+
+/* ─── 공동중개 파트너 보안 적용 ─── */
+function applyJointBrokerSecurity(){
+  // 관리자 버튼 숨김
+  var adm=document.getElementById('admbtn');
+  if(adm)adm.style.display='none';
+  var nb5=document.getElementById('nb5');
+  if(nb5)nb5.style.display='none';
+
+  // 하단 네비에서 관리자 탭 완전 차단
+  adminOn=false;
+
+  // 헤더에 공동중개 뱃지 표시
+  var tbr=document.querySelector('.tbr');
+  if(tbr){
+    var badge=document.createElement('div');
+    badge.style.cssText='font-size:8px;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.3);color:#2DD4A0;padding:3px 8px;border-radius:5px;font-weight:800;';
+    badge.textContent='🤝 공동중개';
+    tbr.appendChild(badge);
+  }
+
+  // 수요자/공급자 등록 버튼 숨기고 공동중개만 활성화
+  document.querySelectorAll('.r3b-demand,.r3b-supply').forEach(function(el){
+    el.style.opacity='0.3';
+    el.style.pointerEvents='none';
+    el.title='공동중개 파트너는 수요자/공급자 등록 불가';
+  });
+
+  // 공동중개 파트너 전용 안내 배너 삽입 (홈 탭 상단)
+  var tab0=document.getElementById('tab0');
+  if(tab0){
+    var banner=document.createElement('div');
+    banner.style.cssText='margin:12px 16px 0;background:rgba(45,212,160,.08);border:1.5px solid rgba(45,212,160,.3);border-radius:12px;padding:13px 14px;';
+    banner.innerHTML='<div style="font-size:11px;font-weight:900;color:#2DD4A0;margin-bottom:5px">🔒 공동중개 파트너 보안 모드</div>'
+      +'<div style="font-size:9px;color:#8A9AB0;line-height:1.7">'
+      +'✅ 내가 등록한 공동중개 매물만 열람 가능<br>'
+      +'🚫 수요자·공급자 개인정보 열람 불가<br>'
+      +'🚫 타 파트너 매물 정보 열람 불가<br>'
+      +'🚫 관리자 기능 접근 불가<br>'
+      +'📞 문의: 010-8985-8945 이대표'
+      +'</div>';
+    tab0.insertBefore(banner, tab0.firstChild);
+  }
+}
+
+/* ─── 공동중개 전용 매물 조회 화면 ─── */
+function showMyListings(){
+  if(userRole!=='joint'){return;}
+  toast('🔒 내 공동중개 매물만 표시됩니다');
 }
 
 /* ─── TABS ─── */
@@ -2394,6 +2743,11 @@ function goTab(i){
 
 /* ─── ADMIN ─── */
 function toggleAdmin(){
+  // 공동중개 파트너 관리자 접근 완전 차단
+  if(userRole==='joint'){
+    toast('🔒 공동중개 파트너는 관리자 기능에 접근할 수 없습니다');
+    return;
+  }
   adminOn=!adminOn;
   const btn=document.getElementById('admbtn');
   btn.classList.toggle('on',adminOn);
@@ -2428,6 +2782,11 @@ function nbClick(i){
 
 /* ─── MODAL ─── */
 function openModal(type){
+  // ★ 공동중개 파트너 권한 체크 ★
+  if(userRole==='joint' && (type==='demand'||type==='supply')){
+    toast('🔒 공동중개 파트너는 수요자·공급자 등록 불가합니다\n공동중개 매물 등록만 가능합니다');
+    return;
+  }
   mType=type;mStep=1;
   // 헤더 설정
   var cfg={
@@ -2468,7 +2827,7 @@ function openModal(type){
 }
 function closeModal(e){if(!e.target||e.target===document.getElementById('modal')){document.getElementById('modal').classList.remove('open');}}
 function nextStep(n){
-  if(n===2){
+  if(n===4){
     const required=['mc1','mc2','mc3','mc4'];
     const allDone=required.every(id=>document.getElementById(id).classList.contains('on'));
     if(!allDone){toast('⚠️ 필수 동의 항목을 모두 체크해주세요');return;}
@@ -2576,6 +2935,234 @@ function lotteAsk(preset){
   msgs.scrollTop=msgs.scrollHeight;
 }
 
+/* ─── 카카오 인증 모달 ─── */
+var kakaoRole='buy';
+var kakaoVerified=false;
+var kakaoTimer=null;
+var kakaoCode='';
+
+function openKakaoAuth(){
+  var m=document.getElementById('kakaoModal');
+  m.style.display='flex';
+  kakaoNext(1);
+}
+function closeKakaoAuth(){
+  document.getElementById('kakaoModal').style.display='none';
+  if(kakaoTimer)clearInterval(kakaoTimer);
+}
+
+function setKakaoRole(r){
+  kakaoRole=r;
+  ['buy','sell','both'].forEach(function(k){
+    var btn=document.getElementById('kr-'+k);
+    if(!btn)return;
+    if(k===r){
+      btn.style.border='1.5px solid #FEE500';
+      btn.style.background='rgba(254,229,0,.08)';
+    } else {
+      btn.style.border='1.5px solid rgba(255,255,255,.1)';
+      btn.style.background='rgba(255,255,255,.04)';
+    }
+  });
+}
+
+function kakaoNext(step){
+  [1,2,3].forEach(function(i){
+    document.getElementById('ks'+i).style.display=i===step?'block':'none';
+  });
+  // 단계 아이콘 업데이트
+  for(var i=1;i<=4;i++){
+    var el=document.getElementById('kst'+i);if(!el)continue;
+    if(i<step){
+      el.style.background='#FEE500';el.style.color='#3C1E1E';
+      el.style.border='none';el.textContent='✓';
+    } else if(i===step){
+      el.style.background='#FEE500';el.style.color='#3C1E1E';el.style.border='none';
+      el.textContent=i===4?'✓':i;
+    } else {
+      el.style.background='rgba(255,255,255,.08)';
+      el.style.border='1.5px solid rgba(255,255,255,.15)';
+      el.style.color='#4A5568';el.textContent=i===4?'✓':i;
+    }
+  }
+}
+
+function sendKakaoCode(){
+  var phone=document.getElementById('k-phone').value.trim();
+  var name=document.getElementById('k-name').value.trim();
+  if(!name){toast('⚠️ 이름을 입력해주세요');return;}
+  if(!phone||phone.length<10){toast('⚠️ 휴대폰 번호를 입력해주세요');return;}
+  // 6자리 코드 생성 (데모)
+  kakaoCode=String(Math.floor(100000+Math.random()*900000));
+  document.getElementById('k-codeArea').style.display='block';
+  document.getElementById('k-codehint').textContent='📱 인증번호: '+kakaoCode+' (실제 서비스에서는 SMS 발송)';
+  document.getElementById('k-codehint').style.color='#FEE500';
+  document.getElementById('kSendBtn').textContent='재발송';
+  // 타이머 시작
+  if(kakaoTimer)clearInterval(kakaoTimer);
+  var sec=180;
+  kakaoTimer=setInterval(function(){
+    sec--;
+    var m=Math.floor(sec/60);var s=sec%60;
+    var el=document.getElementById('k-timer');
+    if(el)el.textContent=m+':'+(s<10?'0':'')+s;
+    if(sec<=0){clearInterval(kakaoTimer);if(el)el.textContent='만료';}
+  },1000);
+  toast('📱 인증번호가 발송되었습니다 (데모: '+kakaoCode+')');
+}
+
+function verifyKakaoCode(){
+  var name=document.getElementById('k-name').value.trim();
+  var code=document.getElementById('k-code').value.trim();
+  if(!name){toast('⚠️ 이름을 입력해주세요');return;}
+  if(!code){toast('⚠️ 인증번호를 입력해주세요');return;}
+  if(code!==kakaoCode){toast('⚠️ 인증번호가 일치하지 않습니다');return;}
+  if(kakaoTimer)clearInterval(kakaoTimer);
+  kakaoVerified=true;
+  kakaoNext(3);
+  toast('✅ 본인 인증 완료!');
+}
+
+function toggleKA(id){
+  var el=document.getElementById(id);if(!el)return;
+  if(el.textContent==='✓'){
+    el.textContent='';el.style.background='transparent';el.style.borderColor='#4A5568';el.style.color='';
+  } else {
+    el.textContent='✓';el.style.background='rgba(254,229,0,.15)';el.style.borderColor='#FEE500';el.style.color='#FEE500';
+  }
+  // 전체동의 버튼 상태
+  var allChecked=['ka1','ka2','ka3'].every(function(i){
+    return document.getElementById(i).textContent==='✓';
+  });
+  var allEl=document.getElementById('ka-all');
+  if(allEl){
+    allEl.textContent=allChecked?'✓':'';
+    allEl.style.background=allChecked?'rgba(254,229,0,.2)':'transparent';
+  }
+}
+
+function kakaoAgreeAll(){
+  var allEl=document.getElementById('ka-all');
+  var isAll=allEl&&allEl.textContent==='✓';
+  ['ka1','ka2','ka3','ka4'].forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    if(!isAll){
+      el.textContent='✓';el.style.background='rgba(254,229,0,.15)';el.style.borderColor='#FEE500';el.style.color='#FEE500';
+    } else {
+      el.textContent='';el.style.background='transparent';el.style.borderColor='#4A5568';el.style.color='';
+    }
+  });
+  if(allEl){
+    allEl.textContent=isAll?'':'✓';
+    allEl.style.background=isAll?'transparent':'rgba(254,229,0,.2)';
+  }
+}
+
+function kakaoComplete(){
+  if(!document.getElementById('ka1').textContent||
+     !document.getElementById('ka2').textContent||
+     !document.getElementById('ka3').textContent){
+    toast('⚠️ 필수 동의 항목을 모두 체크해주세요');return;
+  }
+  closeKakaoAuth();
+  // 역할별 이름 설정
+  var name=document.getElementById('k-name').value.trim()||'고객';
+  var roleMap={buy:'매수희망',sell:'공급자',both:'수요+공급'};
+  document.getElementById('un').textContent=name;
+  var _uav=document.querySelector('.uav');if(_uav)_uav.textContent='K';
+  userRole='user';
+  document.getElementById('app').className='logged';
+  goTab(0);
+  var roleLabel=roleMap[kakaoRole]||'';
+  toast('🎉 카카오 인증 완료! '+name+'님 환영합니다 ('+roleLabel+')');
+  setTimeout(initReveal,150);
+}
+
+/* ─── 공동중개 로그인/가입 탭 전환 ─── */
+function showJointTab(t){
+  var lp=document.getElementById('jp-login');
+  var sp=document.getElementById('jp-signup');
+  var lt=document.getElementById('jt-login');
+  var st=document.getElementById('jt-signup');
+  if(t==='login'){
+    lp.style.display='block';sp.style.display='none';
+    lt.style.background='rgba(45,212,160,.18)';lt.style.color='#2DD4A0';lt.style.borderBottom='2px solid #2DD4A0';
+    st.style.background='transparent';st.style.color='#4A5568';st.style.borderBottom='2px solid transparent';
+  } else {
+    lp.style.display='none';sp.style.display='block';
+    st.style.background='rgba(45,212,160,.18)';st.style.color='#2DD4A0';st.style.borderBottom='2px solid #2DD4A0';
+    lt.style.background='transparent';lt.style.color='#4A5568';lt.style.borderBottom='2px solid transparent';
+  }
+}
+
+/* ─── 가입 단계 이동 ─── */
+function jSignupNext(n){
+  if(n===2){
+    var id=document.getElementById('js-id').value.trim();
+    var pw=document.getElementById('js-pw').value.trim();
+    var pw2=document.getElementById('js-pw2').value.trim();
+    if(!id||id.length<6){toast('⚠️ ID는 6자 이상 입력해주세요');return;}
+    if(!pw||pw.length<8){toast('⚠️ 비밀번호는 8자 이상 입력해주세요');return;}
+    if(pw!==pw2){toast('⚠️ 비밀번호가 일치하지 않습니다');return;}
+  }
+  if(n===3){
+    var on=document.getElementById('js-officename').value.trim();
+    var cn=document.getElementById('js-ceoname').value.trim();
+    var rn=document.getElementById('js-regnum').value.trim();
+    var tl=document.getElementById('js-tel').value.trim();
+    if(!on||!cn||!rn||!tl){toast('⚠️ 모든 항목을 입력해주세요');return;}
+  }
+  // 단계 표시 업데이트
+  for(var i=1;i<=4;i++){
+    var el=document.getElementById('jsp'+i);
+    var sf=document.getElementById('jsf'+i);
+    if(!el||!sf)continue;
+    if(i<n){el.style.color='#2DD4A0';el.style.borderBottom='2px solid #2DD4A0';el.style.background='rgba(45,212,160,.08)';}
+    else if(i===n){el.style.color='#2DD4A0';el.style.borderBottom='2px solid #2DD4A0';el.style.background='rgba(45,212,160,.12)';}
+    else{el.style.color='#4A5568';el.style.borderBottom='2px solid transparent';el.style.background='transparent';}
+    sf.style.display=(i===n)?'block':'none';
+  }
+}
+
+/* ─── 가입 최종 제출 ─── */
+function jSignupSubmit(){
+  var ag1=document.getElementById('jag1').textContent==='✓';
+  var ag2=document.getElementById('jag2').textContent==='✓';
+  var ag3=document.getElementById('jag3').textContent==='✓';
+  if(!ag1||!ag2||!ag3){toast('⚠️ 필수 동의 항목을 모두 체크해주세요');return;}
+  jSignupNext(4);
+  toast('✅ 가입 신청 완료! 승인 후 연락드립니다 (010-8985-8945)');
+}
+
+/* ─── 파일 첨부 라벨 업데이트 ─── */
+function setFileLabel(input,labelId){
+  var lbl=document.getElementById(labelId);
+  if(!lbl)return;
+  if(input.files&&input.files[0]){
+    var name=input.files[0].name;
+    var size=(input.files[0].size/1024/1024).toFixed(1);
+    lbl.textContent=name.length>12?name.substring(0,12)+'…':name;
+    lbl.style.color='#2DD4A0';
+    toast('📎 첨부 완료: '+name+' ('+size+'MB)');
+  }
+}
+
+/* ─── 가입 동의 체크 토글 ─── */
+function toggleJAg(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  if(el.textContent==='✓'){
+    el.textContent='';
+    el.style.background='transparent';
+    el.style.borderColor='#4A5568';
+  } else {
+    el.textContent='✓';
+    el.style.background='rgba(45,212,160,.2)';
+    el.style.borderColor='#2DD4A0';
+    el.style.color='#2DD4A0';
+  }
+}
+
 /* ─── 구합니다/있습니다 토글 ─── */
 var msgType='want';
 function setMsgType(t){
@@ -2595,6 +3182,7 @@ function setMsgType(t){
 }
 function toggleOpt(el){el.classList.toggle('on');}
 function updateStepUI(n){
+  var labels=['①매물정보','②상세조건','③동의','④완료'];
   for(var i=1;i<=4;i++){
     var el=document.getElementById('ps'+i);if(!el)continue;
     if(i<n){el.style.background='rgba(45,212,160,.1)';el.style.color='#2DD4A0';el.style.borderBottom='2px solid #2DD4A0';}
