@@ -534,10 +534,11 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <button onclick="closeGuide()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:9px;width:34px;height:34px;color:#8A9AB0;font-size:16px;cursor:pointer;font-family:var(--sans)">✕</button>
       </div>
       <!-- 탭 -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px">
-        <button onclick="showGuideTab(0)" id="gt0" style="padding:8px 4px;border-radius:8px;border:none;background:rgba(201,168,76,.15);border-bottom:2px solid #C9A84C;color:#E8C97A;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">🏢 회사소개</button>
-        <button onclick="showGuideTab(1)" id="gt1" style="padding:8px 4px;border-radius:8px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">⭐ 앱 특징</button>
-        <button onclick="showGuideTab(2)" id="gt2" style="padding:8px 4px;border-radius:8px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">📱 사용방법</button>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:14px">
+        <button onclick="showGuideTab(0)" id="gt0" style="padding:7px 3px;border-radius:7px;border:none;background:rgba(201,168,76,.15);border-bottom:2px solid #C9A84C;color:#E8C97A;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">🏢 회사<br>소개</button>
+        <button onclick="showGuideTab(1)" id="gt1" style="padding:7px 3px;border-radius:7px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">⭐ 앱<br>특징</button>
+        <button onclick="showGuideTab(2)" id="gt2" style="padding:7px 3px;border-radius:7px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">📱 사용<br>방법</button>
+        <button onclick="showGuideTab(3)" id="gt3" style="padding:7px 3px;border-radius:7px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">🏠 주력<br>매물</button>
       </div>
     </div>
 
@@ -784,6 +785,171 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div style="display:flex;gap:8px;padding-bottom:10px">
         <button onclick="showGuideTab(1)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 앱 특징</button>
         <button onclick="closeGuide()" style="flex:2;padding:12px;border-radius:11px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">✅ 확인 · 로그인하기</button>
+      </div>
+    </div>
+
+    <!-- ── 주력 매물 바로가기 ── -->
+    <div id="gp3" style="display:none;padding:14px 18px 6px">
+      <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:4px">🏠 주력 매물 바로가기</div>
+      <div style="font-size:9px;color:#8A9AB0;margin-bottom:14px">로그인 후 아래 매물을 바로 확인하실 수 있습니다</div>
+
+      <!-- ───── 학군 권역 매물 ───── -->
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px">
+        <div style="flex:1;height:1px;background:rgba(201,168,76,.2)"></div>
+        <div style="font-size:9px;font-weight:800;color:#E8C97A;white-space:nowrap">🎓 학군 배후 주거 권역</div>
+        <div style="flex:1;height:1px;background:rgba(201,168,76,.2)"></div>
+      </div>
+
+      <!-- 대치1동 AI 플랫폼 -->
+      <div style="background:linear-gradient(135deg,#0D1929,#162040);border:1.5px solid rgba(201,168,76,.28);border-radius:13px;padding:13px;margin-bottom:9px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle,rgba(201,168,76,.1),transparent);pointer-events:none"></div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+          <div>
+            <div style="font-size:8px;color:#E8C97A;font-weight:700;letter-spacing:.5px;margin-bottom:2px">🎓 대치1동 AI 플랫폼</div>
+            <div style="font-size:13px;font-weight:900;color:#EDF2F7">대치동 추천매물 종합</div>
+            <div style="font-size:9px;color:#8A9AB0;margin-top:2px">SK뷰·은마·아이파크·오피스텔 7개 단지</div>
+          </div>
+          <span style="font-size:8px;background:rgba(239,68,68,.15);color:#FCA5A5;padding:2px 8px;border-radius:4px;font-weight:700;white-space:nowrap">AI 저평가</span>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px">
+          <span style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:2px 7px;border-radius:4px">SK뷰 ▼8.2%</span>
+          <span style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:2px 7px;border-radius:4px">은마 ▼9.5%</span>
+          <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:2px 7px;border-radius:4px">즉시입주 가능</span>
+          <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:2px 7px;border-radius:4px">AI챗봇 상담</span>
+        </div>
+        <button onclick="guideGoTab(12)" style="width:100%;padding:10px;border-radius:9px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🔍 대치1동 AI 플랫폼 바로가기</button>
+      </div>
+
+      <!-- 학군 오피스텔 3종 -->
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:12px">
+        <!-- 역삼 래전드힐스 -->
+        <div style="background:var(--s1);border:1px solid rgba(201,168,76,.18);border-radius:11px;padding:11px 13px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+            <div>
+              <div style="font-size:9px;color:#E8C97A;font-weight:700;margin-bottom:1px">🏙️ 역삼 래전드힐스</div>
+              <div style="font-size:12px;font-weight:900;color:#EDF2F7">오피스텔 임대</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:1px">준공2013 · 47세대 · 역삼동</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:1px">7평 기준</div>
+              <div style="font-size:12px;font-weight:900;color:#2DD4A0">보1천/월110만</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap">
+            <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">7평 월110만</span>
+            <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">9평 월125만</span>
+            <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">10평 월130만</span>
+            <span style="font-size:8px;background:rgba(255,255,255,.06);color:#8A9AB0;padding:1px 6px;border-radius:3px">관리비포함</span>
+          </div>
+          <button onclick="guideGoTab(8)" style="width:100%;padding:9px;border-radius:8px;background:rgba(45,212,160,.12);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">📋 매물 상세보기</button>
+        </div>
+
+        <!-- 삼환아르누보2 -->
+        <div style="background:var(--s1);border:1px solid rgba(201,168,76,.18);border-radius:11px;padding:11px 13px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+            <div>
+              <div style="font-size:9px;color:#E8C97A;font-weight:700;margin-bottom:1px">🏢 삼환아르누보2 오피스텔</div>
+              <div style="font-size:12px;font-weight:900;color:#EDF2F7">매매 · 임대</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:1px">대치동 938 · 전용7.8평 · 학원가 중심</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:1px">매매가</div>
+              <div style="font-size:12px;font-weight:900;color:#E8C97A">5억 1천만</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap">
+            <span style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:1px 6px;border-radius:3px">매매 5억1천</span>
+            <span style="font-size:8px;background:rgba(74,158,224,.1);color:#A8D4F5;padding:1px 6px;border-radius:3px">단기 보1천/월200</span>
+            <span style="font-size:8px;background:rgba(74,158,224,.1);color:#A8D4F5;padding:1px 6px;border-radius:3px">장기 보1천/월125</span>
+          </div>
+          <button onclick="guideGoTab(9)" style="width:100%;padding:9px;border-radius:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">📋 매물 상세보기</button>
+        </div>
+
+        <!-- 대치 W타워 -->
+        <div style="background:var(--s1);border:1px solid rgba(201,168,76,.18);border-radius:11px;padding:11px 13px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+            <div>
+              <div style="font-size:9px;color:#E8C97A;font-weight:700;margin-bottom:1px">🏨 대치 W타워</div>
+              <div style="font-size:12px;font-weight:900;color:#EDF2F7">단기·장기 임대</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:1px">휘문고 정문 옆 · 학원가 1분</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:9px;color:#8A9AB0;margin-bottom:1px">10평 기준</div>
+              <div style="font-size:12px;font-weight:900;color:#2DD4A0">보1천/월120만</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap">
+            <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">10평 단기 월140</span>
+            <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">10평 월120</span>
+            <span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">12평 월130</span>
+          </div>
+          <button onclick="guideGoTab(10)" style="width:100%;padding:9px;border-radius:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.22);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">📋 매물 상세보기</button>
+        </div>
+      </div>
+
+      <!-- ───── 한강 라인 고급 랜트 ───── -->
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px">
+        <div style="flex:1;height:1px;background:rgba(74,158,224,.2)"></div>
+        <div style="font-size:9px;font-weight:800;color:#A8D4F5;white-space:nowrap">🌊 한강 라인 고급 랜트</div>
+        <div style="flex:1;height:1px;background:rgba(74,158,224,.2)"></div>
+      </div>
+
+      <!-- 시그니엘 레지던스 -->
+      <div style="background:linear-gradient(135deg,#0A1628,#0D2040);border:1.5px solid rgba(74,158,224,.3);border-radius:13px;padding:13px;margin-bottom:14px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;right:0;width:70px;height:70px;background:radial-gradient(circle,rgba(74,158,224,.1),transparent);pointer-events:none"></div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px">
+          <div>
+            <div style="font-size:8px;color:#A8D4F5;font-weight:700;letter-spacing:.5px;margin-bottom:2px">🌊 한강 벨트 럭셔리 · 롯데월드타워</div>
+            <div style="font-size:13px;font-weight:900;color:#EDF2F7">시그니엘 레지던스</div>
+            <div style="font-size:9px;color:#8A9AB0;margin-top:2px">서울 최고급 주거 · 한강·롯데타워뷰</div>
+          </div>
+          <span style="font-size:8px;background:rgba(239,68,68,.15);color:#FCA5A5;padding:2px 8px;border-radius:4px;font-weight:700;white-space:nowrap">AI 저평가</span>
+        </div>
+        <!-- 매매 매물 -->
+        <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:9px 10px;margin-bottom:8px">
+          <div style="font-size:8px;color:#E8C97A;font-weight:700;margin-bottom:5px">💰 매매 (AI저평가 매물)</div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="display:flex;justify-content:space-between;font-size:9px">
+              <span style="color:#8A9AB0">42평</span>
+              <span style="font-weight:800;color:#EDF2F7">68억</span>
+              <span style="color:#FCA5A5;font-weight:700">▼7.3% 저평가</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:9px">
+              <span style="color:#8A9AB0">53평</span>
+              <span style="font-weight:800;color:#EDF2F7">95억</span>
+              <span style="color:#FCA5A5;font-weight:700">▼5.8% 저평가</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:9px">
+              <span style="color:#8A9AB0">28평</span>
+              <span style="font-weight:800;color:#EDF2F7">38억</span>
+              <span style="color:#FCA5A5;font-weight:700">▼8.2% 저평가</span>
+            </div>
+          </div>
+        </div>
+        <!-- 임대 매물 -->
+        <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:9px 10px;margin-bottom:9px">
+          <div style="font-size:8px;color:#A8D4F5;font-weight:700;margin-bottom:5px">🏠 임대차 (최고급 랜트)</div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div style="display:flex;justify-content:space-between;font-size:9px">
+              <span style="color:#8A9AB0">91평</span>
+              <span style="font-weight:800;color:#EDF2F7">보1억</span>
+              <span style="color:#2DD4A0;font-weight:700">월 1,650만원</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:9px">
+              <span style="color:#8A9AB0">95평</span>
+              <span style="font-weight:800;color:#EDF2F7">보3억</span>
+              <span style="color:#2DD4A0;font-weight:700">월 1,800만원</span>
+            </div>
+          </div>
+        </div>
+        <button onclick="guideGoTab(11)" style="width:100%;padding:11px;border-radius:9px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer;margin-bottom:7px">🔍 시그니엘 매물 전체보기</button>
+        <a href="tel:01089858945" style="display:block;width:100%;padding:10px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#EDF2F7;font-family:var(--sans);font-size:11px;font-weight:700;text-align:center;text-decoration:none;box-sizing:border-box">📞 즉시 상담 010-8985-8945 이대표</a>
+      </div>
+
+      <!-- 하단 버튼 -->
+      <div style="display:flex;gap:8px;padding-bottom:10px">
+        <button onclick="showGuideTab(2)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 사용방법</button>
+        <button onclick="closeGuide()" style="flex:2;padding:12px;border-radius:11px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">✅ 로그인하기</button>
       </div>
     </div>
 
@@ -4099,9 +4265,9 @@ function showAdminTab(key){
 }
 
 /* ─── 앱 소개·사용설명서 팝업 ─── */
-var guideTabColors=['#E8C97A','#2DD4A0','#A8D4F5'];
-var guideTabBg=['rgba(201,168,76,.15)','rgba(45,212,160,.12)','rgba(74,158,224,.1)'];
-var guideTabBorder=['#C9A84C','#2DD4A0','#4A9EE0'];
+var guideTabColors=['#E8C97A','#2DD4A0','#A8D4F5','#C9A84C'];
+var guideTabBg=['rgba(201,168,76,.15)','rgba(45,212,160,.12)','rgba(74,158,224,.1)','rgba(201,168,76,.1)'];
+var guideTabBorder=['#C9A84C','#2DD4A0','#4A9EE0','#C9A84C'];
 
 function openGuide(){
   var m=document.getElementById('guideModal');
@@ -4113,7 +4279,7 @@ function closeGuide(){
   if(m)m.style.display='none';
 }
 function showGuideTab(idx){
-  for(var i=0;i<3;i++){
+  for(var i=0;i<4;i++){
     var panel=document.getElementById('gp'+i);
     var tab=document.getElementById('gt'+i);
     if(!panel||!tab)continue;
@@ -4131,6 +4297,19 @@ function showGuideTab(idx){
   }
   var m=document.getElementById('guideModal');
   if(m)m.scrollTop=0;
+}
+
+/* ─── 가이드에서 탭 이동 (로그인 상태에 따라) ─── */
+function guideGoTab(tabNum){
+  closeGuide();
+  if(document.getElementById('app').className==='logged'){
+    goTab(tabNum);
+  } else {
+    // 미로그인: 카카오 인증 열기 (로그인 후 해당 탭으로 이동 예약)
+    sessionStorage.setItem('pendingTab', tabNum);
+    openKakaoAuth();
+    toast('로그인 후 해당 매물 화면으로 이동합니다 😊');
+  }
 }
 
 /* ─── 로그인 화면에서 관리자 로그인 (버그 수정) ─── */
@@ -4551,6 +4730,9 @@ function kakaoComplete(){
   history.replaceState({tab:0,loggedIn:true},'',location.pathname+'#tab0');
   var roleLabel=roleMap[kakaoRole]||'';
   toast('🎉 카카오 인증 완료! '+name+'님 환영합니다 ('+roleLabel+')');
+  // 매물 바로가기 버튼으로 예약된 탭이 있으면 이동
+  var pending=sessionStorage.getItem('pendingTab');
+  if(pending){sessionStorage.removeItem('pendingTab');setTimeout(function(){goTab(parseInt(pending));},400);}
   setTimeout(initReveal,150);
 }
 
