@@ -725,80 +725,315 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div style="height:8px"></div>
     </div>
 
-    <!-- ══ TAB 1: 플랫폼 분석 ══ -->
+    <!-- ══ TAB 1: PROPAI 차별화 시스템 ══ -->
     <div class="screen" id="tab1">
-      <div class="hero">
-        <div class="hero-eye">COMPETITIVE ANALYSIS</div>
-        <div class="hero-title">타 플랫폼 분석<br>PROPAI 차별화 전략</div>
-        <div class="hero-sub">네이버 · KB · 한방 · 집품 · 직방과 비교<br>장단점 분석 → PROPAI 포지셔닝</div>
+      <!-- 히어로 -->
+      <div class="hero" style="background:linear-gradient(160deg,#08101C,#0D1929,#142030);position:relative;overflow:hidden">
+        <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(201,168,76,.12),transparent);pointer-events:none"></div>
+        <div class="hero-eye">PROPAI ADVANTAGE SYSTEM</div>
+        <div class="hero-title" style="font-size:20px">타 플랫폼 대비<br>PROPAI 차별화 전략</div>
+        <div class="hero-sub">AI자동매칭 · 저평가추천 · 첨단홍보 · 계약성사<br>대치1동 학군 특화 수요·공급 매칭 시스템</div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-n" style="color:var(--g2)">5개</div><div class="hstat-l">경쟁 플랫폼</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:var(--jade)">12개</div><div class="hstat-l">독점 기능</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:var(--g2)">0원</div><div class="hstat-l">광고비</div></div>
+        </div>
       </div>
 
-      <div class="sh"><span class="sh-t">📊 플랫폼별 핵심 특징 비교</span></div>
-      <div class="comp-table rev">
-        <table class="ct">
-          <thead><tr><th>플랫폼</th><th>핵심 특징</th><th>수익 모델</th><th>단점</th></tr></thead>
+      <!-- ① 타 플랫폼 vs PROPAI 비교표 -->
+      <div class="sh rev"><span class="sh-t">📊 타 플랫폼 vs PROPAI 핵심 비교</span></div>
+      <div style="padding:0 16px 14px;overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:9px;min-width:320px">
+          <thead>
+            <tr style="background:#0D1929">
+              <th style="padding:8px 6px;text-align:left;color:#E8C97A;font-weight:800;border-bottom:1px solid rgba(201,168,76,.2)">기능</th>
+              <th style="padding:8px 4px;text-align:center;color:#8A9AB0;border-bottom:1px solid rgba(255,255,255,.06)">네이버</th>
+              <th style="padding:8px 4px;text-align:center;color:#8A9AB0;border-bottom:1px solid rgba(255,255,255,.06)">한방</th>
+              <th style="padding:8px 4px;text-align:center;color:#8A9AB0;border-bottom:1px solid rgba(255,255,255,.06)">직방</th>
+              <th style="padding:8px 6px;text-align:center;color:#E8C97A;border-bottom:1px solid rgba(201,168,76,.3);background:rgba(201,168,76,.06)">PROPAI</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr>
-              <td><div class="platform-name pn0">🗺️ 네이버<br>부동산</div></td>
-              <td style="text-align:left;font-size:9px">지도 기반 매물 검색<br>AI매칭·실거래 정보<br>최대 트래픽</td>
-              <td class="cty" style="font-size:9px">광고·리스팅<br>유료 노출</td>
-              <td class="ctr" style="font-size:9px;text-align:left">허위매물 다수<br>광고비 부담<br>중개사 종속</td>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">광고비</td>
+              <td style="text-align:center;color:#EF4444">고비용</td>
+              <td style="text-align:center;color:#EF4444">유료</td>
+              <td style="text-align:center;color:#EF4444">유료</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ 0원</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">AI 자동매칭</td>
+              <td style="text-align:center;color:#F59E0B">부분</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#F59E0B">부분</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ 3자매칭</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">저평가 분석</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ AI분석</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">숏츠 자동제작</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ 자동</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">SNS 자동홍보</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ 자동</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">공동중개</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#2DD4A0">있음</td>
+              <td style="text-align:center;color:#EF4444">없음</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ AI강화</td>
             </tr>
             <tr>
-              <td><div class="platform-name pn1">🏦 KB<br>부동산</div></td>
-              <td style="text-align:left;font-size:9px">AI시세·예측시세<br>실거래가 권위<br>대출 연계</td>
-              <td style="font-size:9px">KB금융 생태계<br>대출·금융연계</td>
-              <td class="ctr" style="font-size:9px;text-align:left">AI매칭 미흡<br>공동중개 없음<br>숏츠 없음</td>
-            </tr>
-            <tr>
-              <td><div class="platform-name pn2">🔔 한방<br>부동산</div></td>
-              <td style="text-align:left;font-size:9px">매물찾기·있습니다<br>파발마 시스템<br>중개사 커뮤니티</td>
-              <td style="font-size:9px">중개사<br>구독·유료</td>
-              <td class="ctr" style="font-size:9px;text-align:left">AI분석 부재<br>소비자 UX 약<br>모바일 미흡</td>
-            </tr>
-            <tr>
-              <td><div class="platform-name pn3">⭐ 집품<br>Zippoom</div></td>
-              <td style="text-align:left;font-size:9px">실거주 리뷰 중심<br>보증금 안전확인<br>무료 매물 등록</td>
-              <td style="font-size:9px">리뷰 데이터<br>광고·구독</td>
-              <td class="ctr" style="font-size:9px;text-align:left">AI매칭 없음<br>공동중개 없음<br>계약 연계 없음</td>
-            </tr>
-            <tr>
-              <td><div class="platform-name pn4">🏢 직방<br>다방</div></td>
-              <td style="text-align:left;font-size:9px">원룸·오피스텔<br>직영 중개 집토스<br>VR 매물 체험</td>
-              <td style="font-size:9px">광고·직영<br>수수료</td>
-              <td class="ctr" style="font-size:9px;text-align:left">고급주거 약<br>투자분석 없음<br>허위매물 리스크</td>
-            </tr>
-            <tr style="background:var(--gdim)">
-              <td><div class="platform-name pn0">✨ PROP<br>AI</div></td>
-              <td style="text-align:left;font-size:9px"><span class="ctg">3대권역 AI매칭<br>숏츠→계약 파이프<br>공동중개 시스템</span></td>
-              <td class="ctg" style="font-size:9px">법정중개보수<br>광고비 0원<br>투명 거래</td>
-              <td style="font-size:9px;color:var(--amber)">초기 트래픽<br>구축 필요</td>
+              <td style="padding:7px 6px;color:#EDF2F7;font-weight:700">허위매물</td>
+              <td style="text-align:center;color:#EF4444">다수</td>
+              <td style="text-align:center;color:#F59E0B">일부</td>
+              <td style="text-align:center;color:#F59E0B">일부</td>
+              <td style="text-align:center;color:#2DD4A0;font-weight:900;background:rgba(45,212,160,.05)">✅ 차단</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="sh"><span class="sh-t">💡 PROPAI 차별화 포인트</span></div>
-      <div class="rule-card rc-gold rev">
-        <div class="rc-title">✅ 우리가 할 수 있는 것</div>
-        <div class="rc-list">
-          <div class="rcl">네이버처럼 지도 기반 매물 검색 + AI 저평가 분석 (KB시세 초월)</div>
-          <div class="rcl">집품처럼 무료 매물 등록 → 단, 계약 성사 시 <strong>법정 보수료만</strong> 수취</div>
-          <div class="rcl">한방처럼 공동중개 네트워크 + 파발마 → AI 자동매칭으로 업그레이드</div>
-          <div class="rcl">직방 VR 대신 <strong>숏츠 영상</strong>으로 매물 홍보 → 계약 유도 파이프라인</div>
-          <div class="rcl">KB AI시세 + 네이버 실거래 + 한방 매물 = <strong>3포털 통합 비교</strong></div>
-          <div class="rcl"><strong>투자 3권역:</strong> 학군 배후주거 / 한강 럭셔리 / <strong>한강변 재건축·재개발</strong> 특화 (GTX 등은 차기 단계)</div>
-          <div class="rcl">삼성동·압구정·여의도·목동·성수·한남·흑석 한강변 재건축 조합원 입주권 AI 저평가 분석</div>
+      <!-- ② AI 자동매칭 시스템 -->
+      <div class="sh rev"><span class="sh-t">🤖 AI 3자 자동매칭 시스템</span></div>
+      <div style="padding:0 16px 14px">
+        <div style="background:linear-gradient(135deg,#0D1929,#162030);border:1.5px solid rgba(201,168,76,.25);border-radius:14px;padding:15px;margin-bottom:10px">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:4px;align-items:center;margin-bottom:14px">
+            <div style="background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:10px 6px;text-align:center">
+              <div style="font-size:18px;margin-bottom:4px">🙋</div>
+              <div style="font-size:9px;font-weight:800;color:#E8C97A">수요자</div>
+              <div style="font-size:8px;color:#8A9AB0;margin-top:2px">매수·전세·임차<br>조건 등록</div>
+            </div>
+            <div style="font-size:18px;color:#E8C97A;text-align:center">⇄</div>
+            <div style="background:rgba(45,212,160,.1);border:1.5px solid rgba(45,212,160,.3);border-radius:10px;padding:10px 6px;text-align:center">
+              <div style="font-size:18px;margin-bottom:4px">🤖</div>
+              <div style="font-size:9px;font-weight:800;color:#2DD4A0">AI 매칭</div>
+              <div style="font-size:8px;color:#8A9AB0;margin-top:2px">자동분류<br>최적매칭</div>
+            </div>
+            <div style="font-size:18px;color:#E8C97A;text-align:center">⇄</div>
+            <div style="background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.25);border-radius:10px;padding:10px 6px;text-align:center">
+              <div style="font-size:18px;margin-bottom:4px">🏠</div>
+              <div style="font-size:9px;font-weight:800;color:#A8D4F5">공급자</div>
+              <div style="font-size:8px;color:#8A9AB0;margin-top:2px">매도·임대<br>매물 등록</div>
+            </div>
+          </div>
+          <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:10px 12px">
+            <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:6px">⚡ AI 자동매칭 프로세스</div>
+            <div style="display:flex;flex-direction:column;gap:5px">
+              <div style="display:flex;align-items:center;gap:8px;font-size:9px">
+                <span style="background:rgba(201,168,76,.2);color:#E8C97A;padding:2px 7px;border-radius:4px;font-weight:700;flex-shrink:0">1단계</span>
+                <span style="color:#8A9AB0">수요자 조건 등록 → AI가 즉시 매물 DB 스캔</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:9px">
+                <span style="background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700;flex-shrink:0">2단계</span>
+                <span style="color:#8A9AB0">네이버·KB·한방 3포털 실거래가 자동 비교</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:9px">
+                <span style="background:rgba(74,158,224,.15);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700;flex-shrink:0">3단계</span>
+                <span style="color:#8A9AB0">저평가 매물 자동 선별 → 수요자에게 즉시 추천</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:9px">
+                <span style="background:rgba(201,168,76,.2);color:#E8C97A;padding:2px 7px;border-radius:4px;font-weight:700;flex-shrink:0">4단계</span>
+                <span style="color:#8A9AB0">최적 매칭 성사 → 계약 진행 자동 안내</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="rule-card rc-amber rev">
-        <div class="rc-title">⚠️ 보완해야 할 것</div>
-        <div class="rc-list">
-          <div class="rcl">초기 매물 DB 확보 → 공동중개 파트너 중개사 적극 유치</div>
-          <div class="rcl">실거주 리뷰 기능 (집품 벤치마크) → 매물 신뢰도 제고</div>
-          <div class="rcl">허위매물 방지 → 공인중개사 라이센스 인증 필수화</div>
-          <div class="rcl">대치동앱 (lotte-ai-app) → PROPAI 광역 플랫폼 유입 깔때기로 활용</div>
+
+      <!-- ③ 저평가 추천 시스템 -->
+      <div class="sh rev"><span class="sh-t">📉 AI 저평가 추천매물 시스템</span></div>
+      <div style="padding:0 16px 14px">
+        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:13px;padding:14px;margin-bottom:8px">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+            <div style="background:rgba(74,158,224,.08);border:1px solid rgba(74,158,224,.18);border-radius:9px;padding:9px;text-align:center">
+              <div style="font-size:11px;font-weight:900;color:#A8D4F5;margin-bottom:2px">네이버</div>
+              <div style="font-size:13px;font-weight:900">30.2억</div>
+              <div style="font-size:8px;color:#8A9AB0;margin-top:1px">호가 기준</div>
+            </div>
+            <div style="background:rgba(74,158,224,.08);border:1px solid rgba(74,158,224,.18);border-radius:9px;padding:9px;text-align:center">
+              <div style="font-size:11px;font-weight:900;color:#A8D4F5;margin-bottom:2px">KB시세</div>
+              <div style="font-size:13px;font-weight:900">31.1억</div>
+              <div style="font-size:8px;color:#8A9AB0;margin-top:1px">공시기준</div>
+            </div>
+            <div style="background:rgba(45,212,160,.1);border:1.5px solid rgba(45,212,160,.3);border-radius:9px;padding:9px;text-align:center">
+              <div style="font-size:11px;font-weight:900;color:#2DD4A0;margin-bottom:2px">PROPAI</div>
+              <div style="font-size:13px;font-weight:900;color:#E8C97A">28.5억</div>
+              <div style="font-size:8px;color:#2DD4A0;margin-top:1px">▼8.2% 절감</div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#8A9AB0;line-height:1.7;background:rgba(45,212,160,.05);border-radius:7px;padding:9px 10px">
+            🤖 <strong style="color:#2DD4A0">AI 저평가 분석:</strong> 3개 포털 실거래가 동시 크롤링 → 시세 대비 저평가 매물 자동 탐지 → 수요자에게 우선 추천 → <strong style="color:#E8C97A">평균 7~10% 절감 효과</strong>
+          </div>
         </div>
+      </div>
+
+      <!-- ④ 첨단 홍보 자동화 시스템 -->
+      <div class="sh rev"><span class="sh-t">📹 첨단 매물 홍보 자동화 시스템</span></div>
+      <div style="padding:0 16px 14px">
+        <div style="background:linear-gradient(135deg,#0D1929,#162030);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px">
+          <!-- 파이프라인 -->
+          <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:10px">🚀 매물 등록 → 계약 성사 자동 파이프라인</div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:13px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📥</div>
+              <div><div style="font-size:10px;font-weight:800;color:#E8C97A">매물 등록</div><div style="font-size:8px;color:#8A9AB0">수요자·공급자·공동중개 3자 동시 등록</div></div>
+            </div>
+            <div style="width:1px;height:10px;background:rgba(201,168,76,.2);margin-left:14px"></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(45,212,160,.12);border:1px solid rgba(45,212,160,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🤖</div>
+              <div><div style="font-size:10px;font-weight:800;color:#2DD4A0">AI 자동분류 + 저평가 분석</div><div style="font-size:8px;color:#8A9AB0">6개 유형 자동 분류 · 3포털 비교 · 저평가 탐지</div></div>
+            </div>
+            <div style="width:1px;height:10px;background:rgba(45,212,160,.2);margin-left:14px"></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🎬</div>
+              <div><div style="font-size:10px;font-weight:800;color:#FCA5A5">유튜브 숏츠 자동 제작</div><div style="font-size:8px;color:#8A9AB0">매물 사진·가격·위치 자동 편집 · 60초 영상</div></div>
+            </div>
+            <div style="width:1px;height:10px;background:rgba(239,68,68,.15);margin-left:14px"></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📡</div>
+              <div><div style="font-size:10px;font-weight:800;color:#A8D4F5">SNS 자동 동시 노출</div>
+                <div style="font-size:8px;color:#8A9AB0">유튜브 · 인스타그램 · 블로그 · 단톡방 자동 발송</div>
+              </div>
+            </div>
+            <div style="width:1px;height:10px;background:rgba(74,158,224,.15);margin-left:14px"></div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:7px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📄</div>
+              <div><div style="font-size:10px;font-weight:800;color:#E8C97A">계약 성사</div><div style="font-size:8px;color:#8A9AB0">수요자 매칭 완료 → 계약 진행 · 법정 보수만 수취</div></div>
+            </div>
+          </div>
+          <!-- SNS 채널 -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+            <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:8px 4px;text-align:center">
+              <div style="font-size:18px;margin-bottom:3px">▶</div>
+              <div style="font-size:8px;font-weight:700;color:#FCA5A5">유튜브<br>숏츠</div>
+            </div>
+            <div style="background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2);border-radius:8px;padding:8px 4px;text-align:center">
+              <div style="font-size:18px;margin-bottom:3px">📸</div>
+              <div style="font-size:8px;font-weight:700;color:#F9A8D4">인스타<br>그램</div>
+            </div>
+            <div style="background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.2);border-radius:8px;padding:8px 4px;text-align:center">
+              <div style="font-size:18px;margin-bottom:3px">📝</div>
+              <div style="font-size:8px;font-weight:700;color:#A8D4F5">네이버<br>블로그</div>
+            </div>
+            <div style="background:rgba(254,229,0,.08);border:1px solid rgba(254,229,0,.2);border-radius:8px;padding:8px 4px;text-align:center">
+              <div style="font-size:18px;margin-bottom:3px">💬</div>
+              <div style="font-size:8px;font-weight:700;color:#FEE500">카카오<br>단톡방</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ 대치1동 학군 특화 시스템 -->
+      <div class="sh rev"><span class="sh-t">🎓 대치1동 학군 특화 매칭 시스템</span></div>
+      <div style="padding:0 16px 14px">
+        <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:13px;padding:14px;margin-bottom:8px">
+          <div style="font-size:11px;font-weight:900;color:#E8C97A;margin-bottom:8px">🎓 대치동 학군 수요자 빠른 매칭 시스템</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="background:rgba(201,168,76,.07);border-left:3px solid #C9A84C;border-radius:0 8px 8px 0;padding:9px 11px">
+              <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:3px">📚 학원가 접근성 분석</div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.6">단지별 주요 학원까지 도보 시간 자동 계산<br>초·중·고 통학 가능 학교 자동 매핑</div>
+            </div>
+            <div style="background:rgba(74,158,224,.06);border-left:3px solid #4A9EE0;border-radius:0 8px 8px 0;padding:9px 11px">
+              <div style="font-size:10px;font-weight:800;color:#A8D4F5;margin-bottom:3px">🙋 수요자 조건 즉시 매칭</div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.6">학군·예산·평형·전·월세 조건 등록 즉시<br>AI가 최적 매물 TOP 3 자동 추천</div>
+            </div>
+            <div style="background:rgba(45,212,160,.06);border-left:3px solid #2DD4A0;border-radius:0 8px 8px 0;padding:9px 11px">
+              <div style="font-size:10px;font-weight:800;color:#2DD4A0;margin-bottom:3px">🤝 공급자 즉시 파악 시스템</div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.6">공급자 매물 등록 즉시 대기 수요자 자동 알림<br>계약 조건 빠른 조정 → 계약 성사율 극대화</div>
+            </div>
+            <div style="background:rgba(201,168,76,.07);border-left:3px solid #C9A84C;border-radius:0 8px 8px 0;padding:9px 11px">
+              <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:3px">📊 실거래가 투명 공개</div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.6">네이버·KB·한방 3포털 가격 동시 비교<br>수요·공급자 모두 투명한 가격 정보 공유</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑥ PROPAI 12가지 독점 기능 -->
+      <div class="sh rev"><span class="sh-t">⭐ PROPAI 12가지 독점 기능</span></div>
+      <div style="padding:0 16px 14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.18);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">🤖</div>
+            <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:2px">AI 3자 자동매칭</div>
+            <div style="font-size:8px;color:#8A9AB0">수요·공급·공동 동시 매칭</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">📉</div>
+            <div style="font-size:9px;font-weight:800;color:#2DD4A0;margin-bottom:2px">저평가 자동 탐지</div>
+            <div style="font-size:8px;color:#8A9AB0">3포털 비교 · 7~10% 절감</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">🎬</div>
+            <div style="font-size:9px;font-weight:800;color:#FCA5A5;margin-bottom:2px">숏츠 자동 제작</div>
+            <div style="font-size:8px;color:#8A9AB0">매물 등록 즉시 영상화</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(254,229,0,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">📡</div>
+            <div style="font-size:9px;font-weight:800;color:#FEE500;margin-bottom:2px">SNS 자동 노출</div>
+            <div style="font-size:8px;color:#8A9AB0">유튜브·인스타·블로그·단톡</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">🎓</div>
+            <div style="font-size:9px;font-weight:800;color:#A8D4F5;margin-bottom:2px">학군 특화 매칭</div>
+            <div style="font-size:8px;color:#8A9AB0">대치1동 학원가 분석</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">✅</div>
+            <div style="font-size:9px;font-weight:800;color:#2DD4A0;margin-bottom:2px">허위매물 차단</div>
+            <div style="font-size:8px;color:#8A9AB0">공인중개사 인증 필수</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.18);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">💰</div>
+            <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:2px">광고비 0원</div>
+            <div style="font-size:8px;color:#8A9AB0">법정 중개보수만 수취</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(236,72,153,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">🤝</div>
+            <div style="font-size:9px;font-weight:800;color:#F9A8D4;margin-bottom:2px">AI 공동중개</div>
+            <div style="font-size:8px;color:#8A9AB0">50:50 보수 · 일 5건</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">📊</div>
+            <div style="font-size:9px;font-weight:800;color:#A8D4F5;margin-bottom:2px">포털 실시간 비교</div>
+            <div style="font-size:8px;color:#8A9AB0">네이버·KB·한방 동시</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">🔒</div>
+            <div style="font-size:9px;font-weight:800;color:#2DD4A0;margin-bottom:2px">데이터 보안</div>
+            <div style="font-size:8px;color:#8A9AB0">수요·공급 정보 분리</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.18);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">📱</div>
+            <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:2px">모바일 최적화</div>
+            <div style="font-size:8px;color:#8A9AB0">카카오 인증 · 원터치</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(139,92,246,.15);border-radius:10px;padding:10px 11px">
+            <div style="font-size:14px;margin-bottom:4px">⚡</div>
+            <div style="font-size:9px;font-weight:800;color:#C4B5FD;margin-bottom:2px">계약 성사 시스템</div>
+            <div style="font-size:8px;color:#8A9AB0">조건 조정 · 신속 계약</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="padding:0 16px 14px">
+        <button onclick="openModal('demand')" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer;margin-bottom:8px">🙋 AI 매칭 수요자 등록 시작</button>
+        <button onclick="openModal('supply')" style="width:100%;padding:14px;border-radius:12px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">🏠 공급자 매물 등록 시작</button>
       </div>
       <div style="height:8px"></div>
     </div>
