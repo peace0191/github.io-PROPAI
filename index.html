@@ -327,178 +327,190 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 <!-- ══════ LOGIN ══════ -->
 <div id="ls">
   <div class="lo lo1"></div><div class="lo lo2"></div>
+
+  <!-- 로고 -->
   <div class="lm"><div class="lmt">P</div></div>
-  <div class="lt">PROP<span>AI</span><br>투명 부동산 플랫폼</div>
-  <div class="ls2">광고 없음 · 중개보수만으로 수익<br>수요·공급·공동중개 3자 AI 자동매칭</div>
-  <div class="lzones">
-    <div class="lz"><div class="ld ld0"></div><div class="lz-t">🎓 학군 배후 주거 권역</div><div class="lz-r">대치·도곡·역삼·개포·압구정</div></div>
-    <div class="lz"><div class="ld ld1"></div><div class="lz-t">🌊 한강 벨트 럭셔리 권역</div><div class="lz-r">강남·반포·송파·용산·성수·마포</div></div>
-    <div class="lz"><div class="ld ld2"></div><div class="lz-t">📈 한강변 재건축·재개발 투자 권역</div><div class="lz-r">삼성동·압구정·여의도·목동·성수·한남·흑석</div></div>
-  </div>
-  <div class="vpills">
+  <div class="lt">PROP<span>AI</span></div>
+  <div class="ls2">롯데타워앤강남빌딩부동산중개(주)<br>투명 부동산 AI 플랫폼</div>
+
+  <!-- 핵심 배지 -->
+  <div class="vpills" style="margin:10px 0 18px">
     <span class="vp">✅ 광고비 0원</span>
     <span class="vp">🤖 AI 자동매칭</span>
     <span class="vp">🔒 법정 중개보수</span>
     <span class="vp">📹 숏츠 자동제작</span>
-    <span class="vp">🤝 공동중개</span>
-    <span class="vp">📊 포털 실시간비교</span>
   </div>
-  <button class="kkb" style="margin-top:14px" onclick="openKakaoAuth()"><span style="font-size:19px">💬</span>카카오 인증 로그인으로 시작하기</button>
-  <div style="display:flex;align-items:center;gap:8px;margin:10px 0 4px">
-    <div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div>
-    <span style="font-size:9px;color:#4A5568">수요·공급자 전용</span>
-    <div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div>
-  </div>
-  <div style="margin-top:10px;padding:13px 14px;background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.2);border-radius:13px">
-    <div style="font-size:10px;font-weight:900;color:#2DD4A0;margin-bottom:10px;text-align:center;letter-spacing:.5px">🤝 공동중개 파트너 전용</div>
-    <!-- 로그인 / 가입 탭 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid rgba(45,212,160,.25)">
-      <button id="jt-login" onclick="showJointTab('login')" style="padding:8px;border:none;background:rgba(45,212,160,.18);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer;border-bottom:2px solid #2DD4A0">🔑 로그인</button>
-      <button id="jt-signup" onclick="showJointTab('signup')" style="padding:8px;border:none;background:transparent;color:#4A5568;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer;border-bottom:2px solid transparent">📝 회원가입</button>
-    </div>
 
-    <!-- 로그인 패널 -->
-    <div id="jp-login">
-      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px">
-        <input id="jb-id" style="padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.25);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none" placeholder="공동중개 ID">
-        <input id="jb-pw" type="password" style="padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.25);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none" placeholder="비밀번호">
+  <!-- ① 일반 사용자: 카카오 인증 -->
+  <div style="margin-bottom:6px">
+    <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:7px;text-align:center;letter-spacing:.5px">수요자 · 공급자 로그인</div>
+    <button class="kkb" onclick="openKakaoAuth()">
+      <span style="font-size:19px">💬</span>카카오 인증 로그인으로 시작하기
+    </button>
+    <div style="font-size:8px;color:#4A5568;text-align:center;margin-top:5px">매수·매도·전세·월세·단기임대 수요·공급자 공통</div>
+  </div>
+
+  <!-- 구분선 -->
+  <div style="display:flex;align-items:center;gap:10px;margin:14px 0">
+    <div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div>
+    <span style="font-size:9px;color:#2A3A4A;font-weight:600">또는</span>
+    <div style="flex:1;height:1px;background:rgba(255,255,255,.07)"></div>
+  </div>
+
+  <!-- ② 공동중개 파트너 로그인 -->
+  <div style="margin-bottom:6px;background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.18);border-radius:12px;padding:13px 14px">
+    <div style="font-size:10px;font-weight:900;color:#2DD4A0;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+      <span>🤝</span><span>공동중개 파트너 로그인</span>
+      <span style="margin-left:auto;font-size:8px;color:#4A5568;font-weight:400">승인된 계정만</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:9px">
+      <input id="jb-id" type="text" autocomplete="off"
+        style="padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;width:100%;box-sizing:border-box"
+        placeholder="공동중개 ID" onkeydown="if(event.key==='Enter')document.getElementById('jb-pw').focus()">
+      <input id="jb-pw" type="password" autocomplete="off"
+        style="padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;width:100%;box-sizing:border-box"
+        placeholder="비밀번호" onkeydown="if(event.key==='Enter')doLogin('joint')">
+    </div>
+    <div style="display:flex;gap:7px">
+      <button onclick="doLogin('joint')"
+        style="flex:1;padding:11px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">
+        🔑 로그인
+      </button>
+      <button onclick="openJointSignup()"
+        style="flex:1;padding:11px;border-radius:9px;background:transparent;border:1.5px solid rgba(45,212,160,.3);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">
+        📝 가입신청
+      </button>
+    </div>
+  </div>
+
+  <!-- ③ 관리자 전용 로그인 -->
+  <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:13px 14px;margin-bottom:6px">
+    <div style="font-size:10px;font-weight:900;color:#E8C97A;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+      <span>👑</span><span>관리자 전용 로그인</span>
+      <span style="margin-left:auto;font-size:8px;color:#4A5568;font-weight:400">내부직원 전용</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:9px">
+      <input id="ls-adm-id" type="text" autocomplete="off"
+        style="padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(201,168,76,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;width:100%;box-sizing:border-box"
+        placeholder="관리자 ID" onkeydown="if(event.key==='Enter')document.getElementById('ls-adm-pw').focus()">
+      <input id="ls-adm-pw" type="password" autocomplete="off"
+        style="padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(201,168,76,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;width:100%;box-sizing:border-box"
+        placeholder="비밀번호" onkeydown="if(event.key==='Enter')doAdminLoginFromLS()">
+    </div>
+    <button onclick="doAdminLoginFromLS()"
+      style="width:100%;padding:11px;border-radius:9px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">
+      👑 관리자 로그인
+    </button>
+  </div>
+
+  <div class="ldisclaim">이용 시 서비스 이용약관 · 개인정보 처리방침에 동의하게 됩니다<br>법정 중개보수 원칙 · 광고 없는 투명 거래 플랫폼</div>
+</div>
+
+<!-- 공동중개 가입신청 모달 -->
+<div id="jointSignupModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:998;overflow-y:auto">
+  <div style="background:#0D1929;min-height:100%;max-width:440px;margin:0 auto;padding:20px 16px 40px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+      <div style="font-size:14px;font-weight:900;color:#2DD4A0">🤝 공동중개 파트너 가입신청</div>
+      <button onclick="closeJointSignup()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;width:32px;height:32px;color:#8A9AB0;font-size:16px;cursor:pointer;font-family:var(--sans)">✕</button>
+    </div>
+    <!-- 단계 표시 -->
+    <div style="display:flex;margin-bottom:18px;background:rgba(8,16,28,.5);border-radius:8px;overflow:hidden">
+      <div id="jsp1" style="flex:1;padding:8px;text-align:center;font-size:9px;font-weight:800;color:#2DD4A0;background:rgba(45,212,160,.12);border-bottom:2px solid #2DD4A0">① 계정</div>
+      <div id="jsp2" style="flex:1;padding:8px;text-align:center;font-size:9px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">② 사무소</div>
+      <div id="jsp3" style="flex:1;padding:8px;text-align:center;font-size:9px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">③ 서류</div>
+      <div id="jsp4" style="flex:1;padding:8px;text-align:center;font-size:9px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">④ 완료</div>
+    </div>
+    <!-- STEP 1 -->
+    <div id="jsf1">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">공동중개 ID <span style="color:#EF4444">*</span></div>
+          <input id="js-id" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="영문+숫자 6자 이상"></div>
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">비밀번호 <span style="color:#EF4444">*</span></div>
+          <input id="js-pw" type="password" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="8자 이상"></div>
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">비밀번호 확인 <span style="color:#EF4444">*</span></div>
+          <input id="js-pw2" type="password" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="비밀번호 재입력"></div>
       </div>
-      <button onclick="doLogin('joint')" style="width:100%;padding:11px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🤝 공동중개 파트너 로그인</button>
-      <div style="font-size:8px;color:#4A5568;text-align:center;margin-top:6px">승인된 계정만 로그인 가능 · 자신의 매물만 열람</div>
+      <button onclick="jSignupNext(2)" style="width:100%;padding:12px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">다음 →</button>
     </div>
-
-    <!-- 회원가입 패널 -->
-    <div id="jp-signup" style="display:none">
-      <div id="jSignupForm">
-        <!-- 가입 단계 표시 -->
-        <div style="display:flex;margin-bottom:12px;background:rgba(8,16,28,.4);border-radius:7px;overflow:hidden">
-          <div id="jsp1" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#2DD4A0;background:rgba(45,212,160,.12);border-bottom:2px solid #2DD4A0">① 계정정보</div>
-          <div id="jsp2" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">② 사무소정보</div>
-          <div id="jsp3" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">③ 서류첨부</div>
-          <div id="jsp4" style="flex:1;padding:6px;text-align:center;font-size:8px;font-weight:800;color:#4A5568;border-bottom:2px solid transparent">④ 완료</div>
-        </div>
-
-        <!-- 가입 STEP 1: 계정 정보 -->
-        <div id="jsf1">
-          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">공동중개 ID <span style="color:#EF4444">*</span></div>
-              <input id="js-id" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="영문+숫자 조합 6자 이상">
-            </div>
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">비밀번호 <span style="color:#EF4444">*</span></div>
-              <input id="js-pw" type="password" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="8자 이상 (영문+숫자+특수문자)">
-            </div>
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">비밀번호 확인 <span style="color:#EF4444">*</span></div>
-              <input id="js-pw2" type="password" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="비밀번호 재입력">
-            </div>
-          </div>
-          <button onclick="jSignupNext(2)" style="width:100%;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">다음 →</button>
-        </div>
-
-        <!-- 가입 STEP 2: 사무소 정보 -->
-        <div id="jsf2" style="display:none">
-          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">개설등록사무소 명 <span style="color:#EF4444">*</span></div>
-              <input id="js-officename" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="예: ○○부동산중개사무소">
-            </div>
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">대표 성명 <span style="color:#EF4444">*</span></div>
-              <input id="js-ceoname" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="공인중개사 대표 성명">
-            </div>
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">개설등록번호 <span style="color:#EF4444">*</span></div>
-              <input id="js-regnum" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="예: 11680-2023-XXXXX">
-            </div>
-            <div>
-              <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px;font-weight:700">대표 연락처 <span style="color:#EF4444">*</span></div>
-              <input id="js-tel" style="width:100%;padding:9px 11px;font-size:11px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="010-0000-0000">
-            </div>
-          </div>
-          <div style="display:flex;gap:7px">
-            <button onclick="jSignupNext(1)" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
-            <button onclick="jSignupNext(3)" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">다음 →</button>
-          </div>
-        </div>
-
-        <!-- 가입 STEP 3: 서류 첨부 -->
-        <div id="jsf3" style="display:none">
-          <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:9px;padding:10px 12px;margin-bottom:10px;font-size:9px;color:#FCD34D;line-height:1.7">
-            ⚠️ 아래 서류를 첨부하시면 관리자 확인 후 승인됩니다.<br>승인 완료 시 등록된 연락처로 안내드립니다.
-          </div>
-          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:10px">
-            <!-- 사업자등록증 -->
-            <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:9px;padding:11px 12px">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-                <div>
-                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">📄 사업자등록증</div>
-                  <div style="font-size:8px;color:#4A5568;margin-top:1px">JPG · PNG · PDF (10MB 이하)</div>
-                </div>
-                <span id="js-biz-lbl" style="font-size:8px;color:#4A5568">미첨부</span>
-              </div>
-              <label style="display:block;width:100%;padding:9px;border-radius:7px;background:rgba(45,212,160,.1);border:1px dashed rgba(45,212,160,.35);color:#2DD4A0;font-size:10px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;font-family:var(--sans)">
-                📎 파일 선택
-                <input type="file" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="setFileLabel(this,'js-biz-lbl')">
-              </label>
-            </div>
-            <!-- 중개업개설등록증 -->
-            <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:9px;padding:11px 12px">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
-                <div>
-                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">🏢 중개업개설등록증</div>
-                  <div style="font-size:8px;color:#4A5568;margin-top:1px">JPG · PNG · PDF (10MB 이하)</div>
-                </div>
-                <span id="js-reg-lbl" style="font-size:8px;color:#4A5568">미첨부</span>
-              </div>
-              <label style="display:block;width:100%;padding:9px;border-radius:7px;background:rgba(45,212,160,.1);border:1px dashed rgba(45,212,160,.35);color:#2DD4A0;font-size:10px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;font-family:var(--sans)">
-                📎 파일 선택
-                <input type="file" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="setFileLabel(this,'js-reg-lbl')">
-              </label>
-            </div>
-          </div>
-          <!-- 공동중개 보안 동의 -->
-          <div style="background:rgba(8,16,28,.4);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;margin-bottom:10px">
-            <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:7px">📋 공동중개 파트너 필수 동의</div>
-            <div onclick="toggleJAg('jag1')" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer">
-              <div id="jag1" style="width:14px;height:14px;border-radius:3px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
-              <div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 개인정보 및 매물정보를 열람하거나 외부에 유출하지 않겠습니다 <span style="color:#EF4444">[필수]</span></div>
-            </div>
-            <div onclick="toggleJAg('jag2')" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;cursor:pointer">
-              <div id="jag2" style="width:14px;height:14px;border-radius:3px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
-              <div style="font-size:9px;color:#8A9AB0;line-height:1.5">공동중개 매물을 타 플랫폼에 무단 게재하지 않겠습니다 <span style="color:#EF4444">[필수]</span></div>
-            </div>
-            <div onclick="toggleJAg('jag3')" style="display:flex;align-items:flex-start;gap:8px;cursor:pointer">
-              <div id="jag3" style="width:14px;height:14px;border-radius:3px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
-              <div style="font-size:9px;color:#8A9AB0;line-height:1.5">일 5건 한도 · 법정 중개보수 50:50 분배 원칙에 동의합니다 <span style="color:#EF4444">[필수]</span></div>
-            </div>
-          </div>
-          <div style="display:flex;gap:7px">
-            <button onclick="jSignupNext(2)" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
-            <button onclick="jSignupSubmit()" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">✅ 가입 신청</button>
-          </div>
-        </div>
-
-        <!-- 가입 STEP 4: 완료 -->
-        <div id="jsf4" style="display:none;text-align:center;padding:10px 0">
-          <div style="font-size:38px;margin-bottom:10px">✅</div>
-          <div style="font-size:13px;font-weight:900;color:#2DD4A0;margin-bottom:8px">가입 신청 완료!</div>
-          <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.18);border-radius:10px;padding:12px;text-align:left;margin-bottom:12px;font-size:9px;color:#8A9AB0;line-height:1.8">
-            📋 <strong style="color:#2DD4A0">검토 절차:</strong><br>
-            ① 제출 서류 확인 (1~2 영업일)<br>
-            ② 개설등록번호 진위 확인<br>
-            ③ 관리자 승인 후 연락처로 통보<br>
-            ④ 승인 완료 시 ID/비밀번호로 로그인 가능<br><br>
-            📞 문의: <strong style="color:#E8C97A">010-8985-8945 이대표</strong>
-          </div>
-          <button onclick="showJointTab('login')" style="width:100%;padding:10px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">🔑 로그인 화면으로</button>
-        </div>
+    <!-- STEP 2 -->
+    <div id="jsf2" style="display:none">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">개설등록사무소 명 <span style="color:#EF4444">*</span></div>
+          <input id="js-officename" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="○○부동산중개사무소"></div>
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">대표 성명 <span style="color:#EF4444">*</span></div>
+          <input id="js-ceoname" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="공인중개사 성명"></div>
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">개설등록번호 <span style="color:#EF4444">*</span></div>
+          <input id="js-regnum" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="11680-XXXX-XXXXX"></div>
+        <div><div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">대표 연락처 <span style="color:#EF4444">*</span></div>
+          <input id="js-tel" style="width:100%;padding:10px 12px;font-size:12px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);border-radius:9px;color:#EDF2F7;font-family:var(--sans);outline:none;box-sizing:border-box" placeholder="010-0000-0000"></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="jSignupNext(1)" style="flex:1;padding:12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 이전</button>
+        <button onclick="jSignupNext(3)" style="flex:2;padding:12px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">다음 →</button>
       </div>
     </div>
+    <!-- STEP 3 -->
+    <div id="jsf3" style="display:none">
+      <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:9px;padding:10px 12px;margin-bottom:12px;font-size:9px;color:#FCD34D;line-height:1.7">
+        ⚠️ 서류 첨부 후 관리자 검토 (1~2 영업일) → 승인 후 로그인 가능
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:12px">
+        <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:9px;padding:11px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+            <div style="font-size:10px;font-weight:800;color:#EDF2F7">📄 사업자등록증</div>
+            <span id="js-biz-lbl" style="font-size:8px;color:#4A5568">미첨부</span>
+          </div>
+          <label style="display:block;width:100%;padding:9px;border-radius:7px;background:rgba(45,212,160,.08);border:1px dashed rgba(45,212,160,.3);color:#2DD4A0;font-size:10px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;font-family:var(--sans)">
+            📎 파일 선택 (JPG·PNG·PDF)
+            <input type="file" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="setFileLabel(this,'js-biz-lbl')">
+          </label>
+        </div>
+        <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:9px;padding:11px 12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+            <div style="font-size:10px;font-weight:800;color:#EDF2F7">🏢 중개업개설등록증</div>
+            <span id="js-reg-lbl" style="font-size:8px;color:#4A5568">미첨부</span>
+          </div>
+          <label style="display:block;width:100%;padding:9px;border-radius:7px;background:rgba(45,212,160,.08);border:1px dashed rgba(45,212,160,.3);color:#2DD4A0;font-size:10px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box;font-family:var(--sans)">
+            📎 파일 선택 (JPG·PNG·PDF)
+            <input type="file" accept=".jpg,.jpeg,.png,.pdf" style="display:none" onchange="setFileLabel(this,'js-reg-lbl')">
+          </label>
+        </div>
+      </div>
+      <div style="background:rgba(8,16,28,.4);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;margin-bottom:12px">
+        <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:8px">📋 필수 동의</div>
+        <div onclick="toggleJAg('jag1')" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;cursor:pointer">
+          <div id="jag1" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
+          <div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 개인정보 외부 유출 금지 동의 <span style="color:#EF4444">[필수]</span></div>
+        </div>
+        <div onclick="toggleJAg('jag2')" style="display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;cursor:pointer">
+          <div id="jag2" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
+          <div style="font-size:9px;color:#8A9AB0;line-height:1.5">공동중개 매물 타 플랫폼 무단게재 금지 동의 <span style="color:#EF4444">[필수]</span></div>
+        </div>
+        <div onclick="toggleJAg('jag3')" style="display:flex;align-items:flex-start;gap:8px;cursor:pointer">
+          <div id="jag3" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
+          <div style="font-size:9px;color:#8A9AB0;line-height:1.5">일 5건 한도 · 법정보수 50:50 분배 동의 <span style="color:#EF4444">[필수]</span></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="jSignupNext(2)" style="flex:1;padding:12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 이전</button>
+        <button onclick="jSignupSubmit()" style="flex:2;padding:12px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">✅ 가입 신청</button>
+      </div>
+    </div>
+    <!-- STEP 4 완료 -->
+    <div id="jsf4" style="display:none;text-align:center;padding:20px 0">
+      <div style="font-size:48px;margin-bottom:14px">✅</div>
+      <div style="font-size:16px;font-weight:900;color:#2DD4A0;margin-bottom:8px">가입 신청 완료!</div>
+      <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.18);border-radius:12px;padding:14px;text-align:left;margin-bottom:16px;font-size:10px;color:#8A9AB0;line-height:1.9">
+        📋 검토 절차:<br>
+        ① 서류 확인 (1~2 영업일)<br>
+        ② 개설등록번호 진위 확인<br>
+        ③ 관리자 승인 → 연락처로 통보<br>
+        ④ 승인 완료 후 ID/비밀번호 로그인<br><br>
+        📞 문의: <strong style="color:#E8C97A">010-8985-8945 이대표</strong>
+      </div>
+      <button onclick="closeJointSignup()" style="width:100%;padding:12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 로그인 화면으로</button>
+    </div>
   </div>
-
-  <div class="ldisclaim">본 플랫폼 이용 시 서비스 이용약관, 개인정보 처리방침,<br>플랫폼 규약(데이터·매물 자산 귀속 조항 포함)에 동의하게 됩니다.<br>법정 중개보수 원칙 · 광고 없는 투명 거래 플랫폼</div>
 </div>
 
 <!-- ══════ 카카오 인증 모달 ══════ -->
@@ -622,6 +634,62 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- ══════ 공동중개 AI 결제 모달 ══════ -->
+<div id="jbPayModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:#0D1929;border:1.5px solid rgba(45,212,160,.3);border-radius:16px;width:92%;max-width:360px;overflow:hidden">
+    <!-- 헤더 -->
+    <div style="background:linear-gradient(135deg,#061420,#0D2030);padding:16px 18px;border-bottom:1px solid rgba(45,212,160,.18);display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-size:9px;color:#2DD4A0;font-weight:700;letter-spacing:1px;margin-bottom:2px">JOINT BROKER AI SERVICE</div>
+        <div style="font-size:14px;font-weight:900;color:#EDF2F7">🤝 구독 신청</div>
+      </div>
+      <button onclick="closeJbPayment()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;width:30px;height:30px;color:#8A9AB0;font-size:14px;cursor:pointer;font-family:var(--sans)">✕</button>
+    </div>
+    <div style="padding:16px 18px">
+      <!-- 요금 요약 -->
+      <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.2);border-radius:10px;padding:13px;margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:10px;color:#8A9AB0">공동중개 AI 매칭 서비스 3개월</span>
+          <span style="font-size:10px;color:#EDF2F7;font-weight:700">₩90,909</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:10px;color:#8A9AB0">부가세 (10%)</span>
+          <span style="font-size:10px;color:#EDF2F7;font-weight:700">₩9,091</span>
+        </div>
+        <div style="height:1px;background:rgba(45,212,160,.15);margin-bottom:8px"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;font-weight:800;color:#2DD4A0">합계 (VAT 포함)</span>
+          <span style="font-size:18px;font-weight:900;color:#2DD4A0">₩100,000</span>
+        </div>
+      </div>
+      <!-- 입금 정보 -->
+      <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:10px;padding:13px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:8px">💳 입금 계좌 안내</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:10px">
+          <div style="display:flex;justify-content:space-between"><span style="color:#8A9AB0">은행</span><span style="font-weight:700;color:#EDF2F7">국민은행</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#8A9AB0">계좌번호</span><span style="font-weight:700;color:#E8C97A">000-00-0000-000</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#8A9AB0">예금주</span><span style="font-weight:700;color:#EDF2F7">롯데타워앤강남빌딩부동산중개(주)</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#8A9AB0">입금액</span><span style="font-weight:900;color:#2DD4A0">₩100,000</span></div>
+        </div>
+      </div>
+      <!-- 입금자명 입력 -->
+      <div style="margin-bottom:12px">
+        <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:5px">입금자명 <span style="color:#EF4444">*</span></div>
+        <input id="jb-depositor" style="width:100%;padding:10px 12px;border-radius:9px;background:rgba(8,16,28,.6);border:1.5px solid rgba(45,212,160,.2);color:#EDF2F7;font-family:var(--sans);font-size:12px;outline:none;box-sizing:border-box" placeholder="입금자명 (회사명 또는 대표자명)">
+      </div>
+      <!-- 안내 -->
+      <div style="font-size:8px;color:#4A5568;line-height:1.7;margin-bottom:12px">
+        ※ 입금 확인 후 24시간 이내 서비스 활성화<br>
+        ※ 문의: 010-8985-8945 이대표
+      </div>
+      <button onclick="submitJbPayment()" style="width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer;margin-bottom:8px">
+        ✅ 입금 완료 · 서비스 신청
+      </button>
+      <button onclick="closeJbPayment()" style="width:100%;padding:11px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">취소</button>
     </div>
   </div>
 </div>
@@ -2785,6 +2853,436 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div style="height:80px"></div>
     </div>
 
+    <!-- ══ TAB 13: 공동중개 AI 매칭 ══ -->
+    <div class="screen" id="tab13">
+
+      <!-- 구독 체크 레이어 -->
+      <div id="t13-lock" style="display:none;position:absolute;inset:0;background:rgba(8,16,28,.95);z-index:50;flex-direction:column;align-items:center;justify-content:center;padding:30px">
+        <div style="font-size:40px;margin-bottom:14px">🔒</div>
+        <div style="font-size:14px;font-weight:900;color:#EDF2F7;margin-bottom:8px;text-align:center">공동중개 AI매칭 서비스</div>
+        <div style="font-size:10px;color:#8A9AB0;text-align:center;line-height:1.7;margin-bottom:18px">공동중개 파트너 로그인 후<br>구독 신청 시 이용 가능합니다</div>
+        <button onclick="goTab(0)" style="padding:12px 24px;border-radius:10px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">홈으로 돌아가기</button>
+      </div>
+
+      <!-- ── 헤더 ── -->
+      <div style="background:linear-gradient(160deg,#061420,#0D2030);padding:10px 16px 8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-10px;right:-10px;width:80px;height:80px;background:radial-gradient(circle,rgba(45,212,160,.1),transparent);pointer-events:none"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+          <div style="font-size:8px;letter-spacing:1.5px;color:#2DD4A0;font-weight:700;text-transform:uppercase">공동중개 AI 매칭 플랫폼</div>
+          <div id="t13-sub-badge" style="font-size:8px;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.3);color:#2DD4A0;padding:2px 8px;border-radius:4px;font-weight:700">미구독</div>
+        </div>
+        <div style="font-size:15px;font-weight:900;color:#EDF2F7;margin-bottom:2px">🤝 공동중개 AI 파발마</div>
+        <div style="font-size:9px;color:#8A9AB0">공동중개 팝니다 · 삽니다 · AI자동매칭 · 저장목록</div>
+      </div>
+
+      <!-- ── 4개 탭 메뉴 ── -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);background:#0A0E17;border-bottom:1px solid rgba(255,255,255,.07)">
+        <button onclick="showT13Tab('send')" id="t13-t1"
+          style="padding:10px 3px;border:none;background:rgba(45,212,160,.1);border-bottom:3px solid #2DD4A0;color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          📤 보낸<br><span style="font-size:7px;font-weight:400;color:#4A5568">쪽지함</span>
+        </button>
+        <button onclick="showT13Tab('sell')" id="t13-t2"
+          style="padding:10px 3px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          🏠 AI<br><span style="font-size:7px;font-weight:400">팝니다</span>
+        </button>
+        <button onclick="showT13Tab('buy')" id="t13-t3"
+          style="padding:10px 3px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          🔍 AI<br><span style="font-size:7px;font-weight:400">삽니다</span>
+        </button>
+        <button onclick="showT13Tab('saved')" id="t13-t4"
+          style="padding:10px 3px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          📋 저장<br><span style="font-size:7px;font-weight:400">목록</span>
+        </button>
+      </div>
+
+      <!-- ── 보낸 쪽지함 ── -->
+      <div id="t13-p1" style="padding:10px 16px">
+        <!-- 검색 필터 -->
+        <div style="background:#0D1929;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin-bottom:10px">
+          <div style="display:flex;gap:7px;margin-bottom:7px">
+            <div style="flex:1">
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">기간</div>
+              <div style="display:flex;gap:4px;align-items:center">
+                <input style="flex:1;padding:6px 8px;font-size:10px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#EDF2F7;font-family:var(--sans);outline:none" type="date" id="t13-date1">
+                <span style="font-size:9px;color:#4A5568">~</span>
+                <input style="flex:1;padding:6px 8px;font-size:10px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#EDF2F7;font-family:var(--sans);outline:none" type="date" id="t13-date2">
+              </div>
+            </div>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">구분</div>
+              <select style="padding:6px 8px;font-size:10px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#EDF2F7;font-family:var(--sans);outline:none">
+                <option>전체</option><option>팝니다</option><option>삽니다</option>
+              </select>
+            </div>
+          </div>
+          <!-- 옵션 태그 버튼 -->
+          <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px">
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">금액조절 가능한</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">바로 볼 수 있는</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">새로 지은</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">손님 대기중</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">역세권</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">올수리 깨끗한</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">전세대출 가능한</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">주차 가능한</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">즉시 입주 가능한</button>
+            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">풀 옵션</button>
+          </div>
+          <button onclick="t13Search()" style="width:100%;padding:8px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:11px;font-weight:800;border:none;cursor:pointer">🔍 검색하기</button>
+        </div>
+        <!-- 보낸 쪽지 목록 -->
+        <div style="font-size:9px;font-weight:700;color:#8A9AB0;margin-bottom:7px">📤 보낸 쪽지 — 총 <span style="color:#2DD4A0">2건</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 12px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+              <div>
+                <div style="display:flex;gap:5px;align-items:center;margin-bottom:3px">
+                  <span style="font-size:8px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:1px 7px;border-radius:3px;font-weight:700">팝니다</span>
+                  <span style="font-size:8px;color:#8A9AB0">2026-03-21</span>
+                </div>
+                <div style="font-size:11px;font-weight:800">대치 SK뷰 33평 — 공동매도</div>
+                <div style="font-size:9px;color:#8A9AB0;margin-top:2px">24.5억 · 즉시입주 · 학원가 1분</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700">수신 3건</div>
+                <div style="font-size:8px;color:#4A5568;margin-top:2px">자동간격조절</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:5px">
+              <button onclick="toast('📋 상세보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">상세보기</button>
+              <button onclick="toast('📄 답장보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.18);color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">답장보기</button>
+              <button onclick="toast('🗑️ 삭제됨')" style="padding:6px 10px;border-radius:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">삭제</button>
+            </div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 12px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+              <div>
+                <div style="display:flex;gap:5px;align-items:center;margin-bottom:3px">
+                  <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:1px 7px;border-radius:3px;font-weight:700">삽니다</span>
+                  <span style="font-size:8px;color:#8A9AB0">2026-03-20</span>
+                </div>
+                <div style="font-size:11px;font-weight:800">학군권역 30억대 아파트 구함</div>
+                <div style="font-size:9px;color:#8A9AB0;margin-top:2px">대치·도곡동 · 30~35억 · 즉시입주</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0">
+                <div style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:2px 7px;border-radius:4px;font-weight:700">매칭 1건</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:5px">
+              <button onclick="toast('📋 상세보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">상세보기</button>
+              <button onclick="toast('📄 답장보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.18);color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">답장보기</button>
+              <button onclick="toast('🗑️ 삭제됨')" style="padding:6px 10px;border-radius:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">삭제</button>
+            </div>
+          </div>
+        </div>
+        <!-- 구독 안내 -->
+        <div style="margin-top:12px;padding:10px 12px;background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.15);border-radius:9px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:9px;color:#8A9AB0">오늘 발송 <span style="color:#2DD4A0;font-weight:800">1건</span> / 일 5건 한도</div>
+          <button onclick="openJbPayment()" style="padding:5px 12px;border-radius:6px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:9px;font-weight:800;border:none;cursor:pointer">구독 갱신</button>
+        </div>
+      </div>
+
+      <!-- ── AI 팝니다 ── -->
+      <div id="t13-p2" style="display:none;padding:10px 16px">
+        <div style="background:rgba(45,212,160,.06);border:1.5px solid rgba(45,212,160,.25);border-radius:12px;padding:13px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:900;color:#2DD4A0;margin-bottom:12px;display:flex;align-items:center;gap:6px">
+            <span>🏠</span><span>공동중개 AI 팝니다</span>
+            <span style="margin-left:auto;font-size:8px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 8px;border-radius:4px">보낼메세지: 매물 있습니다</span>
+          </div>
+          <!-- 간단정보 -->
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+            <div class="frow2">
+              <div class="fg" style="margin:0">
+                <label class="flbl">매물종류</label>
+                <select class="fsel" id="t13-ptype">
+                  <option>아파트</option><option>오피스텔</option><option>주상복합</option><option>고급주택</option><option>빌라·연립</option>
+                </select>
+              </div>
+              <div class="fg" style="margin:0">
+                <label class="flbl">거래구분</label>
+                <select class="fsel" id="t13-pdeal">
+                  <option>공동매도</option><option>공동전세</option><option>공동월세</option><option>공동임대</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg" style="margin:0">
+              <label class="flbl">보낼 방법</label>
+              <div style="display:flex;gap:10px;padding:6px 0">
+                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-send" value="지역망" checked style="accent-color:#2DD4A0">지역망</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-send" value="두레" style="accent-color:#2DD4A0">두레</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-send" value="시/군/구" style="accent-color:#2DD4A0">시/군/구</label>
+              </div>
+            </div>
+            <div class="fg" style="margin:0">
+              <label class="flbl">제목</label>
+              <input class="fi" id="t13-ptitle" placeholder="예: 강남구 대치동 SK뷰 33평 공동매도">
+            </div>
+          </div>
+          <!-- 옵션 버튼 -->
+          <div style="margin-bottom:10px">
+            <div style="font-size:8px;color:#8A9AB0;font-weight:700;margin-bottom:5px">옵션 선택 (복수)</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">금액조절 가능한</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">바로 볼 수 있는</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">새로 지은</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">올수리 깨끗한</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">역세권</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">주차 가능한</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">즉시 입주 가능한</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">풀 옵션</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">한강뷰</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">저평가</button>
+            </div>
+          </div>
+          <!-- 상세정보 -->
+          <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:10px 11px;margin-bottom:10px">
+            <div style="font-size:8px;color:#2DD4A0;font-weight:700;margin-bottom:7px">※ 상세정보를 모두 입력하지 않아도 전송 가능합니다.</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">공급면적</span>
+                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0" id="t13-supply-area">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">m²</span>
+                <button style="padding:3px 7px;border-radius:4px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-size:8px;cursor:pointer;font-family:var(--sans)" onclick="toast('평 변환')">평변환</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">전용면적</span>
+                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">m²</span>
+                <button style="padding:3px 7px;border-radius:4px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-size:8px;cursor:pointer;font-family:var(--sans)" onclick="toast('평 변환')">평변환</button>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">매매가</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0" id="t13-pprice">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">만</span>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">보증금</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">만</span>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">월세</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">만</span>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 6px 1fr 52px 1fr 6px 1fr;gap:5px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">방수</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0;text-align:right">층수</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">이사예정일</span>
+                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" type="date" id="t13-pmove">
+              </div>
+            </div>
+          </div>
+          <!-- 고객정보 + 전송 버튼 -->
+          <div style="display:flex;gap:7px">
+            <button onclick="toast('👤 고객정보 입력')" style="flex:1;padding:10px;border-radius:9px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">👤 고객정보</button>
+            <button onclick="toast('💾 임시저장')" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">💾 임시저장</button>
+            <button onclick="t13SendSell()" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🤖 AI 전송</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── AI 삽니다 ── -->
+      <div id="t13-p3" style="display:none;padding:10px 16px">
+        <div style="background:rgba(74,158,224,.06);border:1.5px solid rgba(74,158,224,.25);border-radius:12px;padding:13px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:900;color:#A8D4F5;margin-bottom:12px;display:flex;align-items:center;gap:6px">
+            <span>🔍</span><span>공동중개 AI 삽니다</span>
+            <span style="margin-left:auto;font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 8px;border-radius:4px">보낼메세지: 매물 구합니다</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+            <div class="frow2">
+              <div class="fg" style="margin:0">
+                <label class="flbl">찾는 매물종류</label>
+                <select class="fsel" id="t13-btype">
+                  <option>아파트</option><option>오피스텔</option><option>주상복합</option><option>고급주택</option>
+                </select>
+              </div>
+              <div class="fg" style="margin:0">
+                <label class="flbl">거래구분</label>
+                <select class="fsel" id="t13-bdeal">
+                  <option>공동매수</option><option>공동전세</option><option>공동월세</option><option>공동임차</option>
+                </select>
+              </div>
+            </div>
+            <div class="fg" style="margin:0">
+              <label class="flbl">보낼 방법</label>
+              <div style="display:flex;gap:10px;padding:6px 0">
+                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-bsend" value="지역망" checked style="accent-color:#4A9EE0">지역망</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-bsend" value="두레" style="accent-color:#4A9EE0">두레</label>
+                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-bsend" value="시/군/구" style="accent-color:#4A9EE0">시/군/구</label>
+              </div>
+            </div>
+            <div class="fg" style="margin:0">
+              <label class="flbl">제목</label>
+              <input class="fi" id="t13-btitle" placeholder="예: 대치·도곡동 30억대 아파트 구합니다">
+            </div>
+            <div class="fg" style="margin:0">
+              <label class="flbl">희망 지역</label>
+              <select class="fsel" id="t13-barea">
+                <option>대치동</option><option>도곡동</option><option>역삼동</option><option>개포동</option>
+                <option>압구정동</option><option>반포동</option><option>용산·이촌</option><option>성수동</option>
+                <option>잠실·송파</option><option>여의도</option><option>목동</option>
+              </select>
+            </div>
+          </div>
+          <!-- 옵션 -->
+          <div style="margin-bottom:10px">
+            <div style="font-size:8px;color:#8A9AB0;font-weight:700;margin-bottom:5px">조건 선택</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px">
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">금액조절 가능한</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">바로 볼 수 있는</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">새로 지은</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">손님 대기중</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">역세권</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">즉시 입주 가능한</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">풀 옵션</button>
+              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">학군우수</button>
+            </div>
+          </div>
+          <!-- 상세정보 -->
+          <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:10px 11px;margin-bottom:10px">
+            <div style="font-size:8px;color:#A8D4F5;font-weight:700;margin-bottom:7px">※ 상세정보를 모두 입력하지 않아도 전송 가능합니다.</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">매매가</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0" id="t13-bmin">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0" id="t13-bmax">
+                <span style="font-size:9px;color:#8A9AB0">만</span>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">보증금</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">만</span>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">월세</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">만</span>
+              </div>
+              <div style="display:grid;grid-template-columns:52px 1fr 6px 1fr 52px 1fr 6px 1fr;gap:5px;align-items:center">
+                <span style="font-size:9px;color:#8A9AB0">방수</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0;text-align:right">층수</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+                <span style="font-size:9px;color:#8A9AB0">~</span>
+                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">이사예정일</span>
+                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" type="date">
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="toast('👤 고객정보 입력')" style="flex:1;padding:10px;border-radius:9px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">👤 고객정보</button>
+            <button onclick="toast('💾 임시저장')" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">💾 임시저장</button>
+            <button onclick="t13SendBuy()" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🤖 AI 전송</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 저장 목록 ── -->
+      <div id="t13-p4" style="display:none;padding:10px 16px">
+        <!-- 내 매물 -->
+        <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:8px">📋 내 공동중개 매물 목록</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 12px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+              <div>
+                <div style="display:flex;gap:5px;align-items:center;margin-bottom:2px">
+                  <span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:1px 6px;border-radius:3px;font-weight:700">팝니다</span>
+                  <span style="font-size:8px;color:#8A9AB0">2026-03-21</span>
+                </div>
+                <div style="font-size:10px;font-weight:800">대치 SK뷰 33평 — 공동매도</div>
+                <div style="font-size:8px;color:#8A9AB0;margin-top:1px">24.5억 · 즉시입주</div>
+              </div>
+              <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700">수신3</span>
+            </div>
+            <div style="display:flex;gap:5px;margin-top:6px">
+              <button onclick="toast('✏️ 수정')" style="flex:1;padding:5px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#8A9AB0;font-family:var(--sans);font-size:8px;cursor:pointer">✏️ 수정</button>
+              <button onclick="toast('🔄 재전송')" style="flex:1;padding:5px;border-radius:6px;background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.15);color:#2DD4A0;font-family:var(--sans);font-size:8px;cursor:pointer">🔄 재전송</button>
+              <button onclick="toast('🗑️ 삭제')" style="flex:1;padding:5px;border-radius:6px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.12);color:#FCA5A5;font-family:var(--sans);font-size:8px;cursor:pointer">🗑️ 삭제</button>
+            </div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 12px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+              <div>
+                <div style="display:flex;gap:5px;align-items:center;margin-bottom:2px">
+                  <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:1px 6px;border-radius:3px;font-weight:700">삽니다</span>
+                  <span style="font-size:8px;color:#8A9AB0">2026-03-20</span>
+                </div>
+                <div style="font-size:10px;font-weight:800">학군권역 30억대 아파트 구함</div>
+                <div style="font-size:8px;color:#8A9AB0;margin-top:1px">대치·도곡 · 30~35억</div>
+              </div>
+              <span style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:2px 7px;border-radius:4px;font-weight:700">매칭1</span>
+            </div>
+            <div style="display:flex;gap:5px;margin-top:6px">
+              <button onclick="toast('✏️ 수정')" style="flex:1;padding:5px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#8A9AB0;font-family:var(--sans);font-size:8px;cursor:pointer">✏️ 수정</button>
+              <button onclick="toast('🔄 재전송')" style="flex:1;padding:5px;border-radius:6px;background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.15);color:#2DD4A0;font-family:var(--sans);font-size:8px;cursor:pointer">🔄 재전송</button>
+              <button onclick="toast('🗑️ 삭제')" style="flex:1;padding:5px;border-radius:6px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.12);color:#FCA5A5;font-family:var(--sans);font-size:8px;cursor:pointer">🗑️ 삭제</button>
+            </div>
+          </div>
+        </div>
+        <!-- AI 매칭 수신 매물 -->
+        <div style="font-size:10px;font-weight:800;color:#A8D4F5;margin-bottom:8px">⚡ AI 자동매칭 수신 매물</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.18);border-radius:10px;padding:10px 12px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+              <div>
+                <div style="display:flex;gap:5px;align-items:center;margin-bottom:2px">
+                  <span style="font-size:8px;background:rgba(239,68,68,.12);color:#FCA5A5;padding:1px 6px;border-radius:3px;font-weight:700">AI 97</span>
+                  <span style="font-size:8px;color:#8A9AB0">파트너 A · 2026-03-21</span>
+                </div>
+                <div style="font-size:10px;font-weight:800">반포 래미안퍼스티지 59평</div>
+                <div style="font-size:8px;color:#8A9AB0;margin-top:1px">82억 · 한강뷰 · ▼6.1%</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end">
+                <span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:1px 6px;border-radius:3px;font-weight:700">공동중개</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:5px;margin-top:6px">
+              <button onclick="toast('📋 상세보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#8A9AB0;font-family:var(--sans);font-size:9px;cursor:pointer">상세보기</button>
+              <button onclick="toast('📞 파트너 연결')" style="flex:2;padding:6px;border-radius:6px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:9px;font-weight:800;border:none;cursor:pointer">📞 파트너 연결</button>
+              <button onclick="toast('⭐ 저장됨')" style="flex:1;padding:6px;border-radius:6px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);color:#E8C97A;font-family:var(--sans);font-size:9px;cursor:pointer">⭐ 저장</button>
+            </div>
+          </div>
+        </div>
+        <!-- 약관 동의 바로가기 -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:9px;color:#8A9AB0">약관·동의 확인</div>
+          <button onclick="nbClick(4);goTab(4)" style="padding:5px 12px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:9px;cursor:pointer">🔒 약관 보기</button>
+        </div>
+      </div>
+
+      <div style="height:80px"></div>
+    </div>
+
+
   </div><!-- /content -->
 
   <!-- BOTTOM NAV -->
@@ -2793,7 +3291,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     <button class="nb" id="nb1" onclick="nbClick(1)"><span class="nb-ico">🔍</span><span class="nb-lbl">플랫폼분석</span></button>
     <button class="nb" id="nb2" onclick="nbClick(2)"><span class="nb-ico">💼</span><span class="nb-lbl">수익모델</span></button>
     <button class="nb" id="nb3" onclick="nbClick(3)"><span class="nb-ico">📋</span><span class="nb-lbl">매물등록</span></button>
-    <button class="nb" id="nb4" onclick="nbClick(4)"><span class="nb-ico">🔒</span><span class="nb-lbl">약관</span></button>
+    <button class="nb" id="nb4" onclick="nbClick(13)"><span class="nb-ico">🤝</span><span class="nb-lbl">공동AI매칭</span></button>
     <button class="nb" id="nb5" onclick="toggleAdmin()"><span class="nb-ico">👑</span><span class="nb-lbl">관리자</span></button>
   </nav>
 </div><!-- /main -->
@@ -3055,6 +3553,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 let curTab=0,adminOn=false,mType='demand',mStep=1;
 let userRole='user'; // 'user' | 'joint' | 'admin'
 let jbMyListings=[]; // 공동중개업자 자신의 매물만
+var jbSubscribed=false; // 구독 상태
 
 /* ─── LOGIN ─── */
 function doLogin(role){
@@ -3064,13 +3563,12 @@ function doLogin(role){
     var id=document.getElementById('jb-id').value.trim();
     var pw=document.getElementById('jb-pw').value.trim();
     if(!id||!pw){toast('⚠️ 공동중개 ID와 비밀번호를 입력해주세요');return;}
-    // 공동중개 파트너 이름 설정
     document.getElementById('un').textContent=id+' (공동)';
     var _uav=document.querySelector('.uav');if(_uav)_uav.textContent='🤝';
     applyJointBrokerSecurity();
     document.getElementById('app').className='logged';
-    goTab(0);
-    toast('🤝 공동중개 파트너 로그인 · 내 매물만 열람 가능합니다');
+    goTab(13); // 공동중개 AI 서비스 화면으로 바로 이동
+    toast('🤝 공동중개 파트너 로그인 완료');
   } else {
     var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
     document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
@@ -3079,6 +3577,96 @@ function doLogin(role){
     toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
   }
   setTimeout(initReveal,150);
+}
+
+/* ─── 공동중개 AI 서비스 함수 ─── */
+function openJbPayment(){
+  var m=document.getElementById('jbPayModal');if(m)m.style.display='flex';
+}
+function closeJbPayment(){
+  var m=document.getElementById('jbPayModal');if(m)m.style.display='none';
+}
+function submitJbPayment(){
+  var dep=document.getElementById('jb-depositor').value.trim();
+  if(!dep){toast('⚠️ 입금자명을 입력해주세요');return;}
+  closeJbPayment();
+  jbSubscribed=true;
+  document.getElementById('jb-unsub').style.display='none';
+  document.getElementById('jb-subactive').style.display='block';
+  var today=new Date();var end=new Date(today);end.setMonth(end.getMonth()+3);
+  var fmt=function(d){return d.getFullYear()+'.'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)+'.'+(d.getDate()<10?'0':'')+d.getDate();};
+  var pEl=document.getElementById('jb-sub-period');if(pEl)pEl.textContent=fmt(today)+' ~ '+fmt(end);
+  var dEl=document.getElementById('jb-sub-days');if(dEl)dEl.textContent='90일';
+  toast('✅ 입금 신청 완료!\n확인 후 24시간 이내 활성화됩니다 📞 010-8985-8945');
+}
+/* ─── 공동중개 AI 파발마 탭 전환 ─── */
+var t13Panels=['t13-p1','t13-p2','t13-p3','t13-p4'];
+var t13Tabs=['t13-t1','t13-t2','t13-t3','t13-t4'];
+var t13Colors=['#2DD4A0','#2DD4A0','#A8D4F5','#E8C97A'];
+var t13Borders=['rgba(45,212,160,.3)','rgba(45,212,160,.3)','rgba(74,158,224,.3)','rgba(201,168,76,.3)'];
+var t13Bgs=['rgba(45,212,160,.1)','rgba(45,212,160,.1)','rgba(74,158,224,.08)','rgba(201,168,76,.08)'];
+function showT13Tab(key){
+  var map={send:0,sell:1,buy:2,saved:3};
+  var idx=map[key]||0;
+  t13Panels.forEach(function(p,i){
+    var el=document.getElementById(p);if(el)el.style.display=i===idx?'block':'none';
+  });
+  t13Tabs.forEach(function(t,i){
+    var el=document.getElementById(t);if(!el)return;
+    if(i===idx){
+      el.style.background=t13Bgs[i];
+      el.style.borderBottom='3px solid '+t13Colors[i];
+      el.style.color=t13Colors[i];
+    } else {
+      el.style.background='transparent';
+      el.style.borderBottom='3px solid transparent';
+      el.style.color='#8A9AB0';
+    }
+  });
+  var sc=document.querySelector('.content');if(sc)sc.scrollTop=0;
+}
+function t13Search(){ toast('🔍 AI 검색 완료 — 2건 표시'); }
+function t13SendSell(){
+  var t=document.getElementById('t13-ptitle');
+  if(!t||!t.value.trim()){toast('⚠️ 제목을 입력해주세요');return;}
+  toast('✅ 공동중개 AI 팝니다 전송 완료!\n🤖 파트너 자동매칭 시작 · 일 5건 한도 (잔여 4건)');
+  if(t)t.value='';
+}
+function t13SendBuy(){
+  var t=document.getElementById('t13-btitle');
+  if(!t||!t.value.trim()){toast('⚠️ 제목을 입력해주세요');return;}
+  toast('✅ 공동중개 AI 삽니다 전송 완료!\n🔍 파트너 매물 자동탐색 시작됩니다');
+  if(t)t.value='';
+}
+function t13Search(){ toast('🔍 AI 검색 — 조건에 맞는 쪽지 2건 표시'); }
+
+function showJbTab(t){
+  var sellP=document.getElementById('jbp-sell');
+  var buyP=document.getElementById('jbp-buy');
+  var sellB=document.getElementById('jbt-sell');
+  var buyB=document.getElementById('jbt-buy');
+  if(t==='sell'){
+    if(sellP)sellP.style.display='block';if(buyP)buyP.style.display='none';
+    if(sellB){sellB.style.border='2px solid rgba(45,212,160,.4)';sellB.style.background='rgba(45,212,160,.1)';}
+    if(buyB){buyB.style.border='2px solid rgba(255,255,255,.08)';buyB.style.background='rgba(255,255,255,.03)';}
+  } else {
+    if(sellP)sellP.style.display='none';if(buyP)buyP.style.display='block';
+    if(buyB){buyB.style.border='2px solid rgba(74,158,224,.4)';buyB.style.background='rgba(74,158,224,.1)';}
+    if(sellB){sellB.style.border='2px solid rgba(255,255,255,.08)';sellB.style.background='rgba(255,255,255,.03)';}
+  }
+}
+function submitJbSell(){
+  var loc=document.getElementById('jb-location').value.trim();
+  var price=document.getElementById('jb-price').value.trim();
+  if(!loc||!price){toast('⚠️ 지역·단지명과 매물가를 입력해주세요');return;}
+  toast('✅ 공동중개 AI 팝니다 등록 완료!\n🤖 파트너 자동매칭 시작됩니다');
+  document.getElementById('jb-location').value='';document.getElementById('jb-price').value='';
+  document.getElementById('jb-area').value='';document.getElementById('jb-note-sell').value='';
+}
+function submitJbBuy(){
+  var bmax=document.getElementById('jb-budget-max').value.trim();
+  if(!bmax){toast('⚠️ 예산 상한을 입력해주세요');return;}
+  toast('✅ 공동중개 AI 삽니다 등록 완료!\n🔍 파트너 매물 자동탐색 시작됩니다');
 }
 
 /* ─── 공동중개 파트너 보안 적용 ─── */
@@ -3132,12 +3720,12 @@ function showMyListings(){
 }
 
 /* ─── TABS ─── */
-const tabIds=['tab0','tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9','tab10','tab11','tab12','tabAdmin'];
+const tabIds=['tab0','tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9','tab10','tab11','tab12','tab13','tabAdmin'];
 function goTab(i){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
   document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('act','act2'));
   document.getElementById('tabAdmin').classList.remove('show');
-  if(i>=0&&i<=12){
+  if(i>=0&&i<=13){
     document.getElementById(tabIds[i]).classList.add('show');
     const nt=document.getElementById('nt'+i);
     if(nt)nt.classList.add('act');
@@ -3174,11 +3762,55 @@ function showAdminTab(key){
   if(badge&&adminUser)badge.textContent=adminUser.name+' ('+adminUser.level+')';
 }
 
+/* ─── 로그인 화면에서 관리자 로그인 (버그 수정) ─── */
+function doAdminLoginFromLS(){
+  var id = document.getElementById('ls-adm-id').value.trim();
+  var pw = document.getElementById('ls-adm-pw').value.trim();
+  if(!id || !pw){ toast('⚠️ 아이디와 비밀번호를 입력해주세요'); return; }
+  var found = null;
+  for(var i=0; i<ADMIN_ACCOUNTS.length; i++){
+    if(ADMIN_ACCOUNTS[i].id === id && ADMIN_ACCOUNTS[i].pw === pw){
+      found = ADMIN_ACCOUNTS[i]; break;
+    }
+  }
+  if(!found){
+    toast('⚠️ 아이디 또는 비밀번호가 올바르지 않습니다');
+    document.getElementById('ls-adm-pw').value = '';
+    return;
+  }
+  adminUser = found; adminOn = true; userRole = 'admin';
+  document.getElementById('app').className = 'logged';
+  var unEl = document.getElementById('un');
+  if(unEl) unEl.textContent = found.name;
+  var uavEl = document.querySelector('.uav');
+  if(uavEl) uavEl.textContent = '👑';
+  var btn = document.getElementById('admbtn');
+  if(btn){ btn.classList.add('on'); btn.textContent = '관리자 ON'; }
+  // 관리자 화면으로 이동
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('show'); });
+  document.getElementById('tabAdmin').classList.add('show');
+  var nb5 = document.getElementById('nb5');
+  if(nb5) nb5.classList.add('na-admin');
+  var badge = document.getElementById('adminBadge');
+  if(badge) badge.textContent = found.name + ' (' + found.level + ')';
+  setTimeout(initReveal, 80);
+  toast('👑 ' + found.name + ' 관리자 로그인 완료');
+}
+
+/* ─── 공동중개 가입 모달 열기/닫기 ─── */
+function openJointSignup(){
+  var m = document.getElementById('jointSignupModal');
+  if(m){ m.style.display = 'block'; jSignupNext(1); }
+}
+function closeJointSignup(){
+  var m = document.getElementById('jointSignupModal');
+  if(m) m.style.display = 'none';
+}
+
 /* ─── 관리자 계정 (이대표 + 직원) ─── */
 var ADMIN_ACCOUNTS = [
-  {id:'propai_ceo',    pw:'Lotte@8945#',  name:'이상수 대표',  level:'super'},
-  {id:'propai_admin1', pw:'Staff@2024!',  name:'관리직원1',     level:'staff'},
-  {id:'propai_admin2', pw:'Staff@2025!',  name:'관리직원2',     level:'staff'}
+  {id:'sk5788285', pw:'ai0191', name:'이상수 대표',  level:'super'},
+  {id:'ai2482',    pw:'ai2460', name:'김은경 관리자', level:'staff'}
 ];
 var adminUser = null;
 
