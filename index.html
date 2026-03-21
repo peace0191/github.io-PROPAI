@@ -626,6 +626,43 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
   </div>
 </div>
 
+<!-- ══════ 관리자 로그인 모달 ══════ -->
+<div id="adminLoginModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:#0D1929;border:1.5px solid rgba(201,168,76,.35);border-radius:16px;width:90%;max-width:340px;overflow:hidden">
+    <!-- 헤더 -->
+    <div style="background:linear-gradient(135deg,#0A1628,#162040);padding:16px 18px;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-size:9px;letter-spacing:2px;color:var(--gold);font-weight:700;text-transform:uppercase">PROPAI ADMIN</div>
+        <div style="font-size:14px;font-weight:900;color:#EDF2F7;margin-top:2px">👑 관리자 전용 로그인</div>
+        <div style="font-size:9px;color:#4A5568;margin-top:2px">롯데타워앤강남빌딩부동산중개(주) 내부용</div>
+      </div>
+      <button onclick="closeAdminLoginModal()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;width:30px;height:30px;color:#8A9AB0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--sans)">✕</button>
+    </div>
+    <!-- 입력 -->
+    <div style="padding:18px 18px 14px">
+      <div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.18);border-radius:8px;padding:9px 12px;margin-bottom:14px;font-size:9px;color:#FCA5A5;line-height:1.5">
+        🔒 본 시스템은 이상수 대표 및 승인된 관리직원만 접근 가능합니다.<br>무단 접근 시 법적 조치를 받을 수 있습니다.
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">관리자 ID</div>
+        <input id="adm-id" type="text" autocomplete="off" style="width:100%;padding:11px 13px;border-radius:9px;background:rgba(255,255,255,.05);border:1.5px solid rgba(201,168,76,.2);color:#EDF2F7;font-family:var(--sans);font-size:12px;outline:none;box-sizing:border-box" placeholder="관리자 아이디 입력" onkeydown="if(event.key==='Enter')document.getElementById('adm-pw').focus()">
+      </div>
+      <div style="margin-bottom:16px">
+        <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:4px">비밀번호</div>
+        <input id="adm-pw" type="password" autocomplete="off" style="width:100%;padding:11px 13px;border-radius:9px;background:rgba(255,255,255,.05);border:1.5px solid rgba(201,168,76,.2);color:#EDF2F7;font-family:var(--sans);font-size:12px;outline:none;box-sizing:border-box" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')doAdminLogin()">
+      </div>
+      <button onclick="doAdminLogin()" style="width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer;margin-bottom:8px">👑 관리자 로그인</button>
+      <button onclick="closeAdminLoginModal()" style="width:100%;padding:11px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">취소</button>
+    </div>
+    <!-- 계정 안내 (개발용 - 실제 배포 시 제거) -->
+    <div style="padding:0 18px 14px">
+      <div style="background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.12);border-radius:8px;padding:9px 11px;font-size:8px;color:#4A5568;line-height:1.7">
+        📞 계정 문의: 010-8985-8945 이대표
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══════ MAIN ══════ -->
 <div id="main">
   <div class="topbar" style="flex-direction:column;align-items:stretch;padding:8px 15px 6px">
@@ -2516,102 +2553,236 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
     <!-- ══ ADMIN SCREEN ══ -->
     <div class="screen" id="tabAdmin">
-      <div class="hero" style="background:linear-gradient(160deg,var(--ink2),var(--s1))">
-        <div class="hero-eye">ADMIN AUTOMATION CENTER</div>
-        <div class="hero-title">관리자 자동화 센터</div>
-        <div class="hero-sub">6개 유형 분류 → AI 자동매칭 → 숏츠제작 → 계약</div>
-      </div>
-
-      <!-- STATS -->
-      <div style="padding:14px 16px 4px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
-        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:12px;display:flex;align-items:center;gap:9px">
-          <div style="width:36px;height:36px;border-radius:9px;background:var(--gdim);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">🙋</div>
-          <div><div style="font-size:19px;font-weight:900;color:var(--g2)">263</div><div style="font-size:8px;color:var(--txt2);margin-top:1px">수요자 대기</div></div>
+      <!-- 관리자 헤더 -->
+      <div class="hero" style="background:linear-gradient(160deg,#0A1020,#162040);position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;right:0;width:100px;height:100px;background:radial-gradient(circle,rgba(201,168,76,.15),transparent);pointer-events:none"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:8px;letter-spacing:2px;color:var(--gold);font-weight:700">ADMIN CENTER</div>
+          <div id="adminBadge" style="font-size:8px;background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.35);color:#E8C97A;padding:3px 9px;border-radius:5px;font-weight:800">로딩중...</div>
         </div>
-        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:12px;display:flex;align-items:center;gap:9px">
-          <div style="width:36px;height:36px;border-radius:9px;background:var(--rdim);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">🏠</div>
-          <div><div style="font-size:19px;font-weight:900;color:#A8D4F5">386</div><div style="font-size:8px;color:var(--txt2);margin-top:1px">공급+공동 매물</div></div>
-        </div>
-        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:12px;display:flex;align-items:center;gap:9px">
-          <div style="width:36px;height:36px;border-radius:9px;background:var(--jdim);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">📹</div>
-          <div><div style="font-size:19px;font-weight:900;color:var(--jade)">22</div><div style="font-size:8px;color:var(--txt2);margin-top:1px">숏츠 대기</div></div>
-        </div>
-        <div style="background:var(--s1);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:12px;display:flex;align-items:center;gap:9px">
-          <div style="width:36px;height:36px;border-radius:9px;background:var(--adim);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">📄</div>
-          <div><div style="font-size:19px;font-weight:900;color:var(--amber)">14</div><div style="font-size:8px;color:var(--txt2);margin-top:1px">계약 진행중</div></div>
+        <div class="hero-title" style="font-size:18px">👑 관리자 자동화 센터</div>
+        <div class="hero-sub">롯데타워앤강남빌딩부동산중개(주) 내부 전용<br>수요·공급·공동중개 분리 관리 시스템</div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-n" style="color:var(--g2)">263</div><div class="hstat-l">수요 대기</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:#A8D4F5">386</div><div class="hstat-l">공급+공동</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:var(--amber)">14</div><div class="hstat-l">계약진행</div></div>
         </div>
       </div>
 
-      <div class="sh"><span class="sh-t">⚙️ 자동화 파이프라인</span></div>
-      <div class="pipeline">
-        <div class="pipe-steps">
-          <div class="ps"><div class="ps-box" onclick="toast('📥 오늘 신규 등록 63건')"><div class="ps-ico">📥</div><div class="ps-lbl">매물<br>등록</div><div class="ps-cnt" style="color:var(--g2)">63</div></div></div>
-          <div class="arr">→</div>
-          <div class="ps"><div class="ps-box" onclick="toast('🤖 6개 유형 AI 자동분류')"><div class="ps-ico">🤖</div><div class="ps-lbl">AI<br>분류</div><div class="ps-cnt" style="color:var(--river)">52</div></div></div>
-          <div class="arr">→</div>
-          <div class="ps"><div class="ps-box" onclick="toast('⚡ 자동매칭 진행 39건')"><div class="ps-ico">⚡</div><div class="ps-lbl">자동<br>매칭</div><div class="ps-cnt" style="color:var(--jade)">39</div></div></div>
-          <div class="arr">→</div>
-          <div class="ps"><div class="ps-box" onclick="toast('🎬 숏츠 제작 대기 22건')"><div class="ps-ico">🎬</div><div class="ps-lbl">숏츠<br>제작</div><div class="ps-cnt" style="color:#F9A8D4">22</div></div></div>
-          <div class="arr">→</div>
-          <div class="ps"><div class="ps-box" onclick="toast('📄 계약 진행중 14건')"><div class="ps-ico">📄</div><div class="ps-lbl">계약<br>진행</div><div class="ps-cnt" style="color:var(--amber)">14</div></div></div>
-          <div class="arr">→</div>
-          <div class="ps"><div class="ps-box" onclick="toast('✅ 이번달 계약완료 11건 🎉')"><div class="ps-ico">✅</div><div class="ps-lbl">계약<br>완료</div><div class="ps-cnt" style="color:var(--jade)">11</div></div></div>
-        </div>
+      <!-- 관리자 3개 탭 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);background:#0A0E17;border-bottom:1px solid rgba(255,255,255,.07)">
+        <button onclick="showAdminTab('demand')" id="at-demand"
+          style="padding:11px 4px;border:none;background:rgba(201,168,76,.1);border-bottom:3px solid #C9A84C;color:#E8C97A;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          🙋 수요·공급<br><span style="font-size:8px;font-weight:400;color:#8A9AB0">매수·매도·임대차</span>
+        </button>
+        <button onclick="showAdminTab('joint')" id="at-joint"
+          style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          🤝 공동중개<br><span style="font-size:8px;font-weight:400">파트너 관리</span>
+        </button>
+        <button onclick="showAdminTab('system')" id="at-system"
+          style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          ⚙️ 시스템<br><span style="font-size:8px;font-weight:400">자동화·설정</span>
+        </button>
       </div>
 
-      <div class="sh"><span class="sh-t">🗂️ 6개 유형 자동 분류</span></div>
-      <div class="classify">
-        <div class="ci"><div class="ci-dot cd-d"></div><div class="ci-b"><div class="ci-n">수요자 — 매수 희망</div><div class="ci-m">학군 152건 · 한강 44건 · 한강변재건축 67건</div></div><div class="ci-r"><span class="ci-badge cib-d">매수 263건</span><div class="ci-act">AI매칭 →</div></div></div>
-        <div class="ci"><div class="ci-dot cd-d"></div><div class="ci-b"><div class="ci-n">수요자 — 임차·전세 희망</div><div class="ci-m">학군 48건 · 한강 28건 · 한강변재건축 18건</div></div><div class="ci-r"><span class="ci-badge cib-d">임차 94건</span><div class="ci-act">AI매칭 →</div></div></div>
-        <div class="ci"><div class="ci-dot cd-s"></div><div class="ci-b"><div class="ci-n">공급자 — 매도 매물</div><div class="ci-m">학군 148건 · 한강 22건 · 한강변재건축 64건</div></div><div class="ci-r"><span class="ci-badge cib-s">매도 234건</span><div class="ci-act">숏츠→계약</div></div></div>
-        <div class="ci"><div class="ci-dot cd-s"></div><div class="ci-b"><div class="ci-n">공급자 — 임대 매물</div><div class="ci-m">학군 72건 · 한강 26건 · 한강변재건축 32건</div></div><div class="ci-r"><span class="ci-badge cib-s">임대 130건</span><div class="ci-act">숏츠→계약</div></div></div>
-        <div class="ci"><div class="ci-dot cd-j"></div><div class="ci-b"><div class="ci-n">공동중개 — 매도 공유</div><div class="ci-m">오늘 3건 등록 (한도 5건 · 잔여 2건)</div></div><div class="ci-r"><span class="ci-badge cib-j">공동매도 12건</span><div class="ci-act">숏츠→계약</div></div></div>
-        <div class="ci"><div class="ci-dot cd-j"></div><div class="ci-b"><div class="ci-n">공동중개 — 임대 공유</div><div class="ci-m">오늘 1건 등록 (한도 5건 · 잔여 4건)</div></div><div class="ci-r"><span class="ci-badge cib-j">공동임대 10건</span><div class="ci-act">숏츠→계약</div></div></div>
-      </div>
-
-      <div class="sh"><span class="sh-t">🎬 숏츠 → 계약 파이프라인</span></div>
-      <div class="shorts-list">
-        <div class="sl"><div class="sl-thumb st0">🏢</div><div class="sl-b"><div class="sl-t">대치아이파크 33평 — 공급자 매도 AI 97점</div><div class="sl-m">학군권역 · 저평가 8.2%</div><div class="sl-tags"><span class="stag sg-live">배포중</span><span class="stag sg-contract">계약문의 7건</span></div></div><div class="sl-r"><div class="sl-views">3.4K</div><div class="sl-cta" onclick="toast('📄 계약 화면으로 이동')">계약 →</div></div></div>
-        <div class="sl"><div class="sl-thumb st0">🤝</div><div class="sl-b"><div class="sl-t">역삼 래미안 25평 — 공동중개 매도 AI 89점</div><div class="sl-m">학군권역 · 공동중개 파트너 A</div><div class="sl-tags"><span class="stag sg-live">배포중</span><span class="stag sg-ai">AI편집</span></div></div><div class="sl-r"><div class="sl-views">2.1K</div><div class="sl-cta" onclick="toast('📄 공동중개 계약 화면')">계약 →</div></div></div>
-        <div class="sl"><div class="sl-thumb st1">🏯</div><div class="sl-b"><div class="sl-t">용산 파크타워 48평 — 공급자 매도 AI 94점</div><div class="sl-m">한강벨트 · 럭셔리</div><div class="sl-tags"><span class="stag sg-edit">제작 대기</span></div></div><div class="sl-r"><div class="sl-views">—</div><div class="sl-cta" onclick="toast('🎬 AI 숏츠 자동 제작 시작!')">제작 →</div></div></div>
-        <div class="sl"><div class="sl-thumb st2">🏗️</div><div class="sl-b"><div class="sl-t">압구정 현대 재건축 예정 — 공동중개 투자 AI 96점</div><div class="sl-m">한강변 투자권역 · 공동중개 파트너 B</div><div class="sl-tags"><span class="stag sg-live">배포중</span><span class="stag sg-contract">계약문의 4건</span></div></div><div class="sl-r"><div class="sl-views">2.3K</div><div class="sl-cta" onclick="toast('📄 계약 화면으로 이동')">계약 →</div></div></div>
-      </div>
-
-      <div class="sh"><span class="sh-t">📄 계약 진행 현황</span></div>
-      <div class="contracts">
-        <div class="citem">
-          <div class="citop"><div class="cin">대치 아이파크 33평 매매</div><span class="cst cs-ing">진행중 72%</span></div>
-          <div class="cirows">
-            <div class="crow"><span class="crl">유형</span><span class="crv">공급자 매도 ↔ 수요자 매수</span></div>
-            <div class="crow"><span class="crl">숏츠 성과</span><span class="crv" style="color:var(--jade)">3.4K뷰 → 문의 7건</span></div>
-            <div class="crow"><span class="crl">금액</span><span class="crv" style="color:var(--g2)">28억 5천</span></div>
-            <div class="crow"><span class="crl">중개보수(예상)</span><span class="crv">약 1,140만원</span></div>
+      <!-- ── 수요·공급 관리 탭 ── -->
+      <div id="ap-demand">
+        <!-- 현황 카드 -->
+        <div style="padding:12px 16px 6px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+          <div style="background:var(--s1);border:1px solid var(--gdim);border-radius:11px;padding:11px;display:flex;align-items:center;gap:9px">
+            <div style="width:34px;height:34px;border-radius:8px;background:var(--gdim);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🙋</div>
+            <div><div style="font-size:18px;font-weight:900;color:var(--g2)">189</div><div style="font-size:8px;color:var(--txt2)">매수·임차 수요</div></div>
           </div>
-          <div class="cprog"><div class="cpf" style="width:72%"></div></div>
-          <div class="cprog-lbl">가계약 완료 · 본계약 진행중</div>
-        </div>
-        <div class="citem">
-          <div class="citop"><div class="cin">역삼 래미안 25평 공동중개</div><span class="cst cs-shorts">숏츠 배포중</span></div>
-          <div class="cirows">
-            <div class="crow"><span class="crl">유형</span><span class="crv">공동중개 매도 ↔ 수요자 매수</span></div>
-            <div class="crow"><span class="crl">공동파트너</span><span class="crv">A 공인중개사</span></div>
-            <div class="crow"><span class="crl">보수 분배</span><span class="crv" style="color:var(--jade)">50:50 적용 예정</span></div>
+          <div style="background:var(--s1);border:1px solid var(--line2);border-radius:11px;padding:11px;display:flex;align-items:center;gap:9px">
+            <div style="width:34px;height:34px;border-radius:8px;background:var(--rdim);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🏠</div>
+            <div><div style="font-size:18px;font-weight:900;color:#A8D4F5">247</div><div style="font-size:8px;color:var(--txt2)">매도·임대 공급</div></div>
           </div>
-          <div class="cprog"><div class="cpf" style="width:45%"></div></div>
-          <div class="cprog-lbl">숏츠 홍보 단계 · 매칭 문의 3건</div>
-        </div>
-        <div class="citem">
-          <div class="citop"><div class="cin">압구정 현대 재건축 예정 45평</div><span class="cst cs-done">계약완료 ✅</span></div>
-          <div class="cirows">
-            <div class="crow"><span class="crl">유형</span><span class="crv">공동중개 ↔ 투자 수요자</span></div>
-            <div class="crow"><span class="crl">확정 중개보수</span><span class="crv" style="color:var(--jade)">1,280만원 수취</span></div>
-            <div class="crow"><span class="crl">공동 분배</span><span class="crv">50:50 정산 완료</span></div>
+          <div style="background:var(--s1);border:1px solid var(--line2);border-radius:11px;padding:11px;display:flex;align-items:center;gap:9px">
+            <div style="width:34px;height:34px;border-radius:8px;background:var(--jdim);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📹</div>
+            <div><div style="font-size:18px;font-weight:900;color:var(--jade)">22</div><div style="font-size:8px;color:var(--txt2)">숏츠 제작대기</div></div>
           </div>
-          <div class="cprog"><div class="cpf" style="width:100%"></div></div>
-          <div class="cprog-lbl" style="color:var(--jade)">계약·정산 완료</div>
+          <div style="background:var(--s1);border:1px solid rgba(245,158,11,.2);border-radius:11px;padding:11px;display:flex;align-items:center;gap:9px">
+            <div style="width:34px;height:34px;border-radius:8px;background:var(--adim);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📄</div>
+            <div><div style="font-size:18px;font-weight:900;color:var(--amber)">14</div><div style="font-size:8px;color:var(--txt2)">계약 진행중</div></div>
+          </div>
+        </div>
+
+        <!-- 파이프라인 -->
+        <div style="padding:6px 16px 10px">
+          <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:8px">⚡ 자동화 파이프라인</div>
+          <div class="pipeline"><div class="pipe-steps">
+            <div class="ps"><div class="ps-box" onclick="toast('📥 오늘 신규 63건')"><div class="ps-ico">📥</div><div class="ps-lbl">등록</div><div class="ps-cnt" style="color:var(--g2)">63</div></div></div>
+            <div class="arr">→</div>
+            <div class="ps"><div class="ps-box" onclick="toast('🤖 AI 분류 52건')"><div class="ps-ico">🤖</div><div class="ps-lbl">AI분류</div><div class="ps-cnt" style="color:var(--river)">52</div></div></div>
+            <div class="arr">→</div>
+            <div class="ps"><div class="ps-box" onclick="toast('⚡ 자동매칭 39건')"><div class="ps-ico">⚡</div><div class="ps-lbl">매칭</div><div class="ps-cnt" style="color:var(--jade)">39</div></div></div>
+            <div class="arr">→</div>
+            <div class="ps"><div class="ps-box" onclick="toast('🎬 숏츠 22건')"><div class="ps-ico">🎬</div><div class="ps-lbl">숏츠</div><div class="ps-cnt" style="color:#F9A8D4">22</div></div></div>
+            <div class="arr">→</div>
+            <div class="ps"><div class="ps-box" onclick="toast('✅ 완료 11건 🎉')"><div class="ps-ico">✅</div><div class="ps-lbl">완료</div><div class="ps-cnt" style="color:var(--jade)">11</div></div></div>
+          </div></div>
+        </div>
+
+        <!-- 수요자 최근 등록 -->
+        <div style="padding:0 16px 8px">
+          <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:8px">🙋 수요자 최근 등록 (개인정보 보호됨)</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:var(--s1);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+              <div><div style="font-size:10px;font-weight:800">수요자 #001</div><div style="font-size:9px;color:var(--txt2);margin-top:2px">🎓 학군권역 · 매수 · 30억대 · 대치동</div></div>
+              <div style="display:flex;gap:5px"><span style="font-size:8px;background:rgba(45,212,160,.12);color:var(--jade);padding:2px 7px;border-radius:4px;font-weight:700">매칭대기</span></div>
+            </div>
+            <div style="background:var(--s1);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+              <div><div style="font-size:10px;font-weight:800">수요자 #002</div><div style="font-size:9px;color:var(--txt2);margin-top:2px">🌊 한강벨트 · 전세 · 20억대 · 반포동</div></div>
+              <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700">AI매칭중</span>
+            </div>
+            <div style="background:var(--s1);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+              <div><div style="font-size:10px;font-weight:800">수요자 #003</div><div style="font-size:9px;color:var(--txt2);margin-top:2px">🎓 학군권역 · 단기임대 · 역삼동</div></div>
+              <span style="font-size:8px;background:rgba(245,158,11,.12);color:var(--amber);padding:2px 7px;border-radius:4px;font-weight:700">계약진행</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 공급자 최근 등록 -->
+        <div style="padding:0 16px 14px">
+          <div style="font-size:9px;font-weight:800;color:#A8D4F5;margin-bottom:8px">🏠 공급자 최근 등록 (매물 현황)</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+              <div><div style="font-size:10px;font-weight:800">대치 SK뷰 33평 급매</div><div style="font-size:9px;color:var(--txt2);margin-top:2px">24.5억 · 즉시입주 · AI저평가 ▼8.2%</div></div>
+              <span style="font-size:8px;background:rgba(239,68,68,.12);color:#FCA5A5;padding:2px 7px;border-radius:4px;font-weight:700">숏츠대기</span>
+            </div>
+            <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center">
+              <div><div style="font-size:10px;font-weight:800">반포 래미안퍼스티지 59평</div><div style="font-size:9px;color:var(--txt2);margin-top:2px">82억 · 한강뷰 · ▼6.1%</div></div>
+              <span style="font-size:8px;background:rgba(45,212,160,.12);color:var(--jade);padding:2px 7px;border-radius:4px;font-weight:700">매칭완료</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div style="height:8px"></div>
+
+      <!-- ── 공동중개 관리 탭 ── -->
+      <div id="ap-joint" style="display:none">
+        <!-- 현황 -->
+        <div style="padding:12px 16px 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:11px;text-align:center">
+            <div style="font-size:18px;font-weight:900;color:var(--jade)">12</div>
+            <div style="font-size:8px;color:var(--txt2);margin-top:2px">승인대기</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:11px;text-align:center">
+            <div style="font-size:18px;font-weight:900;color:var(--jade)">34</div>
+            <div style="font-size:8px;color:var(--txt2);margin-top:2px">활성파트너</div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:11px;text-align:center">
+            <div style="font-size:18px;font-weight:900;color:var(--jade)">89</div>
+            <div style="font-size:8px;color:var(--txt2);margin-top:2px">공동매물</div>
+          </div>
+        </div>
+
+        <!-- 가입 승인 대기 -->
+        <div style="padding:0 16px 10px">
+          <div style="font-size:9px;font-weight:800;color:#2DD4A0;margin-bottom:8px">📋 공동중개 가입 승인 대기</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="background:var(--s1);border:1px solid rgba(45,212,160,.18);border-radius:11px;overflow:hidden">
+              <div style="padding:11px 13px">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+                  <div><div style="font-size:10px;font-weight:800">○○부동산중개사무소</div><div style="font-size:9px;color:var(--txt2);margin-top:1px">대표: 홍길동 · 등록번호: 11680-2024-XXXXX</div></div>
+                  <span style="font-size:8px;background:rgba(245,158,11,.12);color:var(--amber);padding:2px 7px;border-radius:4px;font-weight:700;white-space:nowrap">검토중</span>
+                </div>
+                <div style="font-size:9px;color:var(--txt2);margin-bottom:8px">📎 사업자등록증 · 개설등록증 첨부 완료 · 연락처: 010-XXXX-XXXX</div>
+                <div style="display:flex;gap:6px">
+                  <button onclick="toast('✅ 승인 완료! 파트너에게 SMS 발송')" style="flex:1;padding:8px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:10px;font-weight:800;border:none;cursor:pointer">✅ 승인</button>
+                  <button onclick="toast('❌ 반려 처리됨')" style="flex:1;padding:8px;border-radius:8px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">❌ 반려</button>
+                  <button onclick="toast('📁 서류 상세보기')" style="flex:1;padding:8px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">📁 서류</button>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--s1);border:1px solid rgba(45,212,160,.18);border-radius:11px;overflow:hidden">
+              <div style="padding:11px 13px">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
+                  <div><div style="font-size:10px;font-weight:800">△△공인중개사사무소</div><div style="font-size:9px;color:var(--txt2);margin-top:1px">대표: 김철수 · 등록번호: 11680-2024-YYYYY</div></div>
+                  <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700;white-space:nowrap">서류확인</span>
+                </div>
+                <div style="font-size:9px;color:var(--txt2);margin-bottom:8px">📎 서류 미흡 · 개설등록증 재첨부 요청</div>
+                <div style="display:flex;gap:6px">
+                  <button onclick="toast('✅ 승인 완료!')" style="flex:1;padding:8px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:10px;font-weight:800;border:none;cursor:pointer">✅ 승인</button>
+                  <button onclick="toast('❌ 반려')" style="flex:1;padding:8px;border-radius:8px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">❌ 반려</button>
+                  <button onclick="toast('📨 서류 재요청 발송')" style="flex:1;padding:8px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">📨 재요청</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 활성 파트너 공동매물 -->
+        <div style="padding:0 16px 14px">
+          <div style="font-size:9px;font-weight:800;color:#2DD4A0;margin-bottom:8px">🤝 공동중개 매물 현황 (일 5건 한도)</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 13px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+                <div style="font-size:10px;font-weight:800">공동중개 — 매도 공유</div>
+                <span style="font-size:8px;background:rgba(45,212,160,.12);color:var(--jade);padding:2px 7px;border-radius:4px;font-weight:700">공동매도 5건</span>
+              </div>
+              <div style="font-size:9px;color:var(--txt2)">파트너: ○○중개사 · 오늘 1건 등록 (한도 5건·잔여 4건)</div>
+            </div>
+            <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 13px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+                <div style="font-size:10px;font-weight:800">공동중개 — 임대 공유</div>
+                <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700">공동임대 10건</span>
+              </div>
+              <div style="font-size:9px;color:var(--txt2)">숏츠→계약 파이프라인 진행중</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 시스템 관리 탭 ── -->
+      <div id="ap-system" style="display:none;padding:12px 16px">
+        <!-- 관리자 계정 설정 -->
+        <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:10px">👑 관리자 계정 현황</div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(201,168,76,.08);border-radius:8px">
+              <div><div style="font-size:10px;font-weight:800">이상수 대표</div><div style="font-size:8px;color:var(--txt2)">ID: propai_ceo · 최고관리자</div></div>
+              <span style="font-size:8px;background:rgba(201,168,76,.2);color:#E8C97A;padding:2px 8px;border-radius:4px;font-weight:700">SUPER</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.03);border-radius:8px">
+              <div><div style="font-size:10px;font-weight:800">관리직원1</div><div style="font-size:8px;color:var(--txt2)">ID: propai_admin1 · 일반관리자</div></div>
+              <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 8px;border-radius:4px;font-weight:700">STAFF</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(255,255,255,.03);border-radius:8px">
+              <div><div style="font-size:10px;font-weight:800">관리직원2</div><div style="font-size:8px;color:var(--txt2)">ID: propai_admin2 · 일반관리자</div></div>
+              <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 8px;border-radius:4px;font-weight:700">STAFF</span>
+            </div>
+          </div>
+          <button onclick="toast('📞 계정 추가·변경: 010-8985-8945 이대표')" style="margin-top:10px;width:100%;padding:10px;border-radius:9px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">+ 관리자 계정 추가·변경</button>
+        </div>
+
+        <!-- 자동화 설정 -->
+        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:13px;margin-bottom:10px">
+          <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:10px">⚙️ 자동화 파이프라인 설정</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:10px;color:#EDF2F7">🤖 AI 자동분류</div>
+              <div style="width:40px;height:22px;background:rgba(45,212,160,.3);border-radius:11px;position:relative;cursor:pointer" onclick="toast('✅ AI 자동분류 ON')"><div style="position:absolute;right:3px;top:3px;width:16px;height:16px;background:#2DD4A0;border-radius:50%"></div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:10px;color:#EDF2F7">🎬 숏츠 자동제작</div>
+              <div style="width:40px;height:22px;background:rgba(45,212,160,.3);border-radius:11px;position:relative;cursor:pointer" onclick="toast('✅ 숏츠 자동제작 ON')"><div style="position:absolute;right:3px;top:3px;width:16px;height:16px;background:#2DD4A0;border-radius:50%"></div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:10px;color:#EDF2F7">📡 SNS 자동홍보</div>
+              <div style="width:40px;height:22px;background:rgba(45,212,160,.3);border-radius:11px;position:relative;cursor:pointer" onclick="toast('✅ SNS 자동홍보 ON')"><div style="position:absolute;right:3px;top:3px;width:16px;height:16px;background:#2DD4A0;border-radius:50%"></div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:10px;color:#EDF2F7">⚡ 저평가 자동탐지</div>
+              <div style="width:40px;height:22px;background:rgba(45,212,160,.3);border-radius:11px;position:relative;cursor:pointer" onclick="toast('✅ 저평가탐지 ON')"><div style="position:absolute;right:3px;top:3px;width:16px;height:16px;background:#2DD4A0;border-radius:50%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 로그아웃 -->
+        <button onclick="toggleAdmin()" style="width:100%;padding:13px;border-radius:11px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#FCA5A5;font-family:var(--sans);font-size:12px;font-weight:800;cursor:pointer">🔒 관리자 로그아웃</button>
+      </div>
+
+      <div style="height:80px"></div>
     </div>
 
   </div><!-- /content -->
@@ -2976,35 +3147,100 @@ function goTab(i){
   setTimeout(initReveal,80);
 }
 
-/* ─── ADMIN ─── */
+/* ─── 관리자 탭 전환 ─── */
+var adminPanels=['ap-demand','ap-joint','ap-system'];
+var adminTabBtns=['at-demand','at-joint','at-system'];
+function showAdminTab(key){
+  var map={demand:0,joint:1,system:2};
+  var idx=map[key]||0;
+  adminPanels.forEach(function(p,i){
+    var el=document.getElementById(p);
+    if(el)el.style.display=i===idx?'block':'none';
+  });
+  adminTabBtns.forEach(function(t,i){
+    var el=document.getElementById(t);if(!el)return;
+    if(i===idx){
+      el.style.background='rgba(201,168,76,.1)';
+      el.style.borderBottom='3px solid #C9A84C';
+      el.style.color='#E8C97A';
+    } else {
+      el.style.background='transparent';
+      el.style.borderBottom='3px solid transparent';
+      el.style.color='#8A9AB0';
+    }
+  });
+  // 관리자 뱃지 업데이트
+  var badge=document.getElementById('adminBadge');
+  if(badge&&adminUser)badge.textContent=adminUser.name+' ('+adminUser.level+')';
+}
+
+/* ─── 관리자 계정 (이대표 + 직원) ─── */
+var ADMIN_ACCOUNTS = [
+  {id:'propai_ceo',    pw:'Lotte@8945#',  name:'이상수 대표',  level:'super'},
+  {id:'propai_admin1', pw:'Staff@2024!',  name:'관리직원1',     level:'staff'},
+  {id:'propai_admin2', pw:'Staff@2025!',  name:'관리직원2',     level:'staff'}
+];
+var adminUser = null;
+
+/* ─── 관리자 버튼 클릭 → 로그인 모달 ─── */
 function toggleAdmin(){
-  // 공동중개 파트너 관리자 접근 완전 차단
   if(userRole==='joint'){
     toast('🔒 공동중개 파트너는 관리자 기능에 접근할 수 없습니다');
     return;
   }
-  adminOn=!adminOn;
-  const btn=document.getElementById('admbtn');
-  btn.classList.toggle('on',adminOn);
-  btn.textContent=adminOn?'관리자 ON':'관리자';
-  // 하단 관리자 버튼 강조
-  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('na','na-a','na-admin'));
   if(adminOn){
-    var nb5=document.getElementById('nb5');
-    if(nb5)nb5.classList.add('na-admin');
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
-    document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('act','act2'));
-    document.getElementById('tabAdmin').classList.add('show');
-    document.querySelector('.content').scrollTop=0;
-    setTimeout(initReveal,80);
-    toast('🔓 관리자 자동화 센터');
-  } else {
-    var nb0=document.getElementById('nb0');
-    if(nb0)nb0.classList.add('na');
+    // 로그아웃
+    adminOn=false;adminUser=null;userRole='user';
+    const btn=document.getElementById('admbtn');
+    btn.classList.remove('on');btn.textContent='관리자';
+    document.querySelectorAll('.nb').forEach(b=>b.classList.remove('na','na-a','na-admin'));
+    var nb0=document.getElementById('nb0');if(nb0)nb0.classList.add('na');
     goTab(curTab);
-    toast('🔒 관리자 모드 해제');
+    toast('🔒 관리자 로그아웃');
+  } else {
+    // 로그인 모달 열기
+    openAdminLoginModal();
   }
 }
+
+function openAdminLoginModal(){
+  var m=document.getElementById('adminLoginModal');
+  if(m){m.style.display='flex';}
+  var ai=document.getElementById('adm-id');
+  var ap=document.getElementById('adm-pw');
+  if(ai)ai.value='';if(ap)ap.value='';
+  if(ai)setTimeout(function(){ai.focus();},100);
+}
+function closeAdminLoginModal(){
+  var m=document.getElementById('adminLoginModal');
+  if(m)m.style.display='none';
+}
+function doAdminLogin(){
+  var id=document.getElementById('adm-id').value.trim();
+  var pw=document.getElementById('adm-pw').value;
+  var found=ADMIN_ACCOUNTS.find(function(a){return a.id===id&&a.pw===pw;});
+  if(!found){
+    toast('⚠️ 아이디 또는 비밀번호가 올바르지 않습니다');
+    document.getElementById('adm-pw').value='';
+    return;
+  }
+  closeAdminLoginModal();
+  adminUser=found;adminOn=true;userRole='admin';
+  const btn=document.getElementById('admbtn');
+  btn.classList.add('on');btn.textContent='관리자 ON';
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('na','na-a','na-admin'));
+  var nb5=document.getElementById('nb5');if(nb5)nb5.classList.add('na-admin');
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('act','act2'));
+  document.getElementById('tabAdmin').classList.add('show');
+  document.querySelector('.content').scrollTop=0;
+  setTimeout(initReveal,80);
+  // 관리자 레벨 표시
+  var nameEl=document.querySelector('.un');
+  if(nameEl)nameEl.textContent=found.name+' (관리자)';
+  toast('🔓 '+found.name+' 관리자 로그인 완료');
+}
+
 
 /* ─── BOTTOM NAV ─── */
 function nbClick(i){
