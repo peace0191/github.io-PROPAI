@@ -334,12 +334,19 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
   <div class="ls2">롯데타워앤강남빌딩부동산중개(주)<br>투명 부동산 AI 플랫폼</div>
 
   <!-- 핵심 배지 -->
-  <div class="vpills" style="margin:10px 0 18px">
+  <div class="vpills" style="margin:10px 0 10px">
     <span class="vp">✅ 광고비 0원</span>
     <span class="vp">🤖 AI 자동매칭</span>
     <span class="vp">🔒 법정 중개보수</span>
     <span class="vp">📹 숏츠 자동제작</span>
   </div>
+
+  <!-- 앱 소개 버튼 -->
+  <button onclick="openGuide()" style="width:100%;padding:11px 14px;border-radius:11px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);color:#E8C97A;font-family:var(--sans);font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px">
+    <span style="font-size:16px">📖</span>
+    <span>PROPAI 회사소개 · 앱 사용방법 안내</span>
+    <span style="font-size:10px;background:rgba(201,168,76,.2);padding:2px 7px;border-radius:4px;font-weight:700">처음이세요?</span>
+  </button>
 
   <!-- ① 일반 사용자: 카카오 인증 -->
   <div style="margin-bottom:6px">
@@ -510,6 +517,276 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       </div>
       <button onclick="closeJointSignup()" style="width:100%;padding:12px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 로그인 화면으로</button>
     </div>
+  </div>
+</div>
+
+<!-- ══════ PROPAI 사용설명서 팝업 ══════ -->
+<div id="guideModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1001;overflow-y:auto">
+  <div style="max-width:440px;margin:0 auto;padding:0 0 40px;min-height:100%">
+
+    <!-- 헤더 -->
+    <div style="background:linear-gradient(135deg,#0A1628,#162040);padding:20px 18px 16px;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(201,168,76,.2)">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:9px;color:#E8C97A;font-weight:700;letter-spacing:1.5px;margin-bottom:3px">PROPAI USER GUIDE</div>
+          <div style="font-size:16px;font-weight:900;color:#EDF2F7">📖 앱 소개 · 사용방법</div>
+        </div>
+        <button onclick="closeGuide()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:9px;width:34px;height:34px;color:#8A9AB0;font-size:16px;cursor:pointer;font-family:var(--sans)">✕</button>
+      </div>
+      <!-- 탭 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px">
+        <button onclick="showGuideTab(0)" id="gt0" style="padding:8px 4px;border-radius:8px;border:none;background:rgba(201,168,76,.15);border-bottom:2px solid #C9A84C;color:#E8C97A;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">🏢 회사소개</button>
+        <button onclick="showGuideTab(1)" id="gt1" style="padding:8px 4px;border-radius:8px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">⭐ 앱 특징</button>
+        <button onclick="showGuideTab(2)" id="gt2" style="padding:8px 4px;border-radius:8px;border:none;background:transparent;border-bottom:2px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">📱 사용방법</button>
+      </div>
+    </div>
+
+    <!-- ── 회사 소개 ── -->
+    <div id="gp0" style="padding:18px 18px 6px">
+      <!-- 회사 대표 카드 -->
+      <div style="background:linear-gradient(135deg,#0D1929,#162040);border:1.5px solid rgba(201,168,76,.3);border-radius:14px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:radial-gradient(circle,rgba(201,168,76,.12),transparent);pointer-events:none"></div>
+        <div style="font-size:9px;color:#E8C97A;font-weight:700;letter-spacing:1px;margin-bottom:6px">LOTTE TOWER & GANGNAM BUILDING REAL ESTATE</div>
+        <div style="font-size:16px;font-weight:900;color:#EDF2F7;margin-bottom:4px">롯데타워앤강남빌딩<br>부동산중개(주)</div>
+        <div style="font-size:10px;color:#8A9AB0;line-height:1.8;margin-bottom:12px">
+          대한민국 대표 학군·한강벨트 전문 AI 부동산 중개 플랫폼<br>
+          대치동 학원가·한강변 럭셔리·재건축 특화 AI 매칭
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:10px">
+          <div style="display:flex;gap:10px"><span style="color:#8A9AB0;width:60px;flex-shrink:0">대표</span><span style="color:#EDF2F7;font-weight:700">이상수 공인중개사</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#8A9AB0;width:60px;flex-shrink:0">연락처</span><a href="tel:01089858945" style="color:#E8C97A;font-weight:700;text-decoration:none">010-8985-8945</a> <span style="color:#8A9AB0">/ 02-578-8285</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#8A9AB0;width:60px;flex-shrink:0">주소</span><span style="color:#8A9AB0;line-height:1.5">서울 강남구 대치동 938<br>삼환아르누보2 오피스텔 507호</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#8A9AB0;width:60px;flex-shrink:0">등록번호</span><span style="color:#8A9AB0">11680-2023-02740</span></div>
+          <div style="display:flex;gap:10px"><span style="color:#8A9AB0;width:60px;flex-shrink:0">사업자</span><span style="color:#8A9AB0">461-86-02740</span></div>
+        </div>
+      </div>
+
+      <!-- 플랫폼 원칙 -->
+      <div style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.18);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:900;color:#2DD4A0;margin-bottom:10px">🏆 PROPAI 3대 원칙</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:7px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">✅</div>
+            <div><div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:2px">광고비 0원 — 투명한 거래</div><div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 등록 완전 무료. 광고 수익 없음. 계약 성사 시 법정 중개보수료만 수취합니다.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:7px;background:rgba(45,212,160,.12);border:1px solid rgba(45,212,160,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🤖</div>
+            <div><div style="font-size:10px;font-weight:800;color:#2DD4A0;margin-bottom:2px">AI 3자 자동매칭</div><div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자·공동중개 3방향 AI 동시 매칭. 네이버·KB·한방 3포털 실거래가 자동 비교.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.18);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🔒</div>
+            <div><div style="font-size:10px;font-weight:800;color:#FCA5A5;margin-bottom:2px">개인정보 완전 보호</div><div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 정보 분리 관리. 공동중개 파트너는 자신의 매물만 열람 가능합니다.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 담당 권역 -->
+      <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:900;color:#EDF2F7;margin-bottom:10px">🗺️ 3대 전문 권역</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(201,168,76,.07);border-radius:8px">
+            <span style="font-size:18px">🎓</span>
+            <div><div style="font-size:10px;font-weight:800;color:#E8C97A">학군 배후 주거 권역</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">대치·도곡·역삼·개포·압구정</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(74,158,224,.07);border-radius:8px">
+            <span style="font-size:18px">🌊</span>
+            <div><div style="font-size:10px;font-weight:800;color:#A8D4F5">한강 벨트 럭셔리</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">반포·송파·시그니엘·용산·성수</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(45,212,160,.07);border-radius:8px">
+            <span style="font-size:18px">📈</span>
+            <div><div style="font-size:10px;font-weight:800;color:#2DD4A0">한강변 재건축·재개발</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">압구정·여의도·목동·삼성·한남·흑석</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-bottom:10px">
+        <button onclick="showGuideTab(1)" style="width:100%;padding:13px;border-radius:11px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">다음 — 앱 특징 보기 →</button>
+      </div>
+    </div>
+
+    <!-- ── 앱 특징 ── -->
+    <div id="gp1" style="display:none;padding:18px 18px 6px">
+      <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:14px">⭐ PROPAI만의 12가지 차별화</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.15);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">🤖</div>
+          <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:3px">AI 3자 자동매칭</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">수요·공급·공동중개 동시 AI 매칭. 등록 즉시 자동 분석</div>
+        </div>
+        <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.12);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">📉</div>
+          <div style="font-size:10px;font-weight:800;color:#2DD4A0;margin-bottom:3px">저평가 자동 탐지</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">3포털 실거래가 비교. 평균 7~10% 절감 매물 자동 발굴</div>
+        </div>
+        <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.12);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">🎬</div>
+          <div style="font-size:10px;font-weight:800;color:#FCA5A5;margin-bottom:3px">숏츠 자동제작</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">매물 등록 즉시 60초 유튜브 숏츠 자동 제작·배포</div>
+        </div>
+        <div style="background:rgba(254,229,0,.05);border:1px solid rgba(254,229,0,.1);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">📡</div>
+          <div style="font-size:10px;font-weight:800;color:#FEE500;margin-bottom:3px">SNS 자동홍보</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">유튜브·인스타·블로그·카카오단톡방 동시 자동 노출</div>
+        </div>
+        <div style="background:rgba(74,158,224,.06);border:1px solid rgba(74,158,224,.12);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">🎓</div>
+          <div style="font-size:10px;font-weight:800;color:#A8D4F5;margin-bottom:3px">학군 특화 매칭</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">대치동 학원가 도보시간·학교 자동 분석 매칭</div>
+        </div>
+        <div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.15);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">💰</div>
+          <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:3px">광고비 0원</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">등록·검색 무료. 계약 성사 시 법정 보수만 수취</div>
+        </div>
+        <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.12);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">🤝</div>
+          <div style="font-size:10px;font-weight:800;color:#2DD4A0;margin-bottom:3px">AI 공동중개</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">파트너간 AI파발마 매칭. 법정보수 50:50 자동 분배</div>
+        </div>
+        <div style="background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.12);border-radius:11px;padding:12px">
+          <div style="font-size:18px;margin-bottom:5px">📊</div>
+          <div style="font-size:10px;font-weight:800;color:#C4B5FD;margin-bottom:3px">포털 실시간 비교</div>
+          <div style="font-size:8px;color:#8A9AB0;line-height:1.5">네이버·KB·한방 3개 포털 가격 동시 투명 비교</div>
+        </div>
+      </div>
+
+      <!-- 타 플랫폼 비교 -->
+      <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:10px">📊 타 플랫폼 vs PROPAI</div>
+        <table style="width:100%;font-size:9px;border-collapse:collapse">
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06)">
+            <th style="padding:5px 4px;text-align:left;color:#8A9AB0;font-weight:700">항목</th>
+            <th style="padding:5px 4px;text-align:center;color:#8A9AB0">네이버</th>
+            <th style="padding:5px 4px;text-align:center;color:#8A9AB0">한방</th>
+            <th style="padding:5px 4px;text-align:center;color:#E8C97A;background:rgba(201,168,76,.06)">PROPAI</th>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:5px 4px;color:#EDF2F7;font-weight:600">광고비</td>
+            <td style="text-align:center;color:#EF4444">고비용</td><td style="text-align:center;color:#EF4444">유료</td>
+            <td style="text-align:center;color:#2DD4A0;font-weight:800;background:rgba(201,168,76,.04)">0원 ✅</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:5px 4px;color:#EDF2F7;font-weight:600">AI매칭</td>
+            <td style="text-align:center;color:#F59E0B">부분</td><td style="text-align:center;color:#EF4444">없음</td>
+            <td style="text-align:center;color:#2DD4A0;font-weight:800;background:rgba(201,168,76,.04)">3자 ✅</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+            <td style="padding:5px 4px;color:#EDF2F7;font-weight:600">저평가분석</td>
+            <td style="text-align:center;color:#EF4444">없음</td><td style="text-align:center;color:#EF4444">없음</td>
+            <td style="text-align:center;color:#2DD4A0;font-weight:800;background:rgba(201,168,76,.04)">AI ✅</td>
+          </tr>
+          <tr>
+            <td style="padding:5px 4px;color:#EDF2F7;font-weight:600">숏츠홍보</td>
+            <td style="text-align:center;color:#EF4444">없음</td><td style="text-align:center;color:#EF4444">없음</td>
+            <td style="text-align:center;color:#2DD4A0;font-weight:800;background:rgba(201,168,76,.04)">자동 ✅</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:8px;padding-bottom:10px">
+        <button onclick="showGuideTab(0)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 회사소개</button>
+        <button onclick="showGuideTab(2)" style="flex:2;padding:12px;border-radius:11px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">사용방법 보기 →</button>
+      </div>
+    </div>
+
+    <!-- ── 사용방법 ── -->
+    <div id="gp2" style="display:none;padding:18px 18px 6px">
+      <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:14px">📱 PROPAI 이용 방법</div>
+
+      <!-- 로그인 유형 -->
+      <div style="background:rgba(254,229,0,.05);border:1px solid rgba(254,229,0,.12);border-radius:12px;padding:14px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:900;color:#FEE500;margin-bottom:10px">🔑 1단계 — 로그인 유형 선택</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(254,229,0,.06);border-radius:8px">
+            <span style="font-size:16px">💬</span>
+            <div><div style="font-size:10px;font-weight:800;color:#FEE500">카카오 인증 로그인</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">수요자·공급자 — 매수·매도·전세·월세·단기임대</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(45,212,160,.06);border-radius:8px">
+            <span style="font-size:16px">🤝</span>
+            <div><div style="font-size:10px;font-weight:800;color:#2DD4A0">공동중개 파트너 로그인</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">ID/비밀번호 로그인 · 승인된 공인중개사만</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(201,168,76,.06);border-radius:8px">
+            <span style="font-size:16px">👑</span>
+            <div><div style="font-size:10px;font-weight:800;color:#E8C97A">관리자 로그인</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">이상수 대표·김은경 관리자 — ID/비밀번호</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 수요자 사용법 -->
+      <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:14px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:900;color:#E8C97A;margin-bottom:10px">🙋 수요자 이용 방법 (매수·전세·임차 희망)</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#E8C97A;flex-shrink:0">1</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">카카오 인증 로그인 → 이용목적 선택 → 본인 인증</div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#E8C97A;flex-shrink:0">2</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">홈 화면에서 원하는 <strong style="color:#E8C97A">권역 클릭</strong> (학군·한강벨트·재건축)</div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#E8C97A;flex-shrink:0">3</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6"><strong style="color:#E8C97A">🙋 수요자 등록</strong> 버튼 → 매물종류·거래구분·예산 입력</div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#E8C97A;flex-shrink:0">4</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">AI가 자동매칭 → 담당자 연락 → 계약 진행</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 공급자 사용법 -->
+      <div style="background:rgba(74,158,224,.06);border:1px solid rgba(74,158,224,.12);border-radius:12px;padding:14px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:900;color:#A8D4F5;margin-bottom:10px">🏠 공급자 이용 방법 (매도·임대 등록)</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,158,224,.15);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#A8D4F5;flex-shrink:0">1</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">카카오 인증 로그인 → 매도·임대 공급자 선택</div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,158,224,.15);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#A8D4F5;flex-shrink:0">2</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">권역 화면에서 <strong style="color:#A8D4F5">🏠 공급자 매물등록</strong> 클릭</div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,158,224,.15);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#A8D4F5;flex-shrink:0">3</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">매물 정보 입력 → 등록 완료 → <strong style="color:#FCA5A5">숏츠 자동제작</strong> 시작</div>
+          </div>
+          <div style="display:flex;gap:9px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,158,224,.15);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#A8D4F5;flex-shrink:0">4</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6">AI 자동매칭 → SNS 자동홍보 → 수요자 연결 → 계약</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 뒤로가기·로그아웃 안내 -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:8px">📱 앱 조작 안내</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:9px;color:#8A9AB0;line-height:1.7">
+          <div>📱 <strong style="color:#EDF2F7">뒤로가기 버튼</strong> → 현재 탭에서 홈 화면으로 이동</div>
+          <div>🔓 <strong style="color:#EDF2F7">로그아웃</strong> → 상단 우측 빨간 [로그아웃] 버튼 클릭</div>
+          <div>🏠 <strong style="color:#EDF2F7">홈 화면</strong> → 하단 네비게이션 🏠 홈 버튼</div>
+          <div>🤝 <strong style="color:#EDF2F7">공동AI매칭</strong> → 하단 네비게이션 🤝 공동AI매칭 버튼</div>
+          <div>👑 <strong style="color:#EDF2F7">관리자</strong> → 하단 네비게이션 👑 관리자 버튼</div>
+        </div>
+      </div>
+
+      <!-- 문의 -->
+      <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:900;color:#E8C97A;margin-bottom:8px">📞 문의 · 상담</div>
+        <div style="font-size:10px;color:#8A9AB0;line-height:1.8">
+          이상수 대표 직통: <a href="tel:01089858945" style="color:#E8C97A;font-weight:800;text-decoration:none">010-8985-8945</a><br>
+          사무실: <a href="tel:0257888285" style="color:#E8C97A;text-decoration:none">02-578-8285</a><br>
+          방문: 강남구 대치동 삼환아르누보2 507호
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;padding-bottom:10px">
+        <button onclick="showGuideTab(1)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 앱 특징</button>
+        <button onclick="closeGuide()" style="flex:2;padding:12px;border-radius:11px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">✅ 확인 · 로그인하기</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -739,6 +1016,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div class="tbr">
         <div class="uc"><div class="uav">K</div><div class="un" id="un">김수연</div></div>
         <div class="admbtn" id="admbtn" onclick="toggleAdmin()">관리자</div>
+        <button onclick="doLogout()" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);border-radius:7px;padding:4px 9px;font-size:9px;font-weight:700;color:#FCA5A5;cursor:pointer;font-family:var(--sans)">로그아웃</button>
       </div>
     </div>
     <!-- 회사 정보 한 줄 -->
@@ -3568,12 +3846,14 @@ function doLogin(role){
     applyJointBrokerSecurity();
     document.getElementById('app').className='logged';
     goTab(13); // 공동중개 AI 서비스 화면으로 바로 이동
+    history.replaceState({tab:13,loggedIn:true},'',location.pathname+'#tab13');
     toast('🤝 공동중개 파트너 로그인 완료');
   } else {
     var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
     document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
     document.getElementById('app').className='logged';
     goTab(0);
+    history.replaceState({tab:0,loggedIn:true},'',location.pathname+'#tab0');
     toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
   }
   setTimeout(initReveal,150);
@@ -3730,10 +4010,66 @@ function goTab(i){
     const nt=document.getElementById('nt'+i);
     if(nt)nt.classList.add('act');
     curTab=i;
+    // 뒤로가기 히스토리 관리 — 로그인 상태일 때만
+    if(document.getElementById('app').className==='logged'){
+      history.pushState({tab:i,loggedIn:true},'',location.pathname+'#tab'+i);
+    }
   }
   var sc=document.querySelector('.content');if(sc)sc.scrollTop=0;
   setTimeout(initReveal,80);
 }
+
+/* ─── 뒤로가기 처리 ─── */
+window.addEventListener('popstate',function(e){
+  if(!e.state){
+    // 히스토리 없음 — 로그인 상태면 홈으로, 아니면 그냥 무시
+    if(document.getElementById('app').className==='logged'){
+      goTab(0);
+    }
+    return;
+  }
+  if(e.state.loggedIn){
+    // 로그인 상태 — 뒤로가기 = 홈으로
+    var targetTab = (e.state.tab > 0) ? 0 : 0;
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
+    document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('act','act2'));
+    document.getElementById('tabAdmin').classList.remove('show');
+    document.getElementById(tabIds[targetTab]).classList.add('show');
+    curTab=targetTab;
+    var sc=document.querySelector('.content');if(sc)sc.scrollTop=0;
+    setTimeout(initReveal,80);
+    // 다시 히스토리 추가 (무한 뒤로가기 방지)
+    history.pushState({tab:targetTab,loggedIn:true},'',location.pathname+'#tab0');
+  }
+});
+
+/* ─── 로그아웃 함수 ─── */
+function doLogout(){
+  if(!confirm('로그아웃 하시겠습니까?')) return;
+  userRole='user'; adminOn=false; adminUser=null; jbSubscribed=false;
+  document.getElementById('app').className='';
+  // 히스토리 초기화
+  history.replaceState({loggedIn:false},'',location.pathname);
+  // 관리자 버튼 복원
+  var adm=document.getElementById('admbtn');
+  if(adm){adm.style.display='';adm.classList.remove('on');adm.textContent='관리자';}
+  var nb5=document.getElementById('nb5');
+  if(nb5){nb5.style.display='';nb5.classList.remove('na-admin');}
+  // 입력값 초기화
+  var jId=document.getElementById('jb-id');var jPw=document.getElementById('jb-pw');
+  if(jId)jId.value=''; if(jPw)jPw.value='';
+  var aId=document.getElementById('ls-adm-id');var aPw=document.getElementById('ls-adm-pw');
+  if(aId)aId.value=''; if(aPw)aPw.value='';
+  toast('👋 로그아웃 되었습니다');
+}
+
+/* ─── 페이지 언로드 방지 (로그인 중) ─── */
+window.addEventListener('beforeunload',function(e){
+  if(document.getElementById('app').className==='logged'){
+    e.preventDefault();
+    e.returnValue='';
+  }
+});
 
 /* ─── 관리자 탭 전환 ─── */
 var adminPanels=['ap-demand','ap-joint','ap-system'];
@@ -3762,6 +4098,41 @@ function showAdminTab(key){
   if(badge&&adminUser)badge.textContent=adminUser.name+' ('+adminUser.level+')';
 }
 
+/* ─── 앱 소개·사용설명서 팝업 ─── */
+var guideTabColors=['#E8C97A','#2DD4A0','#A8D4F5'];
+var guideTabBg=['rgba(201,168,76,.15)','rgba(45,212,160,.12)','rgba(74,158,224,.1)'];
+var guideTabBorder=['#C9A84C','#2DD4A0','#4A9EE0'];
+
+function openGuide(){
+  var m=document.getElementById('guideModal');
+  if(m){m.style.display='block';m.scrollTop=0;}
+  showGuideTab(0);
+}
+function closeGuide(){
+  var m=document.getElementById('guideModal');
+  if(m)m.style.display='none';
+}
+function showGuideTab(idx){
+  for(var i=0;i<3;i++){
+    var panel=document.getElementById('gp'+i);
+    var tab=document.getElementById('gt'+i);
+    if(!panel||!tab)continue;
+    if(i===idx){
+      panel.style.display='block';
+      tab.style.background=guideTabBg[i];
+      tab.style.borderBottom='2px solid '+guideTabBorder[i];
+      tab.style.color=guideTabColors[i];
+    } else {
+      panel.style.display='none';
+      tab.style.background='transparent';
+      tab.style.borderBottom='2px solid transparent';
+      tab.style.color='#8A9AB0';
+    }
+  }
+  var m=document.getElementById('guideModal');
+  if(m)m.scrollTop=0;
+}
+
 /* ─── 로그인 화면에서 관리자 로그인 (버그 수정) ─── */
 function doAdminLoginFromLS(){
   var id = document.getElementById('ls-adm-id').value.trim();
@@ -3780,6 +4151,7 @@ function doAdminLoginFromLS(){
   }
   adminUser = found; adminOn = true; userRole = 'admin';
   document.getElementById('app').className = 'logged';
+  history.replaceState({tab:'admin',loggedIn:true},'',location.pathname+'#admin');
   var unEl = document.getElementById('un');
   if(unEl) unEl.textContent = found.name;
   var uavEl = document.querySelector('.uav');
@@ -4176,6 +4548,7 @@ function kakaoComplete(){
   userRole='user';
   document.getElementById('app').className='logged';
   goTab(0);
+  history.replaceState({tab:0,loggedIn:true},'',location.pathname+'#tab0');
   var roleLabel=roleMap[kakaoRole]||'';
   toast('🎉 카카오 인증 완료! '+name+'님 환영합니다 ('+roleLabel+')');
   setTimeout(initReveal,150);
