@@ -4518,14 +4518,14 @@ function doLogin(role){
     applyJointBrokerSecurity();
     document.getElementById('app').className='logged';
     goTab(13); // 공동중개 AI 서비스 화면으로 바로 이동
-    history.replaceState({tab:13,loggedIn:true},'',location.pathname+'#tab13');
+    initBackButtonLock();
     toast('🤝 공동중개 파트너 로그인 완료');
   } else {
     var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
     document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
     document.getElementById('app').className='logged';
     goTab(0);
-    history.replaceState({tab:0,loggedIn:true},'',location.pathname+'#tab0');
+    initBackButtonLock();
     toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
   }
   setTimeout(initReveal,150);
@@ -4692,27 +4692,40 @@ function goTab(i){
 }
 
 /* ─── 뒤로가기 처리 ─── */
+/* ─── 뒤로가기 완전 차단 시스템 ─── */
+// 로그인 직후 히스토리 스택에 여러 개 쌓아서 뒤로가기가 앱 밖으로 나가지 않도록
+function initBackButtonLock(){
+  // 히스토리 스택 3개 미리 채워넣기 (안드로이드 뒤로가기 여러번 눌러도 차단)
+  history.replaceState({locked:true,loggedIn:true,tab:0},'',location.pathname+'#app');
+  history.pushState({locked:true,loggedIn:true,tab:0},'',location.pathname+'#app');
+  history.pushState({locked:true,loggedIn:true,tab:0},'',location.pathname+'#app');
+  history.pushState({locked:true,loggedIn:true,tab:0},'',location.pathname+'#app');
+}
+
 window.addEventListener('popstate',function(e){
-  if(!e.state){
-    // 히스토리 없음 — 로그인 상태면 홈으로, 아니면 그냥 무시
-    if(document.getElementById('app').className==='logged'){
+  var isLogged = document.getElementById('app').className==='logged';
+
+  if(isLogged){
+    // ★ 로그인 상태: 뒤로가기 = 항상 홈으로 이동 + 히스토리 다시 채움
+    // 현재 탭이 홈(0)이면 뒤로가기 무시 토스트 표시
+    if(curTab === 0){
+      // 홈에서 뒤로가기 → 로그아웃 확인창
+      if(confirm('앱을 종료하시겠습니까?\n\n[확인] 로그아웃 후 종료\n[취소] 계속 이용')){
+        doLogout();
+        return;
+      }
+    } else {
       goTab(0);
+      toast('🏠 홈으로 이동했습니다');
     }
+    // 히스토리 스택 다시 채워서 다음 뒤로가기도 차단
+    history.pushState({locked:true,loggedIn:true,tab:0},'',location.pathname+'#app');
+    history.pushState({locked:true,loggedIn:true,tab:0},'',location.pathname+'#app');
     return;
   }
-  if(e.state.loggedIn){
-    // 로그인 상태 — 뒤로가기 = 홈으로
-    var targetTab = (e.state.tab > 0) ? 0 : 0;
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
-    document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('act','act2'));
-    document.getElementById('tabAdmin').classList.remove('show');
-    document.getElementById(tabIds[targetTab]).classList.add('show');
-    curTab=targetTab;
-    var sc=document.querySelector('.content');if(sc)sc.scrollTop=0;
-    setTimeout(initReveal,80);
-    // 다시 히스토리 추가 (무한 뒤로가기 방지)
-    history.pushState({tab:targetTab,loggedIn:true},'',location.pathname+'#tab0');
-  }
+
+  // 로그인 전 상태: 히스토리만 복원
+  history.pushState({locked:false},'',location.pathname);
 });
 
 /* ─── 로그아웃 함수 ─── */
@@ -4720,7 +4733,7 @@ function doLogout(){
   if(!confirm('로그아웃 하시겠습니까?')) return;
   userRole='user'; adminOn=false; adminUser=null; jbSubscribed=false;
   document.getElementById('app').className='';
-  // 히스토리 초기화
+  // 히스토리 완전 초기화
   history.replaceState({loggedIn:false},'',location.pathname);
   // 관리자 버튼 복원
   var adm=document.getElementById('admbtn');
@@ -4742,6 +4755,7 @@ window.addEventListener('beforeunload',function(e){
     e.returnValue='';
   }
 });
+
 
 /* ─── 관리자 탭 전환 ─── */
 var adminPanels=['ap-demand','ap-joint','ap-system'];
@@ -4836,7 +4850,7 @@ function doAdminLoginFromLS(){
   }
   adminUser = found; adminOn = true; userRole = 'admin';
   document.getElementById('app').className = 'logged';
-  history.replaceState({tab:'admin',loggedIn:true},'',location.pathname+'#admin');
+  initBackButtonLock();
   var unEl = document.getElementById('un');
   if(unEl) unEl.textContent = found.name;
   var uavEl = document.querySelector('.uav');
@@ -5233,7 +5247,7 @@ function kakaoComplete(){
   userRole='user';
   document.getElementById('app').className='logged';
   goTab(0);
-  history.replaceState({tab:0,loggedIn:true},'',location.pathname+'#tab0');
+  initBackButtonLock();
   var roleLabel=roleMap[kakaoRole]||'';
   toast('🎉 카카오 인증 완료! '+name+'님 환영합니다 ('+roleLabel+')');
   // 매물 바로가기 버튼으로 예약된 탭이 있으면 이동
