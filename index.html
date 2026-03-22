@@ -384,7 +384,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     <!-- 롯데월드타워 시그니엘 -->
     <div style="background:linear-gradient(135deg,#080F1C,#0D1E35);border:1.5px solid rgba(201,168,76,.45);border-radius:12px;padding:11px 13px;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;right:0;background:linear-gradient(135deg,#C9A84C,#8A6A1A);font-size:7px;font-weight:900;color:#08101C;padding:3px 9px;border-radius:0 10px 0 7px;letter-spacing:.3px">PREMIUM</div>
-      <div style="display:flex;align-items:center;gap:10px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
         <div style="width:36px;height:36px;background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.3);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🏢</div>
         <div style="flex:1">
           <div style="font-size:8px;color:#E8C97A;font-weight:700;letter-spacing:.5px;margin-bottom:2px">LOTTE WORLD TOWER</div>
@@ -395,6 +395,21 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           <div style="font-size:8px;color:#FCA5A5;font-weight:700">▼8.2%</div>
           <div style="font-size:9px;color:#E8C97A;font-weight:800">38억~</div>
         </div>
+      </div>
+      <!-- 임대차 매물 2개 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <button onclick="guideGoTab(11)" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);border-radius:9px;padding:8px 9px;cursor:pointer;font-family:var(--sans);text-align:left">
+          <div style="font-size:8px;color:#E8C97A;font-weight:700;margin-bottom:3px">🏠 임대차 91평</div>
+          <div style="font-size:8px;color:#8A9AB0;margin-bottom:2px">보증금 1억</div>
+          <div style="font-size:11px;font-weight:900;color:#2DD4A0">월 1,650만원</div>
+          <div style="font-size:7px;color:#A8D4F5;margin-top:2px">한강·롯데타워 파노라마</div>
+        </button>
+        <button onclick="guideGoTab(11)" style="background:rgba(74,158,224,.08);border:1px solid rgba(74,158,224,.22);border-radius:9px;padding:8px 9px;cursor:pointer;font-family:var(--sans);text-align:left">
+          <div style="font-size:8px;color:#A8D4F5;font-weight:700;margin-bottom:3px">🏠 임대차 95평</div>
+          <div style="font-size:8px;color:#8A9AB0;margin-bottom:2px">보증금 3억</div>
+          <div style="font-size:11px;font-weight:900;color:#2DD4A0">월 1,800만원</div>
+          <div style="font-size:7px;color:#A8D4F5;margin-top:2px">최고층 · 서울전경뷰</div>
+        </button>
       </div>
     </div>
 
@@ -437,10 +452,12 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
   </div>
 
   <!-- ▼ 앱 소개 버튼 (연락처 바로 아래) — 주문2 -->
-  <button onclick="openGuide()" style="width:100%;padding:12px 14px;border-radius:11px;background:linear-gradient(135deg,rgba(201,168,76,.14),rgba(201,168,76,.06));border:1.5px solid rgba(201,168,76,.35);color:#E8C97A;font-family:var(--sans);font-size:12px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;box-shadow:0 2px 12px rgba(201,168,76,.15)">
-    <span style="font-size:16px">📖</span>
-    <span style="flex:1;text-align:left">첫 방문시 클릭! &nbsp;PROPAI 회사소개 · 앱 사용방법 안내</span>
-    <span style="font-size:10px;background:rgba(201,168,76,.25);padding:3px 8px;border-radius:5px;font-weight:800;white-space:nowrap">처음이세요?</span>
+  <button onclick="openGuide()" style="width:100%;padding:12px 14px;border-radius:11px;background:linear-gradient(135deg,rgba(201,168,76,.14),rgba(201,168,76,.06));border:1.5px solid rgba(201,168,76,.35);color:#E8C97A;font-family:var(--sans);font-size:12px;font-weight:900;cursor:pointer;display:flex;align-items:center;gap:10px;margin-bottom:12px;box-shadow:0 2px 12px rgba(201,168,76,.15)">
+    <span style="background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;padding:5px 10px;border-radius:7px;font-weight:900;white-space:nowrap;flex-shrink:0">처음이세요?</span>
+    <span style="text-align:left;line-height:1.5">
+      <span style="display:block;font-size:11px;font-weight:900;color:#EDF2F7">PROPAI 회사소개 · 앱 사용방법 안내</span>
+      <span style="display:block;font-size:9px;font-weight:600;color:#8A9AB0;margin-top:2px">로그인 후 입주시기·조건 사전예약등록 → 고객님께 맞는 매물 AI 자동매칭</span>
+    </span>
   </button>
 
   <!-- 핵심 배지 -->
@@ -703,9 +720,8 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           </div>
           <!-- 전문분야 -->
           <div style="background:rgba(0,51,160,.12);border:1px solid rgba(0,80,200,.2);border-radius:8px;padding:8px 10px">
-            <div style="font-size:8px;font-weight:800;color:#A8D4F5;margin-bottom:5px">전문 분야</div>
-            <div style="display:flex;flex-direction:column;gap:3px;font-size:8px;color:#8A9AB0;line-height:1.5">
-              <div>■ 랜드마크명품 주거: 에테르노 청담 입주</div>
+            <div style="font-size:12px;font-weight:800;color:#A8D4F5;margin-bottom:5px">전문 분야 (대치동 25년 실무중개)</div>
+            <div style="display:flex;flex-direction:column;gap:3px;font-size:12px;color:#8A9AB0;line-height:1.6">
               <div>■ 주거: 단대·숙명 인근아파트 (래대벨·SK뷰 외)</div>
               <div>■ 입주: 개포 THE HFIRSTIER IPARK</div>
               <div>■ 투자: 은마·미도·재건축 / 용산·한남 3구역 재개발</div>
@@ -755,52 +771,67 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             </div>
           </div>
           <div style="background:rgba(0,51,160,.12);border:1px solid rgba(0,80,200,.2);border-radius:8px;padding:8px 10px">
-            <div style="font-size:8px;font-weight:800;color:#A8D4F5;margin-bottom:5px">전문 분야</div>
-            <div style="display:flex;flex-direction:column;gap:3px;font-size:8px;color:#8A9AB0;line-height:1.5">
-              <div>■ 랜드마크명품 주거: 에테르노 청담 입주</div>
-              <div>■ 주거: 단대·숙명 인근아파트 상담 (래대벨·SK뷰 외)</div>
-              <div>■ 입주: 개포 THE HFIRSTIER IPARK</div>
-              <div>■ 투자: 은마·미도·재건축 / 용산·한남 3구역 재개발</div>
-              <div>■ 사업: 상가·학원·건물·요양병원개설·토지</div>
+            <div style="font-size:12px;font-weight:800;color:#A8D4F5;margin-bottom:5px">전문 분야 (대치동 학원가 13년 실무 물건 안내)</div>
+            <div style="display:flex;flex-direction:column;gap:3px;font-size:12px;color:#8A9AB0;line-height:1.6">
+              <div>■ 학원가 랜트 전문: 역삼 래전드힐스 / 삼환아르누보2 / 대치 W타워 / 학원·병원·상가·건물</div>
+              <div>■ 롯데월드타워몰 시그니엘 레지던스 중개물건 안내</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 플랫폼 원칙 -->
-      <div style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.18);border-radius:12px;padding:14px;margin-bottom:14px">
-        <div style="font-size:11px;font-weight:900;color:#2DD4A0;margin-bottom:10px">🏆 PROPAI 3대 원칙</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:28px;height:28px;border-radius:7px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">✅</div>
-            <div><div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:2px">광고비 0원 — 투명한 거래</div><div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 등록 완전 무료. 광고 수익 없음. 계약 성사 시 법정 중개보수료만 수취합니다.</div></div>
+      <div style="background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.18);border-radius:12px;padding:16px;margin-bottom:14px">
+        <div style="font-size:15px;font-weight:900;color:#2DD4A0;margin-bottom:12px">🏆 PROPAI 3대 원칙</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <div style="width:34px;height:34px;border-radius:9px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✅</div>
+            <div>
+              <div style="font-size:13px;font-weight:900;color:#E8C97A;margin-bottom:4px">광고비 0원 — 투명한 거래</div>
+              <div style="font-size:12px;color:#8A9AB0;line-height:1.7">수요자·공급자 등록 완전 무료. 광고 수익 없음.<br>계약 성사 시 법정 중개보수료만 수취합니다.</div>
+            </div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:28px;height:28px;border-radius:7px;background:rgba(45,212,160,.12);border:1px solid rgba(45,212,160,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🤖</div>
-            <div><div style="font-size:10px;font-weight:800;color:#2DD4A0;margin-bottom:2px">AI 3자 자동매칭</div><div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자·공동중개 3방향 AI 동시 매칭. 네이버·KB·한방 3포털 실거래가 자동 비교.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <div style="width:34px;height:34px;border-radius:9px;background:rgba(45,212,160,.12);border:1px solid rgba(45,212,160,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🤖</div>
+            <div>
+              <div style="font-size:13px;font-weight:900;color:#2DD4A0;margin-bottom:4px">AI 3자 자동매칭</div>
+              <div style="font-size:12px;color:#8A9AB0;line-height:1.7">수요자·공급자·공동중개 3방향 AI 동시 매칭.<br>네이버·KB·한방 3포털 실거래가 자동 비교.</div>
+            </div>
           </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <div style="width:28px;height:28px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.18);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🔒</div>
-            <div><div style="font-size:10px;font-weight:800;color:#FCA5A5;margin-bottom:2px">개인정보 완전 보호</div><div style="font-size:9px;color:#8A9AB0;line-height:1.5">수요자·공급자 정보 분리 관리. 공동중개 파트너는 자신의 매물만 열람 가능합니다.</div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <div style="width:34px;height:34px;border-radius:9px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🔒</div>
+            <div>
+              <div style="font-size:13px;font-weight:900;color:#FCA5A5;margin-bottom:4px">개인정보 완전 보호</div>
+              <div style="font-size:12px;color:#8A9AB0;line-height:1.7">수요자·공급자 정보 분리 관리.<br>공동중개 파트너는 자신의 매물만 열람 가능합니다.</div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- 담당 권역 -->
-      <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:14px;margin-bottom:14px">
-        <div style="font-size:11px;font-weight:900;color:#EDF2F7;margin-bottom:10px">🗺️ 3대 전문 권역</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(201,168,76,.07);border-radius:8px">
-            <span style="font-size:18px">🎓</span>
-            <div><div style="font-size:10px;font-weight:800;color:#E8C97A">학군 배후 주거 권역</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">대치·도곡·역삼·개포·압구정</div></div>
+      <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:16px;margin-bottom:14px">
+        <div style="font-size:15px;font-weight:900;color:#EDF2F7;margin-bottom:12px">🗺️ 3대 전문 권역</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 12px;background:rgba(201,168,76,.07);border-radius:10px">
+            <span style="font-size:24px">🎓</span>
+            <div>
+              <div style="font-size:13px;font-weight:900;color:#E8C97A">학군 배후 주거 권역</div>
+              <div style="font-size:12px;color:#8A9AB0;margin-top:3px">대치·도곡·역삼·개포·압구정</div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(74,158,224,.07);border-radius:8px">
-            <span style="font-size:18px">🌊</span>
-            <div><div style="font-size:10px;font-weight:800;color:#A8D4F5">한강 벨트 럭셔리</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">반포·송파·시그니엘·용산·성수</div></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 12px;background:rgba(74,158,224,.07);border-radius:10px">
+            <span style="font-size:24px">🌊</span>
+            <div>
+              <div style="font-size:13px;font-weight:900;color:#A8D4F5">한강 벨트 럭셔리</div>
+              <div style="font-size:12px;color:#8A9AB0;margin-top:3px">반포·송파·시그니엘·용산·성수</div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;background:rgba(45,212,160,.07);border-radius:8px">
-            <span style="font-size:18px">📈</span>
-            <div><div style="font-size:10px;font-weight:800;color:#2DD4A0">한강변 재건축·재개발</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">압구정·여의도·목동·삼성·한남·흑석</div></div>
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 12px;background:rgba(45,212,160,.07);border-radius:10px">
+            <span style="font-size:24px">📈</span>
+            <div>
+              <div style="font-size:13px;font-weight:900;color:#2DD4A0">한강변 재건축·재개발</div>
+              <div style="font-size:12px;color:#8A9AB0;margin-top:3px">압구정·여의도·목동·삼성·한남·흑석</div>
+            </div>
           </div>
         </div>
       </div>
