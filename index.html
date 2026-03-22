@@ -2,7 +2,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#08101C">
 <title>PROPAI — 투명 부동산 AI 플랫폼</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -319,6 +323,32 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 .ab-jade{background:var(--jdim);border:1px solid rgba(45,212,160,.18);color:#9EEDD9}
 .ab-river{background:var(--rdim);border:1px solid rgba(74,158,224,.18);color:#A8D4F5}
 .ab-ico{font-size:16px;flex-shrink:0;margin-top:1px}
+
+/* ── 반응형 모바일 브라우저 최적화 ── */
+@media (max-width:480px){
+  #ls{padding:18px 14px 28px;}
+  .lt{font-size:28px;}
+  .kkb{font-size:13px;padding:14px 12px;}
+  .hero-title{font-size:20px;}
+  .hero-sub{font-size:10px;}
+  .hstat-n{font-size:17px;}
+  .sh-t{font-size:11px;}
+  .comp-table{padding:0 10px 10px;}
+  .bnav{height:58px;}
+  .nb-ico{font-size:18px;}
+  .nb-lbl{font-size:8px;}
+  .content{padding-bottom:70px;}
+}
+@media (min-width:481px) and (max-width:768px){
+  #ls{padding:22px 18px 30px;max-width:480px;margin:0 auto;}
+  #main{max-width:480px;margin:0 auto;}
+}
+@media (min-width:769px){
+  body{background:#04080F;}
+  #ls{max-width:420px;margin:0 auto;border-radius:20px;margin-top:20px;margin-bottom:20px;}
+  #app{display:flex;justify-content:center;}
+  #main{max-width:420px;width:100%;position:relative;}
+}
 </style>
 </head>
 <body>
@@ -395,7 +425,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
   </div>
 
   <!-- 직통 연락처 빠른 버튼 -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
     <a href="tel:01089858945" style="display:flex;flex-direction:column;align-items:center;padding:10px 8px;border-radius:10px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);text-decoration:none;gap:2px">
       <span style="font-size:10px;color:#8A9AB0;font-weight:600">이상수 대표</span>
       <span style="font-size:12px;font-weight:900;color:#E8C97A">📞 010-8985-8945</span>
@@ -406,6 +436,13 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     </a>
   </div>
 
+  <!-- ▼ 앱 소개 버튼 (연락처 바로 아래) — 주문2 -->
+  <button onclick="openGuide()" style="width:100%;padding:12px 14px;border-radius:11px;background:linear-gradient(135deg,rgba(201,168,76,.14),rgba(201,168,76,.06));border:1.5px solid rgba(201,168,76,.35);color:#E8C97A;font-family:var(--sans);font-size:12px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;box-shadow:0 2px 12px rgba(201,168,76,.15)">
+    <span style="font-size:16px">📖</span>
+    <span style="flex:1;text-align:left">첫 방문시 클릭! &nbsp;PROPAI 회사소개 · 앱 사용방법 안내</span>
+    <span style="font-size:10px;background:rgba(201,168,76,.25);padding:3px 8px;border-radius:5px;font-weight:800;white-space:nowrap">처음이세요?</span>
+  </button>
+
   <!-- 핵심 배지 -->
   <div class="vpills" style="margin:0 0 10px">
     <span class="vp">✅ 광고비 0원</span>
@@ -413,14 +450,6 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     <span class="vp">🔒 법정 중개보수</span>
     <span class="vp">📹 숏츠 자동제작</span>
   </div>
-
-  <!-- 앱 소개 버튼 -->
-  <button onclick="openGuide()" style="width:100%;padding:11px 14px;border-radius:11px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);color:#E8C97A;font-family:var(--sans);font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px">
-    <span style="font-size:16px">📖</span>
-    <span>PROPAI 회사소개 · 앱 사용방법 안내</span>
-    <span style="font-size:10px;background:rgba(201,168,76,.2);padding:2px 7px;border-radius:4px;font-weight:700">처음이세요?</span>
-  </button>
-
 
   <!-- ★ QR 코드 — 앱 바로가기 ★ -->
   <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:13px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:14px">
@@ -434,9 +463,9 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     </div>
   </div>
 
-  <!-- ① 일반 사용자: 카카오 인증 -->
+  <!-- ① 수요·공급자 카카오 인증 — 주문3 -->
   <div style="margin-bottom:6px">
-    <div style="font-size:9px;color:#8A9AB0;font-weight:700;margin-bottom:7px;text-align:center;letter-spacing:.5px">수요자 · 공급자 로그인</div>
+    <div style="font-size:10px;color:#8A9AB0;font-weight:700;margin-bottom:7px;text-align:center;letter-spacing:.3px">수요·공급자 (매수, 매도, 전세·랜트) 로그인</div>
     <button class="kkb" onclick="openKakaoAuth()">
       <span style="font-size:19px">💬</span>카카오 인증 로그인으로 시작하기
     </button>
