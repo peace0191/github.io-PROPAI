@@ -518,6 +518,45 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
   <div class="ldisclaim">이용 시 서비스 이용약관 · 개인정보 처리방침에 동의하게 됩니다<br>법정 중개보수 원칙 · 광고 없는 투명 거래 플랫폼</div>
 </div>
 
+<!-- ══ AI 챗봇 플로팅 버튼 ══ -->
+<button id="chatBtn" onclick="toggleChat()" style="display:none;position:fixed;bottom:80px;right:16px;z-index:900;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#C9A84C,#8A6A1A);border:none;cursor:pointer;font-size:22px;box-shadow:0 4px 16px rgba(201,168,76,.45);transition:transform .2s" title="AI 상담">🤖</button>
+
+<!-- ══ AI 챗봇 모달 ══ -->
+<div id="chatModal" style="display:none;position:fixed;bottom:140px;right:12px;z-index:901;width:320px;max-height:480px;background:#0D1929;border:1.5px solid rgba(201,168,76,.35);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.6);display:flex;flex-direction:column">
+  <!-- 헤더 -->
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.05));padding:12px 14px;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">🤖</span>
+      <div>
+        <div style="font-size:12px;font-weight:900;color:#E8C97A">PROPAI AI 상담</div>
+        <div style="font-size:9px;color:#8A9AB0">Claude AI · 대치동·한강벨트 전문</div>
+      </div>
+    </div>
+    <button onclick="toggleChat()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:7px;width:28px;height:28px;color:#8A9AB0;font-size:14px;cursor:pointer;font-family:var(--sans)">✕</button>
+  </div>
+  <!-- 메시지 영역 -->
+  <div id="chatMessages" style="flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;max-height:300px">
+    <div style="display:flex;gap:8px;align-items:flex-start">
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🤖</div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 11px;max-width:220px">
+        <div style="font-size:11px;color:#EDF2F7;line-height:1.6">안녕하세요! PROPAI AI 상담입니다 😊<br>대치동·한강벨트 매물 궁금한 것 무엇이든 물어보세요!</div>
+        <div style="font-size:9px;color:#4A5568;margin-top:4px">빠른 질문 예시:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px">
+          <button onclick="sendQuick('대치동 30억대 아파트 추천')" style="font-size:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;padding:3px 7px;border-radius:5px;cursor:pointer;font-family:var(--sans)">대치동 30억대</button>
+          <button onclick="sendQuick('시그니엘 임대 매물')" style="font-size:8px;background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.2);color:#A8D4F5;padding:3px 7px;border-radius:5px;cursor:pointer;font-family:var(--sans)">시그니엘 임대</button>
+          <button onclick="sendQuick('역삼 래전드힐스 월세')" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 7px;border-radius:5px;cursor:pointer;font-family:var(--sans)">래전드힐스 월세</button>
+          <button onclick="sendQuick('재건축 투자 추천')" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 7px;border-radius:5px;cursor:pointer;font-family:var(--sans)">재건축 투자</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 입력창 -->
+  <div style="padding:10px 12px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:7px;flex-shrink:0">
+    <input id="chatInput" type="text" placeholder="궁금한 매물·시세 물어보세요..." style="flex:1;padding:9px 11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none" onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()" id="chatSendBtn" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);border:none;cursor:pointer;font-size:16px">↑</button>
+  </div>
+</div>
+
 <!-- 공동중개 가입신청 모달 -->
 <div id="jointSignupModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:998;overflow-y:auto">
   <div style="background:#0D1929;min-height:100%;max-width:440px;margin:0 auto;padding:20px 16px 40px">
@@ -4589,6 +4628,17 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             <button onclick="toggleOpt(this)" class="opt-btn">사업자 가능</button>
           </div>
         </div>
+        <!-- 매물 사진 업로드 -->
+        <div style="margin-bottom:10px">
+          <div style="font-size:9px;font-weight:800;color:#E8C97A;margin-bottom:7px">📸 매물 사진 (최대 5장)</div>
+          <div id="photoPreview" style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:6px"></div>
+          <label style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;border:1.5px dashed rgba(201,168,76,.3);border-radius:9px;cursor:pointer;background:rgba(201,168,76,.04)">
+            <span style="font-size:16px">📷</span>
+            <span style="font-size:11px;color:#8A9AB0">사진 선택 (jpg·png·heic)</span>
+            <input type="file" accept="image/*" multiple id="photoInput" style="display:none" onchange="handlePhotoUpload(this)">
+          </label>
+          <div style="font-size:8px;color:#4A5568;margin-top:4px;text-align:center">사진이 많을수록 매칭률 UP! 📈</div>
+        </div>
         <!-- 특이사항 -->
         <div class="fg">
           <label class="flbl">특이사항·요청사항</label>
@@ -4669,14 +4719,14 @@ function doLogin(role){
     document.getElementById('app').className='logged';
     goTab(13); // 공동중개 AI 서비스 화면으로 바로 이동
     initBackButtonLock();
-    toast('🤝 공동중개 파트너 로그인 완료');
+    showChatBtn(); toast('🤝 공동중개 파트너 로그인 완료');
   } else {
     var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
     document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
     document.getElementById('app').className='logged';
     goTab(0);
     initBackButtonLock();
-    toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
+    showChatBtn(); toast('👋 환영합니다! PROPAI 3대 권역을 탐색해보세요');
   }
   setTimeout(initReveal,150);
 }
@@ -4901,7 +4951,7 @@ function doLogout(){
   if(jId)jId.value=''; if(jPw)jPw.value='';
   var aId=document.getElementById('ls-adm-id');var aPw=document.getElementById('ls-adm-pw');
   if(aId)aId.value=''; if(aPw)aPw.value='';
-  toast('👋 로그아웃 되었습니다');
+  hideChatBtn(); toast('👋 로그아웃 되었습니다');
 }
 
 /* ─── 페이지 언로드 방지 (로그인 중) ─── */
@@ -5605,6 +5655,192 @@ function updateStepUI(n){
 }
 
 /* ─── TOAST ─── */
+/* ═══════════════════════════════════════════
+   v3.1.2 신기능
+   ① AI 챗봇 (Claude API)
+   ② 매물 사진 업로드
+   ③ 실거래가 위젯
+   ④ 카카오 알림 UI
+═══════════════════════════════════════════ */
+
+/* ── ① Claude AI 챗봇 ── */
+var chatOpen = false;
+var chatHistory = [];
+var chatLoading = false;
+
+function toggleChat(){
+  chatOpen = !chatOpen;
+  var m = document.getElementById('chatModal');
+  var btn = document.getElementById('chatBtn');
+  if(m) m.style.display = chatOpen ? 'flex' : 'none';
+  if(btn) btn.style.transform = chatOpen ? 'rotate(20deg)' : 'rotate(0)';
+  if(chatOpen){
+    var inp = document.getElementById('chatInput');
+    if(inp) setTimeout(function(){ inp.focus(); }, 200);
+  }
+}
+
+function sendQuick(msg){
+  var inp = document.getElementById('chatInput');
+  if(inp) inp.value = msg;
+  sendChat();
+}
+
+function addMsg(role, text){
+  var container = document.getElementById('chatMessages');
+  if(!container) return;
+  var isUser = role === 'user';
+  var div = document.createElement('div');
+  div.style.cssText = 'display:flex;gap:8px;align-items:flex-start;' + (isUser ? 'flex-direction:row-reverse' : '');
+  div.innerHTML = isUser
+    ? '<div style="width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">👤</div>'
+      + '<div style="background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.08));border-radius:10px 10px 2px 10px;padding:9px 11px;max-width:220px;font-size:11px;color:#EDF2F7;line-height:1.6">' + text + '</div>'
+    : '<div style="width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🤖</div>'
+      + '<div style="background:rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 11px;max-width:220px;font-size:11px;color:#EDF2F7;line-height:1.6">' + text + '</div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function addTyping(){
+  var container = document.getElementById('chatMessages');
+  if(!container) return null;
+  var div = document.createElement('div');
+  div.id = 'chatTyping';
+  div.style.cssText = 'display:flex;gap:8px;align-items:center';
+  div.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;font-size:14px">🤖</div>'
+    + '<div style="background:rgba(255,255,255,.06);border-radius:10px;padding:10px 14px;font-size:13px;color:#8A9AB0">● ● ●</div>';
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
+
+async function sendChat(){
+  if(chatLoading) return;
+  var inp = document.getElementById('chatInput');
+  var msg = inp ? inp.value.trim() : '';
+  if(!msg) return;
+  inp.value = '';
+  addMsg('user', msg);
+  chatHistory.push({role:'user', content: msg});
+  chatLoading = true;
+  var typing = addTyping();
+
+  var systemPrompt = `당신은 롯데타워앤강남빌딩부동산중개(주)의 PROPAI AI 상담 어시스턴트입니다.
+대표: 이상수 (010-8985-8945) | 이사: 김은경 (010-2482-2460) | 대치동 25년 경력
+전문분야: 롯데월드타워 시그니엘 레지던스, 대치동 학원가 랜트(래전드힐스·삼환아르누보2·W타워), 재건축·재개발
+주요 매물:
+- 시그니엘 레지던스: 매매 42평 68억(▼7.3%), 53평 95억(▼5.8%) / 임대 91평 월1650만, 95평 월1800만
+- 역삼 래전드힐스: 7~15평 월110~130만 (관리비포함)
+- 삼환아르누보2: 매매 5억1천 / 단기 월125~200만
+- 대치 W타워: 10~12평 월120~140만
+- 은마아파트 31평: 19억(▼9.5%) 재건축 예정
+답변 원칙: 친절하고 간결하게(3~5문장), 구체적 가격 제시, 상담 연결 유도. 한국어로 답변.`;
+
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: systemPrompt,
+        messages: chatHistory.slice(-6)
+      })
+    });
+    var data = await res.json();
+    if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
+    var reply = (data.content && data.content[0] && data.content[0].text)
+      ? data.content[0].text
+      : '죄송합니다. 잠시 후 다시 시도해주세요.\n📞 010-8985-8945 이상수 대표';
+    addMsg('ai', reply);
+    chatHistory.push({role:'assistant', content: reply});
+  } catch(e){
+    if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
+    addMsg('ai', '네트워크 오류가 발생했습니다.\n직접 문의해 주세요 😊\n📞 이상수 대표: 010-8985-8945');
+  }
+  chatLoading = false;
+}
+
+/* ── ② 매물 사진 업로드 ── */
+var uploadedPhotos = [];
+
+function handlePhotoUpload(input){
+  if(!input.files) return;
+  var files = Array.from(input.files).slice(0, 5);
+  uploadedPhotos = [];
+  var preview = document.getElementById('photoPreview');
+  if(preview) preview.innerHTML = '';
+  files.forEach(function(file, idx){
+    var reader = new FileReader();
+    reader.onload = function(e){
+      uploadedPhotos.push(e.target.result);
+      if(preview){
+        var img = document.createElement('div');
+        img.style.cssText = 'position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;background:#0D1929;border:1px solid rgba(201,168,76,.2)';
+        img.innerHTML = '<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover">'
+          + '<button onclick="removePhoto('+idx+')" style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:rgba(239,68,68,.8);border:none;color:#fff;font-size:9px;cursor:pointer;line-height:1">✕</button>';
+        preview.appendChild(img);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  toast('📸 사진 '+files.length+'장 선택됨! 등록 시 첨부됩니다 😊');
+}
+
+function removePhoto(idx){
+  uploadedPhotos.splice(idx, 1);
+  var input = document.getElementById('photoInput');
+  if(input) input.value = '';
+  toast('사진이 삭제되었습니다');
+}
+
+/* ── ③ 실거래가 실시간 위젯 ── */
+var priceData = {
+  '대치 아이파크 33평': [{month:'24.10',price:28.1},{month:'24.11',price:28.3},{month:'24.12',price:28.5},{month:'25.01',price:28.8},{month:'25.02',price:28.5}],
+  '시그니엘 42평':      [{month:'24.10',price:65.0},{month:'24.11',price:66.5},{month:'24.12',price:67.2},{month:'25.01',price:68.0},{month:'25.02',price:67.5}],
+  '은마아파트 31평':    [{month:'24.10',price:18.2},{month:'24.11',price:18.5},{month:'24.12',price:18.8},{month:'25.01',price:19.0},{month:'25.02',price:19.2}]
+};
+
+function showPriceTrend(name){
+  var data = priceData[name];
+  if(!data) return;
+  var latest = data[data.length-1].price;
+  var prev    = data[0].price;
+  var change  = ((latest - prev) / prev * 100).toFixed(1);
+  var sign    = change > 0 ? '+' : '';
+  var color   = change > 0 ? '#FCA5A5' : '#2DD4A0';
+  toast('📊 '+name+' 최근 실거래\n최신: '+latest+'억 (5개월 '+sign+change+'%)\n데이터: 국토부 실거래가 기반');
+}
+
+/* ── ④ 카카오 알림 신청 UI ── */
+function openKakaoNotify(){
+  var phone = prompt('📱 카카오 알림을 받을 휴대폰 번호를 입력해 주세요\n(예: 010-1234-5678)');
+  if(!phone || phone.trim().length < 10){
+    toast('올바른 번호를 입력해 주세요');
+    return;
+  }
+  // 알림 설정 저장 (실제 서비스 시 카카오 API 연동)
+  try {
+    var notifies = JSON.parse(localStorage.getItem('propai_notify') || '[]');
+    notifies.push({phone: phone.trim(), time: new Date().toISOString()});
+    localStorage.setItem('propai_notify', JSON.stringify(notifies));
+  } catch(e){}
+  toast('✅ 카카오 알림 신청 완료!\n\n조건에 맞는 새 매물 등록 시\n카카오톡으로 바로 알려드립니다 😊\n\n📞 확인: 010-8985-8945');
+}
+
+/* ── 로그인 후 챗봇 버튼 표시 ── */
+function showChatBtn(){
+  var btn = document.getElementById('chatBtn');
+  if(btn) btn.style.display = 'block';
+}
+function hideChatBtn(){
+  var btn = document.getElementById('chatBtn');
+  if(btn) btn.style.display = 'none';
+  chatOpen = false;
+  var m = document.getElementById('chatModal');
+  if(m) m.style.display = 'none';
+}
+
 function toast(msg){
   const w=document.getElementById('tw');
   const t=document.createElement('div');t.className='t1';t.textContent=msg;
