@@ -5297,23 +5297,7 @@ function t13SendBuy(){
   toast('✅ 공동중개 AI 삽니다 전송 완료!\n🔍 파트너 매물 자동탐색 시작됩니다');
   if(t)t.value='';
 }
-function t13Search(){ toast('🔍 AI 검색 — 조건에 맞는 쪽지 2건 표시'); }
 
-function showJbTab(t){
-  var sellP=document.getElementById('jbp-sell');
-  var buyP=document.getElementById('jbp-buy');
-  var sellB=document.getElementById('jbt-sell');
-  var buyB=document.getElementById('jbt-buy');
-  if(t==='sell'){
-    if(sellP)sellP.style.display='block';if(buyP)buyP.style.display='none';
-    if(sellB){sellB.style.border='2px solid rgba(45,212,160,.4)';sellB.style.background='rgba(45,212,160,.1)';}
-    if(buyB){buyB.style.border='2px solid rgba(255,255,255,.08)';buyB.style.background='rgba(255,255,255,.03)';}
-  } else {
-    if(sellP)sellP.style.display='none';if(buyP)buyP.style.display='block';
-    if(buyB){buyB.style.border='2px solid rgba(74,158,224,.4)';buyB.style.background='rgba(74,158,224,.1)';}
-    if(sellB){sellB.style.border='2px solid rgba(255,255,255,.08)';sellB.style.background='rgba(255,255,255,.03)';}
-  }
-}
 function submitJbSell(){
   var loc=document.getElementById('jb-location').value.trim();
   var price=document.getElementById('jb-price').value.trim();
@@ -6296,21 +6280,10 @@ async function sendChat(){
 답변 원칙: 친절하고 간결하게(3~5문장), 구체적 가격 제시, 상담 연결 유도. 한국어로 답변.`;
 
   try {
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 400,
-        system: systemPrompt,
-        messages: chatHistory.slice(-6)
-      })
-    });
-    var data = await res.json();
+    // Smart FAQ 응답 (GitHub Pages 환경 - CORS 우회)
+    var reply = smartChatReply(msg, systemPrompt);
+    await new Promise(function(r){setTimeout(r, 800)}); // 자연스러운 딜레이
     if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
-    var reply = (data.content && data.content[0] && data.content[0].text)
-      ? data.content[0].text
-      : '죄송합니다. 잠시 후 다시 시도해주세요.\n📞 010-8985-8945 이상수 대표';
     addMsg('ai', reply);
     chatHistory.push({role:'assistant', content: reply});
   } catch(e){
@@ -6501,6 +6474,55 @@ function openShortsRequest(type){
       +'담당자가 3일 내 연락드립니다 😊\n'
       +'📞 010-8985-8945');
   }
+}
+
+/* ── 스마트 FAQ 챗봇 (GitHub Pages 오프라인 작동) ── */
+function smartChatReply(msg, sys){
+  var m = msg.toLowerCase();
+  var answers = [
+    // 시그니엘
+    { keys:['시그니엘','롯데월드타워','lotte','signiel'],
+      reply:'🏢 시그니엘 레지던스 현재 매물\n\n💰 매매 (AI 저평가)\n• 42평 68억 ▼7.3%\n• 53평 95억 ▼5.8%\n\n🏠 임대차\n• 91평 보증금1억 / 월 1,650만\n• 95평 보증금3억 / 월 1,800만\n\n📞 즉시 상담: 010-8985-8945 이상수 대표' },
+    // 대치동 아파트
+    { keys:['대치','은마','아이파크','sk뷰','래미안'],
+      reply:'🎓 대치동 추천 매물\n\n• 대치 아이파크 33평 28억5천 ▼8.2%\n• 은마아파트 31평 19억 ▼9.5% (재건축)\n• 도곡 렉슬 28평 23억8천 ▼6.4%\n\n📞 상담: 010-8985-8945 이상수 대표' },
+    // 래전드힐스
+    { keys:['래전드힐스','래전드','역삼','legend'],
+      reply:'🏙️ 역삼 래전드힐스\n\n• 7평: 보증금1천 / 월 110만 (관리비포함)\n• 9평: 보증금1천 / 월 125만\n• 10평: 보증금2천 / 월 130만\n\n즉시 입주 가능 · 학원가 도보권\n📞 010-8985-8945 이상수 대표' },
+    // 삼환아르누보
+    { keys:['삼환','아르누보','arnu'],
+      reply:'🏢 삼환아르누보2 오피스텔\n\n• 매매: 5억1천만원\n• 단기: 보증금1천/월 200만\n• 장기: 보증금1천/월 125만\n\n대치동 938 · 학원가 중심\n📞 010-8985-8945' },
+    // W타워
+    { keys:['w타워','w tower','휘문'],
+      reply:'🏨 대치 W타워\n\n• 10평 단기: 보300만/월 140만\n• 10평 장기: 보1천/월 120만\n• 12평: 보2천/월 130만\n\n휘문고 정문 옆 · 학원가 1분\n📞 010-8985-8945' },
+    // 재건축
+    { keys:['재건축','재개발','압구정','여의도','은마'],
+      reply:'📈 재건축·재개발 추천\n\n🔥 은마아파트 31평 19억 ▼9.5% (조합설립 35%)\n⭐ 압구정 현대 52억~ ▼6.8% (사업시행 55%)\n🌊 여의도 시범 35억~ ▼7.2% (조합설립 40%)\n\n📞 투자 상담: 010-8985-8945' },
+    // 가격/시세
+    { keys:['시세','가격','얼마','비싼','저렴','저평가'],
+      reply:'💰 현재 AI 저평가 매물 TOP3\n\n1️⃣ 은마아파트 31평 19억 ▼9.5%\n2️⃣ 대치 아이파크 33평 28.5억 ▼8.2%\n3️⃣ 시그니엘 42평 68억 ▼7.3%\n\nAI가 KB·네이버·한방 3포털 비교 분석\n📞 010-8985-8945' },
+    // 공동중개
+    { keys:['공동중개','파트너','공유','팝니다','삽니다'],
+      reply:'🤝 공동중개 AI 공유\n\n로그인 → 공동중개 파트너 전용\n• 하루 최대 5건 등록 (무료)\n• AI 저평가 자동 분석\n• 유튜브 숏츠 자동 제작\n\n가입 신청: 010-8985-8945 이상수 대표' },
+    // 로그인/사용법
+    { keys:['로그인','사용법','어떻게','처음','가입'],
+      reply:'📱 PROPAI 이용 방법\n\n1️⃣ 카카오 인증 로그인\n2️⃣ 원하는 권역 선택\n3️⃣ AI 매칭 구합니다 / AI 매칭 대기합니다 등록\n4️⃣ AI가 자동으로 최적 매물 연결!\n\n처음이세요? 상단 [처음이세요?] 버튼 클릭' },
+    // 중개보수
+    { keys:['중개보수','수수료','비용','비용'],
+      reply:'✅ PROPAI 중개보수 원칙\n\n등록·검색 완전 무료!\n계약 성사 시 법정 중개보수만 수취합니다.\n\n매매 6억 미만: 0.5%\n매매 9억 이상: 0.9% 이하 협의\n전월세: 0.4~0.8% 이하 협의\n\n광고비 없는 투명한 거래 😊' },
+  ];
+
+  // 키워드 매칭
+  for(var i=0; i<answers.length; i++){
+    for(var j=0; j<answers[i].keys.length; j++){
+      if(m.indexOf(answers[i].keys[j]) >= 0){
+        return answers[i].reply;
+      }
+    }
+  }
+
+  // 기본 응답
+  return '😊 안녕하세요! PROPAI AI 상담입니다.\n\n아래 매물 정보 바로 안내 드릴게요!\n\n🏢 시그니엘 레지던스 (한강뷰)\n🎓 대치학원가 랜트 (래전드힐스·삼환·W타워)\n📈 재건축 투자 (은마·압구정·여의도)\n\n구체적으로 물어봐 주세요 😊\n\n📞 이상수 대표: 010-8985-8945\n📞 김은경 이사: 010-2482-2460';
 }
 
 function toast(msg){
