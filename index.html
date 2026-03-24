@@ -1491,7 +1491,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
       <!-- VALUE BANNER -->
       <div class="alert-banner ab-gold rev"><span class="ab-ico">⭐</span><span><strong>PROPAI 핵심 원칙:</strong> 수요·공급자의 플랫폼 등록은 <strong>무료</strong>. 계약 성사 시 <strong>법정 중개보수료</strong>만 지불. 광고 없는 투명한 거래 구조</span></div>
-      <div class="alert-banner ab-jade rev"><span class="ab-ico">🤝</span><span><strong>공동중개 규칙:</strong> 개업 공인중개사는 <strong>1일 5건</strong> 등록 가능 · 추천매물 <strong>2건</strong> 선정 · 서버 실비(일정액) 공동 부담 · 법정 보수료 50:50 분배</span></div>
+      <div class="alert-banner ab-jade rev"><span class="ab-ico">🤝</span><span><strong>공동중개 규칙:</strong> 개업 공인중개사는 <strong>1일 5건</strong> 등록 가능 · 추천매물 <strong>2건</strong> 선정 · 서버 실비(일정액) 공동 부담 · 법정 보수료 각각</span></div>
       <div class="alert-banner ab-river rev"><span class="ab-ico">📈</span><span><strong>투자 3권역 현재 주력:</strong> 삼성동·압구정·여의도·목동·성수·한남·흑석 <strong>한강변 재건축·재개발</strong> 저평가 매물 AI 분석 · GTX 등 광역 투자는 차기 단계 확장</span></div>
 
       <!-- CORE 3-WAY -->
@@ -1650,9 +1650,27 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         </div>
       </div>
       <div style="height:8px"></div>
-    </div>
 
-    <!-- ══ TAB 1: PROPAI 차별화 시스템 ══ -->
+      <!-- v3.1.2 신기능 바로가기 -->
+      <div style="padding:0 16px 14px">
+        <div style="font-size:10px;font-weight:800;color:#8A9AB0;letter-spacing:.5px;margin-bottom:8px">⚡ v3.1.2 신기능</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:7px">
+          <button onclick="goTab(14)" style="padding:11px 10px;border-radius:10px;background:rgba(254,229,0,.07);border:1px solid rgba(254,229,0,.2);color:#FEE500;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer;text-align:left">
+            📋 계약 진행 관리<br><span style="font-size:9px;color:#4A5568;font-weight:500">국토부 전자계약·카카오 알림</span>
+          </button>
+          <button onclick="goTab(15)" style="padding:11px 10px;border-radius:10px;background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer;text-align:left">
+            ❤️ 즐겨찾기·비교<br><span style="font-size:9px;color:#4A5568;font-weight:500">매물 저장·나란히 비교</span>
+          </button>
+          <button onclick="goTab(16)" style="padding:11px 10px;border-radius:10px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer;text-align:left">
+            🏗️ 재건축 대시보드<br><span style="font-size:9px;color:#4A5568;font-weight:500">은마·압구정·여의도 진행률</span>
+          </button>
+          <button onclick="goTab(17)" style="padding:11px 10px;border-radius:10px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer;text-align:left">
+            🏆 성공사례 게시판<br><span style="font-size:9px;color:#4A5568;font-weight:500">실제 계약 후기·별점</span>
+          </button>
+        </div>
+      </div>
+      <div style="height:8px"></div>
+    </div>
     <div class="screen" id="tab1">
       <!-- 히어로 -->
       <div class="hero" style="background:linear-gradient(160deg,#08101C,#0D1929,#142030);position:relative;overflow:hidden">
@@ -1995,7 +2013,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           <div class="brow"><span class="br-l">일일 등록 한도</span><span class="br-v bv-gold"><span class="limit-badge">1일 5건</span></span></div>
           <div class="brow"><span class="br-l">추천매물 선정</span><span class="br-v bv-gold"><span class="limit-badge">2건 선정</span> (AI 점수 기준)</span></div>
           <div class="brow"><span class="br-l">서버 실비</span><span class="br-v bv-amber">월 일정액 (실비) 공동 부담</span></div>
-          <div class="brow"><span class="br-l">중개보수 분배</span><span class="br-v bv-jade">법정 보수료 50:50 분배</span></div>
+          <div class="brow"><span class="br-l">중개보수 분배</span><span class="br-v bv-jade">법정 보수료 각각</span></div>
           <div class="brow"><span class="br-l">매물 유출 금지</span><span class="br-v" style="color:#F9A8A8">동의 없는 외부 광고 금지</span></div>
           <div class="brow"><span class="br-l">계약 체결</span><span class="br-v bv-gold">PROPAI 공동중개 계약서 체결</span></div>
         </div>
@@ -2084,7 +2102,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           <div class="rcl"><strong>일 5건 한도:</strong> 공동중개 매물은 1일 최대 5건 등록 가능</div>
           <div class="rcl"><strong>추천매물 2건:</strong> AI 점수 상위 2건만 플랫폼 추천 노출</div>
           <div class="rcl"><strong>서버 실비:</strong> 플랫폼 유지 실비 월 일정액 공동 부담 (합의에 의함)</div>
-          <div class="rcl"><strong>보수료 분배:</strong> 계약 성사 시 법정 보수료 50:50 원칙</div>
+          <div class="rcl"><strong>보수료 분배:</strong> 계약 성사 시 법정 보수료 의뢰인에게 각각 청구</div>
           <div class="rcl"><strong>매물 보안:</strong> 동의 없는 타 플랫폼 광고·유출 금지</div>
           <div class="rcl"><strong>공동중개계약:</strong> 등록 전 PROPAI 공동중개 계약서 체결 필수</div>
         </div>
@@ -3752,6 +3770,379 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div style="height:8px"></div>
     </div>
 
+    </div>
+
+    <!-- ══ TAB 14: 계약 진행 관리 ══ -->
+    <div class="screen" id="tab14">
+      <div class="hero" style="background:linear-gradient(135deg,#0A1020,#162040);position:relative;overflow:hidden">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <button onclick="goTab(0)" style="background:rgba(255,255,255,.07);border:1px solid var(--line2);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--txt2);cursor:pointer;font-family:var(--sans)">← 홈</button>
+        </div>
+        <div class="hero-title">📋 계약 진행 관리</div>
+        <div class="hero-sub">수요자·공급자 매칭 → 계약 완료까지<br>실시간 진행 단계 확인</div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-n" style="color:#A8D4F5">3</div><div class="hstat-l">진행중</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:#2DD4A0">94%</div><div class="hstat-l">성사율</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:#E8C97A">12</div><div class="hstat-l">완료</div></div>
+        </div>
+      </div>
+
+      <!-- 계약 진행 단계 파이프라인 -->
+      <div style="padding:16px">
+        <!-- 국토부 전자계약 바로가기 -->
+        <a href="https://irts.molit.go.kr" target="_blank" style="display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#0A1628,#162040);border:1.5px solid rgba(74,158,224,.35);border-radius:13px;padding:14px;margin-bottom:14px;text-decoration:none">
+          <div style="width:44px;height:44px;border-radius:11px;background:rgba(74,158,224,.15);border:1px solid rgba(74,158,224,.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🏛️</div>
+          <div style="flex:1">
+            <div style="font-size:9px;color:#A8D4F5;font-weight:700;letter-spacing:.5px;margin-bottom:3px">MINISTRY OF LAND · OFFICIAL</div>
+            <div style="font-size:14px;font-weight:900;color:#EDF2F7">국토부 전자계약 바로가기</div>
+            <div style="font-size:10px;color:#8A9AB0;margin-top:2px">부동산 전자계약 시스템 · 공인인증 계약</div>
+          </div>
+          <div style="font-size:18px;color:#A8D4F5">→</div>
+        </a>
+
+        <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:14px">🔄 내 계약 진행 현황</div>
+
+        <!-- 진행중 케이스 1 -->
+        <div style="background:var(--s1);border:1.5px solid rgba(45,212,160,.3);border-radius:13px;padding:14px;margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div>
+              <div style="font-size:12px;font-weight:900;color:#EDF2F7">대치 아이파크 33평</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">수요자: 김** | 공급자: 이**</div>
+            </div>
+            <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:3px 9px;border-radius:5px;font-weight:700">방문예약</span>
+          </div>
+          <!-- 단계 진행바 -->
+          <div style="display:flex;align-items:center;gap:0;margin-bottom:8px">
+            <div style="flex:1;text-align:center">
+              <div style="width:24px;height:24px;border-radius:50%;background:#2DD4A0;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:11px">✓</div>
+              <div style="font-size:7px;color:#2DD4A0;font-weight:700">등록</div>
+            </div>
+            <div style="flex:1;height:2px;background:#2DD4A0;margin-bottom:14px"></div>
+            <div style="flex:1;text-align:center">
+              <div style="width:24px;height:24px;border-radius:50%;background:#2DD4A0;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:11px">✓</div>
+              <div style="font-size:7px;color:#2DD4A0;font-weight:700">AI매칭</div>
+            </div>
+            <div style="flex:1;height:2px;background:#2DD4A0;margin-bottom:14px"></div>
+            <div style="flex:1;text-align:center">
+              <div style="width:24px;height:24px;border-radius:50%;background:#E8C97A;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:11px;color:#08101C">→</div>
+              <div style="font-size:7px;color:#E8C97A;font-weight:700">방문</div>
+            </div>
+            <div style="flex:1;height:2px;background:rgba(255,255,255,.1);margin-bottom:14px"></div>
+            <div style="flex:1;text-align:center">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:11px;color:#4A5568">4</div>
+              <div style="font-size:7px;color:#4A5568">계약</div>
+            </div>
+            <div style="flex:1;height:2px;background:rgba(255,255,255,.1);margin-bottom:14px"></div>
+            <div style="flex:1;text-align:center">
+              <div style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:11px;color:#4A5568">5</div>
+              <div style="font-size:7px;color:#4A5568">완료</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="toast('📞 연결 중...')" style="flex:1;padding:9px;border-radius:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.22);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📞 상대방 연결</button>
+            <button onclick="toast('📅 방문 일정이 저장되었습니다')" style="flex:1;padding:9px;border-radius:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📅 방문 일정 확정</button>
+          </div>
+        </div>
+
+        <!-- 카카오 알림 설정 -->
+        <div style="background:rgba(254,229,0,.05);border:1px solid rgba(254,229,0,.2);border-radius:12px;padding:13px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:900;color:#FEE500;margin-bottom:8px">💬 카카오톡 알림 설정</div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:11px;color:#EDF2F7">새 매물 매칭 알림</span>
+              <div onclick="this.classList.toggle('on');this.style.background=this.classList.contains('on')?'#2DD4A0':'rgba(255,255,255,.1)'" style="width:40px;height:22px;border-radius:11px;background:rgba(255,255,255,.1);cursor:pointer;transition:.3s;position:relative">
+                <div style="width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:.3s"></div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:11px;color:#EDF2F7">방문 예약 알림</span>
+              <div onclick="this.classList.toggle('on');this.style.background=this.classList.contains('on')?'#2DD4A0':'rgba(255,255,255,.1)'" style="width:40px;height:22px;border-radius:11px;background:#2DD4A0;cursor:pointer;transition:.3s;position:relative">
+                <div style="width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:2px;right:2px;transition:.3s"></div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:11px;color:#EDF2F7">계약 완료 알림</span>
+              <div onclick="this.classList.toggle('on');this.style.background=this.classList.contains('on')?'#2DD4A0':'rgba(255,255,255,.1)'" style="width:40px;height:22px;border-radius:11px;background:#2DD4A0;cursor:pointer;transition:.3s;position:relative">
+                <div style="width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:2px;right:2px;transition:.3s"></div>
+              </div>
+            </div>
+          </div>
+          <button onclick="openKakaoNotify()" style="width:100%;padding:11px;border-radius:9px;background:linear-gradient(135deg,#FEE500,#E6CF00);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">💬 카카오 알림 등록하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TAB 15: 매물 즐겨찾기·비교 ══ -->
+    <div class="screen" id="tab15">
+      <div class="hero" style="background:linear-gradient(135deg,#0A1020,#162040)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <button onclick="goTab(0)" style="background:rgba(255,255,255,.07);border:1px solid var(--line2);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--txt2);cursor:pointer;font-family:var(--sans)">← 홈</button>
+        </div>
+        <div class="hero-title">❤️ 즐겨찾기·비교</div>
+        <div class="hero-sub">관심 매물 저장 · 최대 3개 나란히 비교</div>
+      </div>
+
+      <div style="padding:16px">
+        <!-- 즐겨찾기 목록 -->
+        <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:12px">❤️ 저장된 관심 매물</div>
+        <div id="favList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:11px;padding:12px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#EDF2F7">시그니엘 레지던스 42평</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">68억 · ▼7.3% 저평가</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button onclick="addCompare('시그니엘 42평','68억','▼7.3%')" style="padding:6px 9px;border-radius:7px;background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.2);color:#A8D4F5;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">비교</button>
+              <button onclick="this.parentNode.parentNode.remove();toast('삭제됨')" style="padding:6px 9px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">삭제</button>
+            </div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:11px;padding:12px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#EDF2F7">대치 아이파크 33평</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">28억5천 · ▼8.2% 저평가</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button onclick="addCompare('대치 아이파크','28.5억','▼8.2%')" style="padding:6px 9px;border-radius:7px;background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.2);color:#A8D4F5;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">비교</button>
+              <button onclick="this.parentNode.parentNode.remove();toast('삭제됨')" style="padding:6px 9px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">삭제</button>
+            </div>
+          </div>
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:11px;padding:12px;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:11px;font-weight:800;color:#EDF2F7">은마아파트 31평</div>
+              <div style="font-size:9px;color:#8A9AB0;margin-top:2px">19억 · ▼9.5% 저평가 · 재건축예정</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button onclick="addCompare('은마아파트','19억','▼9.5%')" style="padding:6px 9px;border-radius:7px;background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.2);color:#A8D4F5;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">비교</button>
+              <button onclick="this.parentNode.parentNode.remove();toast('삭제됨')" style="padding:6px 9px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">삭제</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 비교 테이블 -->
+        <div style="font-size:13px;font-weight:900;color:#EDF2F7;margin-bottom:10px">📊 매물 비교 (최대 3개)</div>
+        <div id="compareArea" style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:14px;min-height:100px">
+          <div id="compareGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"></div>
+          <div id="compareEmpty" style="text-align:center;padding:20px;color:#4A5568;font-size:11px">위 매물에서 "비교" 버튼을 눌러주세요</div>
+        </div>
+
+        <!-- 실거래가 계산기 -->
+        <div style="background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.18);border-radius:12px;padding:14px;margin-top:14px">
+          <div style="font-size:13px;font-weight:900;color:#2DD4A0;margin-bottom:12px">🧮 지금 사면 얼마나 이득?</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:10px;color:#8A9AB0;width:70px;flex-shrink:0">매물 가격</span>
+              <input id="calc-price" type="number" placeholder="예: 28" style="flex:1;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:12px;font-family:var(--sans);outline:none">
+              <span style="font-size:10px;color:#8A9AB0">억원</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:10px;color:#8A9AB0;width:70px;flex-shrink:0">KB시세</span>
+              <input id="calc-kb" type="number" placeholder="예: 31" style="flex:1;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:12px;font-family:var(--sans);outline:none">
+              <span style="font-size:10px;color:#8A9AB0">억원</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:10px;color:#8A9AB0;width:70px;flex-shrink:0">보유기간</span>
+              <input id="calc-years" type="number" placeholder="예: 3" style="flex:1;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:12px;font-family:var(--sans);outline:none">
+              <span style="font-size:10px;color:#8A9AB0">년</span>
+            </div>
+          </div>
+          <button onclick="calcBenefit()" style="width:100%;padding:12px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">🧮 이득 계산하기</button>
+          <div id="calcResult" style="display:none;margin-top:12px;background:rgba(45,212,160,.08);border-radius:9px;padding:12px;font-size:12px;color:#EDF2F7;line-height:1.8"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TAB 16: 재건축 대시보드 ══ -->
+    <div class="screen" id="tab16">
+      <div class="hero" style="background:linear-gradient(135deg,#0A1020,#162040)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <button onclick="goTab(0)" style="background:rgba(255,255,255,.07);border:1px solid var(--line2);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--txt2);cursor:pointer;font-family:var(--sans)">← 홈</button>
+        </div>
+        <div class="hero-title">🏗️ 재건축 대시보드</div>
+        <div class="hero-sub">은마·압구정·여의도 재건축 진행률<br>AI 투자 타이밍 분석</div>
+      </div>
+
+      <div style="padding:16px">
+        <!-- 은마아파트 -->
+        <div style="background:var(--s1);border:1.5px solid rgba(239,68,68,.25);border-radius:13px;padding:14px;margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <div style="font-size:8px;color:#FCA5A5;font-weight:700;letter-spacing:.5px;margin-bottom:2px">🔥 재건축 진행중</div>
+              <div style="font-size:14px;font-weight:900;color:#EDF2F7">은마아파트</div>
+              <div style="font-size:9px;color:#8A9AB0">강남구 대치동 · 4424세대</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:12px;font-weight:900;color:#E8C97A">19억</div>
+              <div style="font-size:9px;color:#FCA5A5">▼9.5% 저평가</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:4px">
+              <span style="color:#8A9AB0">진행률</span><span style="color:#FCA5A5;font-weight:700">조합설립 단계 (35%)</span>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border-radius:5px;height:8px;overflow:hidden">
+              <div style="width:35%;height:100%;background:linear-gradient(90deg,#FCA5A5,#EF4444);border-radius:5px"></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;font-size:7px;text-align:center;margin-bottom:10px">
+            <div style="color:#2DD4A0;font-weight:700">✓ 추진위</div>
+            <div style="color:#2DD4A0;font-weight:700">✓ 조합설립</div>
+            <div style="color:#4A5568">사업시행</div>
+            <div style="color:#4A5568">관리처분</div>
+            <div style="color:#4A5568">완공</div>
+          </div>
+          <div style="background:rgba(239,68,68,.08);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:9px;color:#8A9AB0;line-height:1.6">
+            🤖 AI 분석: 조합설립 완료 단계로 사업시행인가 진입 예정. 현재가 매수 적기로 판단. 완공 후 예상 시세 <span style="color:#E8C97A;font-weight:700">32~38억</span>
+          </div>
+          <button onclick="openModal('demand')" style="width:100%;padding:10px;border-radius:8px;background:linear-gradient(135deg,#EF4444,#B91C1C);color:#fff;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">🔥 은마아파트 AI 매칭 신청</button>
+        </div>
+
+        <!-- 압구정 현대 -->
+        <div style="background:var(--s1);border:1.5px solid rgba(201,168,76,.25);border-radius:13px;padding:14px;margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <div style="font-size:8px;color:#E8C97A;font-weight:700;letter-spacing:.5px;margin-bottom:2px">⭐ 재건축 핵심단지</div>
+              <div style="font-size:14px;font-weight:900;color:#EDF2F7">압구정 현대아파트</div>
+              <div style="font-size:9px;color:#8A9AB0">강남구 압구정동 · 한강변</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:12px;font-weight:900;color:#E8C97A">52억~</div>
+              <div style="font-size:9px;color:#FCA5A5">▼6.8% 저평가</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:4px">
+              <span style="color:#8A9AB0">진행률</span><span style="color:#E8C97A;font-weight:700">사업시행인가 (55%)</span>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border-radius:5px;height:8px;overflow:hidden">
+              <div style="width:55%;height:100%;background:linear-gradient(90deg,#E8C97A,#C9A84C);border-radius:5px"></div>
+            </div>
+          </div>
+          <div style="background:rgba(201,168,76,.08);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:9px;color:#8A9AB0;line-height:1.6">
+            🤖 AI 분석: 사업시행인가 진입 단계. 한강변 입지·압구정 프리미엄 고려 시 완공 후 예상 시세 <span style="color:#E8C97A;font-weight:700">95~120억</span> (신축기준)
+          </div>
+          <button onclick="openModal('demand')" style="width:100%;padding:10px;border-radius:8px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">⭐ 압구정 현대 AI 매칭 신청</button>
+        </div>
+
+        <!-- 여의도 시범 -->
+        <div style="background:var(--s1);border:1.5px solid rgba(74,158,224,.25);border-radius:13px;padding:14px;margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div>
+              <div style="font-size:8px;color:#A8D4F5;font-weight:700;letter-spacing:.5px;margin-bottom:2px">🌊 한강변 재건축</div>
+              <div style="font-size:14px;font-weight:900;color:#EDF2F7">여의도 시범아파트</div>
+              <div style="font-size:9px;color:#8A9AB0">영등포구 여의도동 · 한강변</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:12px;font-weight:900;color:#A8D4F5">35억~</div>
+              <div style="font-size:9px;color:#FCA5A5">▼7.2% 저평가</div>
+            </div>
+          </div>
+          <div style="margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:4px">
+              <span style="color:#8A9AB0">진행률</span><span style="color:#A8D4F5;font-weight:700">조합설립 단계 (40%)</span>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border-radius:5px;height:8px;overflow:hidden">
+              <div style="width:40%;height:100%;background:linear-gradient(90deg,#A8D4F5,#4A9EE0);border-radius:5px"></div>
+            </div>
+          </div>
+          <div style="background:rgba(74,158,224,.08);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:9px;color:#8A9AB0;line-height:1.6">
+            🤖 AI 분석: 여의도 국제금융센터 인접. 완공 후 예상 시세 <span style="color:#A8D4F5;font-weight:700">65~80억</span>. 투자 적기 진입 구간.
+          </div>
+          <button onclick="openModal('demand')" style="width:100%;padding:10px;border-radius:8px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">🌊 여의도 시범 AI 매칭 신청</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TAB 17: 성공사례 게시판 ══ -->
+    <div class="screen" id="tab17">
+      <div class="hero" style="background:linear-gradient(135deg,#0A1020,#162040)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <button onclick="goTab(0)" style="background:rgba(255,255,255,.07);border:1px solid var(--line2);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--txt2);cursor:pointer;font-family:var(--sans)">← 홈</button>
+        </div>
+        <div class="hero-title">🏆 계약 성공사례</div>
+        <div class="hero-sub">PROPAI AI 매칭으로 성사된 실제 계약 사례<br>투명한 거래·만족스러운 결과</div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-n" style="color:#E8C97A">94%</div><div class="hstat-l">성사율</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:#2DD4A0">12건</div><div class="hstat-l">성공사례</div></div>
+          <div class="hstat"><div class="hstat-n" style="color:#A8D4F5">★4.9</div><div class="hstat-l">만족도</div></div>
+        </div>
+      </div>
+
+      <div style="padding:16px">
+        <!-- 성공사례 카드들 -->
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.2);border-radius:13px;padding:14px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div>
+                <div style="font-size:9px;color:#2DD4A0;font-weight:700;margin-bottom:2px">✅ 계약 완료</div>
+                <div style="font-size:13px;font-weight:900;color:#EDF2F7">대치 아이파크 33평 매매</div>
+                <div style="font-size:9px;color:#8A9AB0;margin-top:1px">강남구 대치동 · 2025.02</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:14px;font-weight:900;color:#E8C97A">28억 5천</div>
+                <div style="display:flex;gap:1px">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+            <div style="background:rgba(45,212,160,.06);border-radius:8px;padding:9px 11px;margin-bottom:8px;font-size:10px;color:#8A9AB0;line-height:1.7">
+              "AI 매칭으로 3일 만에 적합한 매수자를 찾았습니다. KB시세 대비 8.2% 저렴하게 거래해 만족합니다. 이상수 대표님 덕분에 빠르고 투명하게 계약 완료!"
+            </div>
+            <div style="font-size:9px;color:#4A5568">매도인 이** · AI 매칭 소요: 3일</div>
+          </div>
+
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:13px;padding:14px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div>
+                <div style="font-size:9px;color:#2DD4A0;font-weight:700;margin-bottom:2px">✅ 계약 완료</div>
+                <div style="font-size:13px;font-weight:900;color:#EDF2F7">역삼 래전드힐스 9평 임대</div>
+                <div style="font-size:9px;color:#8A9AB0;margin-top:1px">강남구 역삼동 · 2025.01</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:14px;font-weight:900;color:#2DD4A0">월 125만</div>
+                <div style="display:flex;gap:1px">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+            <div style="background:rgba(201,168,76,.06);border-radius:8px;padding:9px 11px;margin-bottom:8px;font-size:10px;color:#8A9AB0;line-height:1.7">
+              "학원가 도보 5분 거리에 이런 가격은 처음입니다. PROPAI 앱에서 조건 등록 후 당일 연락이 왔어요. 김은경 이사님 친절하게 안내해주셔서 감사합니다!"
+            </div>
+            <div style="font-size:9px;color:#4A5568">임차인 박** · AI 매칭 소요: 1일</div>
+          </div>
+
+          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.2);border-radius:13px;padding:14px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+              <div>
+                <div style="font-size:9px;color:#2DD4A0;font-weight:700;margin-bottom:2px">✅ 계약 완료</div>
+                <div style="font-size:13px;font-weight:900;color:#EDF2F7">삼환아르누보2 매매</div>
+                <div style="font-size:9px;color:#8A9AB0;margin-top:1px">강남구 대치동 · 2024.12</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:14px;font-weight:900;color:#E8C97A">5억 1천</div>
+                <div style="display:flex;gap:1px">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+            <div style="background:rgba(74,158,224,.06);border-radius:8px;padding:9px 11px;margin-bottom:8px;font-size:10px;color:#8A9AB0;line-height:1.7">
+              "25년 경력의 이상수 대표님이 직접 매물을 분석해주셔서 신뢰가 갔습니다. 광고비 없이 법정 보수료만으로 투명하게 거래 완료!"
+            </div>
+            <div style="font-size:9px;color:#4A5568">매수인 최** · AI 매칭 소요: 5일</div>
+          </div>
+        </div>
+
+        <!-- 성공사례 등록 -->
+        <div style="background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px">
+          <div style="font-size:12px;font-weight:900;color:#E8C97A;margin-bottom:8px">📝 성공사례 후기 남기기</div>
+          <textarea placeholder="계약 성사 후기를 남겨주세요 😊&#10;다른 고객에게 큰 도움이 됩니다!" style="width:100%;height:80px;padding:9px 11px;background:rgba(8,16,28,.6);border:1px solid rgba(201,168,76,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;resize:none;box-sizing:border-box;line-height:1.6" id="reviewText"></textarea>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+            <div id="starRating" style="display:flex;gap:4px">
+              <span onclick="setStars(1)" style="font-size:20px;cursor:pointer;color:#4A5568">★</span>
+              <span onclick="setStars(2)" style="font-size:20px;cursor:pointer;color:#4A5568">★</span>
+              <span onclick="setStars(3)" style="font-size:20px;cursor:pointer;color:#4A5568">★</span>
+              <span onclick="setStars(4)" style="font-size:20px;cursor:pointer;color:#4A5568">★</span>
+              <span onclick="setStars(5)" style="font-size:20px;cursor:pointer;color:#4A5568">★</span>
+            </div>
+            <button onclick="submitReview()" style="flex:1;padding:10px;border-radius:8px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">후기 등록</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ══ ADMIN SCREEN ══ -->
     <div class="screen" id="tabAdmin">
       <!-- 관리자 헤더 -->
@@ -4872,7 +5263,7 @@ function showMyListings(){
 }
 
 /* ─── TABS ─── */
-const tabIds=['tab0','tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9','tab10','tab11','tab12','tab13','tabAdmin'];
+const tabIds=['tab0','tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8','tab9','tab10','tab11','tab12','tab13','tab14','tab15','tab16','tab17','tabAdmin'];
 function goTab(i){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('show'));
   document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('act','act2'));
@@ -5839,6 +6230,78 @@ function hideChatBtn(){
   chatOpen = false;
   var m = document.getElementById('chatModal');
   if(m) m.style.display = 'none';
+}
+
+/* ── 매물 비교 ── */
+var compareItems = [];
+function addCompare(name, price, discount){
+  if(compareItems.length >= 3){ toast('최대 3개까지 비교 가능합니다'); return; }
+  if(compareItems.find(function(i){return i.name===name;})){ toast('이미 추가된 매물입니다'); return; }
+  compareItems.push({name:name, price:price, discount:discount});
+  renderCompare();
+  toast('✅ 비교 목록에 추가되었습니다 ('+compareItems.length+'/3)');
+}
+function renderCompare(){
+  var grid = document.getElementById('compareGrid');
+  var empty = document.getElementById('compareEmpty');
+  if(!grid) return;
+  if(compareItems.length === 0){
+    grid.innerHTML = '';
+    if(empty) empty.style.display = 'block';
+    return;
+  }
+  if(empty) empty.style.display = 'none';
+  grid.innerHTML = compareItems.map(function(item){
+    return '<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.15);border-radius:9px;padding:10px;text-align:center">'
+      +'<div style="font-size:10px;font-weight:800;color:#EDF2F7;margin-bottom:6px">'+item.name+'</div>'
+      +'<div style="font-size:14px;font-weight:900;color:#E8C97A;margin-bottom:3px">'+item.price+'</div>'
+      +'<div style="font-size:10px;color:#FCA5A5;font-weight:700">'+item.discount+'</div>'
+      +'<button onclick="removeCompare(\''+item.name+'\')" style="margin-top:6px;font-size:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;padding:2px 7px;border-radius:4px;cursor:pointer;font-family:var(--sans)">제거</button>'
+      +'</div>';
+  }).join('');
+}
+function removeCompare(name){
+  compareItems = compareItems.filter(function(i){return i.name!==name;});
+  renderCompare();
+}
+
+/* ── 이득 계산기 ── */
+function calcBenefit(){
+  var price  = parseFloat(document.getElementById('calc-price').value) || 0;
+  var kb     = parseFloat(document.getElementById('calc-kb').value) || 0;
+  var years  = parseFloat(document.getElementById('calc-years').value) || 1;
+  if(!price || !kb){ toast('가격을 입력해 주세요'); return; }
+  var discount   = ((kb - price) / kb * 100).toFixed(1);
+  var savedNow   = (kb - price).toFixed(2);
+  var annualRate = 5; // 연평균 5% 상승 가정
+  var futureVal  = (price * Math.pow(1 + annualRate/100, years)).toFixed(2);
+  var totalGain  = (futureVal - price).toFixed(2);
+  var result = document.getElementById('calcResult');
+  if(result){
+    result.style.display = 'block';
+    result.innerHTML =
+      '💰 <strong style="color:#E8C97A">즉시 절감액:</strong> <span style="color:#2DD4A0">'+savedNow+'억원</span> (KB시세 대비 '+discount+'% 저렴)<br>'
+      +'📈 <strong style="color:#E8C97A">'+years+'년 후 예상 시세:</strong> <span style="color:#A8D4F5">'+futureVal+'억원</span><br>'
+      +'🎯 <strong style="color:#E8C97A">예상 총 수익:</strong> <span style="color:#2DD4A0">+'+totalGain+'억원</span><br>'
+      +'<span style="font-size:9px;color:#4A5568">※ 연평균 5% 상승 가정 · 실제와 다를 수 있음</span>';
+  }
+}
+
+/* ── 별점·후기 ── */
+var selectedStars = 5;
+function setStars(n){
+  selectedStars = n;
+  var stars = document.querySelectorAll('#starRating span');
+  stars.forEach(function(s, i){
+    s.style.color = i < n ? '#E8C97A' : '#4A5568';
+  });
+}
+function submitReview(){
+  var text = document.getElementById('reviewText');
+  if(!text || !text.value.trim()){ toast('후기 내용을 입력해 주세요'); return; }
+  toast('🏆 후기가 등록되었습니다!\n감사합니다 😊\n관리자 확인 후 게시됩니다.');
+  text.value = '';
+  setStars(5);
 }
 
 function toast(msg){
