@@ -2889,7 +2889,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           </div>
           <div style="padding:11px 13px;display:flex;flex-direction:column;gap:6px">
             <div style="display:flex;justify-content:space-between;font-size:10px"><span style="color:var(--txt2)">월세</span><span style="font-weight:700">보증금 1천 / 월 110만 <span style="color:#2DD4A0;font-size:9px">(관리비포함)</span></span></div>
-            <div style="display:flex;justify-content:space-between;font-size:10px"><span style="color:var(--txt2)">단기렌트</span><span style="font-weight:700;color:var(--jade)">월 170만 (1개월~, 위약금포함)</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:10px"><span style="color:var(--txt2)">단기렌트</span><span style="font-weight:700;color:var(--jade)">월 170만 (유의사항: 임대료+중도해지 위약금 60만 포함 금액이며, 단기임대는 장기임대 시 공실기간에만 가능)</span></div>
           </div>
         </div>
         <!-- 전용 9평 -->
@@ -4425,534 +4425,401 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div style="height:80px"></div>
     </div>
 
-    <!-- ══ TAB 13: 공동중개 AI 매칭 ══ -->
-    <div class="screen" id="tab13">
+    <!-- ══ TAB 13: 공동중개 AI 플랫폼 ══ -->
+    <div class="screen" id="tab13" style="position:relative">
 
-      <!-- 구독 체크 레이어 -->
+      <!-- 구독 잠금 레이어 -->
       <div id="t13-lock" style="display:none;position:absolute;inset:0;background:rgba(8,16,28,.97);z-index:50;flex-direction:column;align-items:center;justify-content:flex-start;padding:20px;overflow-y:auto">
         <div style="font-size:36px;margin-bottom:10px">🤝</div>
-        <div style="font-size:15px;font-weight:900;color:#EDF2F7;margin-bottom:4px;text-align:center">공동중개 AI매칭 서비스</div>
-        <div style="font-size:10px;color:#8A9AB0;text-align:center;line-height:1.7;margin-bottom:16px">요금제를 선택하고 구독 신청해 주세요</div>
-
-        <!-- 요금제 3단계 -->
+        <div style="font-size:15px;font-weight:900;color:#EDF2F7;margin-bottom:4px;text-align:center">공동중개 AI 플랫폼</div>
+        <div style="font-size:10px;color:#8A9AB0;text-align:center;line-height:1.7;margin-bottom:16px">공동중개 파트너 로그인 후 이용 가능합니다</div>
         <div style="width:100%;display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-
-          <!-- 무료 -->
           <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:13px">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px">
               <div style="font-size:13px;font-weight:900;color:#EDF2F7">🆓 무료 (기본)</div>
               <div style="font-size:16px;font-weight:900;color:#2DD4A0">₩0</div>
             </div>
-            <div style="font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:8px">
-              ✅ 1일 5건 매물 등록 한도<br>
-              ✅ AI 저평가 분석<br>
-              ✅ 저평가 판정 시 숏츠 자동제작 1건 (무료)
-            </div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:8px">✅ 1일 5건 등록 · AI 저평가 분석 · 저평가 시 당사 연락처 숏츠 1건</div>
             <button onclick="openJbPayment('free')" style="width:100%;padding:9px;border-radius:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">무료로 시작하기</button>
           </div>
-
-          <!-- 유료 기본 -->
           <div style="background:rgba(74,158,224,.06);border:1.5px solid rgba(74,158,224,.3);border-radius:12px;padding:13px">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-              <div>
-                <div style="font-size:8px;color:#A8D4F5;font-weight:700;margin-bottom:2px">유료 기본</div>
-                <div style="font-size:13px;font-weight:900;color:#EDF2F7">⭐ 스탠다드</div>
-              </div>
-              <div style="text-align:right">
-                <div style="font-size:16px;font-weight:900;color:#A8D4F5">₩90,000</div>
-                <div style="font-size:8px;color:#8A9AB0">월 (VAT 포함)</div>
-              </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:13px;font-weight:900;color:#EDF2F7">⭐ 스탠다드</div>
+              <div style="text-align:right"><div style="font-size:16px;font-weight:900;color:#A8D4F5">₩90,000</div><div style="font-size:8px;color:#8A9AB0">월</div></div>
             </div>
-            <div style="font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:8px">
-              ✅ 1일 <strong style="color:#A8D4F5">7건</strong> 매물 등록<br>
-              ✅ AI 저평가 분석<br>
-              ✅ 저평가매물 숏츠 자동제작 <strong style="color:#A8D4F5">매주 2건</strong>
-            </div>
-            <button onclick="openJbPayment('basic')" style="width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:11px;font-weight:800;border:none;cursor:pointer">스탠다드 구독 신청</button>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:8px">✅ 1일 7건 · AI 저평가 · 숏츠 <strong style="color:#A8D4F5">주 1건</strong> · 스탠다드 연락처 광고</div>
+            <button onclick="openJbPayment('basic')" style="width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:11px;font-weight:800;border:none;cursor:pointer">스탠다드 신청</button>
           </div>
-
-          <!-- 유료 프리미엄 -->
-          <div style="background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.04));border:1.5px solid rgba(201,168,76,.4);border-radius:12px;padding:13px;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;right:0;background:linear-gradient(135deg,#C9A84C,#8A6A1A);font-size:7px;font-weight:900;color:#08101C;padding:3px 10px;border-radius:0 10px 0 7px">PREMIUM</div>
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-              <div>
-                <div style="font-size:8px;color:#E8C97A;font-weight:700;margin-bottom:2px">유료 프리미엄</div>
-                <div style="font-size:13px;font-weight:900;color:#EDF2F7">🏆 프리미엄</div>
-              </div>
-              <div style="text-align:right">
-                <div style="font-size:16px;font-weight:900;color:#E8C97A">₩300,000</div>
-                <div style="font-size:8px;color:#8A9AB0">월 (VAT 포함)</div>
-              </div>
+          <div style="background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.04));border:1.5px solid rgba(201,168,76,.4);border-radius:12px;padding:13px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+              <div style="font-size:13px;font-weight:900;color:#EDF2F7">🏆 프리미엄</div>
+              <div style="text-align:right"><div style="font-size:16px;font-weight:900;color:#E8C97A">₩150,000</div><div style="font-size:8px;color:#8A9AB0">월</div></div>
             </div>
-            <div style="font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:8px">
-              ✅ 1일 <strong style="color:#E8C97A">20건</strong> 매물 등록<br>
-              ✅ AI 저평가 분석 + <strong style="color:#E8C97A">가격 예측</strong><br>
-              ✅ 저평가매물 숏츠 <strong style="color:#E8C97A">1일 1건</strong> 자동제작<br>
-              ✅ 유튜브 + 인스타 + 블로그 <strong style="color:#E8C97A">SNS 동시발송</strong>
-            </div>
-            <button onclick="openJbPayment('premium')" style="width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">프리미엄 구독 신청</button>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:8px">✅ 1일 20건 · AI분석+예측 · 숏츠 <strong style="color:#E8C97A">주 2건</strong> · 프리미엄 연락처 광고</div>
+            <button onclick="openJbPayment('premium')" style="width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">프리미엄 신청</button>
           </div>
         </div>
-
-        <!-- 입금 안내 -->
         <div style="width:100%;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:11px;font-size:9px;color:#8A9AB0;line-height:1.8;margin-bottom:14px;text-align:center">
-          입금 확인 후 24시간 내 서비스 활성화<br>
-          📞 010-8985-8945 이상수 대표<br>
-          📧 5788285@naver.com
+          입금 확인 후 24시간 내 활성화 · 📞 010-8985-8945 이상수 대표
         </div>
         <button onclick="goTab(0)" style="padding:11px 28px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">← 홈으로</button>
       </div>
 
       <!-- ── 헤더 ── -->
-      <div style="background:linear-gradient(160deg,#061420,#0D2030);padding:10px 16px 8px;position:relative;overflow:hidden">
-        <div style="position:absolute;top:-10px;right:-10px;width:80px;height:80px;background:radial-gradient(circle,rgba(45,212,160,.1),transparent);pointer-events:none"></div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-          <div style="font-size:8px;letter-spacing:1.5px;color:#2DD4A0;font-weight:700;text-transform:uppercase">공동중개 AI 매칭 플랫폼</div>
-          <div id="t13-sub-badge" style="font-size:8px;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.3);color:#2DD4A0;padding:2px 8px;border-radius:4px;font-weight:700">미구독</div>
+      <div style="background:linear-gradient(135deg,#060E1C,#0D1E30);padding:10px 16px 0;border-bottom:1px solid rgba(45,212,160,.15)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div>
+            <div style="font-size:9px;color:#2DD4A0;font-weight:700;letter-spacing:1px">공동중개 파트너 전용 · AI 매칭 플랫폼</div>
+            <div style="font-size:15px;font-weight:900;color:#EDF2F7">🤝 공동중개 AI 공유</div>
+          </div>
+          <div id="t13-sub-badge" style="font-size:8px;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.3);color:#2DD4A0;padding:3px 9px;border-radius:5px;font-weight:700">무료</div>
         </div>
-        <div style="font-size:15px;font-weight:900;color:#EDF2F7;margin-bottom:2px">🤝 공동중개 AI 공유</div>
-        <div style="font-size:9px;color:#8A9AB0">공동중개 팝니다 · 삽니다 · AI자동매칭 · 저장목록</div>
+        <!-- 5탭 메뉴 -->
+        <div style="display:flex;gap:0;margin:0 -16px">
+          <button onclick="showT13Tab('recv')" id="t13-t0" style="flex:1;padding:9px 2px;border:none;background:rgba(45,212,160,.1);border-bottom:3px solid #2DD4A0;color:#2DD4A0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">📥 받은<br>쪽지함</button>
+          <button onclick="showT13Tab('have')" id="t13-t1" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">🏠 있습니다<br>발송</button>
+          <button onclick="showT13Tab('want')" id="t13-t2" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">🔍 구합니다<br>발송</button>
+          <button onclick="showT13Tab('sent')" id="t13-t3" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">📤 보낸<br>쪽지함</button>
+          <button onclick="showT13Tab('mylist')" id="t13-t4" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">📋 내<br>매물목록</button>
+        </div>
       </div>
 
-      <!-- ── 4개 탭 메뉴 ── -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);background:#0A0E17;border-bottom:1px solid rgba(255,255,255,.07)">
-        <button onclick="showT13Tab('send')" id="t13-t1"
-          style="padding:10px 3px;border:none;background:rgba(45,212,160,.1);border-bottom:3px solid #2DD4A0;color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
-          📤 보낸<br><span style="font-size:7px;font-weight:400;color:#4A5568">쪽지함</span>
-        </button>
-        <button onclick="showT13Tab('sell')" id="t13-t2"
-          style="padding:10px 3px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
-          🏠 AI<br><span style="font-size:7px;font-weight:400">팝니다</span>
-        </button>
-        <button onclick="showT13Tab('buy')" id="t13-t3"
-          style="padding:10px 3px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
-          🔍 AI<br><span style="font-size:7px;font-weight:400">삽니다</span>
-        </button>
-        <button onclick="showT13Tab('saved')" id="t13-t4"
-          style="padding:10px 3px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
-          📋 저장<br><span style="font-size:7px;font-weight:400">목록</span>
-        </button>
-      </div>
-
-      <!-- ── 보낸 쪽지함 ── -->
-      <div id="t13-p1" style="padding:10px 16px">
+      <!-- ════ 받은 쪽지함 ════ -->
+      <div id="t13-p0" style="padding:12px 16px;display:block">
         <!-- 검색 필터 -->
-        <div style="background:#0D1929;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin-bottom:10px">
-          <div style="display:flex;gap:7px;margin-bottom:7px">
-            <div style="flex:1">
-              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">기간</div>
-              <div style="display:flex;gap:4px;align-items:center">
-                <input style="flex:1;padding:6px 8px;font-size:10px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#EDF2F7;font-family:var(--sans);outline:none" type="date" id="t13-date1">
-                <span style="font-size:9px;color:#4A5568">~</span>
-                <input style="flex:1;padding:6px 8px;font-size:10px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#EDF2F7;font-family:var(--sans);outline:none" type="date" id="t13-date2">
-              </div>
+        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:11px;padding:11px;margin-bottom:12px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px">
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">날짜</div>
+              <input type="date" style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
             </div>
             <div>
               <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">구분</div>
-              <select style="padding:6px 8px;font-size:10px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#EDF2F7;font-family:var(--sans);outline:none">
-                <option>전체</option><option>팝니다</option><option>삽니다</option>
+              <select style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                <option>전체</option><option>있습니다</option><option>구합니다</option>
               </select>
             </div>
           </div>
-          <!-- 옵션 태그 버튼 -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px">
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">매물종류</div>
+              <select style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                <option>전체</option><option>아파트</option><option>오피스텔</option><option>상가</option><option>토지</option>
+              </select>
+            </div>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">지역</div>
+              <select style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                <option>전체</option><option>대치동</option><option>역삼동</option><option>도곡동</option><option>삼성동</option><option>잠실동</option>
+              </select>
+            </div>
+          </div>
           <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px">
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">금액조절 가능한</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">바로 볼 수 있는</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">새로 지은</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">손님 대기중</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">역세권</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">올수리 깨끗한</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">전세대출 가능한</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">주차 가능한</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">즉시 입주 가능한</button>
-            <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">풀 옵션</button>
+            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">금액조절 가능한</button>
+            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">바로 볼 수 있는</button>
+            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">즉시 입주 가능한</button>
+            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">전세대출 가능한</button>
+            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">손님 대기중</button>
+            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">주차 가능한</button>
           </div>
-          <button onclick="t13Search()" style="width:100%;padding:8px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:11px;font-weight:800;border:none;cursor:pointer">🔍 검색하기</button>
+          <button onclick="toast('검색합니다...')" style="width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🔍 검색하기</button>
         </div>
-        <!-- 보낸 쪽지 목록 -->
-        <div style="font-size:9px;font-weight:700;color:#8A9AB0;margin-bottom:7px">📤 보낸 쪽지 — 총 <span style="color:#2DD4A0">2건</span></div>
-        <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 12px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
-              <div>
-                <div style="display:flex;gap:5px;align-items:center;margin-bottom:3px">
-                  <span style="font-size:8px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:1px 7px;border-radius:3px;font-weight:700">팝니다</span>
-                  <span style="font-size:8px;color:#8A9AB0">2026-03-21</span>
-                </div>
-                <div style="font-size:11px;font-weight:800">대치 SK뷰 33평 — 공동매도</div>
-                <div style="font-size:9px;color:#8A9AB0;margin-top:2px">24.5억 · 즉시입주 · 학원가 1분</div>
+
+        <!-- 받은 쪽지 목록 -->
+        <div style="display:flex;flex-direction:column;gap:8px" id="t13-recv-list">
+          <!-- 있습니다 카드 -->
+          <div style="background:linear-gradient(135deg,rgba(45,212,160,.07),rgba(45,212,160,.03));border:1px solid rgba(45,212,160,.25);border-radius:12px;padding:13px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div style="display:flex;align-items:center;gap:7px">
+                <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 8px;border-radius:4px;font-weight:700">🏠 있습니다</span>
+                <span style="font-size:8px;color:#4A5568">AI 매칭 97점</span>
               </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700">수신 3건</div>
-                <div style="font-size:8px;color:#4A5568;margin-top:2px">자동간격조절</div>
+              <span style="font-size:8px;color:#4A5568">2026-03-25 21:42</span>
+            </div>
+            <div style="font-size:12px;font-weight:800;color:#EDF2F7;margin-bottom:4px">[한보미도맨션] 아파트 매도 물건 있습니다</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px">
+              <div style="background:rgba(8,16,28,.4);border-radius:7px;padding:6px;text-align:center">
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:1px">지역</div>
+                <div style="font-size:10px;font-weight:700;color:#EDF2F7">대치동</div>
+              </div>
+              <div style="background:rgba(8,16,28,.4);border-radius:7px;padding:6px;text-align:center">
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:1px">매도가</div>
+                <div style="font-size:10px;font-weight:700;color:#E8C97A">47억</div>
+              </div>
+              <div style="background:rgba(8,16,28,.4);border-radius:7px;padding:6px;text-align:center">
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:1px">평형</div>
+                <div style="font-size:10px;font-weight:700;color:#EDF2F7">41평</div>
               </div>
             </div>
-            <div style="display:flex;gap:5px">
-              <button onclick="toast('📋 상세보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">상세보기</button>
-              <button onclick="toast('📄 답장보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.18);color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">답장보기</button>
-              <button onclick="toast('🗑️ 삭제됨')" style="padding:6px 10px;border-radius:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">삭제</button>
-            </div>
-          </div>
-          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 12px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
-              <div>
-                <div style="display:flex;gap:5px;align-items:center;margin-bottom:3px">
-                  <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:1px 7px;border-radius:3px;font-weight:700">삽니다</span>
-                  <span style="font-size:8px;color:#8A9AB0">2026-03-20</span>
-                </div>
-                <div style="font-size:11px;font-weight:800">학군권역 30억대 아파트 구함</div>
-                <div style="font-size:9px;color:#8A9AB0;margin-top:2px">대치·도곡동 · 30~35억 · 즉시입주</div>
-              </div>
-              <div style="text-align:right;flex-shrink:0">
-                <div style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:2px 7px;border-radius:4px;font-weight:700">매칭 1건</div>
-              </div>
-            </div>
-            <div style="display:flex;gap:5px">
-              <button onclick="toast('📋 상세보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">상세보기</button>
-              <button onclick="toast('📄 답장보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.18);color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">답장보기</button>
-              <button onclick="toast('🗑️ 삭제됨')" style="padding:6px 10px;border-radius:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">삭제</button>
+            <div style="font-size:9px;color:#8A9AB0;margin-bottom:8px;line-height:1.6">미도 2차 ★★41평형 ★★완전특혼수리급 급매물. 추가수리 필요없을 정도로 특혼수리급 매물. 긴급한점은 언제든 연락바랍니다.</div>
+            <div style="display:flex;gap:6px">
+              <button onclick="toast('발신자에게 답장합니다...')" style="flex:1;padding:9px;border-radius:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">💬 답장</button>
+              <button onclick="toast('매물이 저장되었습니다')" style="flex:1;padding:9px;border-radius:8px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📌 저장</button>
+              <button onclick="this.closest('.t13-card-recv')||this.closest('div[style*=border-radius]').remove();toast('삭제됨')" style="padding:9px 11px;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:11px;cursor:pointer">🗑</button>
             </div>
           </div>
-        </div>
-        <!-- 구독 안내 -->
-        <div style="margin-top:12px;padding:10px 12px;background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.15);border-radius:9px;display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:9px;color:#8A9AB0">오늘 공유 <span style="color:#2DD4A0;font-weight:800">1건</span> / 일 5건 한도</div>
-          <button onclick="openJbPayment()" style="padding:5px 12px;border-radius:6px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:9px;font-weight:800;border:none;cursor:pointer">구독 갱신</button>
+          <!-- 구합니다 카드 -->
+          <div style="background:linear-gradient(135deg,rgba(74,158,224,.07),rgba(74,158,224,.03));border:1px solid rgba(74,158,224,.25);border-radius:12px;padding:13px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div style="display:flex;align-items:center;gap:7px">
+                <span style="font-size:9px;background:rgba(74,158,224,.15);color:#A8D4F5;padding:2px 8px;border-radius:4px;font-weight:700">🔍 구합니다</span>
+                <span style="font-size:8px;color:#4A5568">AI 매칭 91점</span>
+              </div>
+              <span style="font-size:8px;color:#4A5568">2026-03-25 19:15</span>
+            </div>
+            <div style="font-size:12px;font-weight:800;color:#EDF2F7;margin-bottom:4px">대치·도곡 30억대 아파트 구합니다</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px">
+              <div style="background:rgba(8,16,28,.4);border-radius:7px;padding:6px;text-align:center">
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:1px">지역</div>
+                <div style="font-size:10px;font-weight:700;color:#EDF2F7">대치·도곡</div>
+              </div>
+              <div style="background:rgba(8,16,28,.4);border-radius:7px;padding:6px;text-align:center">
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:1px">예산</div>
+                <div style="font-size:10px;font-weight:700;color:#A8D4F5">28~35억</div>
+              </div>
+              <div style="background:rgba(8,16,28,.4);border-radius:7px;padding:6px;text-align:center">
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:1px">평형</div>
+                <div style="font-size:10px;font-weight:700;color:#EDF2F7">30~40평</div>
+              </div>
+            </div>
+            <div style="font-size:9px;color:#8A9AB0;margin-bottom:8px">학군 중시 실수요자 · 즉시 계약 가능 · 학원가 도보권 선호</div>
+            <div style="display:flex;gap:6px">
+              <button onclick="toast('답장합니다...')" style="flex:1;padding:9px;border-radius:8px;background:rgba(74,158,224,.1);border:1px solid rgba(74,158,224,.25);color:#A8D4F5;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">💬 답장</button>
+              <button onclick="toast('저장되었습니다')" style="flex:1;padding:9px;border-radius:8px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📌 저장</button>
+              <button onclick="this.closest('div[style*=border-radius]').remove();toast('삭제됨')" style="padding:9px 11px;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:11px;cursor:pointer">🗑</button>
+            </div>
+          </div>
+          <div style="text-align:center;padding:14px;color:#4A5568;font-size:10px">총 2건 수신 (오늘)</div>
         </div>
       </div>
 
-      <!-- ── AI 팝니다 ── -->
-      <div id="t13-p2" style="display:none;padding:10px 16px">
-        <div style="background:rgba(45,212,160,.06);border:1.5px solid rgba(45,212,160,.25);border-radius:12px;padding:13px;margin-bottom:10px">
-          <div style="font-size:10px;font-weight:900;color:#2DD4A0;margin-bottom:12px;display:flex;align-items:center;gap:6px">
-            <span>🏠</span><span>공동중개 AI 팝니다</span>
-            <span style="margin-left:auto;font-size:8px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 8px;border-radius:4px">보낼메세지: 매물 있습니다</span>
+      <!-- ════ 있습니다 발송 ════ -->
+      <div id="t13-p1" style="display:none;padding:12px 16px">
+        <div style="background:linear-gradient(135deg,rgba(45,212,160,.07),rgba(45,212,160,.03));border:1.5px solid rgba(45,212,160,.3);border-radius:13px;padding:14px;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:900;color:#2DD4A0;margin-bottom:14px;display:flex;align-items:center;gap:7px">
+            <span style="font-size:18px">🏠</span> 있습니다 — 매물 공유 발송
           </div>
-          <!-- 간단정보 -->
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
-            <div class="frow2">
-              <div class="fg" style="margin:0">
-                <label class="flbl">매물종류</label>
-                <select class="fsel" id="t13-ptype">
-                  <option>아파트</option><option>오피스텔</option><option>주상복합</option><option>고급주택</option><option>빌라·연립</option>
-                </select>
-              </div>
-              <div class="fg" style="margin:0">
-                <label class="flbl">거래구분</label>
-                <select class="fsel" id="t13-pdeal">
-                  <option>공동매도</option><option>공동전세</option><option>공동월세</option><option>공동임대</option>
-                </select>
-              </div>
-            </div>
-            <div class="fg" style="margin:0">
-              <label class="flbl">보낼 방법</label>
-              <div style="display:flex;gap:10px;padding:6px 0">
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-send" value="지역망" checked style="accent-color:#2DD4A0">지역망</label>
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-send" value="두레" style="accent-color:#2DD4A0">두레</label>
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-send" value="시/군/구" style="accent-color:#2DD4A0">시/군/구</label>
-              </div>
-            </div>
-            <div class="fg" style="margin:0">
-              <label class="flbl">제목</label>
-              <input class="fi" id="t13-ptitle" placeholder="예: 강남구 대치동 SK뷰 33평 공동매도">
-            </div>
-          </div>
-          <!-- 옵션 버튼 -->
-          <div style="margin-bottom:10px">
-            <div style="font-size:8px;color:#8A9AB0;font-weight:700;margin-bottom:5px">옵션 선택 (복수)</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">금액조절 가능한</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">바로 볼 수 있는</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">새로 지은</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">올수리 깨끗한</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">역세권</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">주차 가능한</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">즉시 입주 가능한</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">풀 옵션</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">한강뷰</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">저평가</button>
-            </div>
-          </div>
-          <!-- 상세정보 -->
-          <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:10px 11px;margin-bottom:10px">
-            <div style="font-size:8px;color:#2DD4A0;font-weight:700;margin-bottom:7px">※ 상세정보를 모두 입력하지 않아도 전송 가능합니다.</div>
-            <div style="display:flex;flex-direction:column;gap:6px">
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">공급면적</span>
-                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0" id="t13-supply-area">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">m²</span>
-                <button style="padding:3px 7px;border-radius:4px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-size:8px;cursor:pointer;font-family:var(--sans)" onclick="toast('평 변환')">평변환</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">전용면적</span>
-                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">m²</span>
-                <button style="padding:3px 7px;border-radius:4px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-size:8px;cursor:pointer;font-family:var(--sans)" onclick="toast('평 변환')">평변환</button>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">매매가</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0" id="t13-pprice">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">만</span>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">보증금</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">만</span>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">월세</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">만</span>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 6px 1fr 52px 1fr 6px 1fr;gap:5px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">방수</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0;text-align:right">층수</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-              </div>
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">이사예정일</span>
-                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" type="date" id="t13-pmove">
-              </div>
-            </div>
-          </div>
-          <!-- 고객정보 + 전송 버튼 -->
-          <div style="display:flex;gap:7px">
-            <button onclick="toast('👤 고객정보 입력')" style="flex:1;padding:10px;border-radius:9px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">👤 고객정보</button>
-            <button onclick="toast('💾 임시저장')" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">💾 임시저장</button>
-            <button onclick="t13SendSell()" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🤖 AI 전송</button>
-          </div>
-
-          <!-- ★ 유튜브 숏츠 광고 서비스 ★ -->
-          <div style="margin-top:12px;background:linear-gradient(135deg,#0D0A1A,#1A102A);border:1.5px solid rgba(239,68,68,.35);border-radius:12px;padding:13px;position:relative;overflow:hidden">
-            <div style="position:absolute;top:0;right:0;background:linear-gradient(135deg,#FF0000,#CC0000);font-size:7px;font-weight:900;color:#fff;padding:4px 10px;border-radius:0 10px 0 7px">▶ SHORTS</div>
-            <div style="font-size:11px;font-weight:900;color:#EDF2F7;margin-bottom:4px">📹 유튜브 숏츠 광고 자동제작</div>
-            <div style="font-size:9px;color:#8A9AB0;line-height:1.7;margin-bottom:10px">
-              롯데타워앤강남빌딩(주) 공식 채널 숏츠 광고<br>
-              사진 10장 + 20초 영상 → AI 자동편집 → 유튜브 업로드<br>
-              <span style="color:#FCA5A5;font-weight:700">📧 파일 발송: 5788285@naver.com</span>
-            </div>
-            <!-- 요금제 -->
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
-              <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:10px;text-align:center">
-                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">무료 회원</div>
-                <div style="font-size:13px;font-weight:900;color:#2DD4A0">무료</div>
-                <div style="font-size:8px;color:#8A9AB0;margin-top:2px">저평가 판정 시<br>자동 숏츠 1건</div>
-              </div>
-              <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px;text-align:center">
-                <div style="font-size:8px;color:#FCA5A5;margin-bottom:3px">유료 추가 신청</div>
-                <div style="font-size:13px;font-weight:900;color:#FCA5A5">3만원~</div>
-                <div style="font-size:8px;color:#8A9AB0;margin-top:2px">1건당 · 원하는 매물<br>즉시 숏츠 제작</div>
-              </div>
-            </div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:12px">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
-              <button onclick="openShortsRequest('free')" style="padding:10px;border-radius:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.22);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">
-                📹 무료 숏츠 신청
-              </button>
-              <button onclick="openShortsRequest('paid')" style="padding:10px;border-radius:8px;background:linear-gradient(135deg,#EF4444,#B91C1C);color:#fff;font-family:var(--sans);font-size:11px;font-weight:800;border:none;cursor:pointer">
-                ⚡ 유료 즉시 신청
-              </button>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">매물종류</div>
+                <select id="h-type" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>아파트</option><option>오피스텔</option><option>빌라</option><option>상가</option><option>토지</option><option>건물</option>
+                </select>
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">거래구분</div>
+                <select id="h-deal" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>매도</option><option>전세</option><option>월세</option><option>단기임대</option>
+                </select>
+              </div>
             </div>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">매물위치</div>
+              <input id="h-addr" type="text" placeholder="예: 서울 강남구 대치동 938" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">매매가(만원)</div>
+                <input id="h-price" type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">보증금(만원)</div>
+                <input id="h-dep" type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">월세(만원)</div>
+                <input id="h-rent" type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">공급면적(m²)</div>
+                <input type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">방수</div>
+                <input type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">층수</div>
+                <input type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+            </div>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">제목</div>
+              <input id="h-title" type="text" placeholder="예: [대치동 미도2차] 41평 급매 있습니다" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+            </div>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">상세 내용</div>
+              <textarea id="h-desc" placeholder="매물 특징, 입주일, 특이사항 등..." style="width:100%;height:70px;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;resize:none;box-sizing:border-box;line-height:1.5"></textarea>
+            </div>
+            <!-- 옵션 태그 -->
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:5px">옵션 선택</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">금액조절 가능한</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">바로 볼 수 있는</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">새로 지은</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">손님 대기중</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">즉시 입주 가능한</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">전세대출 가능한</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">홀 수리 깨끗한</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">주차 가능한</button>
+              </div>
+            </div>
+            <!-- 보낼 방법 -->
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:5px">보낼 방법</div>
+              <div style="display:flex;gap:7px">
+                <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#8A9AB0;cursor:pointer"><input type="radio" name="h-send" value="local" checked style="accent-color:#2DD4A0"> 지역망</label>
+                <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#8A9AB0;cursor:pointer"><input type="radio" name="h-send" value="two" style="accent-color:#2DD4A0"> 두레</label>
+                <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#8A9AB0;cursor:pointer"><input type="radio" name="h-send" value="city" style="accent-color:#2DD4A0"> 시/군/구</label>
+              </div>
+            </div>
+          </div>
+          <!-- 유튜브 숏츠 -->
+          <div style="background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:11px;margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <div style="font-size:10px;font-weight:800;color:#EDF2F7">📹 유튜브 숏츠 자동제작</div>
+              <span style="font-size:8px;background:rgba(239,68,68,.15);color:#FCA5A5;padding:2px 7px;border-radius:4px">▶ SHORTS</span>
+            </div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6;margin-bottom:7px">저평가 판정 시 무료 1건 · 추가 3만원/건<br>📧 사진10장+20초영상 → 5788285@naver.com</div>
+            <div style="display:flex;gap:6px">
+              <button onclick="openShortsRequest('free')" style="flex:1;padding:8px;border-radius:7px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">무료 신청</button>
+              <button onclick="openShortsRequest('paid')" style="flex:1;padding:8px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">유료(3만원)</button>
+            </div>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="toast('임시저장 완료')" style="flex:1;padding:11px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">💾 임시저장</button>
+            <button onclick="t13SendHave()" style="flex:2;padding:11px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">🤖 AI 있습니다 발송</button>
           </div>
         </div>
       </div>
 
-      <!-- ── AI 삽니다 ── -->
-      <div id="t13-p3" style="display:none;padding:10px 16px">
-        <div style="background:rgba(74,158,224,.06);border:1.5px solid rgba(74,158,224,.25);border-radius:12px;padding:13px;margin-bottom:10px">
-          <div style="font-size:10px;font-weight:900;color:#A8D4F5;margin-bottom:12px;display:flex;align-items:center;gap:6px">
-            <span>🔍</span><span>공동중개 AI 삽니다</span>
-            <span style="margin-left:auto;font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 8px;border-radius:4px">보낼메세지: 매물 구합니다</span>
+      <!-- ════ 구합니다 발송 ════ -->
+      <div id="t13-p2" style="display:none;padding:12px 16px">
+        <div style="background:linear-gradient(135deg,rgba(74,158,224,.07),rgba(74,158,224,.03));border:1.5px solid rgba(74,158,224,.3);border-radius:13px;padding:14px">
+          <div style="font-size:12px;font-weight:900;color:#A8D4F5;margin-bottom:14px;display:flex;align-items:center;gap:7px">
+            <span style="font-size:18px">🔍</span> 구합니다 — 매물 찾기 발송
           </div>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
-            <div class="frow2">
-              <div class="fg" style="margin:0">
-                <label class="flbl">찾는 매물종류</label>
-                <select class="fsel" id="t13-btype">
-                  <option>아파트</option><option>오피스텔</option><option>주상복합</option><option>고급주택</option>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">찾는 매물종류</div>
+                <select style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>아파트</option><option>오피스텔</option><option>빌라</option><option>상가</option><option>토지</option>
                 </select>
               </div>
-              <div class="fg" style="margin:0">
-                <label class="flbl">거래구분</label>
-                <select class="fsel" id="t13-bdeal">
-                  <option>공동매수</option><option>공동전세</option><option>공동월세</option><option>공동임차</option>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">거래구분</div>
+                <select style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>매수</option><option>전세</option><option>월세</option><option>단기임대</option>
                 </select>
               </div>
             </div>
-            <div class="fg" style="margin:0">
-              <label class="flbl">보낼 방법</label>
-              <div style="display:flex;gap:10px;padding:6px 0">
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-bsend" value="지역망" checked style="accent-color:#4A9EE0">지역망</label>
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-bsend" value="두레" style="accent-color:#4A9EE0">두레</label>
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:#EDF2F7;cursor:pointer"><input type="radio" name="t13-bsend" value="시/군/구" style="accent-color:#4A9EE0">시/군/구</label>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">희망 지역</div>
+              <input type="text" placeholder="예: 강남구 대치동, 도곡동" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px">
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">최대 예산(만원)</div>
+                <input type="number" placeholder="0" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">희망 평형</div>
+                <input type="text" placeholder="예: 30~40" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">입주 희망일</div>
+                <input type="text" placeholder="즉시/협의" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
               </div>
             </div>
-            <div class="fg" style="margin:0">
-              <label class="flbl">제목</label>
-              <input class="fi" id="t13-btitle" placeholder="예: 대치·도곡동 30억대 아파트 구합니다">
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">제목</div>
+              <input type="text" placeholder="예: 대치동 30억대 아파트 구합니다" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
             </div>
-            <div class="fg" style="margin:0">
-              <label class="flbl">희망 지역</label>
-              <select class="fsel" id="t13-barea">
-                <option>대치동</option><option>도곡동</option><option>역삼동</option><option>개포동</option>
-                <option>압구정동</option><option>반포동</option><option>용산·이촌</option><option>성수동</option>
-                <option>잠실·송파</option><option>여의도</option><option>목동</option>
-              </select>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">상세 조건</div>
+              <textarea placeholder="학군·교통·층수 등 선호 조건..." style="width:100%;height:60px;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(74,158,224,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;resize:none;box-sizing:border-box;line-height:1.5"></textarea>
             </div>
-          </div>
-          <!-- 옵션 -->
-          <div style="margin-bottom:10px">
-            <div style="font-size:8px;color:#8A9AB0;font-weight:700;margin-bottom:5px">조건 선택</div>
-            <div style="display:flex;flex-wrap:wrap;gap:4px">
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">금액조절 가능한</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">바로 볼 수 있는</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">새로 지은</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">손님 대기중</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">역세권</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">즉시 입주 가능한</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">풀 옵션</button>
-              <button onclick="toggleOpt(this)" class="opt-btn" style="font-size:8px;padding:3px 8px">학군우수</button>
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:5px">옵션</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">학군 우수</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">역세권</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">한강뷰</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">주차 가능한</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">전세대출 가능한</button>
+                <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">즉시 입주 가능한</button>
+              </div>
             </div>
-          </div>
-          <!-- 상세정보 -->
-          <div style="background:rgba(8,16,28,.4);border-radius:9px;padding:10px 11px;margin-bottom:10px">
-            <div style="font-size:8px;color:#A8D4F5;font-weight:700;margin-bottom:7px">※ 상세정보를 모두 입력하지 않아도 전송 가능합니다.</div>
-            <div style="display:flex;flex-direction:column;gap:6px">
-              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">매매가</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0" id="t13-bmin">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0" id="t13-bmax">
-                <span style="font-size:9px;color:#8A9AB0">만</span>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">보증금</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">만</span>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 8px 1fr 24px;gap:6px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">월세</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">만</span>
-              </div>
-              <div style="display:grid;grid-template-columns:52px 1fr 6px 1fr 52px 1fr 6px 1fr;gap:5px;align-items:center">
-                <span style="font-size:9px;color:#8A9AB0">방수</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0;text-align:right">층수</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-                <span style="font-size:9px;color:#8A9AB0">~</span>
-                <input class="fi" style="padding:5px 8px;font-size:11px" placeholder="0">
-              </div>
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="font-size:9px;color:#8A9AB0;width:52px;flex-shrink:0">이사예정일</span>
-                <input class="fi" style="flex:1;padding:5px 8px;font-size:11px" type="date">
+            <div>
+              <div style="font-size:8px;color:#8A9AB0;margin-bottom:5px">보낼 방법</div>
+              <div style="display:flex;gap:7px">
+                <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#8A9AB0;cursor:pointer"><input type="radio" name="w-send" value="local" checked style="accent-color:#4A9EE0"> 지역망</label>
+                <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#8A9AB0;cursor:pointer"><input type="radio" name="w-send" value="two" style="accent-color:#4A9EE0"> 두레</label>
+                <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#8A9AB0;cursor:pointer"><input type="radio" name="w-send" value="city" style="accent-color:#4A9EE0"> 시/군/구</label>
               </div>
             </div>
           </div>
           <div style="display:flex;gap:7px">
-            <button onclick="toast('👤 고객정보 입력')" style="flex:1;padding:10px;border-radius:9px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">👤 고객정보</button>
-            <button onclick="toast('💾 임시저장')" style="flex:1;padding:10px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">💾 임시저장</button>
-            <button onclick="t13SendBuy()" style="flex:2;padding:10px;border-radius:9px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🤖 AI 전송</button>
+            <button onclick="toast('임시저장 완료')" style="flex:1;padding:11px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">💾 임시저장</button>
+            <button onclick="t13SendWant()" style="flex:2;padding:11px;border-radius:9px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">🤖 AI 구합니다 발송</button>
           </div>
         </div>
       </div>
 
-      <!-- ── 저장 목록 ── -->
-      <div id="t13-p4" style="display:none;padding:10px 16px">
-        <!-- 내 매물 -->
-        <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:8px">📋 내 공동중개 매물 목록</div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.15);border-radius:10px;padding:10px 12px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
-              <div>
-                <div style="display:flex;gap:5px;align-items:center;margin-bottom:2px">
-                  <span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:1px 6px;border-radius:3px;font-weight:700">팝니다</span>
-                  <span style="font-size:8px;color:#8A9AB0">2026-03-21</span>
-                </div>
-                <div style="font-size:10px;font-weight:800">대치 SK뷰 33평 — 공동매도</div>
-                <div style="font-size:8px;color:#8A9AB0;margin-top:1px">24.5억 · 즉시입주</div>
-              </div>
-              <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700">수신3</span>
+      <!-- ════ 보낸 쪽지함 ════ -->
+      <div id="t13-p3" style="display:none;padding:12px 16px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:9px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">🏠 있습니다</span>
+              <span style="font-size:8px;color:#4A5568">2026-03-25 · 지역망</span>
             </div>
-            <div style="display:flex;gap:5px;margin-top:6px">
-              <button onclick="toast('✏️ 수정')" style="flex:1;padding:5px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#8A9AB0;font-family:var(--sans);font-size:8px;cursor:pointer">✏️ 수정</button>
-              <button onclick="toast('🔄 재전송')" style="flex:1;padding:5px;border-radius:6px;background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.15);color:#2DD4A0;font-family:var(--sans);font-size:8px;cursor:pointer">🔄 재전송</button>
-              <button onclick="toast('🗑️ 삭제')" style="flex:1;padding:5px;border-radius:6px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.12);color:#FCA5A5;font-family:var(--sans);font-size:8px;cursor:pointer">🗑️ 삭제</button>
+            <div style="font-size:11px;font-weight:800;color:#EDF2F7;margin-bottom:4px">[삼환아르누보2] 오피스텔 임대 있습니다</div>
+            <div style="font-size:9px;color:#8A9AB0;margin-bottom:8px">대치동 938 · 보1천/월125만 · 즉시입주</div>
+            <div style="display:flex;gap:6px">
+              <button onclick="toast('수정합니다')" style="flex:1;padding:8px;border-radius:7px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">✏️ 수정</button>
+              <button onclick="toast('재전송합니다')" style="flex:1;padding:8px;border-radius:7px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">🔄 재전송</button>
+              <button onclick="this.closest('div[style*=border-radius]').remove()" style="padding:8px 10px;border-radius:7px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:10px;cursor:pointer">🗑</button>
             </div>
           </div>
-          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.15);border-radius:10px;padding:10px 12px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
-              <div>
-                <div style="display:flex;gap:5px;align-items:center;margin-bottom:2px">
-                  <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:1px 6px;border-radius:3px;font-weight:700">삽니다</span>
-                  <span style="font-size:8px;color:#8A9AB0">2026-03-20</span>
-                </div>
-                <div style="font-size:10px;font-weight:800">학군권역 30억대 아파트 구함</div>
-                <div style="font-size:8px;color:#8A9AB0;margin-top:1px">대치·도곡 · 30~35억</div>
-              </div>
-              <span style="font-size:8px;background:rgba(201,168,76,.12);color:#E8C97A;padding:2px 7px;border-radius:4px;font-weight:700">매칭1</span>
-            </div>
-            <div style="display:flex;gap:5px;margin-top:6px">
-              <button onclick="toast('✏️ 수정')" style="flex:1;padding:5px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#8A9AB0;font-family:var(--sans);font-size:8px;cursor:pointer">✏️ 수정</button>
-              <button onclick="toast('🔄 재전송')" style="flex:1;padding:5px;border-radius:6px;background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.15);color:#2DD4A0;font-family:var(--sans);font-size:8px;cursor:pointer">🔄 재전송</button>
-              <button onclick="toast('🗑️ 삭제')" style="flex:1;padding:5px;border-radius:6px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.12);color:#FCA5A5;font-family:var(--sans);font-size:8px;cursor:pointer">🗑️ 삭제</button>
-            </div>
-          </div>
+          <div style="text-align:center;padding:12px;color:#4A5568;font-size:10px">오늘 1건 발송 / 일 5건 한도 (잔여 4건)</div>
         </div>
-        <!-- AI 매칭 수신 매물 -->
-        <div style="font-size:10px;font-weight:800;color:#A8D4F5;margin-bottom:8px">⚡ AI 자동매칭 수신 매물</div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-          <div style="background:var(--s1);border:1px solid rgba(74,158,224,.18);border-radius:10px;padding:10px 12px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+      </div>
+
+      <!-- ════ 내 매물목록 ════ -->
+      <div id="t13-p4" style="display:none;padding:12px 16px">
+        <div style="font-size:12px;font-weight:900;color:#EDF2F7;margin-bottom:12px">📋 내 등록 매물 목록</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
               <div>
-                <div style="display:flex;gap:5px;align-items:center;margin-bottom:2px">
-                  <span style="font-size:8px;background:rgba(239,68,68,.12);color:#FCA5A5;padding:1px 6px;border-radius:3px;font-weight:700">AI 97</span>
-                  <span style="font-size:8px;color:#8A9AB0">파트너 A · 2026-03-21</span>
-                </div>
-                <div style="font-size:10px;font-weight:800">반포 래미안퍼스티지 59평</div>
-                <div style="font-size:8px;color:#8A9AB0;margin-top:1px">82억 · 한강뷰 · ▼6.1%</div>
+                <div style="font-size:11px;font-weight:800;color:#EDF2F7">삼환아르누보2 오피스텔</div>
+                <div style="font-size:9px;color:#8A9AB0;margin-top:2px">대치동 · 전용7.8평 · 월125만</div>
               </div>
-              <div style="display:flex;flex-direction:column;gap:3px;align-items:flex-end">
-                <span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:1px 6px;border-radius:3px;font-weight:700">공동중개</span>
-              </div>
+              <span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">매칭중</span>
             </div>
-            <div style="display:flex;gap:5px;margin-top:6px">
-              <button onclick="toast('📋 상세보기')" style="flex:1;padding:6px;border-radius:6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#8A9AB0;font-family:var(--sans);font-size:9px;cursor:pointer">상세보기</button>
-              <button onclick="toast('📞 파트너 연결')" style="flex:2;padding:6px;border-radius:6px;background:linear-gradient(135deg,#4A9EE0,#1A5A9A);color:#fff;font-family:var(--sans);font-size:9px;font-weight:800;border:none;cursor:pointer">📞 파트너 연결</button>
-              <button onclick="toast('⭐ 저장됨')" style="flex:1;padding:6px;border-radius:6px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.15);color:#E8C97A;font-family:var(--sans);font-size:9px;cursor:pointer">⭐ 저장</button>
+            <div style="background:rgba(201,168,76,.06);border-radius:7px;padding:7px 9px;margin-bottom:8px;font-size:9px;color:#8A9AB0">
+              🤖 AI 분석: 유사 매물 대비 <span style="color:#2DD4A0;font-weight:700">적정가</span> · 학원가 접근성 우수 · 조회수 12회
+            </div>
+            <div style="display:flex;gap:6px">
+              <button onclick="toast('수정합니다')" style="flex:1;padding:9px;border-radius:8px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">✏️ 수정</button>
+              <button onclick="showT13Tab('have')" style="flex:1;padding:9px;border-radius:8px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">🔄 재발송</button>
+              <button onclick="openShortsRequest('free')" style="flex:1;padding:9px;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📹 숏츠</button>
             </div>
           </div>
-        </div>
-        <!-- 약관 동의 바로가기 -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between">
-          <div style="font-size:9px;color:#8A9AB0">약관·동의 확인</div>
-          <button onclick="nbClick(4);goTab(4)" style="padding:5px 12px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#8A9AB0;font-family:var(--sans);font-size:9px;cursor:pointer">🔒 약관 보기</button>
+          <div style="text-align:center;padding:12px">
+            <button onclick="showT13Tab('have')" style="padding:12px 24px;border-radius:10px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">+ 새 매물 등록하기</button>
+          </div>
         </div>
       </div>
 
       <div style="height:80px"></div>
     </div>
-
 
   </div><!-- /content -->
 
@@ -5273,8 +5140,8 @@ function doLogin(role){
 function openJbPayment(tier){
   var tierInfo = {
     'free':    {name:'무료 기본', price:'₩0', note:'무료로 시작합니다'},
-    'basic':   {name:'스탠다드', price:'월 ₩90,000', note:'1일 7건 · 숏츠 주 2건'},
-    'premium': {name:'프리미엄', price:'월 ₩300,000', note:'1일 20건 · 숏츠 1일 1건 · SNS 동시발송'}
+    'basic':   {name:'스탠다드', price:'월 ₩90,000', note:'1일 7건 · 숏츠 주 1건 (가입 연락처 광고)'},
+    'premium': {name:'프리미엄', price:'월 ₩150,000', note:'1일 20건 · 숏츠 주 2건 (가입 연락처 광고)'}
   };
   var t = tierInfo[tier] || tierInfo['basic'];
   document.getElementById('jbp-tier-name') && (document.getElementById('jbp-tier-name').textContent = t.name);
@@ -5311,53 +5178,64 @@ var t13Tabs=['t13-t1','t13-t2','t13-t3','t13-t4'];
 var t13Colors=['#2DD4A0','#2DD4A0','#A8D4F5','#E8C97A'];
 var t13Borders=['rgba(45,212,160,.3)','rgba(45,212,160,.3)','rgba(74,158,224,.3)','rgba(201,168,76,.3)'];
 var t13Bgs=['rgba(45,212,160,.1)','rgba(45,212,160,.1)','rgba(74,158,224,.08)','rgba(201,168,76,.08)'];
+/* ── Tab13 새 5탭 시스템 ── */
+var t13PanelIds = ['t13-p0','t13-p1','t13-p2','t13-p3','t13-p4'];
+var t13TabIds   = ['t13-t0','t13-t1','t13-t2','t13-t3','t13-t4'];
+var t13TabKeys  = ['recv','have','want','sent','mylist'];
+var t13TabColors= ['#2DD4A0','#2DD4A0','#4A9EE0','#E8C97A','#C9A84C'];
+var t13TabBgs   = ['rgba(45,212,160,.1)','rgba(45,212,160,.1)','rgba(74,158,224,.1)','rgba(201,168,76,.08)','rgba(201,168,76,.08)'];
+
 function showT13Tab(key){
-  var map={send:0,sell:1,buy:2,saved:3};
-  var idx=map[key]||0;
-  t13Panels.forEach(function(p,i){
-    var el=document.getElementById(p);if(el)el.style.display=i===idx?'block':'none';
+  var idx = t13TabKeys.indexOf(key);
+  if(idx < 0) idx = 0;
+  t13PanelIds.forEach(function(p,i){
+    var el = document.getElementById(p);
+    if(el) el.style.display = (i === idx) ? 'block' : 'none';
   });
-  t13Tabs.forEach(function(t,i){
-    var el=document.getElementById(t);if(!el)return;
-    if(i===idx){
-      el.style.background=t13Bgs[i];
-      el.style.borderBottom='3px solid '+t13Colors[i];
-      el.style.color=t13Colors[i];
+  t13TabIds.forEach(function(t,i){
+    var el = document.getElementById(t);
+    if(!el) return;
+    if(i === idx){
+      el.style.background = t13TabBgs[i];
+      el.style.borderBottom = '3px solid ' + t13TabColors[i];
+      el.style.color = t13TabColors[i];
     } else {
-      el.style.background='transparent';
-      el.style.borderBottom='3px solid transparent';
-      el.style.color='#8A9AB0';
+      el.style.background = 'transparent';
+      el.style.borderBottom = '3px solid transparent';
+      el.style.color = '#8A9AB0';
     }
   });
-  var sc=document.querySelector('.content');if(sc)sc.scrollTop=0;
-}
-function t13Search(){ toast('🔍 AI 검색 완료 — 2건 표시'); }
-function t13SendSell(){
-  var t=document.getElementById('t13-ptitle');
-  if(!t||!t.value.trim()){toast('⚠️ 제목을 입력해주세요');return;}
-  toast('✅ 공동중개 AI 팝니다 전송 완료!\n🤖 파트너 자동매칭 시작 · 일 5건 한도 (잔여 4건)');
-  if(t)t.value='';
-}
-function t13SendBuy(){
-  var t=document.getElementById('t13-btitle');
-  if(!t||!t.value.trim()){toast('⚠️ 제목을 입력해주세요');return;}
-  toast('✅ 공동중개 AI 삽니다 전송 완료!\n🔍 파트너 매물 자동탐색 시작됩니다');
-  if(t)t.value='';
+  var sc = document.querySelector('.content');
+  if(sc) sc.scrollTop = 0;
 }
 
-function submitJbSell(){
-  var loc=document.getElementById('jb-location').value.trim();
-  var price=document.getElementById('jb-price').value.trim();
-  if(!loc||!price){toast('⚠️ 지역·단지명과 매물가를 입력해주세요');return;}
-  toast('✅ 공동중개 AI 팝니다 등록 완료!\n🤖 파트너 자동매칭 시작됩니다');
-  document.getElementById('jb-location').value='';document.getElementById('jb-price').value='';
-  document.getElementById('jb-area').value='';document.getElementById('jb-note-sell').value='';
+function t13ToggleFilter(btn){
+  var on = btn.classList.toggle('t13-on');
+  btn.style.background = on ? 'rgba(45,212,160,.12)' : 'rgba(255,255,255,.06)';
+  btn.style.borderColor = on ? 'rgba(45,212,160,.4)' : 'rgba(255,255,255,.1)';
+  btn.style.color = on ? '#2DD4A0' : '#8A9AB0';
 }
-function submitJbBuy(){
-  var bmax=document.getElementById('jb-budget-max').value.trim();
-  if(!bmax){toast('⚠️ 예산 상한을 입력해주세요');return;}
-  toast('✅ 공동중개 AI 삽니다 등록 완료!\n🔍 파트너 매물 자동탐색 시작됩니다');
+
+function t13SendHave(){
+  var title = document.getElementById('h-title');
+  var addr  = document.getElementById('h-addr');
+  if(!title || !title.value.trim()){ toast('제목을 입력해주세요'); return; }
+  if(!addr  || !addr.value.trim()) { toast('매물위치를 입력해주세요'); return; }
+  toast('✅ AI 있습니다 발송 완료! 파트너 자동매칭 시작 (일 5건 한도 · 잔여 4건)');
+  title.value = ''; addr.value = '';
+  showT13Tab('sent');
 }
+
+function t13SendWant(){
+  toast('✅ AI 구합니다 발송 완료! 매물 자동탐색 시작됩니다');
+  showT13Tab('sent');
+}
+
+function t13Search(){ toast('🔍 AI 검색 완료'); }
+function t13SendSell(){ t13SendHave(); }
+function t13SendBuy(){  t13SendWant(); }
+function submitJbSell(){ t13SendHave(); }
+function submitJbBuy(){  t13SendWant(); }
 
 /* ─── 공동중개 파트너 보안 적용 ─── */
 function applyJointBrokerSecurity(){
