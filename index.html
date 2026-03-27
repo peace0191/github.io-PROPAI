@@ -479,6 +479,14 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <button onclick="doLogin('joint')" style="flex:1;padding:11px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">🔑 로그인</button>
         <button onclick="openJointSignup()" style="flex:1;padding:11px;border-radius:9px;background:transparent;border:1.5px solid rgba(45,212,160,.35);color:#2DD4A0;font-family:var(--sans);font-size:12px;font-weight:700;cursor:pointer">📝 가입신청</button>
       </div>
+      <!-- 파트너 전용 플랫폼 바로가기 -->
+      <div style="margin-top:8px;background:rgba(45,212,160,.04);border:1px solid rgba(45,212,160,.15);border-radius:9px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:10px;font-weight:800;color:#2DD4A0;margin-bottom:2px">🖥️ 공동중개 파트너 전용 플랫폼</div>
+          <div style="font-size:8px;color:#4A5568">AI매칭매물 있습니다/구합니다 · 수익구조 확인</div>
+        </div>
+        <a href="propai_partner.html" target="_blank" style="padding:7px 12px;border-radius:7px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:10px;font-weight:900;text-decoration:none;flex-shrink:0">열기 →</a>
+      </div>
     </div>
   </div>
 
@@ -639,7 +647,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         </div>
         <div onclick="toggleJAg('jag3')" style="display:flex;align-items:flex-start;gap:8px;cursor:pointer">
           <div id="jag3" style="width:16px;height:16px;border-radius:4px;border:1.5px solid #4A5568;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px"></div>
-          <div style="font-size:9px;color:#8A9AB0;line-height:1.5">일 5건 한도 · 법정보수 50:50 분배 동의 <span style="color:#EF4444">[필수]</span></div>
+          <div style="font-size:9px;color:#8A9AB0;line-height:1.5">일 5건 한도 · 법정보수 의뢰인에게 각각 청구 동의 <span style="color:#EF4444">[필수]</span></div>
         </div>
       </div>
       <div style="display:flex;gap:8px">
@@ -2286,8 +2294,8 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div class="reg3-wrap">
         <div class="reg3-title">수요자 · 공급자 · 공동중개 등록</div>
         <div class="reg3-grid">
-          <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">🙋</div><div class="r3lbl">AI 매칭 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
-          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏠</div><div class="r3lbl">AI 매칭 대기합니다</div><div class="r3sub">매도·임대</div></div>
+          <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">🙋</div><div class="r3lbl">AI매칭매물 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
+          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏠</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
           <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
@@ -2431,8 +2439,8 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div class="reg3-wrap">
         <div class="reg3-title">수요자 · 공급자 · 공동중개 등록</div>
         <div class="reg3-grid">
-          <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">💎</div><div class="r3lbl">AI 매칭 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
-          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏯</div><div class="r3lbl">AI 매칭 대기합니다</div><div class="r3sub">매도·임대</div></div>
+          <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">💎</div><div class="r3lbl">AI매칭매물 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
+          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏯</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
           <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
@@ -2633,8 +2641,8 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
       <div class="reg3-wrap">
         <div class="reg3-title">수요자 · 공급자 · 공동중개 등록</div>
         <div class="reg3-grid">
-          <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">💎</div><div class="r3lbl">AI 매칭 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
-          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏯</div><div class="r3lbl">AI 매칭 대기합니다</div><div class="r3sub">매도·임대</div></div>
+          <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">💎</div><div class="r3lbl">AI매칭매물 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
+          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏯</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
           <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
@@ -3777,7 +3785,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <div class="reg3-title">수요자 · 공급자 · 공동중개 등록</div>
         <div class="reg3-grid">
           <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">📊</div><div class="r3lbl">투자 수요 등록</div><div class="r3sub">매수·조합원</div></div>
-          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏗️</div><div class="r3lbl">AI 매칭 대기합니다</div><div class="r3sub">매도·임대</div></div>
+          <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏗️</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
           <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
@@ -4318,36 +4326,12 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
         <!-- 가입 승인 대기 -->
         <div style="padding:0 16px 10px">
-          <div style="font-size:9px;font-weight:800;color:#2DD4A0;margin-bottom:8px">📋 공동중개 가입 승인 대기</div>
-          <div style="display:flex;flex-direction:column;gap:7px">
-            <div style="background:var(--s1);border:1px solid rgba(45,212,160,.18);border-radius:11px;overflow:hidden">
-              <div style="padding:11px 13px">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
-                  <div><div style="font-size:10px;font-weight:800">○○부동산중개사무소</div><div style="font-size:9px;color:var(--txt2);margin-top:1px">대표: 홍길동 · 등록번호: 11680-2024-XXXXX</div></div>
-                  <span style="font-size:8px;background:rgba(245,158,11,.12);color:var(--amber);padding:2px 7px;border-radius:4px;font-weight:700;white-space:nowrap">검토중</span>
-                </div>
-                <div style="font-size:9px;color:var(--txt2);margin-bottom:8px">📎 사업자등록증 · 개설등록증 첨부 완료 · 연락처: 010-XXXX-XXXX</div>
-                <div style="display:flex;gap:6px">
-                  <button onclick="toast('✅ 승인 완료! 파트너에게 SMS 공유')" style="flex:1;padding:8px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:10px;font-weight:800;border:none;cursor:pointer">✅ 승인</button>
-                  <button onclick="toast('❌ 반려 처리됨')" style="flex:1;padding:8px;border-radius:8px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">❌ 반려</button>
-                  <button onclick="toast('📁 서류 상세보기')" style="flex:1;padding:8px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">📁 서류</button>
-                </div>
-              </div>
-            </div>
-            <div style="background:var(--s1);border:1px solid rgba(45,212,160,.18);border-radius:11px;overflow:hidden">
-              <div style="padding:11px 13px">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">
-                  <div><div style="font-size:10px;font-weight:800">△△공인중개사사무소</div><div style="font-size:9px;color:var(--txt2);margin-top:1px">대표: 김철수 · 등록번호: 11680-2024-YYYYY</div></div>
-                  <span style="font-size:8px;background:rgba(74,158,224,.12);color:#A8D4F5;padding:2px 7px;border-radius:4px;font-weight:700;white-space:nowrap">서류확인</span>
-                </div>
-                <div style="font-size:9px;color:var(--txt2);margin-bottom:8px">📎 서류 미흡 · 개설등록증 재첨부 요청</div>
-                <div style="display:flex;gap:6px">
-                  <button onclick="toast('✅ 승인 완료!')" style="flex:1;padding:8px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:10px;font-weight:800;border:none;cursor:pointer">✅ 승인</button>
-                  <button onclick="toast('❌ 반려')" style="flex:1;padding:8px;border-radius:8px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">❌ 반려</button>
-                  <button onclick="toast('📨 서류 재요청 공유')" style="flex:1;padding:8px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">📨 재요청</button>
-                </div>
-              </div>
-            </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div style="font-size:9px;font-weight:800;color:#2DD4A0">📋 공동중개 가입 승인 대기</div>
+            <button onclick="renderAdminPartners()" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:var(--sans)">🔄 새로고침</button>
+          </div>
+          <div id="admin-partner-list" style="display:flex;flex-direction:column;gap:7px">
+            <div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">로딩 중...</div>
           </div>
         </div>
 
@@ -5118,13 +5102,39 @@ function doLogin(role){
     var id=document.getElementById('jb-id').value.trim();
     var pw=document.getElementById('jb-pw').value.trim();
     if(!id||!pw){toast('⚠️ 공동중개 ID와 비밀번호를 입력해주세요');return;}
-    document.getElementById('un').textContent=id+' (공동)';
+
+    // ★ localStorage 승인 계정 확인
+    var approved = [];
+    try { approved = JSON.parse(localStorage.getItem('propai_approved_partners')||'[]'); } catch(e){}
+    var matchedPartner = approved.find(function(a){return a.id===id && a.pw===pw;});
+
+    // 승인 대기 중인지 확인
+    var allApps = [];
+    try { allApps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]'); } catch(e){}
+    var pendingApp = allApps.find(function(a){return a.id===id && a.status==='pending';});
+    var rejectedApp = allApps.find(function(a){return a.id===id && a.status==='rejected';});
+
+    if(!matchedPartner && pendingApp){
+      toast('⏳ 가입 신청 검토 중입니다.\n관리자 승인 후 로그인 가능합니다.\n📞 010-8985-8945 이상수 대표');
+      return;
+    }
+    if(!matchedPartner && rejectedApp){
+      toast('❌ 가입이 반려되었습니다.\n📞 010-8985-8945 이상수 대표에게 문의해주세요');
+      return;
+    }
+    if(!matchedPartner){
+      toast('⚠️ 아이디 또는 비밀번호가 올바르지 않습니다');
+      return;
+    }
+
+    var officeName = matchedPartner.office || id;
+    document.getElementById('un').textContent = officeName + ' (공동)';
     var _uav=document.querySelector('.uav');if(_uav)_uav.textContent='🤝';
     applyJointBrokerSecurity();
     document.getElementById('app').className='logged';
-    goTab(13); // 공동중개 AI 서비스 화면으로 바로 이동
+    goTab(13);
     initBackButtonLock();
-    showChatBtn(); toast('🤝 공동중개 파트너 로그인 완료');
+    showChatBtn(); toast('🤝 ' + officeName + '\n공동중개 파트너 로그인 완료!');
   } else {
     var ns=['김수연','이민준','박지호','정유진','최서연','이상수'];
     document.getElementById('un').textContent=ns[Math.floor(Math.random()*ns.length)];
@@ -5421,6 +5431,9 @@ function showAdminTab(key){
       el.style.color='#8A9AB0';
     }
   });
+  // ★ 공동중개 탭 진입 시 파트너 신청 목록 자동 렌더링
+  if(key === 'joint') setTimeout(renderAdminPartners, 100);
+}
   // 관리자 뱃지 업데이트
   var badge=document.getElementById('adminBadge');
   if(badge&&adminUser)badge.textContent=adminUser.name+' ('+adminUser.level+')';
@@ -6029,8 +6042,33 @@ function jSignupSubmit(){
   var ag2=document.getElementById('jag2').textContent==='✓';
   var ag3=document.getElementById('jag3').textContent==='✓';
   if(!ag1||!ag2||!ag3){toast('⚠️ 필수 동의 항목을 모두 체크해주세요');return;}
+
+  // ★ localStorage에 신청 데이터 저장
+  var newApp = {
+    id:       document.getElementById('js-id').value.trim(),
+    pw:       document.getElementById('js-pw').value.trim(),
+    office:   document.getElementById('js-officename').value.trim(),
+    ceo:      document.getElementById('js-ceoname').value.trim(),
+    regnum:   document.getElementById('js-regnum').value.trim(),
+    tel:      document.getElementById('js-tel').value.trim(),
+    status:   'pending',
+    date:     new Date().toLocaleString('ko-KR'),
+    hasBiz:   document.getElementById('js-biz-lbl').style.color==='rgb(45, 212, 160)',
+    hasReg:   document.getElementById('js-reg-lbl').style.color==='rgb(45, 212, 160)'
+  };
+  try {
+    var apps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]');
+    // 중복 ID 체크
+    if(apps.find(function(a){return a.id===newApp.id;})){
+      toast('⚠️ 이미 신청된 ID입니다. 다른 ID를 사용해주세요');
+      return;
+    }
+    apps.push(newApp);
+    localStorage.setItem('propai_partner_apps', JSON.stringify(apps));
+  } catch(e){ console.log(e); }
+
   jSignupNext(4);
-  toast('✅ 가입 신청 완료! 승인 후 연락드립니다 (010-8985-8945)');
+  toast('✅ 가입 신청 완료!\n관리자 검토 후 연락드립니다\n📞 010-8985-8945');
 }
 
 /* ─── 파일 첨부 라벨 업데이트 ─── */
@@ -6413,6 +6451,84 @@ function smartChatReply(msg){
     }
   }
   return '😊 PROPAI AI 상담입니다!\n\n🏢 시그니엘 레지던스 (한강뷰)\n🎓 대치학원가 랜트 (래전드힐스·삼환·W타워)\n📈 재건축 투자 (은마·압구정·여의도)\n\n구체적으로 물어봐 주세요!\n📞 010-8985-8945 이상수 대표';
+}
+
+/* ─── 관리자 파트너 승인 패널 (localStorage 연동) ─── */
+function renderAdminPartners(){
+  var container = document.getElementById('admin-partner-list');
+  if(!container) return;
+  var apps = [];
+  try { apps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]'); } catch(e){}
+
+  if(apps.length === 0){
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">신청된 가입이 없습니다</div>';
+    return;
+  }
+
+  container.innerHTML = apps.map(function(app, idx){
+    var statusColor = app.status==='approved' ? '#2DD4A0' : app.status==='rejected' ? '#FCA5A5' : '#FCD34D';
+    var statusBg    = app.status==='approved' ? 'rgba(45,212,160,.12)' : app.status==='rejected' ? 'rgba(239,68,68,.12)' : 'rgba(245,158,11,.12)';
+    var statusLabel = app.status==='approved' ? '✅ 승인완료' : app.status==='rejected' ? '❌ 반려' : '⏳ 검토중';
+    var docStatus   = (app.hasBiz && app.hasReg) ? '📎 서류 첨부 완료' : '⚠️ 서류 미첨부';
+    var docColor    = (app.hasBiz && app.hasReg) ? '#2DD4A0' : '#FCD34D';
+
+    return '<div style="background:var(--s1);border:1px solid rgba(45,212,160,.18);border-radius:11px;overflow:hidden">'
+      + '<div style="padding:11px 13px">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px">'
+      + '<div>'
+      + '<div style="font-size:11px;font-weight:900;color:#EDF2F7">' + (app.office||'사무소명 미입력') + '</div>'
+      + '<div style="font-size:9px;color:#8A9AB0;margin-top:2px">대표: ' + (app.ceo||'-') + ' · ID: ' + app.id + '</div>'
+      + '<div style="font-size:9px;color:#8A9AB0">등록번호: ' + (app.regnum||'-') + ' · 📞 ' + (app.tel||'-') + '</div>'
+      + '</div>'
+      + '<span style="font-size:8px;background:' + statusBg + ';color:' + statusColor + ';padding:2px 8px;border-radius:4px;font-weight:700;white-space:nowrap">' + statusLabel + '</span>'
+      + '</div>'
+      + '<div style="font-size:9px;color:' + docColor + ';margin-bottom:8px">' + docStatus + ' · 신청일: ' + (app.date||'-') + '</div>'
+      + (app.status === 'pending' ?
+        '<div style="display:flex;gap:6px">'
+        + '<button onclick="approvePartner(' + idx + ')" style="flex:1;padding:9px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:10px;font-weight:900;border:none;cursor:pointer">✅ 승인</button>'
+        + '<button onclick="rejectPartner(' + idx + ')" style="flex:1;padding:9px;border-radius:8px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">❌ 반려</button>'
+        + '<button onclick="deletePartnerApp(' + idx + ')" style="padding:9px 11px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:10px;cursor:pointer">🗑 삭제</button>'
+        + '</div>'
+        : '<div style="font-size:9px;color:#4A5568;text-align:center;padding:4px">처리 완료 — <button onclick="deletePartnerApp(' + idx + ')" style="background:none;border:none;color:#FCA5A5;font-size:9px;cursor:pointer;font-family:var(--sans)">삭제</button></div>'
+      )
+      + '</div></div>';
+  }).join('');
+}
+
+function approvePartner(idx){
+  var apps = [];
+  try { apps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]'); } catch(e){}
+  if(!apps[idx]) return;
+  apps[idx].status = 'approved';
+  localStorage.setItem('propai_partner_apps', JSON.stringify(apps));
+  // 승인된 파트너를 로그인 가능한 계정에 추가
+  var approved = [];
+  try { approved = JSON.parse(localStorage.getItem('propai_approved_partners')||'[]'); } catch(e){}
+  if(!approved.find(function(a){return a.id===apps[idx].id;})){
+    approved.push({id:apps[idx].id, pw:apps[idx].pw, office:apps[idx].office, plan:'free'});
+    localStorage.setItem('propai_approved_partners', JSON.stringify(approved));
+  }
+  renderAdminPartners();
+  toast('✅ ' + apps[idx].office + ' 승인 완료!\n로그인 ID: ' + apps[idx].id + '\n📞 ' + apps[idx].tel + ' 으로 안내해주세요');
+}
+
+function rejectPartner(idx){
+  var apps = [];
+  try { apps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]'); } catch(e){}
+  if(!apps[idx]) return;
+  apps[idx].status = 'rejected';
+  localStorage.setItem('propai_partner_apps', JSON.stringify(apps));
+  renderAdminPartners();
+  toast('❌ ' + apps[idx].office + ' 반려 처리됨');
+}
+
+function deletePartnerApp(idx){
+  var apps = [];
+  try { apps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]'); } catch(e){}
+  apps.splice(idx, 1);
+  localStorage.setItem('propai_partner_apps', JSON.stringify(apps));
+  renderAdminPartners();
+  toast('🗑 삭제되었습니다');
 }
 
 function toast(msg){
