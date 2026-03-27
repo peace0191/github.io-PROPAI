@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>PROPAI 공동중개 파트너 플랫폼</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08101C;--s1:#0D1929;--s2:#111F30;
+  --jade:#2DD4A0;--gold:#C9A84C;--river:#4A9EE0;
+  --txt:#EDF2F7;--txt2:#8A9AB0;--txt3:#4A5568;
+  --line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.12);
+  --sans:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);min-height:100vh}
+
+/* ── 헤더 ── */
+.hdr{background:linear-gradient(135deg,#060E1C,#0A1828);border-bottom:1px solid rgba(45,212,160,.2);padding:10px 16px;position:sticky;top:0;z-index:100}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;max-width:480px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-badge{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);display:flex;align-items:center;justify-content:center;font-size:16px}
+.logo-text{font-size:13px;font-weight:900;color:var(--txt)}
+.logo-sub{font-size:8px;color:var(--jade);font-weight:700}
+.hdr-badge{font-size:8px;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.3);color:var(--jade);padding:3px 10px;border-radius:5px;font-weight:700}
+
+/* ── 컨텐츠 ── */
+.wrap{max-width:480px;margin:0 auto;padding:0 0 80px}
+
+/* ── 탭 네비 ── */
+.tab-nav{display:flex;background:#0A0E17;border-bottom:1px solid var(--line);position:sticky;top:53px;z-index:99}
+.tab-btn{flex:1;padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:var(--txt2);font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center;transition:.2s}
+.tab-btn.on{border-bottom-color:var(--jade);color:var(--jade);background:rgba(45,212,160,.06)}
+
+/* ── 카드 ── */
+.card{background:var(--s1);border:1px solid var(--line2);border-radius:13px;padding:14px;margin-bottom:10px}
+.card-have{border-color:rgba(45,212,160,.25);background:linear-gradient(135deg,rgba(45,212,160,.06),rgba(45,212,160,.02))}
+.card-want{border-color:rgba(74,158,224,.25);background:linear-gradient(135deg,rgba(74,158,224,.06),rgba(74,158,224,.02))}
+.card-income{border-color:rgba(201,168,76,.25);background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.02))}
+
+/* ── 배지 ── */
+.badge{display:inline-block;font-size:8px;padding:2px 8px;border-radius:4px;font-weight:700}
+.badge-have{background:rgba(45,212,160,.15);color:var(--jade)}
+.badge-want{background:rgba(74,158,224,.15);color:var(--river)}
+.badge-matched{background:rgba(201,168,76,.15);color:var(--gold)}
+.badge-hot{background:rgba(239,68,68,.15);color:#FCA5A5}
+
+/* ── 그리드 ── */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}
+.gbox{background:rgba(8,16,28,.5);border-radius:8px;padding:7px;text-align:center}
+.gbox-n{font-size:12px;font-weight:900;color:var(--txt);margin-bottom:2px}
+.gbox-l{font-size:8px;color:var(--txt2)}
+
+/* ── 버튼 ── */
+.btn{padding:10px;border-radius:9px;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer;border:none;transition:.2s}
+.btn-jade{background:linear-gradient(135deg,var(--jade),#0D8060);color:#08101C}
+.btn-river{background:linear-gradient(135deg,var(--river),#1A5A9A);color:#fff}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#8A6A1A);color:#08101C}
+.btn-ghost{background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--txt2)}
+.btn-sm{padding:7px 11px;font-size:10px}
+
+/* ── 입력 ── */
+.fi{width:100%;padding:9px 11px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:8px;color:var(--txt);font-size:11px;font-family:var(--sans);outline:none}
+.fi:focus{border-color:var(--jade)}
+.fi-have:focus{border-color:var(--jade)}
+.fi-want:focus{border-color:var(--river)}
+.fg{margin-bottom:8px}
+.flbl{display:block;font-size:8px;color:var(--txt2);margin-bottom:3px}
+select.fi{cursor:pointer}
+textarea.fi{resize:none;height:60px;line-height:1.5}
+
+/* ── 옵션 태그 ── */
+.opt{padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--txt2);font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans);transition:.2s}
+.opt.on{background:rgba(45,212,160,.12);border-color:rgba(45,212,160,.35);color:var(--jade)}
+.opt-wrap{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+
+/* ── 수익구조 ── */
+.income-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.income-row:last-child{border-bottom:none}
+
+/* ── 패널 ── */
+.panel{display:none;padding:14px 16px}
+.panel.on{display:block}
+
+/* ── 토스트 ── */
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(30,50,70,.96);border:1px solid var(--jade);color:var(--txt);padding:11px 18px;border-radius:10px;font-size:11px;font-weight:700;z-index:9999;display:none;text-align:center;white-space:pre-line;max-width:280px}
+
+/* ── 로그인 화면 ── */
+#login-screen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+
+/* ── 통계 카드 ── */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.stat-box{background:var(--s1);border:1px solid var(--line2);border-radius:11px;padding:12px 8px;text-align:center}
+.stat-n{font-size:20px;font-weight:900;margin-bottom:3px}
+.stat-l{font-size:8px;color:var(--txt2)}
+
+/* ── 수익구조 다층 ── */
+.income-tier{background:var(--s1);border-radius:13px;overflow:hidden;margin-bottom:10px}
+.income-tier-hdr{padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
+.income-tier-body{padding:10px 14px 13px}
+</style>
+</head>
+<body>
+
+<!-- ══ 로그인 화면 ══ -->
+<div id="login-screen">
+  <div style="text-align:center;margin-bottom:28px">
+    <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#2DD4A0,#0D8060);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px">🤝</div>
+    <div style="font-size:20px;font-weight:900;color:#EDF2F7;margin-bottom:4px">PROPAI 파트너</div>
+    <div style="font-size:11px;color:#8A9AB0">공동중개 파트너 전용 AI 플랫폼</div>
+    <div style="font-size:9px;color:#4A5568;margin-top:4px">롯데타워앤강남빌딩부동산중개(주)</div>
+  </div>
+  <div style="width:100%;max-width:320px">
+    <div style="margin-bottom:10px">
+      <label style="font-size:9px;color:#8A9AB0;display:block;margin-bottom:4px">공동중개 ID</label>
+      <input id="login-id" type="text" placeholder="승인된 파트너 ID" class="fi" style="border:1px solid rgba(45,212,160,.25)">
+    </div>
+    <div style="margin-bottom:16px">
+      <label style="font-size:9px;color:#8A9AB0;display:block;margin-bottom:4px">비밀번호</label>
+      <input id="login-pw" type="password" placeholder="비밀번호" class="fi" style="border:1px solid rgba(45,212,160,.25)">
+    </div>
+    <button onclick="doPartnerLogin()" class="btn btn-jade" style="width:100%;padding:13px;font-size:14px">🔑 파트너 로그인</button>
+    <div style="text-align:center;margin-top:14px;font-size:9px;color:#4A5568">
+      가입 문의: 010-8985-8945 이상수 대표
+    </div>
+    <div style="text-align:center;margin-top:8px">
+      <a href="index.html" style="font-size:9px;color:#8A9AB0;text-decoration:none">← PROPAI 메인 앱으로 돌아가기</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 앱 메인 (로그인 후) ══ -->
+<div id="app" style="display:none">
+
+<!-- 헤더 -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="logo">
+      <div class="logo-badge">🤝</div>
+      <div>
+        <div class="logo-text">PROPAI <span style="color:var(--jade)">파트너</span></div>
+        <div class="logo-sub" id="partner-name-badge">공동중개 파트너</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div id="plan-badge" class="hdr-badge">무료플랜</div>
+      <button onclick="doLogout()" style="background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;padding:4px 9px;border-radius:6px;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">로그아웃</button>
+    </div>
+  </div>
+</div>
+
+<!-- 탭 네비 -->
+<div class="tab-nav">
+  <button class="tab-btn on" onclick="showPanel('recv')">📥 받은<br>쪽지함</button>
+  <button class="tab-btn" onclick="showPanel('have')">🏠 AI매칭매물<br>있습니다</button>
+  <button class="tab-btn" onclick="showPanel('want')">🔍 AI매칭매물<br>구합니다</button>
+  <button class="tab-btn" onclick="showPanel('mylist')">📋 내<br>매물목록</button>
+  <button class="tab-btn" onclick="showPanel('income')">💰 수익<br>구조</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ════ 받은 쪽지함 ════ -->
+  <div class="panel on" id="panel-recv">
+    <!-- 통계 -->
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-n" style="color:var(--jade)">7</div><div class="stat-l">오늘 수신</div></div>
+      <div class="stat-box"><div class="stat-n" style="color:var(--gold)">3</div><div class="stat-l">AI매칭 완료</div></div>
+      <div class="stat-box"><div class="stat-n" style="color:var(--river)">2</div><div class="stat-l">답장 대기</div></div>
+    </div>
+
+    <!-- 필터 -->
+    <div class="card" style="margin-bottom:12px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px">
+        <div>
+          <label class="flbl">구분</label>
+          <select class="fi"><option>전체</option><option>AI매칭매물 있습니다</option><option>AI매칭매물 구합니다</option></select>
+        </div>
+        <div>
+          <label class="flbl">지역</label>
+          <select class="fi"><option>전체</option><option>대치동</option><option>역삼동</option><option>도곡동</option><option>삼성동</option><option>잠실동</option><option>반포동</option></select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px">
+        <div>
+          <label class="flbl">매물종류</label>
+          <select class="fi"><option>전체</option><option>아파트</option><option>오피스텔</option><option>상가</option><option>빌라</option></select>
+        </div>
+        <div>
+          <label class="flbl">날짜</label>
+          <input type="date" class="fi">
+        </div>
+      </div>
+      <div class="opt-wrap" style="margin-bottom:8px">
+        <button class="opt" onclick="this.classList.toggle('on')">금액조절 가능한</button>
+        <button class="opt" onclick="this.classList.toggle('on')">즉시 입주 가능한</button>
+        <button class="opt" onclick="this.classList.toggle('on')">손님 대기중</button>
+        <button class="opt" onclick="this.classList.toggle('on')">바로 볼 수 있는</button>
+      </div>
+      <button onclick="toast('🔍 검색 완료 — 7건')" class="btn btn-jade" style="width:100%;padding:10px">🔍 검색하기</button>
+    </div>
+
+    <!-- 쪽지 카드 목록 -->
+    <div class="card card-have" style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="badge badge-have">🏠 AI매칭매물 있습니다</span>
+          <span style="font-size:8px;color:#4A5568">AI 97점</span>
+        </div>
+        <span style="font-size:8px;color:var(--txt3)">2026-03-27 21:42</span>
+      </div>
+      <div style="font-size:12px;font-weight:800;margin-bottom:5px">[한보미도맨션 2차] 41평 완전특혼수리 급매 있습니다</div>
+      <div class="g3">
+        <div class="gbox"><div class="gbox-n">대치동</div><div class="gbox-l">지역</div></div>
+        <div class="gbox"><div class="gbox-n" style="color:var(--gold)">47억</div><div class="gbox-l">매도가</div></div>
+        <div class="gbox"><div class="gbox-n">41평</div><div class="gbox-l">평형</div></div>
+      </div>
+      <div style="font-size:9px;color:var(--txt2);margin-bottom:9px;line-height:1.6">추가수리 불필요한 특혼수리급 · 긴급 매도 희망 · 우리공동중개사무소 02-539-4988</div>
+      <div style="display:flex;gap:6px">
+        <button onclick="toast('답장을 작성합니다')" class="btn btn-jade btn-sm" style="flex:1">💬 답장</button>
+        <button onclick="toast('📌 저장되었습니다')" class="btn btn-ghost btn-sm" style="flex:1">📌 저장</button>
+        <button onclick="this.closest('.card').remove();toast('삭제됨')" class="btn btn-sm" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;padding:7px 10px">🗑</button>
+      </div>
+    </div>
+
+    <div class="card card-want" style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="badge badge-want">🔍 AI매칭매물 구합니다</span>
+          <span style="font-size:8px;color:#4A5568">AI 91점</span>
+        </div>
+        <span style="font-size:8px;color:var(--txt3)">2026-03-27 19:15</span>
+      </div>
+      <div style="font-size:12px;font-weight:800;margin-bottom:5px">대치·도곡 30억대 아파트 구합니다</div>
+      <div class="g3">
+        <div class="gbox"><div class="gbox-n">대치·도곡</div><div class="gbox-l">희망지역</div></div>
+        <div class="gbox"><div class="gbox-n" style="color:var(--river)">28~35억</div><div class="gbox-l">예산</div></div>
+        <div class="gbox"><div class="gbox-n">30~40평</div><div class="gbox-l">희망평형</div></div>
+      </div>
+      <div style="font-size:9px;color:var(--txt2);margin-bottom:9px">학군 중시 실수요자 · 즉시 계약 가능</div>
+      <div style="display:flex;gap:6px">
+        <button onclick="toast('답장을 작성합니다')" class="btn btn-river btn-sm" style="flex:1">💬 답장</button>
+        <button onclick="toast('📌 저장되었습니다')" class="btn btn-ghost btn-sm" style="flex:1">📌 저장</button>
+        <button onclick="this.closest('.card').remove();toast('삭제됨')" class="btn btn-sm" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;padding:7px 10px">🗑</button>
+      </div>
+    </div>
+
+    <div class="card card-have">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="badge badge-have">🏠 AI매칭매물 있습니다</span>
+          <span class="badge badge-hot" style="margin-left:2px">🔥 AI매칭</span>
+        </div>
+        <span style="font-size:8px;color:var(--txt3)">2026-03-27 17:03</span>
+      </div>
+      <div style="font-size:12px;font-weight:800;margin-bottom:5px">[삼환아르누보2] 오피스텔 월세 있습니다</div>
+      <div class="g3">
+        <div class="gbox"><div class="gbox-n">대치동</div><div class="gbox-l">지역</div></div>
+        <div class="gbox"><div class="gbox-n" style="color:var(--jade)">월125만</div><div class="gbox-l">월세</div></div>
+        <div class="gbox"><div class="gbox-n">7.8평</div><div class="gbox-l">전용면적</div></div>
+      </div>
+      <div style="font-size:9px;color:var(--txt2);margin-bottom:9px">보증금 1천 · 관리비포함 · 즉시입주 · 학원가 도보권</div>
+      <div style="display:flex;gap:6px">
+        <button onclick="toast('PROPAI 수요자 AI매칭 연결 요청 완료!\n관리 부동산에서 수요자 연결 진행합니다')" class="btn btn-jade btn-sm" style="flex:1">🤖 AI매칭 요청</button>
+        <button onclick="toast('📌 저장되었습니다')" class="btn btn-ghost btn-sm" style="flex:1">📌 저장</button>
+        <button onclick="this.closest('.card').remove();toast('삭제됨')" class="btn btn-sm" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;padding:7px 10px">🗑</button>
+      </div>
+    </div>
+    <div style="text-align:center;padding:14px;color:var(--txt3);font-size:10px">오늘 7건 수신 · 답장 2건 대기</div>
+  </div>
+
+  <!-- ════ AI매칭매물 있습니다 발송 ════ -->
+  <div class="panel" id="panel-have">
+    <div style="background:linear-gradient(135deg,rgba(45,212,160,.08),rgba(45,212,160,.02));border:1.5px solid rgba(45,212,160,.3);border-radius:14px;padding:15px">
+      <div style="font-size:14px;font-weight:900;color:var(--jade);margin-bottom:14px;display:flex;align-items:center;gap:8px">
+        <span style="font-size:20px">🏠</span> AI매칭매물 있습니다 — 발송
+      </div>
+      <div class="fg">
+        <label class="flbl">매물종류</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+          <select class="fi fi-have"><option>아파트</option><option>오피스텔</option><option>빌라</option><option>상가</option><option>토지</option><option>건물</option></select>
+          <select class="fi fi-have"><option>매도</option><option>전세</option><option>월세</option><option>단기임대</option></select>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">매물위치 (단지명 포함)</label>
+        <input id="h-addr" type="text" placeholder="예: 서울 강남구 대치동 938 삼환아르누보2" class="fi fi-have">
+      </div>
+      <div class="fg">
+        <label class="flbl">가격정보 (만원)</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">매매가</div><input type="number" placeholder="0" class="fi fi-have" style="padding:7px 8px;font-size:10px"></div>
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">보증금</div><input type="number" placeholder="0" class="fi fi-have" style="padding:7px 8px;font-size:10px"></div>
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">월세</div><input type="number" placeholder="0" class="fi fi-have" style="padding:7px 8px;font-size:10px"></div>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">면적 / 층수 / 방수</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">전용m²</div><input type="number" placeholder="0" class="fi fi-have" style="padding:7px 8px;font-size:10px"></div>
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">층수</div><input type="number" placeholder="0" class="fi fi-have" style="padding:7px 8px;font-size:10px"></div>
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">방수</div><input type="number" placeholder="0" class="fi fi-have" style="padding:7px 8px;font-size:10px"></div>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">제목</label>
+        <input id="h-title" type="text" placeholder="예: [대치동 미도2차] 41평 급매 있습니다" class="fi fi-have">
+      </div>
+      <div class="fg">
+        <label class="flbl">상세내용</label>
+        <textarea placeholder="매물 특징, 입주일, 특이사항 등..." class="fi fi-have" style="height:70px"></textarea>
+      </div>
+      <div class="fg">
+        <label class="flbl">옵션 선택</label>
+        <div class="opt-wrap">
+          <button class="opt" onclick="this.classList.toggle('on')">금액조절 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">바로 볼 수 있는</button>
+          <button class="opt" onclick="this.classList.toggle('on')">새로 지은</button>
+          <button class="opt" onclick="this.classList.toggle('on')">손님 대기중</button>
+          <button class="opt" onclick="this.classList.toggle('on')">즉시 입주 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">전세대출 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">홀 수리 깨끗한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">주차 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">학군 우수</button>
+          <button class="opt" onclick="this.classList.toggle('on')">역세권</button>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">발송 방법</label>
+        <div style="display:flex;gap:14px;margin-top:3px">
+          <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2);cursor:pointer"><input type="radio" name="h-method" value="local" checked style="accent-color:var(--jade)"> 지역망</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2);cursor:pointer"><input type="radio" name="h-method" value="two" style="accent-color:var(--jade)"> 두레</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2);cursor:pointer"><input type="radio" name="h-method" value="city" style="accent-color:var(--jade)"> 시/군/구</label>
+        </div>
+      </div>
+
+      <!-- 유튜브 숏츠 -->
+      <div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+          <div style="font-size:11px;font-weight:800">📹 유튜브 숏츠 광고</div>
+          <span style="font-size:8px;background:rgba(239,68,68,.15);color:#FCA5A5;padding:2px 7px;border-radius:4px;font-weight:700">▶ SHORTS</span>
+        </div>
+        <div style="font-size:9px;color:var(--txt2);line-height:1.6;margin-bottom:8px">저평가 판정 시 당사 연락처 광고 1건 무료<br>유료 1건당 3만원 · 📧 5788285@naver.com<br>사진 10장 + 20초 영상 파일 전송</div>
+        <div style="display:flex;gap:7px">
+          <button onclick="toast('📹 무료 숏츠 신청!\n5788285@naver.com으로 사진10장+20초영상 전송해주세요')" class="btn btn-sm" style="flex:1;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:var(--jade)">무료 신청</button>
+          <button onclick="toast('⚡ 유료 숏츠 신청 (3만원)\n5788285@naver.com으로 파일 전송 후 입금해주세요')" class="btn btn-sm" style="flex:1;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5">유료(3만원)</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px">
+        <button onclick="toast('💾 임시저장 완료')" class="btn btn-ghost" style="flex:1;padding:12px">💾 임시저장</button>
+        <button onclick="sendHave()" class="btn btn-jade" style="flex:2;padding:12px;font-size:13px">🤖 AI매칭매물 있습니다 발송</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ AI매칭매물 구합니다 발송 ════ -->
+  <div class="panel" id="panel-want">
+    <div style="background:linear-gradient(135deg,rgba(74,158,224,.08),rgba(74,158,224,.02));border:1.5px solid rgba(74,158,224,.3);border-radius:14px;padding:15px">
+      <div style="font-size:14px;font-weight:900;color:var(--river);margin-bottom:14px;display:flex;align-items:center;gap:8px">
+        <span style="font-size:20px">🔍</span> AI매칭매물 구합니다 — 발송
+      </div>
+      <div class="fg">
+        <label class="flbl">찾는 매물</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+          <select class="fi fi-want"><option>아파트</option><option>오피스텔</option><option>빌라</option><option>상가</option><option>토지</option></select>
+          <select class="fi fi-want"><option>매수</option><option>전세</option><option>월세</option><option>단기임대</option></select>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">희망 지역</label>
+        <input type="text" placeholder="예: 강남구 대치동, 도곡동, 역삼동" class="fi fi-want">
+      </div>
+      <div class="fg">
+        <label class="flbl">예산 및 평형</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">최대 예산(만원)</div><input type="number" placeholder="0" class="fi fi-want" style="padding:7px 8px;font-size:10px"></div>
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">희망평형</div><input type="text" placeholder="30~40" class="fi fi-want" style="padding:7px 8px;font-size:10px"></div>
+          <div><div style="font-size:8px;color:var(--txt2);margin-bottom:3px">입주희망일</div><input type="text" placeholder="즉시/협의" class="fi fi-want" style="padding:7px 8px;font-size:10px"></div>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">제목</label>
+        <input id="w-title" type="text" placeholder="예: 대치동 30억대 아파트 구합니다" class="fi fi-want">
+      </div>
+      <div class="fg">
+        <label class="flbl">상세 조건</label>
+        <textarea placeholder="학군·교통·층수 등 선호 조건..." class="fi fi-want" style="height:60px"></textarea>
+      </div>
+      <div class="fg">
+        <label class="flbl">1~2항목만 기재해도 발송 가능합니다</label>
+        <div class="opt-wrap">
+          <button class="opt" onclick="this.classList.toggle('on')">학군 우수</button>
+          <button class="opt" onclick="this.classList.toggle('on')">역세권</button>
+          <button class="opt" onclick="this.classList.toggle('on')">한강뷰</button>
+          <button class="opt" onclick="this.classList.toggle('on')">주차 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">전세대출 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">즉시 입주 가능한</button>
+          <button class="opt" onclick="this.classList.toggle('on')">재건축 예정</button>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">발송 방법</label>
+        <div style="display:flex;gap:14px;margin-top:3px">
+          <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2);cursor:pointer"><input type="radio" name="w-method" value="local" checked style="accent-color:var(--river)"> 지역망</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2);cursor:pointer"><input type="radio" name="w-method" value="two" style="accent-color:var(--river)"> 두레</label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2);cursor:pointer"><input type="radio" name="w-method" value="city" style="accent-color:var(--river)"> 시/군/구</label>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="toast('💾 임시저장 완료')" class="btn btn-ghost" style="flex:1;padding:12px">💾 임시저장</button>
+        <button onclick="sendWant()" class="btn btn-river" style="flex:2;padding:12px;font-size:13px">🤖 AI매칭매물 구합니다 발송</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 내 매물목록 ════ -->
+  <div class="panel" id="panel-mylist">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:900">📋 내 등록 매물</div>
+      <div style="font-size:9px;color:var(--txt3)">오늘 1건 / 일 5건 한도 (잔여 4건)</div>
+    </div>
+
+    <div class="card" style="border-color:rgba(201,168,76,.25);margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <div style="font-size:12px;font-weight:800">삼환아르누보2 오피스텔 월세</div>
+          <div style="font-size:9px;color:var(--txt2);margin-top:2px">대치동 938 · 7.8평 · 보1천/월125만</div>
+        </div>
+        <span class="badge badge-matched">매칭중</span>
+      </div>
+      <div style="background:rgba(45,212,160,.06);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:9px;color:var(--txt2);line-height:1.6">
+        🤖 AI 분석: 유사매물 대비 <span style="color:var(--jade);font-weight:700">적정가</span> · 학원가 접근성 우수 · 조회수 12회 · 수요자 AI매칭 대기 3건
+      </div>
+      <div style="display:flex;gap:6px">
+        <button onclick="toast('수정합니다')" class="btn btn-gold btn-sm" style="flex:1">✏️ 수정</button>
+        <button onclick="showPanel('have');toast('있습니다 발송폼으로 이동')" class="btn btn-jade btn-sm" style="flex:1">🔄 재발송</button>
+        <button onclick="toast('📹 숏츠 신청!\n5788285@naver.com으로 파일 전송해주세요')" class="btn btn-sm" style="flex:1;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5">📹 숏츠</button>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:4px 0 12px">
+      <button onclick="showPanel('have')" class="btn btn-jade" style="padding:12px 28px;font-size:13px">+ 새 매물 AI매칭매물 있습니다 발송</button>
+    </div>
+
+    <!-- 보낸 쪽지함 -->
+    <div style="font-size:12px;font-weight:800;margin-bottom:10px;margin-top:4px">📤 보낸 쪽지함</div>
+    <div class="card" style="border-color:rgba(45,212,160,.2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="badge badge-have">🏠 AI매칭매물 있습니다</span>
+        <span style="font-size:8px;color:var(--txt3)">2026-03-27 · 지역망</span>
+      </div>
+      <div style="font-size:11px;font-weight:700;margin-bottom:4px">[삼환아르누보2] 오피스텔 월세 있습니다</div>
+      <div style="font-size:9px;color:var(--txt2);margin-bottom:8px">대치동 · 보1천/월125만 · 즉시입주</div>
+      <div style="display:flex;gap:6px">
+        <button onclick="toast('수정합니다')" class="btn btn-gold btn-sm" style="flex:1">✏️ 수정</button>
+        <button onclick="toast('재전송합니다')" class="btn btn-jade btn-sm" style="flex:1">🔄 재전송</button>
+        <button onclick="this.closest('.card').remove()" class="btn btn-sm" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;padding:7px 10px">🗑</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ 수익구조 (다층) ════ -->
+  <div class="panel" id="panel-income">
+    <div style="font-size:14px;font-weight:900;margin-bottom:14px">💰 공동중개 파트너 다층 수익구조</div>
+
+    <!-- AI 매칭 플랫폼 흐름 -->
+    <div class="card card-income" style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:900;color:var(--gold);margin-bottom:10px">🤖 PROPAI AI 매칭 플랫폼 순서</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--jade),#0D8060);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#08101C;flex-shrink:0">1</div>
+          <div><div style="font-size:11px;font-weight:800;margin-bottom:2px">AI매칭매물 있습니다/구합니다 발송</div><div style="font-size:9px;color:var(--txt2)">공동중개 파트너 → PROPAI 파트너 플랫폼에 매물 등록</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--river),#1A5A9A);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">2</div>
+          <div><div style="font-size:11px;font-weight:800;margin-bottom:2px">통합 공급매물 자동 분석</div><div style="font-size:9px;color:var(--txt2)">PROPAI AI가 일반 공급자 + 공동중개 파트너 매물을 통합 분석</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#8A6A1A);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#08101C;flex-shrink:0">3</div>
+          <div><div style="font-size:11px;font-weight:800;margin-bottom:2px">수요자 AI 자동매칭 + 카톡 안내</div><div style="font-size:9px;color:var(--txt2)">사전예약 수요자에게 AI매칭 결과 카카오톡 자동 발송</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#FCA5A5,#EF4444);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">4</div>
+          <div><div style="font-size:11px;font-weight:800;margin-bottom:2px">관리 부동산 상담·계약 진행</div><div style="font-size:9px;color:var(--txt2)">롯데타워앤강남빌딩(주)에서 수요자↔공급자 계약 진행</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--jade),#0D8060);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#08101C;flex-shrink:0">5</div>
+          <div><div style="font-size:11px;font-weight:800;margin-bottom:2px">법정 보수료 각각 청구</div><div style="font-size:9px;color:var(--txt2)">계약 성사 시 법정 중개보수료를 의뢰인에게 각각 청구</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 구독 요금제 -->
+    <div style="font-size:12px;font-weight:900;margin-bottom:10px">📋 파트너 구독 요금제</div>
+
+    <div class="income-tier" style="border:1px solid rgba(255,255,255,.1)">
+      <div class="income-tier-hdr" style="background:rgba(255,255,255,.04)">
+        <div style="font-size:13px;font-weight:900">🆓 무료 (기본)</div>
+        <div style="font-size:16px;font-weight:900;color:var(--jade)">₩0</div>
+      </div>
+      <div class="income-tier-body">
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">1일 매물 등록</span><span style="font-size:11px;font-weight:700">5건</span></div>
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">AI 저평가 분석</span><span style="font-size:11px;font-weight:700;color:var(--jade)">✅</span></div>
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">유튜브 숏츠 광고</span><span style="font-size:11px;font-weight:700">저평가 시 1건<br><span style="font-size:9px;color:var(--txt3)">당사 연락처 광고</span></span></div>
+      </div>
+    </div>
+
+    <div class="income-tier" style="border:1.5px solid rgba(74,158,224,.35)">
+      <div class="income-tier-hdr" style="background:rgba(74,158,224,.08)">
+        <div><div style="font-size:9px;color:var(--river);font-weight:700;margin-bottom:2px">유료 기본</div><div style="font-size:13px;font-weight:900">⭐ 스탠다드</div></div>
+        <div style="text-align:right"><div style="font-size:16px;font-weight:900;color:var(--river)">₩90,000</div><div style="font-size:8px;color:var(--txt2)">월</div></div>
+      </div>
+      <div class="income-tier-body">
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">1일 매물 등록</span><span style="font-size:11px;font-weight:700;color:var(--river)">7건</span></div>
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">AI 저평가 분석</span><span style="font-size:11px;font-weight:700;color:var(--jade)">✅</span></div>
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">유튜브 숏츠 광고</span><span style="font-size:11px;font-weight:700;color:var(--river)">주 1건<br><span style="font-size:9px;color:var(--txt3)">스탠다드 연락처 광고</span></span></div>
+      </div>
+    </div>
+
+    <div class="income-tier" style="border:1.5px solid rgba(201,168,76,.4)">
+      <div class="income-tier-hdr" style="background:rgba(201,168,76,.1)">
+        <div><div style="font-size:9px;color:var(--gold);font-weight:700;margin-bottom:2px">유료 프리미엄</div><div style="font-size:13px;font-weight:900">🏆 프리미엄</div></div>
+        <div style="text-align:right"><div style="font-size:16px;font-weight:900;color:var(--gold)">₩150,000</div><div style="font-size:8px;color:var(--txt2)">월</div></div>
+      </div>
+      <div class="income-tier-body">
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">1일 매물 등록</span><span style="font-size:11px;font-weight:700;color:var(--gold)">20건</span></div>
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">AI 분석 + 예측</span><span style="font-size:11px;font-weight:700;color:var(--jade)">✅ + 가격예측</span></div>
+        <div class="income-row"><span style="font-size:10px;color:var(--txt2)">유튜브 숏츠 광고</span><span style="font-size:11px;font-weight:700;color:var(--gold)">주 2건<br><span style="font-size:9px;color:var(--txt3)">프리미엄 연락처 광고</span></span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:11px;padding:13px;font-size:9px;color:var(--txt2);line-height:1.9;text-align:center">
+      입금 확인 후 24시간 내 활성화<br>
+      📞 이상수 대표: 010-8985-8945<br>
+      📧 5788285@naver.com<br>
+      <span style="color:var(--txt3)">롯데타워앤강남빌딩부동산중개(주)</span>
+    </div>
+
+    <div style="margin-top:10px;display:flex;gap:8px">
+      <a href="tel:01089858945" class="btn btn-jade" style="flex:1;padding:12px;text-align:center;text-decoration:none;display:block">📞 010-8985-8945</a>
+      <a href="index.html" class="btn btn-ghost" style="flex:1;padding:12px;text-align:center;text-decoration:none;display:block">← PROPAI 메인</a>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+</div><!-- /app -->
+
+<!-- 토스트 -->
+<div id="toast"></div>
+
+<script>
+// ── 파트너 계정
+var partners = [
+  {id:'jb001', pw:'1234', name:'김공인 중개사', plan:'free'},
+  {id:'jb002', pw:'5678', name:'박부동산 대표', plan:'basic'},
+  {id:'sk5788285', pw:'ai0191', name:'이상수 대표', plan:'premium'},
+];
+
+function doPartnerLogin(){
+  var id = document.getElementById('login-id').value.trim();
+  var pw = document.getElementById('login-pw').value.trim();
+  var partner = partners.find(function(p){ return p.id === id && p.pw === pw; });
+  if(!partner){ toast('⚠️ 아이디 또는 비밀번호를 확인해주세요'); return; }
+  document.getElementById('partner-name-badge').textContent = partner.name;
+  var planNames = {free:'무료플랜', basic:'스탠다드', premium:'프리미엄'};
+  document.getElementById('plan-badge').textContent = planNames[partner.plan] || '무료플랜';
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  toast('✅ 환영합니다 ' + partner.name + '님!\nPROPAI 파트너 플랫폼 로그인 완료');
+}
+
+function doLogout(){
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-id').value = '';
+  document.getElementById('login-pw').value = '';
+}
+
+// ── 탭 전환
+var panels = ['recv','have','want','mylist','income'];
+function showPanel(key){
+  panels.forEach(function(p){
+    var el = document.getElementById('panel-' + p);
+    if(el) el.className = 'panel' + (p === key ? ' on' : '');
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(btn, i){
+    btn.classList.toggle('on', panels[i] === key);
+  });
+  window.scrollTo(0, 0);
+}
+
+// ── 발송
+function sendHave(){
+  var title = document.getElementById('h-title');
+  var addr  = document.getElementById('h-addr');
+  if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
+  if(!addr||!addr.value.trim())  { toast('매물위치를 입력해주세요'); return; }
+  toast('✅ AI매칭매물 있습니다 발송 완료!\n파트너 자동매칭 시작\n일 5건 한도 · 잔여 4건');
+  title.value = ''; addr.value = '';
+  showPanel('mylist');
+}
+function sendWant(){
+  var title = document.getElementById('w-title');
+  if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
+  toast('✅ AI매칭매물 구합니다 발송 완료!\n매물 자동탐색 시작됩니다');
+  title.value = '';
+  showPanel('recv');
+}
+
+// ── 토스트
+function toast(msg){
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.display = 'block';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(function(){ el.style.display = 'none'; }, 3500);
+}
+
+// Enter 키 로그인
+document.getElementById('login-pw').addEventListener('keydown', function(e){
+  if(e.key === 'Enter') doPartnerLogin();
+});
+</script>
+</body>
+</html>
