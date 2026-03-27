@@ -99,6 +99,112 @@ textarea.fi{resize:none;height:60px;line-height:1.5}
 .income-tier-hdr{padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
 .income-tier-body{padding:10px 14px 13px}
 </style>
+<script>
+// ── 기본 내장 파트너 계정 (관리자용)
+var builtinPartners = [
+  {id:'jb001', pw:'1234', office:'김공인중개사사무소', plan:'free'},
+  {id:'jb002', pw:'5678', office:'박부동산중개사무소', plan:'basic'},
+  {id:'sk5788285', pw:'ai0191', office:'롯데타워앤강남빌딩부동산중개(주)', plan:'premium'},
+];
+
+function doPartnerLogin(){
+  var id = (document.getElementById('login-id').value||'').trim();
+  var pw = (document.getElementById('login-pw').value||'').trim();
+  if(!id||!pw){ toast('⚠️ ID와 비밀번호를 입력해주세요'); return; }
+
+  // ① 내장 계정 확인
+  var partner = builtinPartners.find(function(p){ return p.id===id && p.pw===pw; });
+
+  // ② localStorage 승인 계정 확인 (PROPAI 메인앱에서 승인된 계정)
+  if(!partner){
+    var approved = [];
+    try { approved = JSON.parse(localStorage.getItem('propai_approved_partners')||'[]'); } catch(e){}
+    var ap = approved.find(function(a){ return a.id===id && a.pw===pw; });
+    if(ap) partner = {id:ap.id, pw:ap.pw, office:ap.office||ap.id, plan:ap.plan||'free'};
+  }
+
+  // ③ 대기/반려 확인
+  if(!partner){
+    var allApps = [];
+    try { allApps = JSON.parse(localStorage.getItem('propai_partner_apps')||'[]'); } catch(e){}
+    var pending  = allApps.find(function(a){ return a.id===id && a.status==='pending'; });
+    var rejected = allApps.find(function(a){ return a.id===id && a.status==='rejected'; });
+    if(pending){
+      toast('⏳ 가입 신청 검토 중입니다.\n관리자 승인 후 로그인 가능합니다.\n📞 010-8985-8945 이상수 대표');
+      return;
+    }
+    if(rejected){
+      toast('❌ 가입이 반려되었습니다.\n📞 010-8985-8945 이상수 대표에게 문의해주세요');
+      return;
+    }
+    toast('⚠️ 아이디 또는 비밀번호가 올바르지 않습니다');
+    return;
+  }
+
+  var planNames = {free:'무료플랜', basic:'스탠다드', premium:'프리미엄'};
+  document.getElementById('partner-name-badge').textContent = partner.office || partner.id;
+  document.getElementById('plan-badge').textContent = planNames[partner.plan] || '무료플랜';
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  toast('✅ 환영합니다!\n' + (partner.office||partner.id) + '\nPROPAI 파트너 플랫폼 로그인 완료 😊');
+}
+
+function doLogout(){
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-id').value = '';
+  document.getElementById('login-pw').value = '';
+}
+
+// ── 탭 전환
+var panels = ['recv','have','want','mylist','income'];
+function showPanel(key){
+  panels.forEach(function(p){
+    var el = document.getElementById('panel-' + p);
+    if(el) el.className = 'panel' + (p === key ? ' on' : '');
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(btn, i){
+    btn.classList.toggle('on', panels[i] === key);
+  });
+  window.scrollTo(0, 0);
+}
+
+// ── 발송
+function sendHave(){
+  var title = document.getElementById('h-title');
+  var addr  = document.getElementById('h-addr');
+  if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
+  if(!addr||!addr.value.trim())  { toast('매물위치를 입력해주세요'); return; }
+  toast('✅ AI매칭매물 있습니다 발송 완료!\n파트너 자동매칭 시작\n일 5건 한도 · 잔여 4건');
+  title.value = ''; addr.value = '';
+  showPanel('mylist');
+}
+function sendWant(){
+  var title = document.getElementById('w-title');
+  if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
+  toast('✅ AI매칭매물 구합니다 발송 완료!\n매물 자동탐색 시작됩니다');
+  title.value = '';
+  showPanel('recv');
+}
+
+// ── 토스트
+function toast(msg){
+  var el = document.getElementById('toast');
+  if(!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(function(){ el.style.display = 'none'; }, 3500);
+}
+
+// ── Enter 키 로그인
+window.addEventListener('DOMContentLoaded', function(){
+  var pwEl = document.getElementById('login-pw');
+  if(pwEl) pwEl.addEventListener('keydown', function(e){
+    if(e.key === 'Enter') doPartnerLogin();
+  });
+});
+</script>
 </head>
 <body>
 
@@ -549,78 +655,6 @@ textarea.fi{resize:none;height:60px;line-height:1.5}
 <!-- 토스트 -->
 <div id="toast"></div>
 
-<script>
-// ── 파트너 계정
-var partners = [
-  {id:'jb001', pw:'1234', name:'김공인 중개사', plan:'free'},
-  {id:'jb002', pw:'5678', name:'박부동산 대표', plan:'basic'},
-  {id:'sk5788285', pw:'ai0191', name:'이상수 대표', plan:'premium'},
-];
 
-function doPartnerLogin(){
-  var id = document.getElementById('login-id').value.trim();
-  var pw = document.getElementById('login-pw').value.trim();
-  var partner = partners.find(function(p){ return p.id === id && p.pw === pw; });
-  if(!partner){ toast('⚠️ 아이디 또는 비밀번호를 확인해주세요'); return; }
-  document.getElementById('partner-name-badge').textContent = partner.name;
-  var planNames = {free:'무료플랜', basic:'스탠다드', premium:'프리미엄'};
-  document.getElementById('plan-badge').textContent = planNames[partner.plan] || '무료플랜';
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  toast('✅ 환영합니다 ' + partner.name + '님!\nPROPAI 파트너 플랫폼 로그인 완료');
-}
-
-function doLogout(){
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('login-id').value = '';
-  document.getElementById('login-pw').value = '';
-}
-
-// ── 탭 전환
-var panels = ['recv','have','want','mylist','income'];
-function showPanel(key){
-  panels.forEach(function(p){
-    var el = document.getElementById('panel-' + p);
-    if(el) el.className = 'panel' + (p === key ? ' on' : '');
-  });
-  document.querySelectorAll('.tab-btn').forEach(function(btn, i){
-    btn.classList.toggle('on', panels[i] === key);
-  });
-  window.scrollTo(0, 0);
-}
-
-// ── 발송
-function sendHave(){
-  var title = document.getElementById('h-title');
-  var addr  = document.getElementById('h-addr');
-  if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
-  if(!addr||!addr.value.trim())  { toast('매물위치를 입력해주세요'); return; }
-  toast('✅ AI매칭매물 있습니다 발송 완료!\n파트너 자동매칭 시작\n일 5건 한도 · 잔여 4건');
-  title.value = ''; addr.value = '';
-  showPanel('mylist');
-}
-function sendWant(){
-  var title = document.getElementById('w-title');
-  if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
-  toast('✅ AI매칭매물 구합니다 발송 완료!\n매물 자동탐색 시작됩니다');
-  title.value = '';
-  showPanel('recv');
-}
-
-// ── 토스트
-function toast(msg){
-  var el = document.getElementById('toast');
-  el.textContent = msg;
-  el.style.display = 'block';
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(function(){ el.style.display = 'none'; }, 3500);
-}
-
-// Enter 키 로그인
-document.getElementById('login-pw').addEventListener('keydown', function(e){
-  if(e.key === 'Enter') doPartnerLogin();
-});
-</script>
 </body>
 </html>
