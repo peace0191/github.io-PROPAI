@@ -593,6 +593,10 @@ try {
     <input id="chatInput" type="text" placeholder="궁금한 매물·시세 물어보세요..." style="flex:1;padding:9px 11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none" onkeydown="if(event.key==='Enter')sendChat()">
     <button onclick="sendChat()" id="chatSendBtn" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);border:none;cursor:pointer;font-size:16px">↑</button>
   </div>
+  <!-- 닫기 버튼 -->
+  <div style="padding:4px 12px 8px;text-align:center">
+    <button onclick="toggleChat()" style="padding:4px 20px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#4A5568;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer">✕ 닫기</button>
+  </div>
 </div>
 
 <!-- 공동중개 가입신청 모달 -->
