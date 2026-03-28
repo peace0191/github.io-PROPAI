@@ -1519,7 +1519,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             <div class="r3lbl">공급자<br>매물등록</div>
             <div class="r3sub">매도·임대<br>직접 등록</div>
           </div>
-          <div class="r3b r3b-joint" onclick="openModal('joint')">
+          <div class="r3b r3b-joint" onclick="openJointOrLogin()">
             <div class="r3type rt-j">공동중개</div>
             <div class="r3ico">🤝</div>
             <div class="r3lbl">공동중개<br>매물등록</div>
@@ -2093,7 +2093,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             <div class="r3lbl">공급자<br>매물등록</div>
             <div class="r3sub">매도 등록<br>임대 등록</div>
           </div>
-          <div class="r3b r3b-joint" onclick="openModal('joint')">
+          <div class="r3b r3b-joint" onclick="openJointOrLogin()">
             <div class="r3type rt-j">공동중개</div>
             <div class="r3ico">🤝</div>
             <div class="r3lbl">공동중개<br>등록</div>
@@ -2296,7 +2296,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <div class="reg3-grid">
           <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">🙋</div><div class="r3lbl">AI매칭매물 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
           <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏠</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
-          <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
+          <div class="r3b r3b-joint" onclick="openJointOrLogin()"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
       <!-- 포털 비교 -->
@@ -2441,7 +2441,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <div class="reg3-grid">
           <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">💎</div><div class="r3lbl">AI매칭매물 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
           <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏯</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
-          <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
+          <div class="r3b r3b-joint" onclick="openJointOrLogin()"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
       <div class="sh"><span class="sh-t">📊 포털 비교 — 반포 래미안퍼스티지</span></div>
@@ -2643,7 +2643,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <div class="reg3-grid">
           <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">💎</div><div class="r3lbl">AI매칭매물 구합니다</div><div class="r3sub">매수·임차 희망</div></div>
           <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏯</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
-          <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
+          <div class="r3b r3b-joint" onclick="openJointOrLogin()"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
 
@@ -3786,7 +3786,7 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
         <div class="reg3-grid">
           <div class="r3b r3b-demand" onclick="openModal('demand')"><div class="r3type rt-d">수요자</div><div class="r3ico">📊</div><div class="r3lbl">투자 수요 등록</div><div class="r3sub">매수·조합원</div></div>
           <div class="r3b r3b-supply" onclick="openModal('supply')"><div class="r3type rt-s">공급자</div><div class="r3ico">🏗️</div><div class="r3lbl">AI매칭매물 있습니다</div><div class="r3sub">매도·임대</div></div>
-          <div class="r3b r3b-joint" onclick="openModal('joint')"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
+          <div class="r3b r3b-joint" onclick="openJointOrLogin()"><div class="r3type rt-j">공동중개</div><div class="r3ico">🤝</div><div class="r3lbl">공동중개</div><div class="r3sub">일 5건 한도</div></div>
         </div>
       </div>
       <div class="sh"><span class="sh-t">🏗️ 재건축·재개발 추천매물</span></div>
@@ -4757,48 +4757,26 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
       <!-- ════ 보낸 쪽지함 ════ -->
       <div id="t13-p3" style="display:none;padding:12px 16px">
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="background:var(--s1);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:12px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-              <span style="font-size:9px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">🏠 있습니다</span>
-              <span style="font-size:8px;color:#4A5568">2026-03-25 · 지역망</span>
-            </div>
-            <div style="font-size:11px;font-weight:800;color:#EDF2F7;margin-bottom:4px">[삼환아르누보2] 오피스텔 임대 있습니다</div>
-            <div style="font-size:9px;color:#8A9AB0;margin-bottom:8px">대치동 938 · 보1천/월125만 · 즉시입주</div>
-            <div style="display:flex;gap:6px">
-              <button onclick="toast('수정합니다')" style="flex:1;padding:8px;border-radius:7px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">✏️ 수정</button>
-              <button onclick="toast('재전송합니다')" style="flex:1;padding:8px;border-radius:7px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">🔄 재전송</button>
-              <button onclick="this.closest('div[style*=border-radius]').remove()" style="padding:8px 10px;border-radius:7px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:10px;cursor:pointer">🗑</button>
-            </div>
-          </div>
-          <div style="text-align:center;padding:12px;color:#4A5568;font-size:10px">오늘 1건 발송 / 일 5건 한도 (잔여 4건)</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:900;color:#EDF2F7">📤 보낸 쪽지함</div>
+          <button onclick="renderSentList()" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:var(--sans)">🔄 새로고침</button>
+        </div>
+        <div id="t13-sent-list" style="display:flex;flex-direction:column;gap:8px">
+          <div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">로딩 중...</div>
         </div>
       </div>
 
       <!-- ════ 내 매물목록 ════ -->
       <div id="t13-p4" style="display:none;padding:12px 16px">
-        <div style="font-size:12px;font-weight:900;color:#EDF2F7;margin-bottom:12px">📋 내 등록 매물 목록</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
-              <div>
-                <div style="font-size:11px;font-weight:800;color:#EDF2F7">삼환아르누보2 오피스텔</div>
-                <div style="font-size:9px;color:#8A9AB0;margin-top:2px">대치동 · 전용7.8평 · 월125만</div>
-              </div>
-              <span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">매칭중</span>
-            </div>
-            <div style="background:rgba(201,168,76,.06);border-radius:7px;padding:7px 9px;margin-bottom:8px;font-size:9px;color:#8A9AB0">
-              🤖 AI 분석: 유사 매물 대비 <span style="color:#2DD4A0;font-weight:700">적정가</span> · 학원가 접근성 우수 · 조회수 12회
-            </div>
-            <div style="display:flex;gap:6px">
-              <button onclick="toast('수정합니다')" style="flex:1;padding:9px;border-radius:8px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">✏️ 수정</button>
-              <button onclick="showT13Tab('have')" style="flex:1;padding:9px;border-radius:8px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">🔄 재발송</button>
-              <button onclick="openShortsRequest('free')" style="flex:1;padding:9px;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📹 숏츠</button>
-            </div>
-          </div>
-          <div style="text-align:center;padding:12px">
-            <button onclick="showT13Tab('have')" style="padding:12px 24px;border-radius:10px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">+ 새 매물 등록하기</button>
-          </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <div style="font-size:12px;font-weight:900;color:#EDF2F7">📋 내 등록 매물 목록</div>
+          <button onclick="renderMyList()" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:var(--sans)">🔄 새로고침</button>
+        </div>
+        <div id="t13-my-list" style="display:flex;flex-direction:column;gap:8px">
+          <div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">로딩 중...</div>
+        </div>
+        <div style="text-align:center;padding:12px">
+          <button onclick="showT13Tab('have')" style="padding:12px 24px;border-radius:10px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">+ 새 AI매칭매물 있습니다 발송</button>
         </div>
       </div>
 
@@ -5229,17 +5207,134 @@ function t13ToggleFilter(btn){
 function t13SendHave(){
   var title = document.getElementById('h-title');
   var addr  = document.getElementById('h-addr');
+  var deal  = document.getElementById('h-deal');
+  var price = document.getElementById('h-price');
   if(!title || !title.value.trim()){ toast('제목을 입력해주세요'); return; }
   if(!addr  || !addr.value.trim()) { toast('매물위치를 입력해주세요'); return; }
-  toast('✅ AI 있습니다 발송 완료! 파트너 자동매칭 시작 (일 5건 한도 · 잔여 4건)');
+
+  // ★ localStorage에 저장
+  var item = {
+    type:  'have',
+    title: title.value.trim(),
+    addr:  addr.value.trim(),
+    deal:  deal ? deal.value : '',
+    price: price ? price.value : '',
+    date:  new Date().toLocaleString('ko-KR'),
+    method:'지역망',
+    status:'발송완료'
+  };
+  try {
+    var list = JSON.parse(localStorage.getItem('propai_sent_list')||'[]');
+    list.unshift(item);
+    localStorage.setItem('propai_sent_list', JSON.stringify(list));
+  } catch(e){}
+
+  toast('✅ AI매칭매물 있습니다 발송 완료!\n파트너 자동매칭 시작 (일 5건 한도)');
   title.value = ''; addr.value = '';
   showT13Tab('sent');
 }
 
 function t13SendWant(){
-  toast('✅ AI 구합니다 발송 완료! 매물 자동탐색 시작됩니다');
+  var title = document.getElementById('w-title');
+  if(!title || !title.value.trim()){ toast('제목을 입력해주세요'); return; }
+  var item = {
+    type:  'want',
+    title: title.value.trim(),
+    addr:  '',
+    date:  new Date().toLocaleString('ko-KR'),
+    method:'지역망',
+    status:'발송완료'
+  };
+  try {
+    var list = JSON.parse(localStorage.getItem('propai_sent_list')||'[]');
+    list.unshift(item);
+    localStorage.setItem('propai_sent_list', JSON.stringify(list));
+  } catch(e){}
+  toast('✅ AI매칭매물 구합니다 발송 완료!\n매물 자동탐색 시작됩니다');
+  title.value = '';
   showT13Tab('sent');
 }
+
+/* ── 보낸 쪽지함 렌더링 ── */
+function renderSentList(){
+  var container = document.getElementById('t13-sent-list');
+  if(!container) return;
+  var list = [];
+  try { list = JSON.parse(localStorage.getItem('propai_sent_list')||'[]'); } catch(e){}
+
+  if(list.length === 0){
+    container.innerHTML = '<div style="text-align:center;padding:24px;color:#4A5568;font-size:10px">발송한 쪽지가 없습니다<br><br><button onclick="showT13Tab(\'have\')" style="padding:10px 20px;border-radius:9px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.25);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">🏠 AI매칭매물 있습니다 발송하기</button></div>';
+    return;
+  }
+
+  var today = 0;
+  var html = list.map(function(item, idx){
+    var isHave = item.type === 'have';
+    var bc = isHave ? 'rgba(45,212,160,.2)' : 'rgba(74,158,224,.2)';
+    var color = isHave ? '#2DD4A0' : '#A8D4F5';
+    var label = isHave ? '🏠 AI매칭매물 있습니다' : '🔍 AI매칭매물 구합니다';
+    if(item.date && item.date.includes(new Date().toLocaleDateString('ko-KR').split(' ')[0])) today++;
+    return '<div style="background:var(--s1);border:1px solid ' + bc + ';border-radius:11px;padding:12px;margin-bottom:0">'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
+      + '<span style="font-size:9px;background:rgba(45,212,160,.1);color:' + color + ';padding:2px 7px;border-radius:4px;font-weight:700">' + label + '</span>'
+      + '<span style="font-size:8px;color:#4A5568">' + (item.date||'') + ' · ' + (item.method||'지역망') + '</span>'
+      + '</div>'
+      + '<div style="font-size:11px;font-weight:800;color:#EDF2F7;margin-bottom:4px">' + item.title + '</div>'
+      + (item.addr ? '<div style="font-size:9px;color:#8A9AB0;margin-bottom:8px">' + item.addr + (item.deal ? ' · ' + item.deal : '') + '</div>' : '<div style="margin-bottom:8px"></div>')
+      + '<div style="display:flex;gap:6px">'
+      + '<button onclick="toast(\'재전송합니다\')" style="flex:1;padding:8px;border-radius:7px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">🔄 재전송</button>'
+      + '<button onclick="deleteSentItem(' + idx + ')" style="padding:8px 11px;border-radius:7px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:10px;cursor:pointer">🗑</button>'
+      + '</div></div>';
+  }).join('');
+
+  container.innerHTML = html + '<div style="text-align:center;padding:12px;color:#4A5568;font-size:10px">총 ' + list.length + '건 · 일 5건 한도</div>';
+}
+
+function deleteSentItem(idx){
+  var list = [];
+  try { list = JSON.parse(localStorage.getItem('propai_sent_list')||'[]'); } catch(e){}
+  list.splice(idx, 1);
+  localStorage.setItem('propai_sent_list', JSON.stringify(list));
+  renderSentList();
+  toast('삭제되었습니다');
+}
+
+/* ── 내 매물목록 렌더링 ── */
+function renderMyList(){
+  var container = document.getElementById('t13-my-list');
+  if(!container) return;
+  var list = [];
+  try { list = JSON.parse(localStorage.getItem('propai_sent_list')||'[]'); } catch(e){}
+  var haves = list.filter(function(i){ return i.type === 'have'; });
+
+  if(haves.length === 0){
+    container.innerHTML = '<div style="text-align:center;padding:24px;color:#4A5568;font-size:10px">등록된 매물이 없습니다</div>';
+    return;
+  }
+
+  container.innerHTML = haves.map(function(item, idx){
+    return '<div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px">'
+      + '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">'
+      + '<div><div style="font-size:11px;font-weight:800;color:#EDF2F7">' + item.title + '</div>'
+      + '<div style="font-size:9px;color:#8A9AB0;margin-top:2px">' + (item.addr||'') + (item.deal ? ' · ' + item.deal : '') + '</div></div>'
+      + '<span style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">매칭중</span>'
+      + '</div>'
+      + '<div style="background:rgba(201,168,76,.06);border-radius:7px;padding:7px 9px;margin-bottom:8px;font-size:9px;color:#8A9AB0">'
+      + '🤖 AI 분석: 매물 등록 완료 · 파트너 매칭 진행중 · 발송일: ' + (item.date||'') + '</div>'
+      + '<div style="display:flex;gap:6px">'
+      + '<button onclick="showT13Tab(\'have\')" style="flex:1;padding:9px;border-radius:8px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">🔄 재발송</button>'
+      + '<button onclick="openShortsRequest(\'free\')" style="flex:1;padding:9px;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">📹 숏츠</button>'
+      + '</div></div>';
+  }).join('');
+}
+
+/* ── showT13Tab 탭 전환시 자동 렌더링 ── */
+var _origShowT13Tab = showT13Tab;
+showT13Tab = function(key){
+  _origShowT13Tab(key);
+  if(key === 'sent') setTimeout(renderSentList, 50);
+  if(key === 'mylist') setTimeout(renderMyList, 50);
+};
 
 function t13Search(){ toast('🔍 AI 검색 완료'); }
 function t13SendSell(){ t13SendHave(); }
@@ -6528,6 +6623,42 @@ function deletePartnerApp(idx){
   localStorage.setItem('propai_partner_apps', JSON.stringify(apps));
   renderAdminPartners();
   toast('🗑 삭제되었습니다');
+}
+
+/* ── 공동중개 매물등록 버튼 — 로그인 상태 확인 후 분기 ── */
+function openJointOrLogin(){
+  var appEl = document.getElementById('app');
+  var isLogged = appEl && appEl.className === 'logged';
+
+  if(!isLogged){
+    // 비로그인: 공동중개 파트너 로그인 화면으로 안내
+    toast('🤝 공동중개 매물등록은\n파트너 로그인 후 이용 가능합니다!\n\n로그인 화면으로 이동합니다...');
+    setTimeout(function(){
+      // 로그인 화면으로 이동 (뒤로가기)
+      document.getElementById('app').className = '';
+      var ls = document.getElementById('login-screen');
+      if(ls) ls.style.display = 'flex';
+      // 공동중개 로그인 섹션 자동 열기
+      setTimeout(function(){
+        var jArea = document.getElementById('joint-login-area');
+        var jArrow = document.getElementById('joint-arrow');
+        if(jArea){ jArea.style.display = 'block'; }
+        if(jArrow){ jArrow.textContent = '▲'; }
+        toast('👇 공동중개 파트너 로그인 또는 가입신청을 해주세요');
+      }, 400);
+    }, 1500);
+    return;
+  }
+
+  // 파트너 로그인 상태: 바로 Tab13 발송 화면으로
+  if(userRole === 'joint'){
+    goTab(13);
+    setTimeout(function(){ showT13Tab('have'); }, 300);
+    return;
+  }
+
+  // 일반 수요자/공급자: 공동중개 모달 안내
+  toast('🤝 공동중개 매물등록은\n공동중개 파트너 계정으로만 가능합니다.\n\n📞 가입문의: 010-8985-8945 이상수 대표');
 }
 
 function toast(msg){
