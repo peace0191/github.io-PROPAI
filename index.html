@@ -6350,7 +6350,19 @@ function sendQuick(msg){
   sendChat();
 }
 
-function addMsg(role, text){
+function addChatButtons(btns){
+  var container = document.getElementById('chatMessages');
+  if(!container) return;
+  var div = document.createElement('div');
+  div.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap;padding:4px 0 4px 36px;margin-top:2px';
+  div.innerHTML = btns.map(function(btn){
+    return '<button onclick="' + btn.fn + '" style="padding:7px 11px;border-radius:8px;background:' + (btn.color||'rgba(201,168,76,.12)') + ';border:1px solid ' + (btn.border||'rgba(201,168,76,.3)') + ';color:' + (btn.textColor||'#E8C97A') + ';font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer">' + btn.label + '</button>';
+  }).join('');
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function addMsg(role, text, extraBtns){
   var container = document.getElementById('chatMessages');
   if(!container) return;
   var isUser = role === 'user';
@@ -6363,6 +6375,7 @@ function addMsg(role, text){
       + '<div style="background:rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:9px 11px;max-width:220px;font-size:11px;color:#EDF2F7;line-height:1.6">' + text + '</div>';
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
+  if(extraBtns && extraBtns.length) addChatButtons(extraBtns);
 }
 
 function addTyping(){
@@ -6426,9 +6439,19 @@ async function sendChat(){
   try {
     // Smart FAQ 응답 (GitHub Pages 환경 - CORS 우회)
     var reply = smartChatReply(msg, systemPrompt);
-    await new Promise(function(r){setTimeout(r, 800)}); // 자연스러운 딜레이
+    await new Promise(function(r){setTimeout(r, 800)});
     if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
-    addMsg('ai', reply);
+
+    // ★ 학원가 랜트 예약문의 → 바로가기 버튼 추가
+    var extraBtns = null;
+    var m2 = msg.toLowerCase();
+    if(m2.indexOf('예약') >= 0 || m2.indexOf('랜트') >= 0 || m2.indexOf('사용방법') >= 0){
+      extraBtns = [
+        {label:'📖 처음이용 사용방법', fn:'toggleChat();openGuide();', color:'rgba(201,168,76,.12)', border:'rgba(201,168,76,.3)', textColor:'#E8C97A'},
+        {label:'🚀 시작하기 바로가기', fn:'toggleChat();openKakaoAuth();', color:'rgba(45,212,160,.12)', border:'rgba(45,212,160,.3)', textColor:'#2DD4A0'}
+      ];
+    }
+    addMsg('ai', reply, extraBtns);
     chatHistory.push({role:'assistant', content: reply});
   } catch(e){
     if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
