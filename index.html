@@ -350,6 +350,36 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
   #main{max-width:420px;width:100%;position:relative;}
 }
 </style>
+<!-- ★ Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script>
+/* ══ Firebase 설정 ══
+   아래 firebaseConfig를 본인 프로젝트 값으로 교체해 주세요
+   Firebase Console → 프로젝트 설정 → 웹앱 추가 → 구성 복사
+*/
+var FIREBASE_CONFIG = {
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT.firebaseapp.com",
+  databaseURL:       "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId:         "YOUR_PROJECT",
+  storageBucket:     "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
+};
+var firebaseReady = false;
+var firebaseDB = null;
+try {
+  if(FIREBASE_CONFIG.apiKey !== 'YOUR_API_KEY'){
+    firebase.initializeApp(FIREBASE_CONFIG);
+    firebaseDB = firebase.database();
+    firebaseReady = true;
+    console.log('✅ Firebase 연결 완료');
+  } else {
+    console.log('ℹ️ Firebase 미설정 - localStorage 모드');
+  }
+} catch(e){ console.log('Firebase 초기화 실패:', e); }
+</script>
 </head>
 <body>
 <div id="app">
@@ -6199,14 +6229,27 @@ function kakaoAgreeAll(){
   }
 }
 
-/* ══ 로그인 기록 · 관리자 실시간 알림 ══ */
+/* ══ 로그인 기록 · Firebase 실시간 연동 ══ */
 function saveLoginLog(info){
+  // ① Firebase에 저장 (실시간)
+  if(firebaseReady && firebaseDB){
+    try {
+      firebaseDB.ref('loginLogs').push({
+        name:  info.name  || '이름미입력',
+        phone: info.phone || '-',
+        role:  info.role  || '',
+        type:  info.type  || '카카오',
+        time:  info.time  || new Date().toLocaleString('ko-KR'),
+        ts:    Date.now()
+      });
+    } catch(e){ console.log('Firebase 저장 실패:', e); }
+  }
+  // ② localStorage 백업 (항상)
   try {
     var logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]');
     logs.unshift(info);
-    if(logs.length > 100) logs = logs.slice(0,100); // 최대 100건
+    if(logs.length > 100) logs = logs.slice(0,100);
     localStorage.setItem('propai_login_logs', JSON.stringify(logs));
-    // 카카오 알림 문구 클립보드 준비
     localStorage.setItem('propai_latest_login', JSON.stringify(info));
   } catch(e){}
 }
@@ -6214,52 +6257,86 @@ function saveLoginLog(info){
 function renderLoginLogs(){
   var container = document.getElementById('admin-login-logs');
   if(!container) return;
-  var logs = [];
-  try { logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]'); } catch(e){}
+
+  // Firebase 실시간 리스닝
+  if(firebaseReady && firebaseDB){
+    container.innerHTML = '<div style="text-align:center;padding:16px;color:#2DD4A0;font-size:10px">🔄 Firebase 실시간 연결 중...</div>';
+    firebaseDB.ref('loginLogs').orderByChild('ts').limitToLast(50).on('value', function(snapshot){
+      var logs = [];
+      snapshot.forEach(function(child){
+        var d = child.val();
+        d._key = child.key;
+        logs.unshift(d);
+      });
+      renderLoginLogList(container, logs, true);
+    });
+  } else {
+    // localStorage fallback
+    var logs = [];
+    try { logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]'); } catch(e){}
+    renderLoginLogList(container, logs, false);
+  }
+}
+
+function renderLoginLogList(container, logs, isFirebase){
   if(logs.length === 0){
-    container.innerHTML = '<div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">로그인 기록이 없습니다</div>';
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">'
+      +(isFirebase ? '🔴 아직 로그인한 고객이 없습니다' : '로그인 기록이 없습니다')+'</div>';
     return;
   }
-  container.innerHTML = logs.map(function(log, idx){
+  var modeLabel = isFirebase
+    ? '<div style="font-size:8px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 8px;border-radius:4px;font-weight:700;display:inline-block;margin-bottom:8px">🔴 Firebase 실시간 · '+logs.length+'명</div>'
+    : '<div style="font-size:8px;background:rgba(201,168,76,.1);color:#E8C97A;padding:2px 8px;border-radius:4px;font-weight:700;display:inline-block;margin-bottom:8px">💾 로컬 저장 · '+logs.length+'건</div>';
+
+  _cachedLoginLogs = logs;
+  container.innerHTML = modeLabel + logs.map(function(log, idx){
     var typeColor = log.type==='카카오' ? '#FEE500' : log.type==='공동중개' ? '#2DD4A0' : '#E8C97A';
     var typeBg    = log.type==='카카오' ? 'rgba(254,229,0,.12)' : log.type==='공동중개' ? 'rgba(45,212,160,.12)' : 'rgba(201,168,76,.12)';
-    return '<div style="background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 13px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px">'
+    return '<div style="background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 13px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:7px">'
       +'<div style="flex:1">'
       +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">'
       +'<span style="font-size:9px;background:'+typeBg+';color:'+typeColor+';padding:1px 7px;border-radius:4px;font-weight:700">'+log.type+'</span>'
-      +'<span style="font-size:11px;font-weight:800;color:#EDF2F7">'+(log.name||'이름미입력')+'</span>'
+      +'<span style="font-size:12px;font-weight:900;color:#EDF2F7">'+(log.name||'이름미입력')+'</span>'
+      +(isFirebase?'<span style="font-size:8px;background:rgba(45,212,160,.1);color:#2DD4A0;padding:1px 6px;border-radius:3px">실시간</span>':'')
       +'</div>'
-      +'<div style="font-size:10px;color:#8A9AB0">'+(log.phone?'📞 '+log.phone+' · ':'')+''+(log.role||'')+'</div>'
+      +'<div style="font-size:11px;color:#E8C97A;font-weight:700">'+(log.phone&&log.phone!=='-'?'📞 '+log.phone:'📞 연락처 미입력')+'</div>'
+      +'<div style="font-size:9px;color:#8A9AB0;margin-top:2px">'+(log.role||'')+'</div>'
       +'<div style="font-size:9px;color:#4A5568;margin-top:2px">⏰ '+log.time+'</div>'
       +'</div>'
-      +'<button onclick="copyLoginAlert('+idx+')" style="padding:6px 9px;border-radius:7px;background:rgba(254,229,0,.1);border:1px solid rgba(254,229,0,.2);color:#FEE500;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer;flex-shrink:0">💬 카톡</button>'
+      +'<div style="display:flex;flex-direction:column;gap:5px">'
+      +'<button onclick="copyLoginAlertByIdx('+idx+')" style="padding:7px 10px;border-radius:7px;background:rgba(254,229,0,.12);border:1px solid rgba(254,229,0,.25);color:#FEE500;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">💬 카톡</button>'
+      +(log.phone&&log.phone!=='-'?'<a href="tel:'+log.phone.replace(/-/g,'')+'" style="display:block;padding:7px 10px;border-radius:7px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:800;text-decoration:none;text-align:center">📞 전화</a>':'')
+      +'</div>'
       +'</div>';
   }).join('');
 }
 
-function copyLoginAlert(idx){
-  var logs = [];
-  try { logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]'); } catch(e){}
-  var log = logs[idx];
-  if(!log) return;
+var _cachedLoginLogs = [];
+function copyLoginAlertByIdx(idx){
+  var log = _cachedLoginLogs[idx] || {};
+  copyLoginAlert(idx, log);
+}
+function copyLoginAlert(idx, logObj){
+  var log = logObj || {};
   var msg = '[PROPAI 로그인 알림]\n\n'
-    +'👤 '+log.name+' 고객님이 로그인하셨습니다\n'
-    +(log.phone ? '📞 연락처: '+log.phone+'\n' : '')
-    +'🏠 관심: '+log.role+'\n'
+    +'👤 '+(log.name||'고객')+'님이 로그인하셨습니다\n'
+    +(log.phone&&log.phone!=='-' ? '📞 연락처: '+log.phone+'\n' : '')
+    +'🏠 관심: '+(log.role||'')+'\n'
     +'⏰ '+log.time+'\n\n'
     +'빠른 연락으로 매물 안내해 주세요!\n'
     +'📞 010-8985-8945 이상수 대표';
   try {
     navigator.clipboard.writeText(msg).then(function(){
-      toast('📋 카톡 알림 메시지 복사!\n카카오톡에 붙여넣기 하세요 😊');
+      toast('📋 카톡 알림 복사 완료!\n카카오톡에 붙여넣기 하세요 😊');
     });
-  } catch(e){
-    toast('메시지: '+msg);
-  }
+  } catch(e){ toast('메시지 복사: '+msg.substring(0,50)+'...'); }
 }
 
 function clearLoginLogs(){
   if(confirm('로그인 기록을 모두 삭제할까요?')){
+    if(firebaseReady && firebaseDB){
+      firebaseDB.ref('loginLogs').remove();
+    }
     localStorage.removeItem('propai_login_logs');
     renderLoginLogs();
     toast('삭제되었습니다');
