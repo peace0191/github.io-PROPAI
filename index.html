@@ -4526,6 +4526,169 @@ try {
 
       <!-- ── 시스템 관리 탭 ── -->
       <div id="ap-system" style="display:none;padding:12px 16px">
+
+        <!-- Firebase 무료 한도 안내 카드 -->
+        <div onclick="openFirebaseGuide()" style="background:linear-gradient(135deg,rgba(255,152,0,.1),rgba(255,152,0,.04));border:1.5px solid rgba(255,152,0,.4);border-radius:13px;padding:14px;margin-bottom:12px;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:36px;height:36px;border-radius:10px;background:rgba(255,152,0,.15);display:flex;align-items:center;justify-content:center;font-size:20px">🔥</div>
+              <div>
+                <div style="font-size:12px;font-weight:900;color:#FFB74D">Firebase 무료 한도 안내</div>
+                <div style="font-size:9px;color:#8A9AB0">Spark 무료 플랜 · 사용량 현황 확인</div>
+              </div>
+            </div>
+            <div style="font-size:18px;color:#FFB74D">→</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+            <div style="background:rgba(8,16,28,.5);border-radius:8px;padding:7px;text-align:center">
+              <div style="font-size:14px;font-weight:900;color:#2DD4A0">1GB</div>
+              <div style="font-size:8px;color:#8A9AB0">DB 저장</div>
+            </div>
+            <div style="background:rgba(8,16,28,.5);border-radius:8px;padding:7px;text-align:center">
+              <div style="font-size:14px;font-weight:900;color:#2DD4A0">10GB</div>
+              <div style="font-size:8px;color:#8A9AB0">월 전송량</div>
+            </div>
+            <div style="background:rgba(8,16,28,.5);border-radius:8px;padding:7px;text-align:center">
+              <div style="font-size:14px;font-weight:900;color:#2DD4A0">100명</div>
+              <div style="font-size:8px;color:#8A9AB0">동시접속</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;font-size:9px;color:#4A5568;text-align:center">클릭하면 상세 안내 팝업이 열립니다</div>
+        </div>
+
+        <!-- Firebase 상세 안내 팝업 -->
+        <div id="firebase-guide-popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;overflow-y:auto">
+          <div style="background:#0D1929;max-width:440px;margin:20px auto;border-radius:16px;padding:20px 18px;border:1px solid rgba(255,152,0,.3)">
+            <!-- 헤더 -->
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:40px;height:40px;border-radius:11px;background:rgba(255,152,0,.15);display:flex;align-items:center;justify-content:center;font-size:22px">🔥</div>
+                <div>
+                  <div style="font-size:14px;font-weight:900;color:#FFB74D">Firebase Spark 무료 플랜</div>
+                  <div style="font-size:9px;color:#8A9AB0">관리자 필수 숙지 사항</div>
+                </div>
+              </div>
+              <button onclick="closeFirebaseGuide()" style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:16px;cursor:pointer;font-family:var(--sans)">✕</button>
+            </div>
+
+            <!-- 현재 기능 요약 -->
+            <div style="background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:13px;margin-bottom:14px">
+              <div style="font-size:11px;font-weight:900;color:#2DD4A0;margin-bottom:8px">✅ 이번 index.html 포함 기능</div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">Firebase 실시간 로그인 추적</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅ propai-dad54 연동</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">관리자 🔔 로그인현황 탭</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">💬 카톡 알림 복사</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">📞 전화 바로걸기</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">보낸쪽지함 실제 저장</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">공동중개 매물등록 버튼 연결</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">챗봇 학원가랜트 예약 버튼</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-size:10px;color:#EDF2F7">관리자 📹 숏츠 관리 탭</div>
+                  <span style="font-size:9px;background:rgba(45,212,160,.15);color:#2DD4A0;padding:2px 7px;border-radius:4px;font-weight:700">✅</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 무료 한도 상세 -->
+            <div style="font-size:11px;font-weight:900;color:#FFB74D;margin-bottom:10px">📊 Spark 무료 플랜 사용 한도</div>
+            <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
+              <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.15);border-radius:9px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">DB 저장 용량</div>
+                  <div style="font-size:9px;color:#8A9AB0">로그인 기록·파트너 데이터</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:16px;font-weight:900;color:#2DD4A0">1 GB</div>
+                  <div style="font-size:8px;color:#4A5568">약 100만건 저장 가능</div>
+                </div>
+              </div>
+              <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.15);border-radius:9px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">월 데이터 전송량</div>
+                  <div style="font-size:9px;color:#8A9AB0">로그인현황 실시간 조회</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:16px;font-weight:900;color:#2DD4A0">10 GB</div>
+                  <div style="font-size:8px;color:#4A5568">소규모 충분</div>
+                </div>
+              </div>
+              <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.15);border-radius:9px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">동시 접속자</div>
+                  <div style="font-size:9px;color:#8A9AB0">관리자·고객 동시 접속</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:16px;font-weight:900;color:#2DD4A0">100 명</div>
+                  <div style="font-size:8px;color:#4A5568">소규모 충분</div>
+                </div>
+              </div>
+              <div style="background:rgba(8,16,28,.5);border:1px solid rgba(255,152,0,.2);border-radius:9px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:10px;font-weight:800;color:#EDF2F7">비용</div>
+                  <div style="font-size:9px;color:#8A9AB0">한도 초과 시 유료 전환</div>
+                </div>
+                <div style="text-align:right">
+                  <div style="font-size:16px;font-weight:900;color:#FFB74D">₩ 0</div>
+                  <div style="font-size:8px;color:#4A5568">수년간 무료 예상</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 유료 전환 조건 -->
+            <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:11px;padding:12px;margin-bottom:14px">
+              <div style="font-size:10px;font-weight:900;color:#FCA5A5;margin-bottom:7px">⚠️ 유료 전환이 되는 경우</div>
+              <div style="font-size:9px;color:#8A9AB0;line-height:1.9">
+                • DB 저장량 1GB 초과 (약 100만건 이상)<br>
+                • 월 데이터 전송량 10GB 초과<br>
+                • 동시접속 100명 초과<br><br>
+                <span style="color:#4A5568">→ PROPAI 규모에서는 <strong style="color:#2DD4A0">사실상 무료</strong>로 계속 이용 가능합니다</span>
+              </div>
+            </div>
+
+            <!-- 사용량 확인 링크 -->
+            <div style="font-size:10px;font-weight:800;color:#EDF2F7;margin-bottom:8px">🔍 실시간 사용량 확인</div>
+            <a href="https://console.firebase.google.com/u/0/project/propai-dad54/database/propai-dad54-default-rtdb/usage" target="_blank"
+              style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,152,0,.08);border:1px solid rgba(255,152,0,.25);border-radius:10px;padding:11px 13px;text-decoration:none;margin-bottom:7px">
+              <div>
+                <div style="font-size:10px;font-weight:800;color:#FFB74D">Firebase Console 사용량</div>
+                <div style="font-size:9px;color:#8A9AB0">propai-dad54 · 실시간 DB 사용량</div>
+              </div>
+              <div style="font-size:16px;color:#FFB74D">→</div>
+            </a>
+            <a href="https://console.firebase.google.com/u/0/project/propai-dad54/database/propai-dad54-default-rtdb/data" target="_blank"
+              style="display:flex;align-items:center;justify-content:space-between;background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.2);border-radius:10px;padding:11px 13px;text-decoration:none;margin-bottom:14px">
+              <div>
+                <div style="font-size:10px;font-weight:800;color:#2DD4A0">저장된 로그인 데이터 확인</div>
+                <div style="font-size:9px;color:#8A9AB0">고객 로그인 기록 Firebase DB 조회</div>
+              </div>
+              <div style="font-size:16px;color:#2DD4A0">→</div>
+            </a>
+
+            <button onclick="closeFirebaseGuide()" style="width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#FFB74D,#F57C00);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">✅ 확인했습니다</button>
+          </div>
+        </div>
+
         <!-- 관리자 계정 설정 -->
         <div style="background:var(--s1);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:13px;margin-bottom:10px">
           <div style="font-size:10px;font-weight:800;color:#E8C97A;margin-bottom:10px">👑 관리자 계정 현황</div>
@@ -6986,6 +7149,15 @@ function openJointOrLogin(){
 
   // 일반 수요자/공급자: 공동중개 모달 안내
   toast('🤝 공동중개 매물등록은\n공동중개 파트너 계정으로만 가능합니다.\n\n📞 가입문의: 010-8985-8945 이상수 대표');
+}
+
+function openFirebaseGuide(){
+  var el = document.getElementById('firebase-guide-popup');
+  if(el) el.style.display = 'block';
+}
+function closeFirebaseGuide(){
+  var el = document.getElementById('firebase-guide-popup');
+  if(el) el.style.display = 'none';
 }
 
 function toast(msg){
