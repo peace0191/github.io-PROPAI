@@ -5433,7 +5433,6 @@ function showAdminTab(key){
   });
   // ★ 공동중개 탭 진입 시 파트너 신청 목록 자동 렌더링
   if(key === 'joint') setTimeout(renderAdminPartners, 100);
-}
   // 관리자 뱃지 업데이트
   var badge=document.getElementById('adminBadge');
   if(badge&&adminUser)badge.textContent=adminUser.name+' ('+adminUser.level+')';
