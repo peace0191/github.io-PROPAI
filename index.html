@@ -4227,6 +4227,10 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
           🤝 공동중개<br><span style="font-size:8px;font-weight:400">파트너 관리</span>
         </button>
+        <button onclick="showAdminTab('loginlog')" id="at-loginlog"
+          style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          🔔 로그인<br><span style="font-size:8px;font-weight:400">고객현황</span>
+        </button>
         <button onclick="showAdminTab('shorts')" id="at-shorts"
           style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
           📹 숏츠<br><span style="font-size:8px;font-weight:400">광고 관리</span>
@@ -4358,6 +4362,44 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
               <div style="font-size:9px;color:var(--txt2)">숏츠→계약 파이프라인 진행중</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- ── 로그인 고객 현황 탭 ── -->
+      <div id="ap-loginlog" style="display:none;padding:12px 16px">
+
+        <!-- 안내 배너 -->
+        <div style="background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.2);border-radius:12px;padding:12px 14px;margin-bottom:12px">
+          <div style="font-size:11px;font-weight:900;color:#FEE500;margin-bottom:5px">🔔 실시간 로그인 고객 알림</div>
+          <div style="font-size:9px;color:#8A9AB0;line-height:1.7">고객이 로그인하면 이 목록에 자동 저장됩니다<br>💬 카톡 버튼으로 메시지 복사 → 카카오톡 붙여넣기 → 신속 안내!</div>
+        </div>
+
+        <!-- 카카오 단톡방 바로가기 -->
+        <div style="background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.2);border-radius:11px;padding:11px 13px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <div>
+            <div style="font-size:10px;font-weight:800;color:#FEE500;margin-bottom:2px">💬 관리자 카카오 단톡방</div>
+            <div style="font-size:9px;color:#8A9AB0">로그인 알림 수신 · 이상수 대표 · 김은경 이사</div>
+          </div>
+          <a href="https://open.kakao.com/o/gPROPAI" target="_blank"
+            style="padding:9px 14px;border-radius:8px;background:linear-gradient(135deg,#FEE500,#E6CF00);color:#3C1E1E;font-family:var(--sans);font-size:10px;font-weight:900;text-decoration:none;flex-shrink:0">단톡방 →</a>
+        </div>
+
+        <!-- 로그인 기록 목록 -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:900;color:#EDF2F7">👥 로그인 고객 목록</div>
+          <div style="display:flex;gap:6px">
+            <button onclick="renderLoginLogs()" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:var(--sans)">🔄 새로고침</button>
+            <button onclick="clearLoginLogs()" style="font-size:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15);color:#FCA5A5;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:var(--sans)">🗑 전체삭제</button>
+          </div>
+        </div>
+        <div id="admin-login-logs" style="display:flex;flex-direction:column;gap:7px">
+          <div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">로딩 중...</div>
+        </div>
+
+        <!-- 카톡 알림 사용법 안내 -->
+        <div style="margin-top:12px;background:rgba(8,16,28,.5);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:11px 13px;font-size:9px;color:#4A5568;line-height:1.9">
+          💡 사용법: 💬카톡 버튼 클릭 → 메시지 자동복사<br>→ 카카오톡 단톡방에 붙여넣기 → 전송!<br>
+          ⚠️ 같은 기기에서 로그인한 고객만 기록됩니다<br>(서버 없는 GitHub Pages 환경 특성)
         </div>
       </div>
 
@@ -5600,8 +5642,8 @@ window.addEventListener('beforeunload',function(e){
 
 
 /* ─── 관리자 탭 전환 ─── */
-var adminPanels=['ap-demand','ap-joint','ap-shorts','ap-system'];
-var adminTabBtns=['at-demand','at-joint','at-shorts','at-system'];
+var adminPanels=['ap-demand','ap-joint','ap-loginlog','ap-shorts','ap-system'];
+var adminTabBtns=['at-demand','at-joint','at-loginlog','at-shorts','at-system'];
 function showAdminTab(key){
   var map={demand:0,joint:1,system:2};
   var idx=map[key]||0;
@@ -5623,6 +5665,7 @@ function showAdminTab(key){
   });
   // ★ 공동중개 탭 진입 시 파트너 신청 목록 자동 렌더링
   if(key === 'joint') setTimeout(renderAdminPartners, 100);
+  if(key === 'loginlog') setTimeout(renderLoginLogs, 100);
   if(key === 'shorts') setTimeout(renderShortsRequests, 100);
   // 관리자 뱃지 업데이트
   var badge=document.getElementById('adminBadge');
@@ -6156,6 +6199,73 @@ function kakaoAgreeAll(){
   }
 }
 
+/* ══ 로그인 기록 · 관리자 실시간 알림 ══ */
+function saveLoginLog(info){
+  try {
+    var logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]');
+    logs.unshift(info);
+    if(logs.length > 100) logs = logs.slice(0,100); // 최대 100건
+    localStorage.setItem('propai_login_logs', JSON.stringify(logs));
+    // 카카오 알림 문구 클립보드 준비
+    localStorage.setItem('propai_latest_login', JSON.stringify(info));
+  } catch(e){}
+}
+
+function renderLoginLogs(){
+  var container = document.getElementById('admin-login-logs');
+  if(!container) return;
+  var logs = [];
+  try { logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]'); } catch(e){}
+  if(logs.length === 0){
+    container.innerHTML = '<div style="text-align:center;padding:20px;color:#4A5568;font-size:10px">로그인 기록이 없습니다</div>';
+    return;
+  }
+  container.innerHTML = logs.map(function(log, idx){
+    var typeColor = log.type==='카카오' ? '#FEE500' : log.type==='공동중개' ? '#2DD4A0' : '#E8C97A';
+    var typeBg    = log.type==='카카오' ? 'rgba(254,229,0,.12)' : log.type==='공동중개' ? 'rgba(45,212,160,.12)' : 'rgba(201,168,76,.12)';
+    return '<div style="background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 13px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px">'
+      +'<div style="flex:1">'
+      +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">'
+      +'<span style="font-size:9px;background:'+typeBg+';color:'+typeColor+';padding:1px 7px;border-radius:4px;font-weight:700">'+log.type+'</span>'
+      +'<span style="font-size:11px;font-weight:800;color:#EDF2F7">'+(log.name||'이름미입력')+'</span>'
+      +'</div>'
+      +'<div style="font-size:10px;color:#8A9AB0">'+(log.phone?'📞 '+log.phone+' · ':'')+''+(log.role||'')+'</div>'
+      +'<div style="font-size:9px;color:#4A5568;margin-top:2px">⏰ '+log.time+'</div>'
+      +'</div>'
+      +'<button onclick="copyLoginAlert('+idx+')" style="padding:6px 9px;border-radius:7px;background:rgba(254,229,0,.1);border:1px solid rgba(254,229,0,.2);color:#FEE500;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer;flex-shrink:0">💬 카톡</button>'
+      +'</div>';
+  }).join('');
+}
+
+function copyLoginAlert(idx){
+  var logs = [];
+  try { logs = JSON.parse(localStorage.getItem('propai_login_logs')||'[]'); } catch(e){}
+  var log = logs[idx];
+  if(!log) return;
+  var msg = '[PROPAI 로그인 알림]\n\n'
+    +'👤 '+log.name+' 고객님이 로그인하셨습니다\n'
+    +(log.phone ? '📞 연락처: '+log.phone+'\n' : '')
+    +'🏠 관심: '+log.role+'\n'
+    +'⏰ '+log.time+'\n\n'
+    +'빠른 연락으로 매물 안내해 주세요!\n'
+    +'📞 010-8985-8945 이상수 대표';
+  try {
+    navigator.clipboard.writeText(msg).then(function(){
+      toast('📋 카톡 알림 메시지 복사!\n카카오톡에 붙여넣기 하세요 😊');
+    });
+  } catch(e){
+    toast('메시지: '+msg);
+  }
+}
+
+function clearLoginLogs(){
+  if(confirm('로그인 기록을 모두 삭제할까요?')){
+    localStorage.removeItem('propai_login_logs');
+    renderLoginLogs();
+    toast('삭제되었습니다');
+  }
+}
+
 function kakaoComplete(){
   if(!document.getElementById('ka1').textContent||
      !document.getElementById('ka2').textContent||
@@ -6163,19 +6273,23 @@ function kakaoComplete(){
     toast('⚠️ 필수 동의 항목을 모두 체크해주세요');return;
   }
   closeKakaoAuth();
-  // 역할별 이름 설정
-  var name=document.getElementById('k-name').value.trim()||'고객';
-  var roleMap={buy:'매수희망',sell:'공급자',both:'수요+공급'};
-  document.getElementById('un').textContent=name;
-  var _uav=document.querySelector('.uav');if(_uav)_uav.textContent='K';
-  userRole='user';
-  document.getElementById('app').className='logged';
+  var name = document.getElementById('k-name').value.trim()||'고객';
+  var phone = document.getElementById('k-phone') ? document.getElementById('k-phone').value.trim() : '';
+  var roleMap = {buy:'매수희망',sell:'공급자',both:'수요+공급'};
+  var roleLabel = roleMap[kakaoRole]||'수요자';
+  document.getElementById('un').textContent = name;
+  var _uav = document.querySelector('.uav'); if(_uav) _uav.textContent='K';
+  userRole = 'user';
+  document.getElementById('app').className = 'logged';
   goTab(0);
   initBackButtonLock();
-  var roleLabel=roleMap[kakaoRole]||'';
+  showChatBtn();
   toast('🎉 카카오 인증 완료! '+name+'님 환영합니다 ('+roleLabel+')');
-  // 매물 바로가기 버튼으로 예약된 탭이 있으면 이동
-  var pending=sessionStorage.getItem('pendingTab');
+
+  // ★ 로그인 기록 저장 + 관리자 알림
+  saveLoginLog({name:name, phone:phone, role:roleLabel, type:'카카오', time:new Date().toLocaleString('ko-KR')});
+
+  var pending = sessionStorage.getItem('pendingTab');
   if(pending){sessionStorage.removeItem('pendingTab');setTimeout(function(){goTab(parseInt(pending));},400);}
   setTimeout(initReveal,150);
 }
