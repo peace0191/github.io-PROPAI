@@ -4227,6 +4227,10 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
           🤝 공동중개<br><span style="font-size:8px;font-weight:400">파트너 관리</span>
         </button>
+        <button onclick="showAdminTab('shorts')" id="at-shorts"
+          style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
+          📹 숏츠<br><span style="font-size:8px;font-weight:400">광고 관리</span>
+        </button>
         <button onclick="showAdminTab('system')" id="at-system"
           style="padding:11px 4px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;text-align:center">
           ⚙️ 시스템<br><span style="font-size:8px;font-weight:400">자동화·설정</span>
@@ -4353,6 +4357,97 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
               </div>
               <div style="font-size:9px;color:var(--txt2)">숏츠→계약 파이프라인 진행중</div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 숏츠 광고 관리 탭 ── -->
+      <div id="ap-shorts" style="display:none;padding:12px 16px">
+
+        <!-- 유튜브 채널 바로가기 -->
+        <a href="https://www.youtube.com/@lottebldg" target="_blank"
+          style="display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(239,68,68,.04));border:1.5px solid rgba(239,68,68,.3);border-radius:13px;padding:13px;margin-bottom:12px;text-decoration:none">
+          <div style="width:44px;height:44px;border-radius:11px;background:rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">▶</div>
+          <div style="flex:1">
+            <div style="font-size:9px;color:#FCA5A5;font-weight:700;margin-bottom:2px">YOUTUBE CHANNEL</div>
+            <div style="font-size:13px;font-weight:900;color:#EDF2F7">롯데타워앤강남빌딩 유튜브</div>
+            <div style="font-size:9px;color:#8A9AB0;margin-top:1px">숏츠 업로드 · 매물 홍보 채널</div>
+          </div>
+          <div style="font-size:18px;color:#FCA5A5">→</div>
+        </a>
+
+        <!-- 숏츠 제작 가이드 -->
+        <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:13px;margin-bottom:12px">
+          <div style="font-size:11px;font-weight:900;color:#FCA5A5;margin-bottom:10px">📋 숏츠 제작 프로세스</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:flex-start;gap:9px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#FCA5A5;flex-shrink:0">1</div>
+              <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">파일 수신</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">📧 5788285@naver.com 수신 · 사진10장+20초영상</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:9px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#FCA5A5;flex-shrink:0">2</div>
+              <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">영상 편집 (CapCut 권장)</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">AI 자동편집 · 자막 · BGM · 9:16 세로 포맷</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:9px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#FCA5A5;flex-shrink:0">3</div>
+              <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">유튜브 업로드</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">#숏츠 #강남부동산 #대치동 태그 · 공개설정</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:9px">
+              <div style="width:22px;height:22px;border-radius:50%;background:rgba(45,212,160,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#2DD4A0;flex-shrink:0">4</div>
+              <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">링크 파트너에게 발송</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">아래 접수함에서 완료 처리 · 카카오톡 링크 전달</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 편집 도구 바로가기 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px">
+          <a href="https://www.capcut.com" target="_blank" style="display:flex;align-items:center;gap:8px;background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;text-decoration:none">
+            <span style="font-size:18px">✂️</span>
+            <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">CapCut</div><div style="font-size:8px;color:#8A9AB0">AI 자동편집</div></div>
+          </a>
+          <a href="https://vrew.voyagerx.com" target="_blank" style="display:flex;align-items:center;gap:8px;background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;text-decoration:none">
+            <span style="font-size:18px">🎬</span>
+            <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">Vrew(브루)</div><div style="font-size:8px;color:#8A9AB0">AI 자막편집</div></div>
+          </a>
+          <a href="https://clova.ai/dubbing" target="_blank" style="display:flex;align-items:center;gap:8px;background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;text-decoration:none">
+            <span style="font-size:18px">🎙️</span>
+            <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">클로바더빙</div><div style="font-size:8px;color:#8A9AB0">AI 나레이션</div></div>
+          </a>
+          <a href="https://www.canva.com" target="_blank" style="display:flex;align-items:center;gap:8px;background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;text-decoration:none">
+            <span style="font-size:18px">🎨</span>
+            <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">Canva</div><div style="font-size:8px;color:#8A9AB0">썸네일·디자인</div></div>
+          </a>
+        </div>
+
+        <!-- 숏츠 신청 접수함 -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:900;color:#EDF2F7">📥 숏츠 신청 접수함</div>
+          <button onclick="renderShortsRequests()" style="font-size:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:var(--sans)">🔄 새로고침</button>
+        </div>
+        <div id="admin-shorts-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+          <div style="text-align:center;padding:16px;color:#4A5568;font-size:10px">로딩 중...</div>
+        </div>
+
+        <!-- 숏츠 완성 링크 등록 -->
+        <div style="background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.2);border-radius:12px;padding:13px">
+          <div style="font-size:11px;font-weight:900;color:#2DD4A0;margin-bottom:10px">✅ 숏츠 완성 링크 등록 · 파트너 발송</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+            <div>
+              <label style="font-size:8px;color:#8A9AB0;display:block;margin-bottom:3px">파트너 연락처</label>
+              <input id="shorts-tel" type="text" placeholder="010-XXXX-XXXX" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+            </div>
+            <div>
+              <label style="font-size:8px;color:#8A9AB0;display:block;margin-bottom:3px">유튜브 숏츠 링크</label>
+              <input id="shorts-url" type="text" placeholder="https://youtube.com/shorts/..." style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+            </div>
+            <div>
+              <label style="font-size:8px;color:#8A9AB0;display:block;margin-bottom:3px">매물명</label>
+              <input id="shorts-prop" type="text" placeholder="예: 시그니엘 95평 임대" style="width:100%;padding:8px 10px;background:rgba(8,16,28,.6);border:1px solid rgba(45,212,160,.2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+            </div>
+          </div>
+          <div style="display:flex;gap:7px">
+            <button onclick="saveShortsComplete()" style="flex:2;padding:11px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">✅ 완성 등록 · 파트너 알림</button>
+            <a id="shorts-kakao-link" href="#" onclick="openKakaoShortsShare();return false;" style="flex:1;display:flex;align-items:center;justify-content:center;padding:11px;border-radius:9px;background:rgba(254,229,0,.1);border:1px solid rgba(254,229,0,.2);color:#FEE500;font-family:var(--sans);font-size:11px;font-weight:800;text-decoration:none;cursor:pointer">💬 카카오 공유</a>
           </div>
         </div>
       </div>
@@ -5505,8 +5600,8 @@ window.addEventListener('beforeunload',function(e){
 
 
 /* ─── 관리자 탭 전환 ─── */
-var adminPanels=['ap-demand','ap-joint','ap-system'];
-var adminTabBtns=['at-demand','at-joint','at-system'];
+var adminPanels=['ap-demand','ap-joint','ap-shorts','ap-system'];
+var adminTabBtns=['at-demand','at-joint','at-shorts','at-system'];
 function showAdminTab(key){
   var map={demand:0,joint:1,system:2};
   var idx=map[key]||0;
@@ -5528,6 +5623,7 @@ function showAdminTab(key){
   });
   // ★ 공동중개 탭 진입 시 파트너 신청 목록 자동 렌더링
   if(key === 'joint') setTimeout(renderAdminPartners, 100);
+  if(key === 'shorts') setTimeout(renderShortsRequests, 100);
   // 관리자 뱃지 업데이트
   var badge=document.getElementById('adminBadge');
   if(badge&&adminUser)badge.textContent=adminUser.name+' ('+adminUser.level+')';
@@ -6516,6 +6612,22 @@ function openShortsRequest(type){
       +'신청하시겠습니까?';
 
   if(confirm(msg)){
+    // ★ 관리자 숏츠 접수함에 자동 등록
+    var titleEl = document.getElementById('h-title');
+    var propName = (titleEl && titleEl.value) ? titleEl.value : '매물명 미입력';
+    var item = {
+      prop: propName,
+      tel: '-',
+      type: isPaid ? 'paid' : 'free',
+      status: '접수',
+      date: new Date().toLocaleString('ko-KR')
+    };
+    try {
+      var list = JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');
+      list.unshift(item);
+      localStorage.setItem('propai_shorts_requests', JSON.stringify(list));
+    } catch(e){}
+
     toast((isPaid ? '⚡ 유료' : '📹 무료') + ' 숏츠 신청 완료!\n\n'
       +'📧 5788285@naver.com 으로\n'
       +'사진 10장 + 20초 영상을 보내주세요\n\n'
