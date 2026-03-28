@@ -5017,63 +5017,79 @@ try {
       </div>
 
       <!-- ── 헤더 ── -->
-      <div style="background:linear-gradient(135deg,#060E1C,#0D1E30);padding:10px 16px 0;border-bottom:1px solid rgba(45,212,160,.15)">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-          <div>
-            <div style="font-size:9px;color:#2DD4A0;font-weight:700;letter-spacing:1px">공동중개 파트너 전용 · AI 매칭 플랫폼</div>
-            <div style="font-size:15px;font-weight:900;color:#EDF2F7">🤝 공동중개 AI 공유</div>
+      <div style="background:linear-gradient(135deg,#060E1C,#0A1828);padding:14px 16px 0;border-bottom:2px solid rgba(45,212,160,.2)">
+        <!-- 상단 타이틀 -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,rgba(45,212,160,.2),rgba(45,212,160,.08));display:flex;align-items:center;justify-content:center;font-size:22px;border:1px solid rgba(45,212,160,.3)">🤝</div>
+            <div>
+              <div style="font-size:9px;color:#2DD4A0;font-weight:700;letter-spacing:1.5px;margin-bottom:2px">공동중개 파트너 전용 · AI 매칭 플랫폼</div>
+              <div style="font-size:18px;font-weight:900;color:#EDF2F7;line-height:1">공동중개 AI 공유</div>
+            </div>
           </div>
-          <div id="t13-sub-badge" style="font-size:8px;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.3);color:#2DD4A0;padding:3px 9px;border-radius:5px;font-weight:700">무료</div>
+          <div id="t13-sub-badge" style="font-size:9px;background:rgba(45,212,160,.15);border:1.5px solid rgba(45,212,160,.35);color:#2DD4A0;padding:4px 12px;border-radius:20px;font-weight:800">무료</div>
         </div>
-        <!-- 5탭 메뉴 -->
+        <!-- 5탭 메뉴 — 크고 명확하게 -->
         <div style="display:flex;gap:0;margin:0 -16px">
-          <button onclick="showT13Tab('recv')" id="t13-t0" style="flex:1;padding:9px 2px;border:none;background:rgba(45,212,160,.1);border-bottom:3px solid #2DD4A0;color:#2DD4A0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">📥 받은<br>쪽지함</button>
-          <button onclick="showT13Tab('have')" id="t13-t1" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">🏠 있습니다<br>발송</button>
-          <button onclick="showT13Tab('want')" id="t13-t2" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">🔍 구합니다<br>발송</button>
-          <button onclick="showT13Tab('sent')" id="t13-t3" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">📤 보낸<br>쪽지함</button>
-          <button onclick="showT13Tab('mylist')" id="t13-t4" style="flex:1;padding:9px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer;text-align:center">📋 내<br>매물목록</button>
+          <button onclick="showT13Tab('recv')" id="t13-t0" style="flex:1;padding:11px 2px;border:none;background:rgba(45,212,160,.12);border-bottom:3px solid #2DD4A0;color:#2DD4A0;font-family:var(--sans);font-size:9px;font-weight:900;cursor:pointer;text-align:center;line-height:1.4">📥<br>받은쪽지</button>
+          <button onclick="showT13Tab('have')" id="t13-t1" style="flex:1;padding:11px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:900;cursor:pointer;text-align:center;line-height:1.4">🏠<br>있습니다</button>
+          <button onclick="showT13Tab('want')" id="t13-t2" style="flex:1;padding:11px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:900;cursor:pointer;text-align:center;line-height:1.4">🔍<br>구합니다</button>
+          <button onclick="showT13Tab('sent')" id="t13-t3" style="flex:1;padding:11px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:900;cursor:pointer;text-align:center;line-height:1.4">📤<br>보낸쪽지</button>
+          <button onclick="showT13Tab('mylist')" id="t13-t4" style="flex:1;padding:11px 2px;border:none;background:transparent;border-bottom:3px solid transparent;color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:900;cursor:pointer;text-align:center;line-height:1.4">📋<br>내매물</button>
         </div>
       </div>
 
       <!-- ════ 받은 쪽지함 ════ -->
-      <div id="t13-p0" style="padding:12px 16px;display:block">
-        <!-- 검색 필터 -->
-        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:11px;padding:11px;margin-bottom:12px">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px">
-            <div>
-              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">날짜</div>
-              <input type="date" style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
+      <div id="t13-p0" style="padding:14px 16px;display:block">
+        <!-- 빠른 필터 버튼 -->
+        <div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px">
+          <button onclick="toast('전체 보기')" style="padding:8px 14px;border-radius:20px;background:rgba(45,212,160,.15);border:1.5px solid rgba(45,212,160,.4);color:#2DD4A0;font-family:var(--sans);font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap">전체</button>
+          <button onclick="toast('있습니다 필터')" style="padding:8px 14px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap">🏠 있습니다</button>
+          <button onclick="toast('구합니다 필터')" style="padding:8px 14px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap">🔍 구합니다</button>
+          <button onclick="toast('오늘 수신')" style="padding:8px 14px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap">📅 오늘</button>
+        </div>
+        <!-- 상세 필터 (접기/펼치기) -->
+        <div style="background:var(--s1);border:1px solid var(--line2);border-radius:12px;padding:12px;margin-bottom:14px">
+          <button onclick="t13FilterToggle()" style="width:100%;background:none;border:none;color:#8A9AB0;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center" id="t13-filter-btn">
+            <span>🔍 상세 필터</span><span id="t13-filter-arrow">▼</span>
+          </button>
+          <div id="t13-filter-detail" style="display:none;margin-top:10px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+              <div>
+                <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px">날짜</div>
+                <input type="date" style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+              </div>
+              <div>
+                <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px">구분</div>
+                <select style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>전체</option><option>있습니다</option><option>구합니다</option>
+                </select>
+              </div>
             </div>
-            <div>
-              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">구분</div>
-              <select style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
-                <option>전체</option><option>있습니다</option><option>구합니다</option>
-              </select>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+              <div>
+                <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px">매물종류</div>
+                <select style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>전체</option><option>아파트</option><option>오피스텔</option><option>상가</option><option>토지</option>
+                </select>
+              </div>
+              <div>
+                <div style="font-size:9px;color:#8A9AB0;margin-bottom:3px">지역</div>
+                <select style="width:100%;padding:8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
+                  <option>전체</option><option>대치동</option><option>역삼동</option><option>도곡동</option><option>삼성동</option><option>잠실동</option>
+                </select>
+              </div>
             </div>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
+              <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">금액조절 가능한</button>
+              <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">바로 볼 수 있는</button>
+              <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">즉시 입주 가능한</button>
+              <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">전세대출 가능한</button>
+              <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">손님 대기중</button>
+              <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">주차 가능한</button>
+            </div>
+            <button onclick="toast('검색합니다...')" style="width:100%;padding:10px;border-radius:9px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🔍 검색하기</button>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px">
-            <div>
-              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">매물종류</div>
-              <select style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
-                <option>전체</option><option>아파트</option><option>오피스텔</option><option>상가</option><option>토지</option>
-              </select>
-            </div>
-            <div>
-              <div style="font-size:8px;color:#8A9AB0;margin-bottom:3px">지역</div>
-              <select style="width:100%;padding:6px 8px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:7px;color:#EDF2F7;font-size:10px;font-family:var(--sans);outline:none;box-sizing:border-box">
-                <option>전체</option><option>대치동</option><option>역삼동</option><option>도곡동</option><option>삼성동</option><option>잠실동</option>
-              </select>
-            </div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px">
-            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">금액조절 가능한</button>
-            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">바로 볼 수 있는</button>
-            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">즉시 입주 가능한</button>
-            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">전세대출 가능한</button>
-            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">손님 대기중</button>
-            <button onclick="t13ToggleFilter(this)" class="t13-filter" style="padding:4px 9px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:8px;font-weight:700;cursor:pointer;font-family:var(--sans)">주차 가능한</button>
-          </div>
-          <button onclick="toast('검색합니다...')" style="width:100%;padding:9px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);color:#08101C;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">🔍 검색하기</button>
         </div>
 
         <!-- 받은 쪽지 목록 -->
@@ -5829,6 +5845,15 @@ function showT13Tab(key){
   });
   var sc = document.querySelector('.content');
   if(sc) sc.scrollTop = 0;
+}
+
+function t13FilterToggle(){
+  var detail = document.getElementById('t13-filter-detail');
+  var arrow  = document.getElementById('t13-filter-arrow');
+  if(!detail) return;
+  var isOpen = detail.style.display === 'block';
+  detail.style.display = isOpen ? 'none' : 'block';
+  if(arrow) arrow.textContent = isOpen ? '▼' : '▲';
 }
 
 function t13ToggleFilter(btn){
