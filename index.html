@@ -4414,8 +4414,8 @@ try {
             <div style="font-size:10px;font-weight:800;color:#FEE500;margin-bottom:2px">💬 관리자 카카오 단톡방</div>
             <div style="font-size:9px;color:#8A9AB0">로그인 알림 수신 · 이상수 대표 · 김은경 이사</div>
           </div>
-          <a href="https://open.kakao.com/o/gPROPAI" target="_blank"
-            style="padding:9px 14px;border-radius:8px;background:linear-gradient(135deg,#FEE500,#E6CF00);color:#3C1E1E;font-family:var(--sans);font-size:10px;font-weight:900;text-decoration:none;flex-shrink:0">단톡방 →</a>
+          <a href="https://open.kakao.com/o/sPLGlKni" target="_blank"
+            style="padding:9px 14px;border-radius:8px;background:linear-gradient(135deg,#FEE500,#E6CF00);color:#3C1E1E;font-family:var(--sans);font-size:10px;font-weight:900;text-decoration:none;flex-shrink:0">단톡방 입장 →</a>
         </div>
 
         <!-- 로그인 기록 목록 -->
@@ -5892,14 +5892,100 @@ function doLogout(){
   if(jId)jId.value=''; if(jPw)jPw.value='';
   var aId=document.getElementById('ls-adm-id');var aPw=document.getElementById('ls-adm-pw');
   if(aId)aId.value=''; if(aPw)aPw.value='';
-  hideChatBtn(); toast('👋 로그아웃 되었습니다');
+  hideChatBtn();
+  try { sessionStorage.removeItem('propai_session'); } catch(e){}
+  toast('👋 로그아웃 되었습니다');
+}
+
+/* ─── 새로고침 시 로그인 상태 복원 ─── */
+function saveLoginSession(role, name, tabIdx){
+  try {
+    sessionStorage.setItem('propai_session', JSON.stringify({
+      role: role, name: name, tab: tabIdx||0, ts: Date.now()
+    }));
+  } catch(e){}
+}
+
+function restoreLoginSession(){
+  try {
+    var saved = sessionStorage.getItem('propai_session');
+    if(!saved) return;
+    var s = JSON.parse(saved);
+    // 1시간 이내만 복원
+    if(Date.now() - s.ts > 3600000){ sessionStorage.removeItem('propai_session'); return; }
+
+    var appEl = document.getElementById('app');
+    if(!appEl) return;
+
+    if(s.role === 'admin'){
+      // 관리자 복원
+      appEl.className = 'logged';
+      userRole = 'admin';
+      var unEl = document.getElementById('un');
+      if(unEl) unEl.textContent = s.name || '관리자';
+      var uavEl = document.querySelector('.uav');
+      if(uavEl) uavEl.textContent = '👑';
+      toggleAdmin();
+      setTimeout(initReveal, 150);
+      toast('👑 관리자 세션 복원 완료');
+    } else if(s.role === 'joint'){
+      // 공동중개 복원
+      appEl.className = 'logged';
+      userRole = 'joint';
+      var unEl2 = document.getElementById('un');
+      if(unEl2) unEl2.textContent = s.name || '파트너';
+      applyJointBrokerSecurity();
+      goTab(13);
+      setTimeout(initReveal, 150);
+      toast('🤝 파트너 세션 복원');
+    } else if(s.role === 'user'){
+      // 일반 유저 복원
+      appEl.className = 'logged';
+      userRole = 'user';
+      var unEl3 = document.getElementById('un');
+      if(unEl3) unEl3.textContent = s.name || '고객';
+      goTab(s.tab || 0);
+      showChatBtn();
+      setTimeout(initReveal, 150);
+    }
+  } catch(e){}
+}
+
+// 페이지 로드 시 세션 복원
+window.addEventListener('DOMContentLoaded', function(){
+  restoreLoginSession();
+});
+
+/* ─── 카카오 단톡방 안내 ─── */
+function copyAdminKakaoLink(e){
+  e.preventDefault();
+  var msg = '[PROPAI 관리자 카카오 오픈채팅방 개설 안내]\n\n'
+    +'1. 카카오톡 앱 실행\n'
+    +'2. 하단 채팅 탭 → 우측상단 + → 오픈채팅\n'
+    +'3. 그룹 오픈채팅 만들기\n'
+    +'4. 방 이름: PROPAI 관리자 알림\n'
+    +'5. 링크 복사 후 이 앱 단톡방 주소칸에 붙여넣기\n\n'
+    +'📞 문의: 010-8985-8945 이상수 대표';
+  try {
+    navigator.clipboard.writeText(msg).then(function(){
+      toast('📋 오픈채팅방 개설 안내 복사!\n카카오톡에서 오픈채팅방을 만드신 후\n링크를 담당자에게 알려주세요 😊');
+    });
+  } catch(er){
+    toast('카카오톡 → 오픈채팅 → 그룹채팅 만들기\n방 이름: PROPAI 관리자 알림');
+  }
 }
 
 /* ─── 페이지 언로드 방지 (로그인 중) ─── */
-window.addEventListener('beforeunload',function(e){
-  if(document.getElementById('app').className==='logged'){
-    e.preventDefault();
-    e.returnValue='';
+window.addEventListener('beforeunload',function(){
+  var appEl = document.getElementById('app');
+  if(appEl && appEl.className === 'logged'){
+    // 현재 상태 저장 (새로고침 복원용)
+    var tab = 0;
+    var tabEls = document.querySelectorAll('.screen');
+    tabEls.forEach(function(el, i){
+      if(el.style.display !== 'none' && el.style.display !== '') tab = i;
+    });
+    saveLoginSession(userRole, (document.getElementById('un')||{}).textContent||'', tab);
   }
 });
 
@@ -6127,6 +6213,8 @@ function doAdminLogin(){
   // 관리자 레벨 표시
   var nameEl=document.querySelector('.un');
   if(nameEl)nameEl.textContent=found.name+' (관리자)';
+  // ★ 세션 저장 (새로고침 복원용)
+  saveLoginSession('admin', found.name, -1);
   toast('🔓 '+found.name+' 관리자 로그인 완료');
 }
 
