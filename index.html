@@ -7973,6 +7973,15 @@ function selectRentWant(propName, region){
     if(el){ el.style.borderColor='rgba(255,255,255,.1)'; el.style.background='rgba(8,16,28,.5)'; }
   });
   var names = ['역삼 래전드힐스','삼환아르누보2','대치 W타워'];
-  var idx = names.indexOf(propName);
-  if(idx >= 0){
-    var sel = do
+  var idx2 = names.indexOf(propName);
+  if(idx2 >= 0){
+    var sel = document.getElementById('w-rent-prop-'+idx2);
+    if(sel){ sel.style.borderColor='rgba(74,158,224,.5)'; sel.style.background='rgba(74,158,224,.08)'; }
+  }
+  var titleEl = document.getElementById('w-title');
+  if(titleEl && !titleEl.value) titleEl.value = '['+propName+'] 단기·장기 임대 구합니다';
+  toast('✅ '+propName+' 선택 완료!');
+}
+</script>
+</body>
+</html>
