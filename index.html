@@ -7982,6 +7982,209 @@ function selectRentWant(propName, region){
   if(titleEl && !titleEl.value) titleEl.value = '['+propName+'] 단기·장기 임대 구합니다';
   toast('✅ '+propName+' 선택 완료!');
 }
+
+/* ══ PATCH: missing helper functions completed ══ */
+function toast(msg){
+  try{
+    var wrap=document.getElementById('tw') || document.querySelector('.tw');
+    if(!wrap){
+      wrap=document.createElement('div');
+      wrap.id='tw';
+      wrap.className='tw';
+      document.body.appendChild(wrap);
+    }
+    var item=document.createElement('div');
+    item.className='t1';
+    item.innerHTML=String(msg||'').replace(/\n/g,'<br>');
+    wrap.appendChild(item);
+    setTimeout(function(){ try{ item.remove(); }catch(e){} }, 3100);
+  }catch(e){
+    console.log(msg);
+  }
+}
+
+function openFirebaseGuide(){
+  var el=document.getElementById('firebase-guide-popup');
+  if(el) el.style.display='block';
+}
+function closeFirebaseGuide(){
+  var el=document.getElementById('firebase-guide-popup');
+  if(el) el.style.display='none';
+}
+
+function getShortsRequests(){
+  var list=[];
+  try{ list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]'); }catch(e){}
+  return Array.isArray(list)?list:[];
+}
+function saveShortsRequests(list){
+  try{ localStorage.setItem('propai_shorts_requests', JSON.stringify(list||[])); }catch(e){}
+}
+function getShortsCompleted(){
+  var list=[];
+  try{ list=JSON.parse(localStorage.getItem('propai_shorts_completed')||'[]'); }catch(e){}
+  return Array.isArray(list)?list:[];
+}
+function saveShortsCompletedList(list){
+  try{ localStorage.setItem('propai_shorts_completed', JSON.stringify(list||[])); }catch(e){}
+}
+function escapeHtml(s){
+  return String(s==null?'':s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+function platformBadge(platform){
+  var map={
+    youtube:{bg:'rgba(239,68,68,.12)', color:'#FCA5A5', label:'유튜브'},
+    kakao:{bg:'rgba(254,229,0,.12)', color:'#FEE500', label:'카카오'},
+    both:{bg:'rgba(45,212,160,.12)', color:'#2DD4A0', label:'동시발송'}
+  };
+  return map[platform]||{bg:'rgba(255,255,255,.08)', color:'#EDF2F7', label:(platform||'일반')};
+}
+function typeBadge(type){
+  return type==='paid'
+    ? {bg:'rgba(239,68,68,.12)', color:'#FCA5A5', label:'유료'}
+    : {bg:'rgba(45,212,160,.12)', color:'#2DD4A0', label:'무료'};
+}
+function renderShortsRequests(){
+  var container=document.getElementById('admin-shorts-list');
+  if(!container) return;
+  var list=getShortsRequests();
+  if(!list.length){
+    container.innerHTML='<div style="text-align:center;padding:18px;color:#4A5568;font-size:10px">아직 접수된 숏츠 신청이 없습니다</div>';
+    return;
+  }
+  container.innerHTML=list.map(function(item,idx){
+    var pb=platformBadge(item.platform);
+    var tb=typeBadge(item.type||item.plan);
+    var tel=(item.tel&&item.tel!=='-')?item.tel:'연락처 미입력';
+    var status=item.status||'접수';
+    var sColor=status==='완료'?'#2DD4A0':status==='진행중'?'#F59E0B':'#A8D4F5';
+    var sBg=status==='완료'?'rgba(45,212,160,.12)':status==='진행중'?'rgba(245,158,11,.12)':'rgba(74,158,224,.12)';
+    return ''
+      +'<div style="background:var(--s1);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:12px">'
+      +'<div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:8px">'
+      +'<div style="flex:1;min-width:0">'
+      +'<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:5px">'
+      +'<span style="font-size:8px;background:'+pb.bg+';color:'+pb.color+';padding:2px 7px;border-radius:4px;font-weight:700">'+pb.label+'</span>'
+      +'<span style="font-size:8px;background:'+tb.bg+';color:'+tb.color+';padding:2px 7px;border-radius:4px;font-weight:700">'+tb.label+'</span>'
+      +'<span style="font-size:8px;background:'+sBg+';color:'+sColor+';padding:2px 7px;border-radius:4px;font-weight:700">'+escapeHtml(status)+'</span>'
+      +'</div>'
+      +'<div style="font-size:11px;font-weight:900;color:#EDF2F7;line-height:1.45">'+escapeHtml(item.prop||'매물명 미입력')+'</div>'
+      +'<div style="font-size:9px;color:#8A9AB0;margin-top:4px">📞 '+escapeHtml(tel)+'</div>'
+      +'<div style="font-size:8px;color:#4A5568;margin-top:3px">⏰ '+escapeHtml(item.date||'-')+'</div>'
+      +'</div>'
+      +'<div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">'
+      +'<button onclick="markShortsInProgress('+idx+')" style="padding:6px 8px;border-radius:7px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:#F59E0B;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer">진행중</button>'
+      +'<button onclick="fillShortsCompleteForm('+idx+')" style="padding:6px 8px;border-radius:7px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer">완성입력</button>'
+      +'<button onclick="deleteShortsRequest('+idx+')" style="padding:6px 8px;border-radius:7px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18);color:#FCA5A5;font-family:var(--sans);font-size:8px;font-weight:800;cursor:pointer">삭제</button>'
+      +'</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+function markShortsInProgress(idx){
+  var list=getShortsRequests();
+  if(!list[idx]) return;
+  list[idx].status='진행중';
+  saveShortsRequests(list);
+  renderShortsRequests();
+  toast('🎬 숏츠 상태를 진행중으로 변경했습니다');
+}
+function fillShortsCompleteForm(idx){
+  var list=getShortsRequests();
+  var item=list[idx];
+  if(!item) return;
+  var telEl=document.getElementById('shorts-tel');
+  var propEl=document.getElementById('shorts-prop');
+  if(telEl) telEl.value=item.tel&&item.tel!=='-'?item.tel:'';
+  if(propEl) propEl.value=item.prop||'';
+  toast('아래 완성 링크 입력칸에 자동 채워졌습니다');
+}
+function deleteShortsRequest(idx){
+  if(!confirm('이 숏츠 신청을 삭제할까요?')) return;
+  var list=getShortsRequests();
+  list.splice(idx,1);
+  saveShortsRequests(list);
+  renderShortsRequests();
+  toast('🗑 숏츠 신청이 삭제되었습니다');
+}
+function saveShortsComplete(){
+  var tel=(document.getElementById('shorts-tel')||{}).value||'';
+  var url=(document.getElementById('shorts-url')||{}).value||'';
+  var prop=(document.getElementById('shorts-prop')||{}).value||'';
+  if(!prop.trim()){ toast('매물명을 입력해주세요'); return; }
+  if(!url.trim()){ toast('유튜브 숏츠 링크를 입력해주세요'); return; }
+
+  var doneItem={
+    prop:prop.trim(),
+    tel:(tel||'-').trim(),
+    url:url.trim(),
+    date:new Date().toLocaleString('ko-KR')
+  };
+  var doneList=getShortsCompleted();
+  doneList.unshift(doneItem);
+  saveShortsCompletedList(doneList);
+
+  var reqList=getShortsRequests();
+  var found=reqList.find(function(x){ return (x.prop||'').trim()===prop.trim() && ((x.tel||'-').trim()===(tel||'-').trim() || !tel.trim()); });
+  if(found){ found.status='완료'; found.doneUrl=url.trim(); }
+  saveShortsRequests(reqList);
+
+  var msg='[PROPAI 숏츠 완성 안내]\n\n'
+    +'🏠 매물: '+prop.trim()+'\n'
+    +(tel.trim() ? '📞 연락처: '+tel.trim()+'\n' : '')
+    +'▶ 유튜브 숏츠: '+url.trim()+'\n\n'
+    +'확인 후 고객/파트너에게 공유해주세요.\n'
+    +'롯데타워앤강남빌딩부동산중개(주)\n☎ 010-8985-8945 이상수 대표';
+
+  var link=document.getElementById('shorts-kakao-link');
+  if(link){
+    link.dataset.msg=msg;
+    link.href='https://open.kakao.com/o/sPLGlKni';
+  }
+
+  renderShortsRequests();
+  toast('✅ 숏츠 완성 링크가 등록되었습니다');
+}
+function openKakaoShortsShare(){
+  var link=document.getElementById('shorts-kakao-link');
+  var msg=(link&&link.dataset&&link.dataset.msg)?link.dataset.msg:'';
+  var tel=(document.getElementById('shorts-tel')||{}).value||'';
+  var url=(document.getElementById('shorts-url')||{}).value||'';
+  var prop=(document.getElementById('shorts-prop')||{}).value||'';
+  if(!msg){
+    if(!prop.trim() || !url.trim()){
+      toast('먼저 완성 링크를 등록해주세요');
+      return;
+    }
+    msg='[PROPAI 숏츠 완성 안내]\n\n'
+      +'🏠 매물: '+prop.trim()+'\n'
+      +(tel.trim() ? '📞 연락처: '+tel.trim()+'\n' : '')
+      +'▶ 유튜브 숏츠: '+url.trim();
+  }
+  try{
+    navigator.clipboard.writeText(msg).then(function(){
+      window.open('https://open.kakao.com/o/sPLGlKni','_blank');
+      toast('📋 카카오 공유 문구가 복사되었습니다\n단톡방에 붙여넣기 해주세요');
+    });
+  }catch(e){
+    window.open('https://open.kakao.com/o/sPLGlKni','_blank');
+    toast('카카오 단톡방을 열었습니다');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  try{ renderShortsRequests(); }catch(e){}
+  var popup=document.getElementById('firebase-guide-popup');
+  if(popup){
+    popup.addEventListener('click', function(e){
+      if(e.target===popup) closeFirebaseGuide();
+    });
+  }
+});
+
 </script>
 </body>
 </html>
