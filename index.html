@@ -612,112 +612,149 @@ try {
 </div>
 
 <!-- ══ 숏츠 통합 신청 모달 ══ -->
-<div id="shortsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;overflow-y:auto">
-  <div style="background:#0D1929;max-width:440px;margin:30px auto;border-radius:16px;padding:20px 18px;border:1.5px solid rgba(239,68,68,.3)">
+<div id="shortsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:999;overflow-y:auto">
+  <div style="background:#0D1929;max-width:440px;margin:20px auto 40px;border-radius:16px;padding:20px 18px;border:1.5px solid rgba(239,68,68,.35)">
     <!-- 헤더 -->
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <div>
         <div style="font-size:9px;color:#FCA5A5;font-weight:700;letter-spacing:1px">SHORTS ADVERTISEMENT</div>
-        <div style="font-size:16px;font-weight:900;color:#EDF2F7">📹 숏츠 광고 신청</div>
+        <div style="font-size:16px;font-weight:900;color:#EDF2F7">📹 숏츠 광고 제작·발송</div>
       </div>
       <button onclick="closeShortsModal()" style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-size:16px;cursor:pointer;font-family:var(--sans)">✕</button>
     </div>
 
-    <!-- 플랫폼 선택 -->
-    <div style="font-size:10px;font-weight:800;color:#EDF2F7;margin-bottom:8px">① 플랫폼 선택</div>
+    <!-- STEP 1: 플랫폼 -->
+    <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:8px">① 발송 플랫폼</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px">
-      <div onclick="selectShortsPlatform('youtube')" id="sp-youtube"
-        style="background:rgba(239,68,68,.08);border:1.5px solid rgba(239,68,68,.3);border-radius:10px;padding:11px 8px;text-align:center;cursor:pointer;transition:.2s">
-        <div style="font-size:22px;margin-bottom:4px">▶️</div>
+      <div onclick="selectShortsPlatform('youtube')" id="sp-youtube" style="background:rgba(239,68,68,.1);border:1.5px solid rgba(239,68,68,.35);border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer">
+        <div style="font-size:22px;margin-bottom:3px">▶️</div>
         <div style="font-size:10px;font-weight:800;color:#FCA5A5">유튜브</div>
-        <div style="font-size:8px;color:#8A9AB0;margin-top:2px">전국 노출</div>
+        <div style="font-size:8px;color:#4A5568">전국 노출</div>
       </div>
-      <div onclick="selectShortsPlatform('kakao')" id="sp-kakao"
-        style="background:rgba(254,229,0,.06);border:1.5px solid rgba(254,229,0,.2);border-radius:10px;padding:11px 8px;text-align:center;cursor:pointer;transition:.2s">
-        <div style="font-size:22px;margin-bottom:4px">💬</div>
-        <div style="font-size:10px;font-weight:800;color:#FEE500">카카오톡</div>
-        <div style="font-size:8px;color:#8A9AB0;margin-top:2px">즉시 공유</div>
+      <div onclick="selectShortsPlatform('kakao')" id="sp-kakao" style="background:rgba(254,229,0,.07);border:1.5px solid rgba(254,229,0,.25);border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer">
+        <div style="font-size:22px;margin-bottom:3px">💬</div>
+        <div style="font-size:10px;font-weight:800;color:#FEE500">카카오</div>
+        <div style="font-size:8px;color:#4A5568">즉시 공유</div>
       </div>
-      <div onclick="selectShortsPlatform('both')" id="sp-both"
-        style="background:rgba(45,212,160,.06);border:1.5px solid rgba(45,212,160,.2);border-radius:10px;padding:11px 8px;text-align:center;cursor:pointer;transition:.2s">
-        <div style="font-size:22px;margin-bottom:4px">🚀</div>
+      <div onclick="selectShortsPlatform('both')" id="sp-both" style="background:rgba(45,212,160,.07);border:1.5px solid rgba(45,212,160,.25);border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer">
+        <div style="font-size:22px;margin-bottom:3px">🚀</div>
         <div style="font-size:10px;font-weight:800;color:#2DD4A0">둘 다</div>
-        <div style="font-size:8px;color:#8A9AB0;margin-top:2px">동시 노출</div>
+        <div style="font-size:8px;color:#4A5568">동시 발송</div>
       </div>
     </div>
 
-    <!-- 카카오 공유 대상 선택 (카카오 선택 시 표시) -->
+    <!-- 카카오 공유 대상 -->
     <div id="kakao-share-target" style="display:none;margin-bottom:14px">
-      <div style="font-size:10px;font-weight:800;color:#EDF2F7;margin-bottom:8px">② 카카오톡 공유 대상 선택</div>
+      <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:8px">② 카카오 공유 대상</div>
       <div style="display:flex;flex-direction:column;gap:6px">
-        <label style="display:flex;align-items:center;gap:10px;background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.15);border-radius:9px;padding:10px 12px;cursor:pointer">
+        <label style="display:flex;align-items:center;gap:10px;background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.15);border-radius:9px;padding:9px 12px;cursor:pointer">
           <input type="radio" name="kakao-target" value="admin" checked style="accent-color:#FEE500;flex-shrink:0">
-          <div>
-            <div style="font-size:10px;font-weight:800;color:#EDF2F7">PROPAI 관리자 단톡방</div>
-            <div style="font-size:8px;color:#8A9AB0">이상수 대표 · 김은경 이사 수신</div>
-          </div>
+          <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">PROPAI 관리자 단톡방</div><div style="font-size:8px;color:#8A9AB0">이상수 대표 · 김은경 이사</div></div>
         </label>
-        <label style="display:flex;align-items:center;gap:10px;background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.15);border-radius:9px;padding:10px 12px;cursor:pointer">
+        <label style="display:flex;align-items:center;gap:10px;background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.15);border-radius:9px;padding:9px 12px;cursor:pointer">
           <input type="radio" name="kakao-target" value="partner" style="accent-color:#2DD4A0;flex-shrink:0">
-          <div>
-            <div style="font-size:10px;font-weight:800;color:#EDF2F7">파트너 단톡방</div>
-            <div style="font-size:8px;color:#8A9AB0">공동중개 파트너들과 공유</div>
-          </div>
+          <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">파트너 단톡방</div><div style="font-size:8px;color:#8A9AB0">공동중개 파트너들과 공유</div></div>
         </label>
-        <label style="display:flex;align-items:center;gap:10px;background:rgba(74,158,224,.05);border:1px solid rgba(74,158,224,.15);border-radius:9px;padding:10px 12px;cursor:pointer">
+        <label style="display:flex;align-items:center;gap:10px;background:rgba(74,158,224,.05);border:1px solid rgba(74,158,224,.15);border-radius:9px;padding:9px 12px;cursor:pointer">
           <input type="radio" name="kakao-target" value="customer" style="accent-color:#4A9EE0;flex-shrink:0">
-          <div>
-            <div style="font-size:10px;font-weight:800;color:#EDF2F7">수요자 1:1 카톡</div>
-            <div style="font-size:8px;color:#8A9AB0">매칭된 수요자에게 직접 발송</div>
-          </div>
+          <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">수요자 1:1 카톡</div><div style="font-size:8px;color:#8A9AB0">매칭된 수요자에게 직접</div></div>
         </label>
-        <label style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 12px;cursor:pointer">
+        <label style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:9px 12px;cursor:pointer">
           <input type="radio" name="kakao-target" value="all" style="accent-color:#E8C97A;flex-shrink:0">
-          <div>
-            <div style="font-size:10px;font-weight:800;color:#EDF2F7">전체 선택</div>
-            <div style="font-size:8px;color:#8A9AB0">관리자·파트너·수요자 동시</div>
-          </div>
+          <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">전체 동시</div><div style="font-size:8px;color:#8A9AB0">관리자+파트너+수요자</div></div>
         </label>
       </div>
     </div>
 
-    <!-- 요금 선택 -->
-    <div id="shorts-plan-select" style="margin-bottom:14px">
-      <div style="font-size:10px;font-weight:800;color:#EDF2F7;margin-bottom:8px" id="shorts-step-label">② 요금 선택</div>
+    <!-- STEP 2: 요금 -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:8px" id="shorts-step-label">② 요금 선택</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
-        <div onclick="selectShortsPlan('free')" id="splan-free"
-          style="background:rgba(45,212,160,.08);border:1.5px solid rgba(45,212,160,.25);border-radius:10px;padding:12px;text-align:center;cursor:pointer">
-          <div style="font-size:16px;font-weight:900;color:#2DD4A0;margin-bottom:3px">₩0</div>
-          <div style="font-size:10px;font-weight:800;color:#EDF2F7">무료</div>
+        <div onclick="selectShortsPlan('free')" id="splan-free" style="background:rgba(45,212,160,.08);border:1.5px solid rgba(45,212,160,.25);border-radius:10px;padding:12px;text-align:center;cursor:pointer">
+          <div style="font-size:18px;font-weight:900;color:#2DD4A0;margin-bottom:3px">₩0</div>
+          <div style="font-size:11px;font-weight:800;color:#EDF2F7">무료</div>
           <div style="font-size:8px;color:#8A9AB0;margin-top:2px">AI 저평가 판정 시<br>당사 연락처 광고</div>
         </div>
-        <div onclick="selectShortsPlan('paid')" id="splan-paid"
-          style="background:rgba(239,68,68,.08);border:1.5px solid rgba(239,68,68,.25);border-radius:10px;padding:12px;text-align:center;cursor:pointer">
-          <div style="font-size:16px;font-weight:900;color:#FCA5A5;margin-bottom:3px">₩30,000</div>
-          <div style="font-size:10px;font-weight:800;color:#EDF2F7">유료 단건</div>
+        <div onclick="selectShortsPlan('paid')" id="splan-paid" style="background:rgba(239,68,68,.08);border:1.5px solid rgba(239,68,68,.25);border-radius:10px;padding:12px;text-align:center;cursor:pointer">
+          <div style="font-size:18px;font-weight:900;color:#FCA5A5;margin-bottom:3px">₩30,000</div>
+          <div style="font-size:11px;font-weight:800;color:#EDF2F7">유료 단건</div>
           <div style="font-size:8px;color:#8A9AB0;margin-top:2px">즉시 제작<br>신청자 연락처 광고</div>
         </div>
       </div>
     </div>
 
-    <!-- 매물명 입력 -->
+    <!-- STEP 3: 매물명 -->
     <div style="margin-bottom:14px">
-      <div style="font-size:10px;font-weight:800;color:#EDF2F7;margin-bottom:6px" id="shorts-step3-label">③ 매물명</div>
-      <input id="shorts-prop-input" type="text" placeholder="예: 시그니엘 95평 임대 / 래전드힐스 9평 월세"
+      <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:6px" id="shorts-step3-label">③ 매물명</div>
+      <input id="shorts-prop-input" type="text" placeholder="예: 시그니엘 95평 임대 / 래전드힐스 9평"
         style="width:100%;padding:10px 12px;background:rgba(8,16,28,.6);border:1px solid rgba(239,68,68,.2);border-radius:9px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none;box-sizing:border-box">
     </div>
 
-    <!-- 안내 -->
-    <div style="background:rgba(8,16,28,.5);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:11px 13px;margin-bottom:14px;font-size:9px;color:#8A9AB0;line-height:1.9">
-      📧 사진 10장 + 20초 영상 파일을<br>
-      <strong style="color:#2DD4A0">5788285@naver.com</strong> 으로 보내주세요<br>
-      ⏰ 접수 후 3일 내 제작 완료 · 카톡으로 링크 전달
+    <!-- STEP 4: 파일 업로드 -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:8px">④ 파일 첨부 (브라우저 직접 업로드)</div>
+
+      <!-- 사진 10장 -->
+      <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:11px;padding:12px;margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-size:10px;font-weight:800;color:#EDF2F7">📸 매물 사진 (최대 10장)</div>
+          <span id="photo-count-badge" style="font-size:9px;background:rgba(45,212,160,.12);color:#2DD4A0;padding:2px 8px;border-radius:4px;font-weight:700">0/10</span>
+        </div>
+        <label style="display:block;width:100%;padding:12px;border-radius:8px;background:rgba(45,212,160,.06);border:1.5px dashed rgba(45,212,160,.3);color:#2DD4A0;font-size:11px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box">
+          📎 사진 선택 (JPG·PNG·HEIC)
+          <input type="file" id="shorts-photos" accept="image/*" multiple style="display:none" onchange="handleShortsPhotos(this)">
+        </label>
+        <!-- 썸네일 미리보기 -->
+        <div id="photo-preview" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px"></div>
+      </div>
+
+      <!-- 영상 1개 -->
+      <div style="background:rgba(8,16,28,.5);border:1px solid rgba(239,68,68,.2);border-radius:11px;padding:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-size:10px;font-weight:800;color:#EDF2F7">🎬 홍보 영상 (20~30초)</div>
+          <span id="video-badge" style="font-size:9px;background:rgba(239,68,68,.12);color:#FCA5A5;padding:2px 8px;border-radius:4px;font-weight:700">미첨부</span>
+        </div>
+        <label style="display:block;width:100%;padding:12px;border-radius:8px;background:rgba(239,68,68,.06);border:1.5px dashed rgba(239,68,68,.3);color:#FCA5A5;font-size:11px;font-weight:700;text-align:center;cursor:pointer;box-sizing:border-box">
+          🎬 영상 선택 (MP4·MOV)
+          <input type="file" id="shorts-video" accept="video/*" style="display:none" onchange="handleShortsVideo(this)">
+        </label>
+        <div id="video-info" style="display:none;margin-top:8px;font-size:9px;color:#8A9AB0;padding:7px 10px;background:rgba(8,16,28,.4);border-radius:7px"></div>
+      </div>
     </div>
 
-    <!-- 신청 버튼 -->
-    <button onclick="submitShortsModal()" style="width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,#EF4444,#991B1B);color:#fff;font-family:var(--sans);font-size:14px;font-weight:900;border:none;cursor:pointer">
-      📹 숏츠 광고 신청하기
-    </button>
+    <!-- STEP 5: 신청자 연락처 -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:10px;font-weight:900;color:#EDF2F7;margin-bottom:6px">⑤ 신청자 연락처</div>
+      <input id="shorts-tel-input" type="tel" placeholder="010-0000-0000"
+        style="width:100%;padding:10px 12px;background:rgba(8,16,28,.6);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#EDF2F7;font-size:12px;font-family:var(--sans);outline:none;box-sizing:border-box">
+    </div>
+
+    <!-- 진행 상태 -->
+    <div id="shorts-progress" style="display:none;margin-bottom:12px;background:rgba(45,212,160,.06);border:1px solid rgba(45,212,160,.2);border-radius:10px;padding:12px;text-align:center">
+      <div style="font-size:12px;font-weight:800;color:#2DD4A0" id="shorts-progress-text">처리 중...</div>
+    </div>
+
+    <!-- 발송 버튼들 -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <!-- 이메일 발송 -->
+      <button onclick="sendShortsEmail()" style="width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,rgba(45,212,160,.2),rgba(45,212,160,.1));border:1.5px solid rgba(45,212,160,.4);color:#2DD4A0;font-family:var(--sans);font-size:13px;font-weight:900;cursor:pointer">
+        📧 이메일로 파일 발송 (5788285@naver.com)
+      </button>
+      <!-- 카카오 공유 -->
+      <button onclick="sendShortsKakao()" id="shorts-kakao-btn" style="display:none;width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,#FEE500,#E6CF00);color:#3C1E1E;font-family:var(--sans);font-size:13px;font-weight:900;cursor:pointer;border:none">
+        💬 카카오톡 단톡방 공유
+      </button>
+      <!-- 유튜브 업로드 안내 -->
+      <button onclick="openYoutubeUploadGuide()" id="shorts-yt-btn" style="display:none;width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,rgba(239,68,68,.2),rgba(239,68,68,.1));border:1.5px solid rgba(239,68,68,.4);color:#FCA5A5;font-family:var(--sans);font-size:13px;font-weight:900;cursor:pointer">
+        ▶️ 유튜브 숏츠 업로드 안내
+      </button>
+      <!-- 둘다 동시 -->
+      <button onclick="sendShortsBoth()" id="shorts-both-btn" style="display:none;width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,#EF4444,#991B1B);color:#fff;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">
+        🚀 이메일 발송 + 카카오 동시 공유
+      </button>
+    </div>
+
+    <div style="text-align:center;margin-top:10px;font-size:9px;color:#4A5568">접수 후 3일 내 제작 완료 · 완성 링크 카톡으로 전달</div>
   </div>
 </div>
 
@@ -887,7 +924,7 @@ try {
             </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span style="font-size:8px;color:#8A9AB0;width:36px;flex-shrink:0">E-mail</span>
-              <span style="font-size:9px;color:#8A9AB0">5788285@naver.com</span>
+              <span style="font-size:9px;color:#8A9AB0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0c393b34343e34394c626d7a697e226f6361">[email&#160;protected]</a></span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:8px">
               <span style="font-size:8px;color:#8A9AB0;width:36px;flex-shrink:0;margin-top:1px">주소</span>
@@ -939,7 +976,7 @@ try {
             </div>
             <div style="display:flex;align-items:center;gap:8px">
               <span style="font-size:8px;color:#8A9AB0;width:36px;flex-shrink:0">E-mail</span>
-              <span style="font-size:9px;color:#8A9AB0">koung713@naver.com</span>
+              <span style="font-size:9px;color:#8A9AB0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="167d796378712127255678776073643875797b">[email&#160;protected]</a></span>
             </div>
             <div style="display:flex;align-items:flex-start;gap:8px">
               <span style="font-size:8px;color:#8A9AB0;width:36px;flex-shrink:0;margin-top:1px">주소</span>
@@ -4691,7 +4728,7 @@ try {
           <div style="display:flex;flex-direction:column;gap:8px">
             <div style="display:flex;align-items:flex-start;gap:9px">
               <div style="width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#FCA5A5;flex-shrink:0">1</div>
-              <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">파일 수신</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">📧 5788285@naver.com 수신 · 사진10장+20초영상</div></div>
+              <div><div style="font-size:10px;font-weight:800;color:#EDF2F7">파일 수신</div><div style="font-size:9px;color:#8A9AB0;margin-top:1px">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2f1a1817171d171a6f414e594a5d014c4042">[email&#160;protected]</a> 수신 · 사진10장+20초영상</div></div>
             </div>
             <div style="display:flex;align-items:flex-start;gap:9px">
               <div style="width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#FCA5A5;flex-shrink:0">2</div>
@@ -5284,7 +5321,7 @@ try {
               <div style="font-size:10px;font-weight:800;color:#EDF2F7">📹 숏츠 광고 신청</div>
               <span style="font-size:8px;background:rgba(239,68,68,.15);color:#FCA5A5;padding:2px 7px;border-radius:4px">▶ SHORTS</span>
             </div>
-            <div style="font-size:9px;color:#8A9AB0;line-height:1.6;margin-bottom:8px">유튜브·카카오톡·동시 노출 선택 가능<br>📧 사진10장+20초영상 → 5788285@naver.com</div>
+            <div style="font-size:9px;color:#8A9AB0;line-height:1.6;margin-bottom:8px">유튜브·카카오톡·동시 노출 선택 가능<br>📧 사진10장+20초영상 → <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b1e1c131319131e6b454a5d4e5905484446">[email&#160;protected]</a></div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
               <button onclick="openShortsModal('youtube')" style="padding:8px 4px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">▶️ 유튜브<br><span style="font-size:8px;font-weight:400">전국 노출</span></button>
               <button onclick="openShortsModal('kakao')" style="padding:8px 4px;border-radius:7px;background:rgba(254,229,0,.08);border:1px solid rgba(254,229,0,.2);color:#FEE500;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer">💬 카카오<br><span style="font-size:8px;font-weight:400">즉시 공유</span></button>
@@ -5466,7 +5503,7 @@ try {
           </div>
         </div>
         <div style="margin-top:9px;font-size:9px;color:#4A5568;text-align:center;line-height:1.7">
-          📧 사진10장+20초영상 → 5788285@naver.com<br>접수 후 3일 내 제작 · 카톡으로 링크 전달
+          📧 사진10장+20초영상 → <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7643414e4e444e433618170013045815191b">[email&#160;protected]</a><br>접수 후 3일 내 제작 · 카톡으로 링크 전달
         </div>
       </div>
 
@@ -5756,7 +5793,7 @@ try {
 <div class="tw" id="tw"></div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let curTab=0,adminOn=false,mType='demand',mStep=1;
 let userRole='user'; // 'user' | 'joint' | 'admin'
 let jbMyListings=[]; // 공동중개업자 자신의 매물만
@@ -7424,6 +7461,161 @@ function submitReview(){
 }
 
 /* ── 유튜브 숏츠 광고 신청 ── */
+/* ── 파일 업로드 핸들러 ── */
+function handleShortsPhotos(input){
+  var files = Array.from(input.files).slice(0,10);
+  var badge = document.getElementById('photo-count-badge');
+  var preview = document.getElementById('photo-preview');
+  if(badge) badge.textContent = files.length+'/10';
+  if(preview){
+    preview.innerHTML = '';
+    files.forEach(function(file){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        var img = document.createElement('div');
+        img.style.cssText = 'width:60px;height:60px;border-radius:7px;background:url('+e.target.result+') center/cover;border:1.5px solid rgba(45,212,160,.3);flex-shrink:0';
+        preview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  if(files.length > 0) toast('📸 사진 '+files.length+'장 선택됨!');
+}
+
+function handleShortsVideo(input){
+  var file = input.files[0];
+  if(!file) return;
+  var badge = document.getElementById('video-badge');
+  var info  = document.getElementById('video-info');
+  var sizeMB = (file.size/1024/1024).toFixed(1);
+  if(badge){ badge.textContent = '✅ 첨부완료'; badge.style.color='#2DD4A0'; badge.style.background='rgba(45,212,160,.12)'; }
+  if(info){ info.style.display='block'; info.textContent='🎬 '+file.name+' ('+sizeMB+'MB)'; }
+  toast('🎬 영상 첨부 완료! '+file.name);
+}
+
+/* ── 플랫폼 선택에 따라 버튼 표시 ── */
+function updateShortsBtns(){
+  var yt   = document.getElementById('shorts-yt-btn');
+  var kk   = document.getElementById('shorts-kakao-btn');
+  var both = document.getElementById('shorts-both-btn');
+  if(!yt) return;
+  yt.style.display   = (_shortsPlatform==='youtube') ? 'block' : 'none';
+  kk.style.display   = (_shortsPlatform==='kakao')   ? 'block' : 'none';
+  both.style.display = (_shortsPlatform==='both')    ? 'block' : 'none';
+}
+
+/* ── 이메일 발송 ── */
+function sendShortsEmail(){
+  var prop = (document.getElementById('shorts-prop-input')||{}).value||'매물명 미입력';
+  var tel  = (document.getElementById('shorts-tel-input')||{}).value||'-';
+  var photos = document.getElementById('shorts-photos');
+  var video  = document.getElementById('shorts-video');
+  var photoCount = photos ? photos.files.length : 0;
+  var hasVideo   = video && video.files.length > 0;
+
+  if(!prop.trim()){ toast('③ 매물명을 입력해주세요'); return; }
+  if(photoCount === 0){ toast('④ 사진을 선택해주세요'); return; }
+
+  // localStorage 저장
+  saveShortsItem(prop, tel);
+
+  // 이메일 mailto 생성
+  var subject = encodeURIComponent('[PROPAI 숏츠 신청] '+prop);
+  var body = encodeURIComponent(
+    'PROPAI 숏츠 광고 신청\n\n'
+    +'매물명: '+prop+'\n'
+    +'신청자 연락처: '+tel+'\n'
+    +'요금: '+(_shortsPlan==='free'?'무료':'₩30,000')+'\n'
+    +'사진: '+photoCount+'장 첨부\n'
+    +'영상: '+(hasVideo?'첨부완료':'미첨부')+'\n\n'
+    +'롯데타워앤강남빌딩부동산중개(주)\n'
+    +'📞 010-8985-8945 이상수 대표'
+  );
+
+  var progress = document.getElementById('shorts-progress');
+  var progressText = document.getElementById('shorts-progress-text');
+  if(progress){ progress.style.display='block'; }
+  if(progressText){ progressText.textContent='📧 이메일 앱을 열고 파일을 첨부해주세요...'; }
+
+  // 이메일 앱 열기
+  setTimeout(function(){
+    window.location.href = 'mailto:5788285@naver.com?subject='+subject+'&body='+body;
+    toast('📧 이메일 앱이 열립니다!\n사진'+photoCount+'장+영상을 첨부 후 전송해주세요\n\n접수가 완료되면 3일 내 제작됩니다 😊');
+    if(progress) progress.style.display='none';
+  }, 500);
+}
+
+/* ── 카카오 공유 ── */
+function sendShortsKakao(){
+  var prop = (document.getElementById('shorts-prop-input')||{}).value||'매물명 미입력';
+  var tel  = (document.getElementById('shorts-tel-input')||{}).value||'-';
+  var target = document.querySelector('input[name="kakao-target"]:checked');
+  var targetLabel = {admin:'관리자 단톡방', partner:'파트너 단톡방', customer:'수요자 1:1', all:'전체'};
+  var tVal = target ? target.value : 'admin';
+
+  if(!prop.trim()){ toast('③ 매물명을 입력해주세요'); return; }
+
+  saveShortsItem(prop, tel);
+
+  var msg = '[PROPAI 숏츠 광고 안내]\n\n'
+    +'📹 매물: '+prop+'\n'
+    +'💰 요금: '+(_shortsPlan==='free'?'무료(저평가)':'₩30,000')+'\n'
+    +'📞 신청자: '+tel+'\n'
+    +'📤 발송: '+(targetLabel[tVal]||tVal)+'\n\n'
+    +'📧 파일(사진10장+영상)은\n5788285@naver.com 으로 발송해주세요\n\n'
+    +'롯데타워앤강남빌딩부동산중개(주)\n☎ 010-8985-8945 이상수 대표';
+
+  try {
+    navigator.clipboard.writeText(msg).then(function(){
+      toast('💬 카카오톡 메시지 복사!\n단톡방에 붙여넣기 후 전송해주세요 😊');
+      setTimeout(function(){
+        window.open('https://open.kakao.com/o/sPLGlKni','_blank');
+      }, 1000);
+    });
+  } catch(e){ toast('메시지 복사 실패. 직접 입력해주세요.'); }
+}
+
+/* ── 둘 다 동시 ── */
+function sendShortsBoth(){
+  var prop = (document.getElementById('shorts-prop-input')||{}).value||'매물명 미입력';
+  if(!prop.trim()){ toast('③ 매물명을 입력해주세요'); return; }
+  sendShortsEmail();
+  setTimeout(function(){ sendShortsKakao(); }, 2000);
+}
+
+/* ── 유튜브 업로드 안내 ── */
+function openYoutubeUploadGuide(){
+  var prop = (document.getElementById('shorts-prop-input')||{}).value||'';
+  saveShortsItem(prop, '');
+  var guide = '📹 유튜브 숏츠 업로드 안내\n\n'
+    +'1. YouTube Studio 앱 또는 youtube.com/upload\n'
+    +'2. [동영상 업로드] 클릭\n'
+    +'3. 제목: [PROPAI] '+prop+' 매물 소개 #숏츠\n'
+    +'4. 태그: #숏츠 #강남부동산 #대치동 #시그니엘\n'
+    +'5. [공개] 설정 → 게시\n'
+    +'6. 링크를 관리자에게 카톡 전달\n\n'
+    +'유튜브 채널로 이동할까요?';
+  if(confirm(guide)){
+    window.open('https://www.youtube.com/@lottebldg','_blank');
+  }
+}
+
+/* ── localStorage 저장 ── */
+function saveShortsItem(prop, tel){
+  var item = {
+    prop: prop, tel: tel||'-',
+    platform: _shortsPlatform,
+    type: _shortsPlan,
+    status: '접수',
+    date: new Date().toLocaleString('ko-KR')
+  };
+  try {
+    var list = JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');
+    list.unshift(item);
+    localStorage.setItem('propai_shorts_requests', JSON.stringify(list));
+  } catch(e){}
+}
+
 /* ══ 숏츠 통합 모달 ══ */
 var _shortsPlatform = 'youtube';
 var _shortsPlan = 'free';
@@ -7481,6 +7673,8 @@ function selectShortsPlatform(p){
   // 카카오 공유 대상 섹션 표시
   var kakaoBlock = document.getElementById('kakao-share-target');
   if(kakaoBlock) kakaoBlock.style.display = (p==='kakao'||p==='both') ? 'block' : 'none';
+  // 발송 버튼 업데이트
+  updateShortsBtns();
 }
 
 function selectShortsPlan(plan){
@@ -7781,28 +7975,4 @@ function selectRentWant(propName, region){
   var names = ['역삼 래전드힐스','삼환아르누보2','대치 W타워'];
   var idx = names.indexOf(propName);
   if(idx >= 0){
-    var sel = document.getElementById('w-rent-prop-'+idx);
-    if(sel){ sel.style.borderColor='rgba(74,158,224,.5)'; sel.style.background='rgba(74,158,224,.08)'; }
-  }
-  var titleEl = document.getElementById('w-title');
-  if(titleEl && !titleEl.value) titleEl.value = '['+propName+'] 단기·장기 임대 구합니다';
-  toast('✅ '+propName+' 선택 완료!');
-}
-
-function openFirebaseGuide(){
-  var el = document.getElementById('firebase-guide-popup');
-  if(el) el.style.display = 'block';
-}
-function closeFirebaseGuide(){
-  var el = document.getElementById('firebase-guide-popup');
-  if(el) el.style.display = 'none';
-}
-
-function toast(msg){
-  const w=document.getElementById('tw');
-  const t=document.createElement('div');t.className='t1';t.textContent=msg;
-  w.appendChild(t);setTimeout(()=>t.remove(),3300);
-}
-</script>
-</body>
-</html>
+    var sel = do
