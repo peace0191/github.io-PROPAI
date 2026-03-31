@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROPAI — Firebase 연결판</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    window.FIREBASE_CONFIG = window.FIREBASE_CONFIG || {
+      apiKey: "AIzaSyBoT8t1FwmJHk7OQGQJ8-ZgXqD-DRvcma0",
+      authDomain: "propai-dad54.firebaseapp.com",
+      databaseURL: "https://propai-dad54-default-rtdb.firebaseio.com",
+      projectId: "propai-dad54",
+      storageBucket: "propai-dad54.firebasestorage.app",
+      messagingSenderId: "287842545502",
+      appId: "1:287842545502:web:7a6550da3ab8589ba429cf"
+    };
+  </script>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="toast-wrap"></div>
+
+    <section id="loginScreen" class="login-screen">
+      <div class="glow one"></div>
+      <div class="glow two"></div>
+
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <h1>PROP<span>AI</span></h1>
+        <p>
+          롯데타워&amp;강남빌딩 부동산 중개(주)<br>
+          시그니엘 레지던스 · 대치동 학군 랜트 · 한강벨트 전문
+        </p>
+      </div>
+
+      <div class="hero-card">
+        <span class="badge gold">실서비스 연결판</span>
+        <div class="section-title compact">
+          <h2>대표 매물</h2>
+          <span class="badge jade">Firebase 저장 지원</span>
+        </div>
+        <div class="grid-two">
+          <article class="property-card">
+            <h3>시그니엘 레지던스 95평</h3>
+            <div class="property-meta">서울 전경뷰 · 최고층 · 보증금 3억</div>
+            <div class="price jade">월 1,800만원</div>
+          </article>
+          <article class="property-card">
+            <h3>역삼 래전드힐스 9평</h3>
+            <div class="property-meta">학원가 랜트 · 럭셔리 원룸 · 즉시입주</div>
+            <div class="price gold">월 130만원</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="section-title compact">
+        <h2>바로 시작</h2>
+        <span class="badge blue">웹앱 + 대시보드</span>
+      </div>
+      <div class="cta-row">
+        <button class="btn gold full" data-login="customer">카카오 회원 로그인</button>
+        <button class="btn jade full" data-login="partner">공동중개 파트너 로그인</button>
+        <button class="btn line full" data-login="admin">관리자 로그인</button>
+      </div>
+
+      <div class="guide-card mt-16">
+        <strong>연결된 기능</strong>
+        <p>문의 등록, 숏츠 광고 접수, 운영 피드가 Firebase Realtime Database에 저장되며, 설정 전에는 localStorage 데모 모드로 동작합니다.</p>
+      </div>
+    </section>
+
+    <section id="mainScreen" class="main-screen hidden">
+      <header class="topbar">
+        <div class="title">
+          <div class="mark">P</div>
+          <div>
+            <div>PROPAI</div>
+            <small id="profileRole" class="muted">수요자</small>
+          </div>
+        </div>
+        <div class="action-row wrap">
+          <span id="dbModeBadge" class="badge blue">데모 저장 모드</span>
+          <span id="profileName" class="badge gold">카카오 회원</span>
+          <button id="logoutBtn" class="btn line small-btn">로그아웃</button>
+        </div>
+      </header>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="dashboard">대시보드</button>
+        <button class="tab" data-tab="inquiry">등록/문의</button>
+        <button class="tab" data-tab="matching">AI 매칭</button>
+        <button class="tab" data-tab="shorts">숏츠광고</button>
+        <button class="tab" data-tab="admin">관리</button>
+      </div>
+
+      <main class="main-content">
+        <section id="screen-dashboard" class="screen active">
+          <div class="grid-two stats-grid">
+            <div class="metric-card"><div class="metric-top">🙋 매수·임차 수요</div><div id="metricDemand" class="metric-value gold">0</div></div>
+            <div class="metric-card"><div class="metric-top">🏠 매도·임대 공급</div><div id="metricSupply" class="metric-value blue">0</div></div>
+            <div class="metric-card"><div class="metric-top">🎬 숏츠 제작대기</div><div id="metricShorts" class="metric-value jade">0</div></div>
+            <div class="metric-card"><div class="metric-top">📄 계약 진행중</div><div id="metricContracts" class="metric-value warning">14</div></div>
+          </div>
+
+          <div class="section-title">
+            <h2>자동화 파이프라인</h2>
+            <button id="refreshBtn" class="btn line small-btn">새로고침</button>
+          </div>
+          <div class="pipeline">
+            <div class="pipeline-step"><div>📝</div><div class="label">등록</div><div id="pipeRegistered" class="value">0</div></div>
+            <div class="pipeline-step"><div>🤖</div><div class="label">AI분류</div><div id="pipeAI" class="value">0</div></div>
+            <div class="pipeline-step"><div>⚡</div><div class="label">매칭</div><div id="pipeMatched" class="value">0</div></div>
+            <div class="pipeline-step"><div>🎬</div><div class="label">숏츠</div><div id="pipeShorts" class="value">0</div></div>
+            <div class="pipeline-step"><div>✅</div><div class="label">완료</div><div id="pipeDone" class="value">0</div></div>
+          </div>
+
+          <div class="section-title"><h2>수요자 최근 등록</h2></div>
+          <div id="recentDemand" class="list"></div>
+
+          <div class="section-title"><h2>공급자 최근 등록</h2></div>
+          <div id="recentSupply" class="list"></div>
+        </section>
+
+        <section id="screen-inquiry" class="screen">
+          <div class="panel">
+            <strong>수요/공급 등록</strong>
+            <p>예산, 지역, 유형을 남기면 AI 분류와 운영 피드에 자동 반영됩니다.</p>
+          </div>
+          <form id="inquiryForm" class="form-grid">
+            <div class="field">
+              <label for="kind">유형</label>
+              <select id="kind" name="kind">
+                <option>매수 문의</option>
+                <option>전세 문의</option>
+                <option>월세 문의</option>
+                <option>매도 의뢰</option>
+                <option>임대 의뢰</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="customerName">이름</label>
+              <input id="customerName" name="customerName" placeholder="예: 홍길동" />
+            </div>
+            <div class="field">
+              <label for="contact">연락처</label>
+              <input id="contact" name="contact" placeholder="010-0000-0000" />
+            </div>
+            <div class="field">
+              <label for="area">희망 지역</label>
+              <input id="area" name="area" placeholder="예: 대치동, 잠실, 반포" />
+            </div>
+            <div class="field">
+              <label for="budget">예산 / 조건</label>
+              <input id="budget" name="budget" placeholder="예: 30억대 / 보증금 1억 + 월세 800" />
+            </div>
+            <div class="field full-span">
+              <label for="memo">추가 메모</label>
+              <textarea id="memo" name="memo" placeholder="입주시기, 학군, 뷰, 평형 등 상세 조건"></textarea>
+            </div>
+            <button class="btn gold full-span" type="submit">등록 요청 보내기</button>
+          </form>
+        </section>
+
+        <section id="screen-matching" class="screen">
+          <div class="panel">
+            <strong>AI 자동 매칭 로직</strong>
+            <p>지역, 예산, 입주시기, 상품성을 기준으로 점수를 부여하고 추천 순위를 계산합니다.</p>
+          </div>
+          <div class="list">
+            <div class="feed-card"><div class="feed-title">1. 지역/생활권</div><div class="feed-sub">대치 학군, 잠실 시그니엘, 한강벨트 핵심 권역 우선</div></div>
+            <div class="feed-card"><div class="feed-title">2. 예산 적합도</div><div class="feed-sub">예산 범위 ±10% 매물 가중치</div></div>
+            <div class="feed-card"><div class="feed-title">3. 입주시기/상품성</div><div class="feed-sub">즉시입주, 뷰, 내부 컨디션, 숏츠 홍보 적합도 반영</div></div>
+          </div>
+          <div class="section-title"><h2>최근 추천 결과</h2></div>
+          <div id="matchResults" class="list"></div>
+        </section>
+
+        <section id="screen-shorts" class="screen">
+          <div class="panel">
+            <strong>숏츠 광고 접수</strong>
+            <p>유튜브 숏츠·카카오 공유용 요청을 저장합니다. 파일 업로드는 차후 Storage 연동 포인트로 남겨두었습니다.</p>
+          </div>
+          <form id="shortsForm" class="form-grid">
+            <div class="field">
+              <label for="shortsProperty">매물명</label>
+              <input id="shortsProperty" name="shortsProperty" placeholder="예: 시그니엘 95평 임대" />
+            </div>
+            <div class="field">
+              <label for="shortsPlan">요금제</label>
+              <select id="shortsPlan" name="shortsPlan">
+                <option value="free">무료 1건</option>
+                <option value="paid">유료 단건 30,000원</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="shortsChannel">발송 채널</label>
+              <select id="shortsChannel" name="shortsChannel">
+                <option>유튜브</option>
+                <option>카카오</option>
+                <option>유튜브 + 카카오</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="shortsRequester">신청자 연락처</label>
+              <input id="shortsRequester" name="shortsRequester" placeholder="010-0000-0000" />
+            </div>
+            <div class="field full-span">
+              <label for="shortsMemo">요청사항</label>
+              <textarea id="shortsMemo" name="shortsMemo" placeholder="뷰 포인트, 강조 문구, 희망 업로드 채널"></textarea>
+            </div>
+            <button class="btn jade full-span" type="submit">숏츠 광고 접수 저장</button>
+          </form>
+          <div class="section-title"><h2>최근 숏츠 접수</h2></div>
+          <div id="shortsRequests" class="list"></div>
+        </section>
+
+        <section id="screen-admin" class="screen">
+          <div class="panel">
+            <strong>운영 관리</strong>
+            <p>최근 등록과 숏츠 요청을 확인하고 상태를 빠르게 바꿀 수 있습니다.</p>
+          </div>
+          <div class="section-title"><h2>운영 피드</h2></div>
+          <div id="adminFeed" class="list"></div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav">
+        <button class="nav-btn active" data-tab="dashboard">🏠<span>홈</span></button>
+        <button class="nav-btn" data-tab="inquiry">📝<span>등록</span></button>
+        <button class="nav-btn" data-tab="matching">🤖<span>매칭</span></button>
+        <button class="nav-btn" data-tab="shorts">🎬<span>숏츠</span></button>
+        <button class="nav-btn" data-tab="admin">⚙️<span>관리</span></button>
+      </nav>
+    </section>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
