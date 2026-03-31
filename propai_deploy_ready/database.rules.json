@@ -1,0 +1,22 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "inquiries": {
+      ".indexOn": ["createdAt", "status", "category"],
+      "$id": {
+        ".read": true,
+        ".write": true,
+        ".validate": "newData.hasChildren(['kind','customerName','contact','area','budget','memo','category','status','role','createdAt']) && newData.child('kind').isString() && newData.child('customerName').isString() && newData.child('contact').isString() && newData.child('area').isString() && newData.child('budget').isString() && newData.child('memo').isString() && newData.child('category').val().matches(/^(demand|supply)$/) && newData.child('status').val().matches(/^(matching|ai|done|shorts)$/) && newData.child('role').isString() && newData.child('createdAt').isNumber()"
+      }
+    },
+    "shorts_requests": {
+      ".indexOn": ["createdAt", "status"],
+      "$id": {
+        ".read": true,
+        ".write": true,
+        ".validate": "newData.hasChildren(['property','plan','channel','requester','memo','status','createdAt']) && newData.child('property').isString() && newData.child('plan').val().matches(/^(free|paid)$/) && newData.child('channel').isString() && newData.child('requester').isString() && newData.child('memo').isString() && newData.child('status').val().matches(/^(shorts|done)$/) && newData.child('createdAt').isNumber()"
+      }
+    }
+  }
+}
