@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>PROPAI SNS 숏츠 스튜디오</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#08101C;--s1:#0D1929;--s2:#111F30;
+  --red:#EF4444;--rsub:#FCA5A5;
+  --jade:#2DD4A0;--gold:#C9A84C;--yellow:#FEE500;
+  --txt:#EDF2F7;--txt2:#8A9AB0;--txt3:#4A5568;
+  --line:rgba(255,255,255,.08);
+  --sans:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--sans)}
+
+/* ── 로그인 ── */
+#login{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px}
+.login-box{width:100%;max-width:340px}
+
+/* ── 앱 ── */
+#app{display:none;height:100%;flex-direction:column}
+
+/* ── 헤더 ── */
+.hdr{background:linear-gradient(to right,#060E1C,#0A1828);padding:0 16px;height:54px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(239,68,68,.35);flex-shrink:0;position:sticky;top:0;z-index:50}
+.hdr-logo{display:flex;align-items:center;gap:10px}
+.hdr-ico{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,rgba(239,68,68,.3),rgba(239,68,68,.08));display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(239,68,68,.3)}
+
+/* ── 탭 바 ── */
+.tabs{display:flex;background:rgba(8,16,28,.8);border-bottom:1px solid var(--line);flex-shrink:0;overflow-x:auto}
+.tab-btn{flex:1;min-width:0;padding:11px 4px;border:none;background:transparent;color:var(--txt2);font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.15s}
+.tab-btn.on{color:var(--red);border-bottom-color:var(--red);background:rgba(239,68,68,.06)}
+
+/* ── 패널 ── */
+.panels{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.panel{display:none;padding:14px 16px 80px}
+.panel.on{display:block}
+
+/* ── 공통 카드 ── */
+.card{background:var(--s1);border-radius:13px;padding:14px;margin-bottom:12px}
+.card-title{font-size:13px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+
+/* ── 업로드 존 ── */
+.upload-zone{display:block;width:100%;padding:18px;border-radius:10px;border:2px dashed;text-align:center;cursor:pointer;font-size:12px;font-weight:700;transition:.2s}
+.uz-green{background:rgba(45,212,160,.05);border-color:rgba(45,212,160,.35);color:var(--jade)}
+.uz-red{background:rgba(239,68,68,.05);border-color:rgba(239,68,68,.35);color:var(--rsub)}
+
+/* ── 썸네일 그리드 ── */
+.thumb-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.thumb{width:70px;height:70px;border-radius:9px;background-size:cover;background-position:center;border:2px solid rgba(45,212,160,.4);position:relative;flex-shrink:0}
+.thumb-del{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:900;border:2px solid var(--bg)}
+
+/* ── 도구 그리드 ── */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tool-a{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:11px;padding:12px;text-decoration:none;transition:.2s;cursor:pointer}
+.tool-a:active{transform:scale(.97)}
+
+/* ── 체크 라벨 ── */
+.chk-lbl{display:flex;align-items:center;gap:10px;border-radius:10px;padding:11px 13px;cursor:pointer;margin-bottom:7px;transition:.15s}
+.chk-lbl:active{opacity:.8}
+
+/* ── 버튼 ── */
+.btn{width:100%;padding:15px;border-radius:12px;font-family:var(--sans);font-size:14px;font-weight:900;cursor:pointer;border:none;margin-bottom:9px;transition:.15s;display:block;text-align:center;text-decoration:none}
+.btn:active{transform:scale(.98)}
+.btn-red{background:linear-gradient(135deg,#EF4444,#991B1B);color:#fff}
+.btn-yellow{background:linear-gradient(135deg,#FEE500,#E6CF00);color:#3C1E1E}
+.btn-jade{background:linear-gradient(135deg,var(--jade),#0D8060);color:#08101C}
+.btn-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)!important;color:var(--txt2)}
+.btn-yt{background:linear-gradient(135deg,rgba(239,68,68,.2),rgba(239,68,68,.08));border:1.5px solid rgba(239,68,68,.4)!important;color:var(--rsub)}
+.btn-kk{background:linear-gradient(135deg,rgba(254,229,0,.15),rgba(254,229,0,.08));border:1.5px solid rgba(254,229,0,.35)!important;color:var(--yellow)}
+.btn-ig{background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(168,85,247,.08));border:1.5px solid rgba(168,85,247,.4)!important;color:#D8B4FE}
+.btn-fb{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(59,130,246,.08));border:1.5px solid rgba(59,130,246,.4)!important;color:#93C5FD}
+
+/* ── 입력 ── */
+.fi{width:100%;padding:11px 13px;background:rgba(8,16,28,.7);border:1px solid var(--line);border-radius:9px;color:var(--txt);font-size:12px;font-family:var(--sans);outline:none;margin-bottom:8px}
+.fi:focus{border-color:var(--jade)}
+.lbl{display:block;font-size:9px;color:var(--txt2);font-weight:700;margin-bottom:4px}
+
+/* ── 배지 ── */
+.badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:4px;font-weight:700}
+.b-red{background:rgba(239,68,68,.15);color:var(--rsub)}
+.b-jade{background:rgba(45,212,160,.15);color:var(--jade)}
+.b-gold{background:rgba(201,168,76,.15);color:#E8C97A}
+.b-yellow{background:rgba(254,229,0,.12);color:var(--yellow)}
+
+/* ── 진행바 ── */
+.pgbar{background:rgba(255,255,255,.06);border-radius:20px;height:8px;margin:8px 0}
+.pgfill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--jade),#4A9EE0);transition:width .5s}
+
+/* ── 접수 카드 ── */
+.req-card{background:rgba(8,16,28,.6);border:1px solid rgba(239,68,68,.2);border-radius:11px;padding:13px;margin-bottom:8px}
+.req-card.editing{border-color:rgba(201,168,76,.4)}
+.req-card.done{border-color:rgba(45,212,160,.3);opacity:.7}
+
+/* ── 토스트 ── */
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(13,25,41,.97);border:1px solid rgba(45,212,160,.4);color:var(--txt);padding:12px 20px;border-radius:12px;font-size:11px;font-weight:700;z-index:9999;display:none;text-align:center;max-width:300px;line-height:1.6}
+
+/* ── SNS 플랫폼 선택 ── */
+.sns-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.sns-card{border-radius:11px;padding:13px 6px;text-align:center;cursor:pointer;transition:.2s;border:2px solid transparent}
+.sns-card.sel{transform:scale(1.04)}
+.sns-card:active{transform:scale(.96)}
+
+/* ── 현재 작업 ── */
+#cur-job{display:none;background:linear-gradient(135deg,rgba(45,212,160,.1),rgba(45,212,160,.04));border:1.5px solid rgba(45,212,160,.3);border-radius:12px;padding:14px;margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<!-- ══ 로그인 ══ -->
+<div id="login">
+  <div style="text-align:center;margin-bottom:28px">
+    <div style="width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,rgba(239,68,68,.3),rgba(239,68,68,.08));display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 12px;border:1px solid rgba(239,68,68,.3)">📱</div>
+    <div style="font-size:22px;font-weight:900;margin-bottom:4px">SNS 숏츠 스튜디오</div>
+    <div style="font-size:11px;color:var(--txt2)">PROPAI 관리자 전용 SNS 광고 제작</div>
+  </div>
+  <div class="login-box">
+    <label class="lbl">관리자 ID</label>
+    <input id="lid" type="text" placeholder="관리자 ID" class="fi">
+    <label class="lbl">비밀번호</label>
+    <input id="lpw" type="password" placeholder="비밀번호" class="fi" onkeydown="if(event.key==='Enter')doLogin()">
+    <button onclick="doLogin()" class="btn btn-red">📱 스튜디오 입장</button>
+    <a href="index.html" style="display:block;text-align:center;font-size:10px;color:var(--txt3);text-decoration:none;margin-top:8px">← PROPAI 메인 앱으로</a>
+  </div>
+</div>
+
+<!-- ══ 메인 앱 ══ -->
+<div id="app">
+
+  <!-- 헤더 -->
+  <div class="hdr">
+    <div class="hdr-logo">
+      <div class="hdr-ico">📱</div>
+      <div>
+        <div style="font-size:8px;color:var(--rsub);font-weight:700;letter-spacing:1.2px">ADMIN SNS STUDIO</div>
+        <div style="font-size:13px;font-weight:900">SNS 숏츠 스튜디오</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span id="aname" style="font-size:9px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:var(--rsub);padding:3px 10px;border-radius:20px;font-weight:700"></span>
+      <button onclick="doLogout()" style="background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--txt2);padding:5px 10px;border-radius:8px;font-size:9px;font-weight:700;cursor:pointer;font-family:var(--sans)">나가기</button>
+    </div>
+  </div>
+
+  <!-- 탭 -->
+  <div class="tabs">
+    <button class="tab-btn on" id="t0" onclick="showTab(0)">📥 접수함</button>
+    <button class="tab-btn" id="t1" onclick="showTab(1)">📁 파일 업로드</button>
+    <button class="tab-btn" id="t2" onclick="showTab(2)">✂️ 영상 편집</button>
+    <button class="tab-btn" id="t3" onclick="showTab(3)">▶️ 유튜브</button>
+    <button class="tab-btn" id="t4" onclick="showTab(4)">🚀 SNS 발송</button>
+  </div>
+
+  <!-- 패널들 -->
+  <div class="panels">
+
+    <!-- ══ 탭0: 접수함 ══ -->
+    <div class="panel on" id="p0">
+
+      <!-- 현재 작업 중 -->
+      <div id="cur-job">
+        <div style="font-size:9px;color:var(--jade);font-weight:700;margin-bottom:3px">🎬 현재 제작 중</div>
+        <div id="cur-job-name" style="font-size:16px;font-weight:900;margin-bottom:8px"></div>
+        <div class="pgbar"><div class="pgfill" id="pgfill" style="width:10%"></div></div>
+        <div id="pg-label" style="font-size:9px;color:var(--jade);font-weight:700">STEP 1: 접수 확인</div>
+      </div>
+
+      <!-- 이메일 배너 -->
+      <div class="card" style="border:1px solid rgba(254,229,0,.2);background:rgba(254,229,0,.04)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:24px">📧</span>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:800;color:var(--yellow)">파트너 파일 이메일 확인</div>
+            <div style="font-size:9px;color:var(--txt2)">5788285[at]naver.com · 사진10장 + 20~30초 영상 수신</div>
+          </div>
+          <button onclick="showT('네이버 메일을 확인해 주세요. 5788285[at]naver.com')" style="padding:8px 12px;border-radius:8px;background:rgba(254,229,0,.12);border:1px solid rgba(254,229,0,.25);color:var(--yellow);font-size:10px;font-weight:800;cursor:pointer;font-family:var(--sans);flex-shrink:0">확인</button>
+        </div>
+      </div>
+
+      <!-- 접수 목록 -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="font-size:12px;font-weight:900">신청 접수 목록</div>
+        <button onclick="loadReqs()" style="font-size:9px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--rsub);padding:4px 11px;border-radius:6px;cursor:pointer;font-family:var(--sans);font-weight:700">🔄 새로고침</button>
+      </div>
+      <div id="req-list">
+        <div style="text-align:center;padding:24px;color:var(--txt3);font-size:10px">새로고침을 눌러 목록을 불러오세요</div>
+      </div>
+      <button onclick="addManual()" class="btn btn-ghost" style="border:1px dashed rgba(239,68,68,.3)!important;color:var(--rsub)!important">+ 수동 접수 등록</button>
+    </div>
+
+    <!-- ══ 탭1: 파일 업로드 ══ -->
+    <div class="panel" id="p1">
+      <div id="p1-job-info" style="display:none;background:rgba(45,212,160,.07);border:1px solid rgba(45,212,160,.2);border-radius:10px;padding:10px 13px;margin-bottom:12px">
+        <div style="font-size:9px;color:var(--jade);font-weight:700">🎬 제작 중인 매물</div>
+        <div id="p1-job-name" style="font-size:14px;font-weight:900"></div>
+      </div>
+
+      <div class="card" style="border:1px solid rgba(45,212,160,.15)">
+        <label class="lbl">매물명 / 광고 제목</label>
+        <input id="s-prop" type="text" placeholder="예: 시그니엘 95평 임대 / 래전드힐스 9평" class="fi" style="border-color:rgba(45,212,160,.25)">
+
+        <!-- 사진 -->
+        <div style="background:rgba(8,16,28,.5);border:1px solid rgba(45,212,160,.2);border-radius:10px;padding:12px;margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div style="font-size:12px;font-weight:800">📸 사진 (최대 10장)</div>
+            <span id="ph-cnt" class="badge b-jade">0/10</span>
+          </div>
+          <label class="upload-zone uz-green">
+            📎 사진 선택 (JPG · PNG · HEIC)
+            <input type="file" id="s-photos" accept="image/*" multiple style="display:none" onchange="onPhotos(this)">
+          </label>
+          <div id="ph-grid" class="thumb-grid"></div>
+        </div>
+
+        <!-- 영상 -->
+        <div style="background:rgba(8,16,28,.5);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div style="font-size:12px;font-weight:800">🎬 영상 (20~30초)</div>
+            <span id="vid-badge" class="badge b-red">미첨부</span>
+          </div>
+          <label class="upload-zone uz-red">
+            🎬 영상 선택 (MP4 · MOV · AVI)
+            <input type="file" id="s-video" accept="video/*" style="display:none" onchange="onVideo(this)">
+          </label>
+          <div id="vid-info" style="display:none;margin-top:8px;font-size:10px;color:var(--jade);padding:8px 11px;background:rgba(8,16,28,.4);border-radius:8px"></div>
+        </div>
+      </div>
+
+      <button onclick="showTab(2)" class="btn btn-jade">다음 → 영상 편집하기</button>
+    </div>
+
+    <!-- ══ 탭2: 영상 편집 ══ -->
+    <div class="panel" id="p2">
+      <div class="card" style="border:1px solid rgba(201,168,76,.2)">
+        <div class="card-title">🛠️ AI 영상 편집 도구</div>
+        <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:9px;color:var(--txt2);line-height:2">
+          💡 <strong style="color:#E8C97A">제작 팁:</strong> 사진10장 → CapCut AI 자동편집 → 9:16 세로형 선택<br>
+          → 자막 추가 → 배경음악 → 60초 이내 내보내기 → 유튜브 업로드
+        </div>
+        <div class="tool-grid">
+          <a href="https://www.capcut.com" target="_blank" class="tool-a">
+            <span style="font-size:28px">✂️</span>
+            <div><div style="font-size:12px;font-weight:800">CapCut</div><div style="font-size:9px;color:var(--txt2)">AI 자동편집 ★추천</div></div>
+          </a>
+          <a href="https://vrew.voyagerx.com" target="_blank" class="tool-a">
+            <span style="font-size:28px">🎬</span>
+            <div><div style="font-size:12px;font-weight:800">Vrew</div><div style="font-size:9px;color:var(--txt2)">AI 자막 자동생성</div></div>
+          </a>
+          <a href="https://clova.ai/dubbing" target="_blank" class="tool-a">
+            <span style="font-size:28px">🎙️</span>
+            <div><div style="font-size:12px;font-weight:800">클로바더빙</div><div style="font-size:9px;color:var(--txt2)">AI 나레이션</div></div>
+          </a>
+          <a href="https://www.canva.com" target="_blank" class="tool-a">
+            <span style="font-size:28px">🎨</span>
+            <div><div style="font-size:12px;font-weight:800">Canva</div><div style="font-size:9px;color:var(--txt2)">썸네일·자막 디자인</div></div>
+          </a>
+        </div>
+      </div>
+      <button onclick="showTab(3)" class="btn btn-yt" style="border:none!important">다음 → 유튜브 업로드</button>
+    </div>
+
+    <!-- ══ 탭3: 유튜브 업로드 ══ -->
+    <div class="panel" id="p3">
+      <div class="card" style="border:1px solid rgba(239,68,68,.2)">
+        <div class="card-title">▶️ YouTube Shorts 업로드</div>
+        <a href="https://studio.youtube.com" target="_blank"
+          style="display:flex;align-items:center;justify-content:space-between;background:rgba(239,68,68,.1);border:1.5px solid rgba(239,68,68,.3);border-radius:11px;padding:14px;text-decoration:none;margin-bottom:12px">
+          <div style="display:flex;align-items:center;gap:11px">
+            <span style="font-size:30px">▶️</span>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:var(--txt)">YouTube Studio 열기</div>
+              <div style="font-size:9px;color:var(--txt2)">#숏츠 #강남부동산 #대치동 #PROPAI</div>
+            </div>
+          </div>
+          <span style="font-size:22px;color:var(--rsub)">→</span>
+        </a>
+
+        <!-- 해시태그 복사 -->
+        <div style="background:rgba(8,16,28,.5);border-radius:9px;padding:10px 12px;margin-bottom:12px">
+          <div style="font-size:10px;font-weight:700;color:var(--txt2);margin-bottom:6px">📋 추천 해시태그 (클릭하여 복사)</div>
+          <div style="font-size:11px;color:var(--rsub);line-height:2;cursor:pointer" onclick="copyTags()">#숏츠 #강남부동산 #대치동 #역삼동 #시그니엘 #래전드힐스 #PROPAI #부동산AI #강남아파트 #임대</div>
+        </div>
+
+        <label class="lbl">완성된 유튜브 숏츠 링크 입력</label>
+        <div style="display:flex;gap:8px">
+          <input id="yt-url" type="url" placeholder="https://youtube.com/shorts/..." class="fi" style="flex:1;margin:0;border-color:rgba(239,68,68,.2)">
+          <button onclick="saveYtUrl()" style="padding:0 16px;border-radius:9px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:var(--rsub);font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">저장</button>
+        </div>
+      </div>
+      <button onclick="showTab(4)" class="btn btn-yellow" style="border:none!important">다음 → SNS 발송</button>
+    </div>
+
+    <!-- ══ 탭4: SNS 발송 ══ -->
+    <div class="panel" id="p4">
+
+      <!-- 플랫폼 선택 -->
+      <div class="card" style="border:1px solid rgba(239,68,68,.15)">
+        <div class="card-title">📱 SNS 플랫폼 선택</div>
+        <div class="sns-grid">
+          <div onclick="selSns('yt')" id="sns-yt" class="sns-card sel" style="background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.4)">
+            <div style="font-size:26px;margin-bottom:4px">▶️</div>
+            <div style="font-size:10px;font-weight:800;color:var(--rsub)">유튜브</div>
+            <div style="font-size:8px;color:var(--txt3)">숏츠</div>
+          </div>
+          <div onclick="selSns('kk')" id="sns-kk" class="sns-card" style="background:rgba(254,229,0,.06);border-color:rgba(254,229,0,.15)">
+            <div style="font-size:26px;margin-bottom:4px">💬</div>
+            <div style="font-size:10px;font-weight:800;color:var(--yellow)">카카오톡</div>
+            <div style="font-size:8px;color:var(--txt3)">단톡방</div>
+          </div>
+          <div onclick="selSns('ig')" id="sns-ig" class="sns-card" style="background:rgba(168,85,247,.06);border-color:rgba(168,85,247,.15)">
+            <div style="font-size:26px;margin-bottom:4px">📸</div>
+            <div style="font-size:10px;font-weight:800;color:#D8B4FE">인스타그램</div>
+            <div style="font-size:8px;color:var(--txt3)">릴스</div>
+          </div>
+          <div onclick="selSns('fb')" id="sns-fb" class="sns-card" style="background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.15)">
+            <div style="font-size:26px;margin-bottom:4px">📘</div>
+            <div style="font-size:10px;font-weight:800;color:#93C5FD">페이스북</div>
+            <div style="font-size:8px;color:var(--txt3)">피드</div>
+          </div>
+          <div onclick="selSns('ns')" id="sns-ns" class="sns-card" style="background:rgba(45,212,160,.06);border-color:rgba(45,212,160,.15)">
+            <div style="font-size:26px;margin-bottom:4px">🟢</div>
+            <div style="font-size:10px;font-weight:800;color:var(--jade)">네이버 블로그</div>
+            <div style="font-size:8px;color:var(--txt3)">포스트</div>
+          </div>
+          <div onclick="selSns('all')" id="sns-all" class="sns-card" style="background:rgba(201,168,76,.06);border-color:rgba(201,168,76,.2)">
+            <div style="font-size:26px;margin-bottom:4px">🚀</div>
+            <div style="font-size:10px;font-weight:800;color:#E8C97A">전체 동시</div>
+            <div style="font-size:8px;color:var(--txt3)">5채널</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카카오 발송 대상 -->
+      <div class="card" style="border:1px solid rgba(254,229,0,.15)">
+        <div class="card-title">💬 카카오톡 발송 대상</div>
+        <label class="chk-lbl" style="background:rgba(254,229,0,.06);border:1px solid rgba(254,229,0,.15)">
+          <input type="checkbox" id="chk-a" checked style="accent-color:var(--yellow);width:17px;height:17px">
+          <div><div style="font-size:12px;font-weight:800">PROPAI 관리자 단톡방</div><div style="font-size:9px;color:var(--txt2)">이상수 대표 · 김은경 이사</div></div>
+        </label>
+        <label class="chk-lbl" style="background:rgba(45,212,160,.05);border:1px solid rgba(45,212,160,.12)">
+          <input type="checkbox" id="chk-p" style="accent-color:var(--jade);width:17px;height:17px">
+          <div><div style="font-size:12px;font-weight:800">🤝 공동중개 파트너</div><div style="font-size:9px;color:var(--txt2)">파트너 단톡방 공유</div></div>
+        </label>
+        <label class="chk-lbl" style="background:rgba(74,158,224,.05);border:1px solid rgba(74,158,224,.12)">
+          <input type="checkbox" id="chk-c" style="accent-color:#4A9EE0;width:17px;height:17px">
+          <div><div style="font-size:12px;font-weight:800">🙋 수요자 고객</div><div style="font-size:9px;color:var(--txt2)">매칭 수요자에게 직접 발송</div></div>
+        </label>
+      </div>
+
+      <!-- 발송 버튼 -->
+      <div id="send-btns">
+        <button id="btn-yt" onclick="sendYt()" class="btn btn-yt" style="border:none!important">▶️ 유튜브 스튜디오 열기</button>
+        <button id="btn-kk" onclick="sendKk()" class="btn btn-kk" style="display:none;border:none!important">💬 카카오톡 메시지 발송</button>
+        <button id="btn-ig" onclick="sendIg()" class="btn btn-ig" style="display:none;border:none!important">📸 인스타그램 링크 복사</button>
+        <button id="btn-fb" onclick="sendFb()" class="btn btn-fb" style="display:none;border:none!important">📘 페이스북 공유</button>
+        <button id="btn-ns" onclick="sendNs()" class="btn" style="display:none;background:linear-gradient(135deg,rgba(45,212,160,.2),rgba(45,212,160,.08));border:1.5px solid rgba(45,212,160,.4)!important;color:var(--jade)">🟢 네이버 블로그 열기</button>
+        <button id="btn-all" onclick="sendAll()" class="btn btn-red" style="display:none;border:none!important">🚀 전체 SNS 동시 발송</button>
+      </div>
+
+      <button onclick="markDone()" class="btn btn-jade">✅ 이 매물 숏츠 완료 처리</button>
+      <a href="index.html" class="btn btn-ghost" style="border:1px solid var(--line)!important">← PROPAI 메인 앱으로</a>
+    </div>
+
+  </div><!-- /panels -->
+</div><!-- /app -->
+
+<div id="toast"></div>
+
+<script>
+var ADMINS=[{id:'sk5788285',pw:'ai0191',name:'이상수 대표'},{id:'ai2482',pw:'ai2460',name:'김은경 관리자'}];
+var _jobIdx=-1;
+var _selSns='yt';
+
+/* ── 로그인 ── */
+function doLogin(){
+  var id=(document.getElementById('lid')||{}).value||'';
+  var pw=(document.getElementById('lpw')||{}).value||'';
+  var found=ADMINS.find(function(a){return a.id===id&&a.pw===pw;});
+  if(!found){showT('관리자 ID·비밀번호를 확인해주세요');return;}
+  document.getElementById('login').style.display='none';
+  var app=document.getElementById('app');
+  app.style.display='flex';
+  document.getElementById('aname').textContent=found.name;
+  loadReqs();
+  showT('환영합니다 '+found.name+'!');
+}
+function doLogout(){
+  document.getElementById('login').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('lid').value='';
+  document.getElementById('lpw').value='';
+  _jobIdx=-1;
+}
+
+/* ── 탭 전환 ── */
+function showTab(n){
+  for(var i=0;i<5;i++){
+    document.getElementById('p'+i).classList.toggle('on',i===n);
+    document.getElementById('t'+i).classList.toggle('on',i===n);
+  }
+  updatePg(n);
+}
+
+/* ── 진행바 ── */
+function updatePg(step){
+  var pct=[10,30,55,75,95];
+  var labels=['STEP 1: 접수 확인','STEP 2: 파일 업로드','STEP 3: 영상 편집','STEP 4: 유튜브 업로드','STEP 5: SNS 발송'];
+  var fill=document.getElementById('pgfill');
+  var lbl=document.getElementById('pg-label');
+  if(fill) fill.style.width=pct[step]+'%';
+  if(lbl) lbl.textContent=labels[step];
+}
+
+/* ── 접수함 ── */
+function loadReqs(){
+  var container=document.getElementById('req-list');
+  if(!container) return;
+  var list=[];
+  try{list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');}catch(e){}
+  if(list.length===0){
+    container.innerHTML='<div style="text-align:center;padding:24px;color:var(--txt3);font-size:10px">신청 접수된 건이 없습니다</div>';
+    return;
+  }
+  container.innerHTML=list.map(function(item,idx){
+    var cls=item.status==='done'?'done':item.status==='editing'?'editing':'';
+    var sc=item.status==='done'?'var(--jade)':item.status==='editing'?'#E8C97A':'var(--rsub)';
+    var sl=item.status==='done'?'✅ 완료':item.status==='editing'?'✏️ 편집중':'📥 접수';
+    return '<div class="req-card '+cls+'">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
+      +'<span class="badge b-red">📹 '+(item.type==='paid'?'유료':'무료')+'</span>'
+      +'<span style="font-size:10px;font-weight:700;color:'+sc+'">'+sl+'</span>'
+      +'</div>'
+      +'<div style="font-size:14px;font-weight:800;margin-bottom:3px">'+(item.prop||'매물명 미입력')+'</div>'
+      +'<div style="font-size:10px;color:var(--txt2);margin-bottom:10px">신청자: '+(item.tel||'-')+' · '+(item.date||'')+'</div>'
+      +'<div style="display:flex;gap:6px">'
+      +'<button onclick="startJob('+idx+')" style="flex:2;padding:11px;border-radius:9px;background:linear-gradient(135deg,rgba(239,68,68,.2),rgba(239,68,68,.08));border:1px solid rgba(239,68,68,.3);color:var(--rsub);font-family:var(--sans);font-size:12px;font-weight:800;cursor:pointer">🎬 제작 시작</button>'
+      +'<button onclick="setReqDone('+idx+')" style="flex:1;padding:11px;border-radius:9px;background:rgba(45,212,160,.08);border:1px solid rgba(45,212,160,.2);color:var(--jade);font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">✅</button>'
+      +'<button onclick="delReq('+idx+')" style="padding:11px 13px;border-radius:9px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--txt3);font-family:var(--sans);font-size:10px;cursor:pointer">🗑</button>'
+      +'</div></div>';
+  }).join('');
+}
+
+function startJob(idx){
+  var list=[];
+  try{list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');}catch(e){}
+  var item=list[idx]; if(!item) return;
+  _jobIdx=idx;
+  list[idx].status='editing';
+  localStorage.setItem('propai_shorts_requests',JSON.stringify(list));
+  // 현재 작업 표시
+  var cj=document.getElementById('cur-job');
+  var cjn=document.getElementById('cur-job-name');
+  if(cj) cj.style.display='block';
+  if(cjn) cjn.textContent=item.prop||'';
+  document.getElementById('s-prop').value=item.prop||'';
+  var p1ji=document.getElementById('p1-job-info');
+  var p1jn=document.getElementById('p1-job-name');
+  if(p1ji) p1ji.style.display='block';
+  if(p1jn) p1jn.textContent=item.prop||'';
+  showTab(1);
+  loadReqs();
+  showT('🎬 제작 시작! 이메일에서 파일 확인 후 업로드하세요');
+}
+
+function setReqDone(idx){
+  var list=[];
+  try{list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');}catch(e){}
+  if(list[idx]) list[idx].status='done';
+  localStorage.setItem('propai_shorts_requests',JSON.stringify(list));
+  loadReqs();
+  showT('✅ 완료 처리됨');
+}
+
+function delReq(idx){
+  var list=[];
+  try{list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');}catch(e){}
+  list.splice(idx,1);
+  localStorage.setItem('propai_shorts_requests',JSON.stringify(list));
+  loadReqs();
+  showT('삭제되었습니다');
+}
+
+function addManual(){
+  var prop=prompt('매물명을 입력해주세요 (예: 시그니엘 95평 임대)');
+  if(!prop) return;
+  var tel=prompt('파트너 연락처 (010-XXXX-XXXX)')||'-';
+  var item={prop:prop,tel:tel,type:'paid',status:'접수',date:new Date().toLocaleString('ko-KR')};
+  var list=[];
+  try{list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');}catch(e){}
+  list.unshift(item);
+  localStorage.setItem('propai_shorts_requests',JSON.stringify(list));
+  loadReqs();
+  showT('📥 수동 접수 등록! '+prop);
+}
+
+/* ── 파일 업로드 ── */
+function onPhotos(input){
+  var files=Array.from(input.files).slice(0,10);
+  var badge=document.getElementById('ph-cnt');
+  var grid=document.getElementById('ph-grid');
+  if(badge) badge.textContent=files.length+'/10';
+  if(grid){
+    grid.innerHTML='';
+    files.forEach(function(file){
+      var reader=new FileReader();
+      reader.onload=function(e){
+        var div=document.createElement('div');
+        div.className='thumb';
+        div.style.backgroundImage='url('+e.target.result+')';
+        var del=document.createElement('div');
+        del.className='thumb-del'; del.textContent='✕';
+        del.onclick=function(){div.remove();var c=document.querySelectorAll('.thumb').length;if(badge)badge.textContent=c+'/10';};
+        div.appendChild(del); grid.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  showT('📸 사진 '+files.length+'장 업로드! 다음 단계로 진행하세요');
+}
+
+function onVideo(input){
+  var file=input.files[0]; if(!file) return;
+  var badge=document.getElementById('vid-badge');
+  var info=document.getElementById('vid-info');
+  var mb=(file.size/1024/1024).toFixed(1);
+  if(badge){badge.textContent='✅ 첨부완료';badge.className='badge b-jade';}
+  if(info){info.style.display='block';info.innerHTML='🎬 <strong style="color:var(--jade)">'+file.name+'</strong> ('+mb+'MB)';}
+  showT('🎬 영상 업로드 완료! CapCut으로 편집하세요');
+}
+
+/* ── 해시태그 복사 ── */
+function copyTags(){
+  var tags='#숏츠 #강남부동산 #대치동 #역삼동 #시그니엘 #래전드힐스 #PROPAI #부동산AI #강남아파트 #임대';
+  try{navigator.clipboard.writeText(tags).then(function(){showT('📋 해시태그 복사! 유튜브 태그에 붙여넣기 하세요');});}
+  catch(e){showT('직접 복사해주세요');}
+}
+
+/* ── 유튜브 링크 저장 ── */
+function saveYtUrl(){
+  var url=(document.getElementById('yt-url')||{}).value||'';
+  if(!url){showT('링크를 입력해주세요');return;}
+  localStorage.setItem('propai_yt_url',url);
+  showT('✅ 유튜브 링크 저장! 발송 탭으로 이동하세요');
+}
+
+/* ── SNS 플랫폼 선택 ── */
+var snsStyles={
+  yt:{bg:'rgba(239,68,68,.1)',bc:'rgba(239,68,68,.4)'},
+  kk:{bg:'rgba(254,229,0,.06)',bc:'rgba(254,229,0,.15)'},
+  ig:{bg:'rgba(168,85,247,.06)',bc:'rgba(168,85,247,.15)'},
+  fb:{bg:'rgba(59,130,246,.06)',bc:'rgba(59,130,246,.15)'},
+  ns:{bg:'rgba(45,212,160,.06)',bc:'rgba(45,212,160,.15)'},
+  all:{bg:'rgba(201,168,76,.06)',bc:'rgba(201,168,76,.2)'}
+};
+function selSns(id){
+  _selSns=id;
+  Object.keys(snsStyles).forEach(function(k){
+    var el=document.getElementById('sns-'+k);
+    if(!el) return;
+    if(k===id){
+      el.classList.add('sel');
+      el.style.background=snsStyles[k].bg;
+      el.style.borderColor=snsStyles[k].bc;
+    } else {
+      el.classList.remove('sel');
+      el.style.background=snsStyles[k].bg.replace('.1)','.06)').replace('.15)','.06)');
+      el.style.borderColor=snsStyles[k].bc.replace('.4)','.15)').replace('.35)','.12)');
+    }
+  });
+  // 버튼 표시/숨기기
+  var allBtns=['yt','kk','ig','fb','ns','all'];
+  allBtns.forEach(function(k){
+    var btn=document.getElementById('btn-'+k);
+    if(btn) btn.style.display=(k===id||id==='all')?'block':'none';
+  });
+  if(id!=='all') document.getElementById('btn-all').style.display='none';
+}
+
+/* ── 발송 함수들 ── */
+function getProp(){ return (document.getElementById('s-prop')||{}).value||'매물'; }
+function getYtUrl(){ return (document.getElementById('yt-url')||{}).value||localStorage.getItem('propai_yt_url')||''; }
+
+function sendYt(){
+  var url=getYtUrl();
+  if(url){ try{navigator.clipboard.writeText(url).then(function(){showT('▶️ 유튜브 링크 복사!');});} catch(e){} }
+  else { window.open('https://studio.youtube.com','_blank'); showT('▶️ YouTube Studio 열림! 완성 영상 업로드 후 링크를 STEP 4에 입력하세요'); }
+}
+
+function buildKkMsg(){
+  var prop=getProp(); var url=getYtUrl();
+  return '[PROPAI 숏츠 광고] '+prop+(url?' '+url:'')+' - 롯데타워앤강남빌딩부동산중개(주) 010-8985-8945 이상수대표 010-2482-2460 김은경이사';
+}
+
+function sendKk(){
+  var toA=document.getElementById('chk-a')&&document.getElementById('chk-a').checked;
+  var toP=document.getElementById('chk-p')&&document.getElementById('chk-p').checked;
+  var toC=document.getElementById('chk-c')&&document.getElementById('chk-c').checked;
+  var targets=[];
+  if(toA) targets.push('관리자');
+  if(toP) targets.push('파트너');
+  if(toC) targets.push('수요자');
+  var msg=buildKkMsg();
+  try{
+    navigator.clipboard.writeText(msg).then(function(){
+      showT('💬 카카오 메시지 복사! 발송: '+targets.join(', '));
+      if(toA) setTimeout(function(){window.open('https://open.kakao.com/o/sPLGlKni','_blank');},800);
+    });
+  }catch(e){showT('카카오톡에 직접 붙여넣기 하세요');}
+}
+
+function sendIg(){
+  var url=getYtUrl(); var prop=getProp();
+  var cap='[PROPAI] '+prop+' - 강남부동산 AI 플랫폼 #숏츠 #강남부동산 #대치동';
+  try{
+    navigator.clipboard.writeText((url?url+'\n\n':'')+cap).then(function(){
+      showT('📸 인스타그램 캡션+링크 복사! 릴스에 붙여넣기 하세요');
+      window.open('https://www.instagram.com','_blank');
+    });
+  }catch(e){showT('직접 복사해주세요');}
+}
+
+function sendFb(){
+  var url=getYtUrl();
+  if(url){
+    window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+  } else {
+    window.open('https://www.facebook.com','_blank');
+    showT('📘 페이스북 열림! 링크를 붙여넣기 하세요');
+  }
+}
+
+function sendNs(){
+  window.open('https://blog.naver.com','_blank');
+  var prop=getProp(); var url=getYtUrl();
+  var content='[PROPAI 부동산 숏츠] '+prop+(url?' - '+url:'');
+  try{navigator.clipboard.writeText(content).then(function(){showT('🟢 네이버 블로그 열림! 포스트 내용 복사됨');});}
+  catch(e){showT('네이버 블로그에서 직접 게시하세요');}
+}
+
+function sendAll(){
+  sendYt();
+  setTimeout(sendKk, 1000);
+  setTimeout(function(){
+    var url=getYtUrl();
+    if(url) window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+  }, 2000);
+  showT('🚀 전체 SNS 동시 발송 시작! 유튜브→카카오→페이스북 순서로 진행됩니다');
+}
+
+/* ── 완료 처리 ── */
+function markDone(){
+  var link=getYtUrl();
+  if(_jobIdx>=0){
+    var list=[];
+    try{list=JSON.parse(localStorage.getItem('propai_shorts_requests')||'[]');}catch(e){}
+    if(list[_jobIdx]){list[_jobIdx].status='done';list[_jobIdx].url=link;}
+    localStorage.setItem('propai_shorts_requests',JSON.stringify(list));
+    _jobIdx=-1;
+  }
+  document.getElementById('cur-job').style.display='none';
+  document.getElementById('p1-job-info').style.display='none';
+  document.getElementById('s-prop').value='';
+  document.getElementById('yt-url').value='';
+  document.getElementById('ph-grid').innerHTML='';
+  document.getElementById('ph-cnt').textContent='0/10';
+  document.getElementById('vid-badge').textContent='미첨부';
+  document.getElementById('vid-badge').className='badge b-red';
+  document.getElementById('vid-info').style.display='none';
+  showTab(0); loadReqs();
+  showT('✅ 숏츠 완료 처리! 다음 매물을 선택하세요');
+}
+
+/* ── 토스트 ── */
+function showT(msg){
+  var el=document.getElementById('toast');
+  if(!el) return;
+  el.textContent=msg; el.style.display='block';
+  clearTimeout(window._tt);
+  window._tt=setTimeout(function(){el.style.display='none';},3500);
+}
+</script>
+</body>
+</html>
