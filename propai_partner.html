@@ -98,6 +98,29 @@ textarea.fi{resize:none;height:60px;line-height:1.5}
 .income-tier{background:var(--s1);border-radius:13px;overflow:hidden;margin-bottom:10px}
 .income-tier-hdr{padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
 .income-tier-body{padding:10px 14px 13px}
+
+/* ── AI 점수 바 ── */
+.ai-wrap{background:rgba(8,16,28,.55);border-radius:9px;padding:9px 11px;margin:8px 0}
+.ai-score-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.ai-bar-bg{background:rgba(255,255,255,.07);border-radius:6px;overflow:hidden;height:5px;margin-bottom:6px}
+.ai-bar-fill{height:5px;border-radius:6px;transition:width .6s ease}
+.ai-sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.ai-sub-box{background:rgba(255,255,255,.04);border-radius:6px;padding:5px;text-align:center}
+
+/* ── 일일 카운터 ── */
+.limit-banner{background:linear-gradient(135deg,rgba(45,212,160,.1),rgba(45,212,160,.03));border:1px solid rgba(45,212,160,.25);border-radius:11px;padding:10px 13px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.ldots{display:flex;gap:4px;flex-wrap:wrap;max-width:140px}
+.ldot{width:11px;height:11px;border-radius:50%;background:rgba(45,212,160,.15);border:1px solid rgba(45,212,160,.25)}
+.ldot.on{background:#2DD4A0;box-shadow:0 0 5px rgba(45,212,160,.5)}
+
+/* ── 챗봇 버튼 ── */
+#p-chatBtn{position:fixed;bottom:82px;right:14px;z-index:950;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#2DD4A0,#0D8060);border:none;cursor:pointer;font-size:20px;box-shadow:0 4px 14px rgba(45,212,160,.4);display:none}
+/* ── 챗봇 모달 ── */
+#p-chatModal{display:none;position:fixed;bottom:140px;right:12px;z-index:951;width:310px;max-height:460px;background:#0D1929;border:1.5px solid rgba(45,212,160,.35);border-radius:16px;overflow:hidden;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+
+/* ── 숏츠 위자드 ── */
+#sw-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:960;align-items:flex-end;justify-content:center}
+.sw-sheet{background:#0D1929;width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:20px 16px 32px;border-top:2px solid rgba(239,68,68,.4)}
 </style>
 <script>
 // ── 기본 내장 파트너 계정 (관리자용)
@@ -147,6 +170,10 @@ function doPartnerLogin(){
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   toast('✅ 환영합니다!\n' + (partner.office||partner.id) + '\nPROPAI 파트너 플랫폼 로그인 완료 😊');
+  currentPlan = partner.plan || 'free';
+  var cb = document.getElementById('p-chatBtn');
+  if(cb) cb.style.display = 'block';
+  renderLimitBanner();
 }
 
 function doLogout(){
@@ -154,6 +181,11 @@ function doLogout(){
   document.getElementById('app').style.display = 'none';
   document.getElementById('login-id').value = '';
   document.getElementById('login-pw').value = '';
+  var cb = document.getElementById('p-chatBtn');
+  if(cb) cb.style.display = 'none';
+  var cm = document.getElementById('p-chatModal');
+  if(cm) cm.style.display = 'none';
+  pcOpen = false;
 }
 
 // ── 탭 전환
@@ -175,7 +207,8 @@ function sendHave(){
   var addr  = document.getElementById('h-addr');
   if(!title||!title.value.trim()){ toast('제목을 입력해주세요'); return; }
   if(!addr||!addr.value.trim())  { toast('매물위치를 입력해주세요'); return; }
-  toast('✅ AI매칭매물 있습니다 발송 완료!\n파트너 자동매칭 시작\n일 5건 한도 · 잔여 4건');
+  var cnt=incDaily(), lim=PLAN_LIMITS[currentPlan]||5;
+  toast('✅ AI매칭매물 있습니다 발송 완료!\n파트너 자동매칭 시작\n오늘 잔여 '+Math.max(0,lim-cnt)+'건');
   title.value = ''; addr.value = '';
   showPanel('mylist');
 }
@@ -204,6 +237,247 @@ window.addEventListener('DOMContentLoaded', function(){
     if(e.key === 'Enter') doPartnerLogin();
   });
 });
+
+/* ══════════════════════════════════════
+   ① 일일 카운터
+   ══════════════════════════════════════ */
+var PLAN_LIMITS = {free:5, basic:7, premium:20};
+var currentPlan = 'free';
+
+function getDailyLog(){
+  var today = new Date().toDateString();
+  var log;
+  try { log = JSON.parse(localStorage.getItem('p_daily') || 'null'); } catch(e){ log = null; }
+  if(!log || log.date !== today) log = {date:today, count:0};
+  return log;
+}
+function incDaily(){
+  var log = getDailyLog();
+  log.count++;
+  try { localStorage.setItem('p_daily', JSON.stringify(log)); } catch(e){}
+  renderLimitBanner();
+  return log.count;
+}
+function renderLimitBanner(){
+  var lbl = document.getElementById('limit-lbl');
+  var dots = document.getElementById('limit-dots');
+  if(!lbl && !dots) return;
+  var limit = PLAN_LIMITS[currentPlan] || 5;
+  var used  = getDailyLog().count;
+  var left  = Math.max(0, limit - used);
+  if(lbl) lbl.textContent = '오늘 ' + used + '/' + limit + '건 · 잔여 ' + left + '건';
+  if(dots){
+    var html = '';
+    for(var i = 0; i < Math.min(limit, 20); i++){
+      html += '<div class="ldot' + (i < used ? ' on' : '') + '"></div>';
+    }
+    dots.innerHTML = html;
+  }
+}
+
+/* ══════════════════════════════════════
+   ② AI 점수 바 (DOM 삽입 방식)
+   ══════════════════════════════════════ */
+function injectAiScore(anchorId, score){
+  var anchor = document.getElementById(anchorId);
+  if(!anchor) return;
+  var col = score >= 90 ? '#2DD4A0' : score >= 75 ? '#E8C97A' : '#FCA5A5';
+  var lbl = score >= 90 ? '🔥 최고 매칭' : score >= 75 ? '✅ 우수 매칭' : '⚡ 일반';
+  var desc = score >= 90
+    ? '학군·교통·가격 최적 · 수요자 즉시 매칭 예상'
+    : score >= 75
+    ? '가격 경쟁력 우수 · 수요자 매칭 진행 중'
+    : '조건 일부 미충족 · 가격 조정 시 매칭률 상승';
+  var sub = [
+    {l:'학군', v: Math.min(100, score + 3)},
+    {l:'교통', v: Math.min(100, score - 5)},
+    {l:'가격', v: Math.min(100, score - 8)}
+  ];
+  var subHtml = sub.map(function(s){
+    return '<div class="ai-sub-box"><div style="font-size:10px;font-weight:800;color:'+col+'">'+s.v+'</div>'
+      + '<div style="font-size:8px;color:#4A5568">'+s.l+'</div></div>';
+  }).join('');
+  var div = document.createElement('div');
+  div.className = 'ai-wrap';
+  div.innerHTML =
+    '<div class="ai-score-row">'
+    + '<span style="font-size:9px;color:#8A9AB0">🤖 AI 매칭 점수</span>'
+    + '<span style="font-size:13px;font-weight:900;color:'+col+'">'+score+'점 <span style="font-size:9px">'+lbl+'</span></span>'
+    + '</div>'
+    + '<div class="ai-bar-bg"><div class="ai-bar-fill" style="width:'+score+'%;background:'+col+'"></div></div>'
+    + '<div style="font-size:9px;color:#8A9AB0;line-height:1.6;margin-bottom:6px">'+desc+'</div>'
+    + '<div class="ai-sub-grid">'+subHtml+'</div>';
+  anchor.parentNode.insertBefore(div, anchor);
+}
+
+/* ══════════════════════════════════════
+   ③ 숏츠 위자드
+   ══════════════════════════════════════ */
+var sw = {step:1, data:{}};
+function openSW(pre){ sw.step=1; sw.data=pre||{}; document.getElementById('sw-modal').style.display='flex'; renderSW(); }
+function closeSW(){ document.getElementById('sw-modal').style.display='none'; }
+function renderSW(){
+  var body = document.getElementById('sw-body');
+  if(!body) return;
+  ['sw-s1','sw-s2','sw-s3'].forEach(function(id, i){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var on = (i + 1 === sw.step);
+    el.style.color = on ? '#FCA5A5' : '#4A5568';
+    el.style.borderBottomColor = on ? '#EF4444' : 'transparent';
+  });
+  if(sw.step === 1){
+    var types = ['🏢 아파트 매매','🏠 아파트 전세','🏙️ 오피스텔 월세','📈 재건축 투자'];
+    body.innerHTML = '<div style="font-size:10px;color:#8A9AB0;font-weight:700;margin-bottom:8px">매물 유형 선택</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'
+      + types.map(function(t){
+          return '<button onclick="sw.data.type=this.textContent.trim();sw.step=2;renderSW()" style="padding:13px 6px;border-radius:9px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;font-family:var(--sans);font-size:10px;font-weight:700;cursor:pointer">'+t+'</button>';
+        }).join('')
+      + '</div>';
+  } else if(sw.step === 2){
+    body.innerHTML = '<div style="font-size:10px;color:#FCA5A5;font-weight:800;margin-bottom:10px">📝 매물 정보</div>'
+      + '<div style="display:flex;flex-direction:column;gap:8px">'
+      + '<input id="sw-name" placeholder="단지명 (예: 시그니엘 42평)" class="fi" style="border-color:rgba(239,68,68,.3)">'
+      + '<input id="sw-price" placeholder="가격 (예: 68억 / 월1650만)" class="fi" style="border-color:rgba(239,68,68,.3)">'
+      + '<input id="sw-point" placeholder="핵심 포인트 (예: 한강뷰·저평가 7%)" class="fi" style="border-color:rgba(239,68,68,.3)">'
+      + '<div style="display:flex;gap:8px;margin-top:4px">'
+      + '<button onclick="sw.step=1;renderSW()" style="flex:1;padding:11px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;cursor:pointer">← 이전</button>'
+      + '<button onclick="swNext()" style="flex:2;padding:11px;border-radius:8px;background:linear-gradient(135deg,#EF4444,#B91C1C);color:#fff;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">AI 생성 →</button>'
+      + '</div></div>';
+  } else {
+    var n = sw.data.name||'매물명', p = sw.data.price||'가격', pt = sw.data.point||'특징', t = sw.data.type||'아파트';
+    var lines = [
+      '[0~3초] "지금 '+n+' 역대급 기회!" 🔥',
+      '[3~20초] "'+t+' · '+p+' / '+pt+'"',
+      '[20~45초] "PROPAI AI 분석 — 저평가 TOP 매물!"',
+      '[45~60초] "📞 010-8985-8945 이상수 대표 / 지금 바로 연락하세요!"'
+    ];
+    var scriptTxt = lines.join('\n');
+    body.innerHTML = '<div style="font-size:10px;color:#2DD4A0;font-weight:800;margin-bottom:8px">✅ 60초 스크립트 완성!</div>'
+      + '<div id="sw-result" style="background:rgba(8,16,28,.7);border:1px solid rgba(45,212,160,.2);border-radius:10px;padding:12px;margin-bottom:10px;font-size:10px;color:#EDF2F7;line-height:1.8;white-space:pre-line">'+lines.join('\n')+'</div>'
+      + '<div style="display:flex;gap:8px">'
+      + '<button onclick="closeSW()" style="flex:1;padding:11px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;cursor:pointer">✕ 닫기</button>'
+      + '<button onclick="swCopy()" style="flex:2;padding:11px;border-radius:8px;background:linear-gradient(135deg,#FCA5A5,#EF4444);color:#fff;font-family:var(--sans);font-size:11px;font-weight:900;border:none;cursor:pointer">📋 스크립트 복사</button>'
+      + '</div>';
+  }
+}
+function swNext(){
+  sw.data.name  = (document.getElementById('sw-name')||{}).value  || '';
+  sw.data.price = (document.getElementById('sw-price')||{}).value || '';
+  sw.data.point = (document.getElementById('sw-point')||{}).value || '';
+  sw.step = 3; renderSW();
+}
+function swCopy(){
+  var el = document.getElementById('sw-result');
+  var txt = el ? el.textContent : '';
+  if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){ toast('📋 복사 완료! 유튜브 설명란에 붙여넣으세요 😊'); }); }
+  else toast('📋 스크립트가 준비됐습니다!');
+}
+
+/* ══════════════════════════════════════
+   ④ 파트너 AI 챗봇
+   ══════════════════════════════════════ */
+var pcOpen = false, pcLoading = false, pcHistory = [];
+function togglePC(){
+  pcOpen = !pcOpen;
+  var m = document.getElementById('p-chatModal');
+  var b = document.getElementById('p-chatBtn');
+  if(m) m.style.display = pcOpen ? 'flex' : 'none';
+  if(b) b.style.transform = pcOpen ? 'rotate(20deg)' : '';
+  if(pcOpen){ setTimeout(function(){ var i=document.getElementById('pc-inp'); if(i) i.focus(); }, 150); }
+}
+function pcQuick(msg){ var i=document.getElementById('pc-inp'); if(i) i.value=msg; pcSend(); }
+function pcAddMsg(role, txt){
+  var c = document.getElementById('pc-msgs'); if(!c) return;
+  var isU = role === 'user';
+  var d = document.createElement('div');
+  d.style.cssText = 'display:flex;gap:7px;align-items:flex-start;' + (isU ? 'flex-direction:row-reverse' : '');
+  d.innerHTML = (isU
+    ? '<div style="width:26px;height:26px;border-radius:50%;background:rgba(45,212,160,.2);display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0">🤝</div>'
+      + '<div style="background:linear-gradient(135deg,rgba(45,212,160,.15),rgba(45,212,160,.07));border-radius:10px 10px 2px 10px;padding:8px 10px;max-width:210px;font-size:11px;color:#EDF2F7;line-height:1.6">'
+    : '<div style="width:26px;height:26px;border-radius:50%;background:rgba(45,212,160,.15);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🤖</div>'
+      + '<div style="background:rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:8px 10px;max-width:210px;font-size:11px;color:#EDF2F7;line-height:1.6">')
+    + txt.replace(/\n/g,'<br>') + '</div>';
+  c.appendChild(d); c.scrollTop = c.scrollHeight;
+}
+function pcTyping(){
+  var c = document.getElementById('pc-msgs'); if(!c) return null;
+  var d = document.createElement('div'); d.id = 'pc-typing';
+  d.style.cssText = 'display:flex;gap:7px;align-items:center';
+  d.innerHTML = '<div style="width:26px;height:26px;border-radius:50%;background:rgba(45,212,160,.15);display:flex;align-items:center;justify-content:center;font-size:13px">🤖</div>'
+    + '<div style="background:rgba(255,255,255,.06);border-radius:10px;padding:8px 12px;font-size:13px;color:#8A9AB0">● ● ●</div>';
+  c.appendChild(d); c.scrollTop = c.scrollHeight; return d;
+}
+async function pcSend(){
+  if(pcLoading) return;
+  var inp = document.getElementById('pc-inp');
+  var msg = inp ? inp.value.trim() : ''; if(!msg) return;
+  inp.value = ''; pcAddMsg('user', msg);
+  pcHistory.push({role:'user', content:msg});
+  pcLoading = true;
+  var typing = pcTyping();
+  var sys = '당신은 PROPAI 공동중개 파트너 플랫폼의 AI 어시스턴트입니다.
+'
+    + '공인중개사 파트너들의 질문에 답변합니다.
+'
+    + '주요 정보:
+'
+    + '- 관리 부동산: 롯데타워앤강남빌딩부동산중개(주) | 대표 이상수 010-8985-8945
+'
+    + '- 무료: 일 5건 | 스탠다드 월9만: 일 7건 | 프리미엄 월15만: 일 20건
+'
+    + '- 숏츠: 저평가 시 1건 무료, 유료 3만원
+'
+    + '- AI매칭: 있습니다/구합니다 발송 → 자동 매칭 → 카카오 알림
+'
+    + '친절하고 간결하게(3~5문장), 한국어로 답변.';
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:400, system:sys, messages:pcHistory.slice(-6)})
+    });
+    var data = await res.json();
+    if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
+    var reply = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : pcFAQ(msg);
+    pcAddMsg('ai', reply);
+    pcHistory.push({role:'assistant', content:reply});
+  } catch(e){
+    if(typing && typing.parentNode) typing.parentNode.removeChild(typing);
+    pcAddMsg('ai', pcFAQ(msg));
+  }
+  pcLoading = false;
+}
+function pcFAQ(msg){
+  var m = (msg||'').toLowerCase();
+  var A = [
+    {k:['한도','등록','건수'],  r:'📋 일일 등록 한도\n무료 5건 / 스탠다드 7건 / 프리미엄 20건\n자정에 자동 리셋됩니다 😊'},
+    {k:['숏츠','유튜브','영상'],r:'📹 숏츠 자동제작\n저평가 매물: 무료 1건\n유료: 건당 3만원\n이메일: 5788285@naver.com'},
+    {k:['요금','플랜','결제'],  r:'💰 요금제\n스탠다드 월 9만원 / 프리미엄 월 15만원\n📞 010-8985-8945 이상수 대표'},
+    {k:['매칭','ai','자동'],    r:'🤖 AI매칭 방법\n① 있습니다/구합니다 발송\n② AI 자동 분석·매칭\n③ 수요자에게 카카오 알림'},
+    {k:['가입','승인','신청'],  r:'🤝 파트너 가입\nPROPAI 메인앱 → 공동중개 파트너 신청\n관리자 검토 후 1~2영업일 내 승인'},
+  ];
+  for(var i=0;i<A.length;i++) for(var j=0;j<A[i].k.length;j++) if(m.indexOf(A[i].k[j])>=0) return A[i].r;
+  return '😊 파트너 AI 상담입니다!\n\n등록 한도 · 숏츠 · AI매칭 · 요금제\n무엇이든 물어보세요!\n\n📞 010-8985-8945 이상수 대표';
+}
+
+/* ══════════════════════════════════════
+   DOMContentLoaded: AI 점수 바 주입 + 카운터 렌더
+   ══════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', function(){
+  // Enter 키 로그인
+  var pwEl = document.getElementById('login-pw');
+  if(pwEl) pwEl.addEventListener('keydown', function(e){ if(e.key==='Enter') doPartnerLogin(); });
+
+  // AI 점수 바 주입 (앵커 div 기준)
+  injectAiScore('ai-anchor-1', 97);
+  injectAiScore('ai-anchor-2', 91);
+  injectAiScore('ai-anchor-3', 88);
+
+  // 일일 카운터 초기 렌더
+  renderLimitBanner();
+});
+
 </script>
 </head>
 <body>
@@ -321,7 +595,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="gbox"><div class="gbox-n" style="color:var(--gold)">47억</div><div class="gbox-l">매도가</div></div>
         <div class="gbox"><div class="gbox-n">41평</div><div class="gbox-l">평형</div></div>
       </div>
-      <div style="font-size:9px;color:var(--txt2);margin-bottom:9px;line-height:1.6">추가수리 불필요한 특혼수리급 · 긴급 매도 희망 · 우리공동중개사무소 02-539-4988</div>
+      <div id="ai-anchor-1"></div><div style="font-size:9px;color:var(--txt2);margin-bottom:9px;line-height:1.6">추가수리 불필요한 특혼수리급 · 긴급 매도 희망 · 우리공동중개사무소 02-539-4988</div>
       <div style="display:flex;gap:6px">
         <button onclick="toast('답장을 작성합니다')" class="btn btn-jade btn-sm" style="flex:1">💬 답장</button>
         <button onclick="toast('📌 저장되었습니다')" class="btn btn-ghost btn-sm" style="flex:1">📌 저장</button>
@@ -343,7 +617,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="gbox"><div class="gbox-n" style="color:var(--river)">28~35억</div><div class="gbox-l">예산</div></div>
         <div class="gbox"><div class="gbox-n">30~40평</div><div class="gbox-l">희망평형</div></div>
       </div>
-      <div style="font-size:9px;color:var(--txt2);margin-bottom:9px">학군 중시 실수요자 · 즉시 계약 가능</div>
+      <div id="ai-anchor-2"></div><div style="font-size:9px;color:var(--txt2);margin-bottom:9px">학군 중시 실수요자 · 즉시 계약 가능</div>
       <div style="display:flex;gap:6px">
         <button onclick="toast('답장을 작성합니다')" class="btn btn-river btn-sm" style="flex:1">💬 답장</button>
         <button onclick="toast('📌 저장되었습니다')" class="btn btn-ghost btn-sm" style="flex:1">📌 저장</button>
@@ -365,7 +639,7 @@ window.addEventListener('DOMContentLoaded', function(){
         <div class="gbox"><div class="gbox-n" style="color:var(--jade)">월125만</div><div class="gbox-l">월세</div></div>
         <div class="gbox"><div class="gbox-n">7.8평</div><div class="gbox-l">전용면적</div></div>
       </div>
-      <div style="font-size:9px;color:var(--txt2);margin-bottom:9px">보증금 1천 · 관리비포함 · 즉시입주 · 학원가 도보권</div>
+      <div id="ai-anchor-3"></div><div style="font-size:9px;color:var(--txt2);margin-bottom:9px">보증금 1천 · 관리비포함 · 즉시입주 · 학원가 도보권</div>
       <div style="display:flex;gap:6px">
         <button onclick="toast('PROPAI 수요자 AI매칭 연결 요청 완료!\n관리 부동산에서 수요자 연결 진행합니다')" class="btn btn-jade btn-sm" style="flex:1">🤖 AI매칭 요청</button>
         <button onclick="toast('📌 저장되었습니다')" class="btn btn-ghost btn-sm" style="flex:1">📌 저장</button>
@@ -446,7 +720,7 @@ window.addEventListener('DOMContentLoaded', function(){
           <div style="font-size:11px;font-weight:800">📹 유튜브 숏츠 광고</div>
           <span style="font-size:8px;background:rgba(239,68,68,.15);color:#FCA5A5;padding:2px 7px;border-radius:4px;font-weight:700">▶ SHORTS</span>
         </div>
-        <div style="font-size:9px;color:var(--txt2);line-height:1.6;margin-bottom:8px">저평가 판정 시 당사 연락처 광고 1건 무료<br>유료 1건당 3만원 · 📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6550525d5d575d50250b041300174b060a08">[email&#160;protected]</a><br>사진 10장 + 20초 영상 파일 전송</div>
+        <div style="font-size:9px;color:var(--txt2);line-height:1.6;margin-bottom:8px">저평가 판정 시 당사 연락처 광고 1건 무료<br>유료 1건당 3만원 · 📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f0a0807070d070a7f515e495a4d115c5052">[email&#160;protected]</a><br>사진 10장 + 20초 영상 파일 전송</div>
         <div style="display:flex;gap:7px">
           <button onclick="toast('📹 무료 숏츠 신청!\n5788285@naver.com으로 사진10장+20초영상 전송해주세요')" class="btn btn-sm" style="flex:1;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:var(--jade)">무료 신청</button>
           <button onclick="toast('⚡ 유료 숏츠 신청 (3만원)\n5788285@naver.com으로 파일 전송 후 입금해주세요')" class="btn btn-sm" style="flex:1;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5">유료(3만원)</button>
@@ -522,9 +796,17 @@ window.addEventListener('DOMContentLoaded', function(){
 
   <!-- ════ 내 매물목록 ════ -->
   <div class="panel" id="panel-mylist">
+    <!-- 일일 카운터 배너 -->
+    <div class="limit-banner">
+      <div>
+        <div style="font-size:10px;font-weight:800;color:#2DD4A0">📋 오늘 등록 현황</div>
+        <div id="limit-lbl" style="font-size:9px;color:#8A9AB0;margin-top:2px">로딩 중...</div>
+      </div>
+      <div id="limit-dots" class="ldots"></div>
+    </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
       <div style="font-size:13px;font-weight:900">📋 내 등록 매물</div>
-      <div style="font-size:9px;color:var(--txt3)">오늘 1건 / 일 5건 한도 (잔여 4건)</div>
+      <button onclick="openSW()" style="font-size:9px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;padding:4px 9px;border-radius:6px;font-weight:700;cursor:pointer;font-family:var(--sans)">🎬 숏츠 제작</button>
     </div>
 
     <div class="card" style="border-color:rgba(201,168,76,.25);margin-bottom:10px">
@@ -639,10 +921,71 @@ window.addEventListener('DOMContentLoaded', function(){
     <div style="margin-top:12px;background:rgba(8,16,28,.6);border:1px solid var(--line2);border-radius:11px;padding:13px;font-size:9px;color:var(--txt2);line-height:1.9;text-align:center">
       입금 확인 후 24시간 내 활성화<br>
       📞 이상수 대표: 010-8985-8945<br>
-      📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3005070808020805705e514655421e535f5d">[email&#160;protected]</a><br>
+      📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c2f7f5fafaf0faf782aca3b4a7b0eca1adaf">[email&#160;protected]</a><br>
       <span style="color:var(--txt3)">롯데타워앤강남빌딩부동산중개(주)</span>
     </div>
 
     <div style="margin-top:10px;display:flex;gap:8px">
       <a href="tel:01089858945" class="btn btn-jade" style="flex:1;padding:12px;text-align:center;text-decoration:none;display:block">📞 010-8985-8945</a>
-      <a href="index.html" class="b
+      <a href="index.html" class="bbtn btn-ghost" style="flex:1;padding:12px;text-align:center;text-decoration:none;color:var(--txt2)">← 메인 앱</a>
+    </div>
+  </div>
+</div><!-- wrap -->
+</div><!-- app -->
+
+<!-- ══ 파트너 AI 챗봇 버튼 ══ -->
+<button id="p-chatBtn" onclick="togglePC()" title="AI 파트너 상담">🤖</button>
+
+<!-- ══ 파트너 AI 챗봇 모달 ══ -->
+<div id="p-chatModal">
+  <div style="background:linear-gradient(135deg,rgba(45,212,160,.15),rgba(45,212,160,.04));padding:11px 13px;border-bottom:1px solid rgba(45,212,160,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:7px">
+      <span style="font-size:17px">🤖</span>
+      <div>
+        <div style="font-size:11px;font-weight:900;color:#2DD4A0">PROPAI 파트너 AI</div>
+        <div style="font-size:8px;color:#8A9AB0">공동중개 전문 상담 · Claude AI</div>
+      </div>
+    </div>
+    <button onclick="togglePC()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;width:26px;height:26px;color:#8A9AB0;font-size:13px;cursor:pointer;font-family:var(--sans)">✕</button>
+  </div>
+  <div id="pc-msgs" style="flex:1;overflow-y:auto;padding:11px;display:flex;flex-direction:column;gap:7px;max-height:280px">
+    <div style="display:flex;gap:7px;align-items:flex-start">
+      <div style="width:26px;height:26px;border-radius:50%;background:rgba(45,212,160,.15);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🤖</div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px 10px 10px 2px;padding:8px 10px;max-width:210px">
+        <div style="font-size:11px;color:#EDF2F7;line-height:1.6">안녕하세요! 파트너 AI 상담입니다 😊<br>등록 한도·숏츠·AI매칭·요금제 무엇이든!</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px">
+          <button onclick="pcQuick('일일 등록 한도 알려줘')" style="font-size:8px;background:rgba(45,212,160,.1);border:1px solid rgba(45,212,160,.2);color:#2DD4A0;padding:3px 7px;border-radius:4px;cursor:pointer;font-family:var(--sans)">등록 한도</button>
+          <button onclick="pcQuick('숏츠 비용 알려줘')" style="font-size:8px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#FCA5A5;padding:3px 7px;border-radius:4px;cursor:pointer;font-family:var(--sans)">숏츠 비용</button>
+          <button onclick="pcQuick('요금제 업그레이드 방법')" style="font-size:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:#E8C97A;padding:3px 7px;border-radius:4px;cursor:pointer;font-family:var(--sans)">요금제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:9px 11px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:6px;flex-shrink:0">
+    <input id="pc-inp" type="text" placeholder="파트너 관련 질문..." style="flex:1;padding:8px 10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none" onkeydown="if(event.key==='Enter')pcSend()">
+    <button onclick="pcSend()" style="width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#2DD4A0,#0D8060);border:none;cursor:pointer;font-size:15px">↑</button>
+  </div>
+</div>
+
+<!-- ══ 숏츠 위자드 모달 ══ -->
+<div id="sw-modal" onclick="if(event.target===this)closeSW()">
+  <div class="sw-sheet">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div>
+        <div style="font-size:14px;font-weight:900;color:#FCA5A5">🎬 숏츠 자동제작 위자드</div>
+        <div style="font-size:9px;color:#8A9AB0;margin-top:2px">매물 정보 입력 → AI 60초 유튜브 스크립트 자동 생성</div>
+      </div>
+      <button onclick="closeSW()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:7px;width:28px;height:28px;color:#8A9AB0;font-size:14px;cursor:pointer;font-family:var(--sans)">✕</button>
+    </div>
+    <div style="display:flex;margin-bottom:14px;background:rgba(8,16,28,.5);border-radius:8px;overflow:hidden">
+      <div id="sw-s1" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;border-bottom:2px solid #EF4444;color:#FCA5A5">① 유형</div>
+      <div id="sw-s2" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;border-bottom:2px solid transparent;color:#4A5568">② 정보</div>
+      <div id="sw-s3" style="flex:1;padding:7px;text-align:center;font-size:9px;font-weight:800;border-bottom:2px solid transparent;color:#4A5568">③ 스크립트</div>
+    </div>
+    <div id="sw-body"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+</body>
+</html>
