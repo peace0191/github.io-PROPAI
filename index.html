@@ -563,6 +563,12 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
     <input id="chatInput" type="text" placeholder="궁금한 매물·시세 물어보세요..." style="flex:1;padding:9px 11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#EDF2F7;font-size:11px;font-family:var(--sans);outline:none" onkeydown="if(event.key==='Enter')sendChat()">
     <button onclick="sendChat()" id="chatSendBtn" style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);border:none;cursor:pointer;font-size:16px">↑</button>
   </div>
+  <!-- 하단 3버튼 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;padding:0 10px 10px">
+    <button onclick="toggleChat();openGuide();showGuideTab(2)" style="padding:8px 4px;border-radius:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:#E8C97A;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;line-height:1.4">📖 앱<br>사용방법</button>
+    <button onclick="toggleChat();openKakaoAuth()" style="padding:8px 4px;border-radius:8px;background:linear-gradient(135deg,rgba(254,229,0,.2),rgba(254,229,0,.1));border:1px solid rgba(254,229,0,.35);color:#FEE500;font-family:var(--sans);font-size:9px;font-weight:800;cursor:pointer;line-height:1.4">💬 로그인<br>바로가기</button>
+    <button onclick="toggleChat()" style="padding:8px 4px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:9px;font-weight:700;cursor:pointer;line-height:1.4">✕ 창<br>닫기</button>
+  </div>
 </div>
 
 <!-- 공동중개 가입신청 모달 -->
@@ -1268,11 +1274,8 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             </div>
           </button>
         </div>
-        <button onclick="kakaoNext(2)" id="kNext1" style="width:100%;padding:13px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer;margin-bottom:8px">다음 →</button>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px">
-          <button onclick="closeKakaoAuth();openGuide();showGuideTab(2)" style="padding:12px;border-radius:11px;background:rgba(201,168,76,.12);border:1.5px solid rgba(201,168,76,.3);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">📖 앱 사용방법</button>
-          <button onclick="closeKakaoAuth()" style="padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">✕ 창 닫기</button>
-        </div>
+        <button onclick="kakaoNext(2)" id="kNext1" style="width:100%;padding:13px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer">다음 →</button>
+      </div>
 
       <!-- STEP 2: 휴대폰 인증 -->
       <div id="ks2" style="display:none">
@@ -1297,14 +1300,11 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
           </div>
           <div id="k-codehint" style="font-size:9px;color:#4A5568;margin-top:4px"></div>
         </div>
-        <div style="display:flex;gap:7px;margin-bottom:8px">
+        <div style="display:flex;gap:7px">
           <button onclick="kakaoNext(1)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
           <button onclick="verifyKakaoCode()" style="flex:2;padding:12px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">인증 확인 →</button>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px">
-          <button onclick="closeKakaoAuth();openGuide();showGuideTab(2)" style="padding:12px;border-radius:11px;background:rgba(201,168,76,.12);border:1.5px solid rgba(201,168,76,.3);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">📖 앱 사용방법</button>
-          <button onclick="closeKakaoAuth()" style="padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">✕ 창 닫기</button>
-        </div>
+      </div>
 
       <!-- STEP 3: 개인정보 동의 -->
       <div id="ks3" style="display:none">
@@ -1333,14 +1333,11 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
             <div style="font-size:10px;color:#8A9AB0">[선택] 마케팅·알림 수신 동의</div>
           </div>
         </div>
-        <div style="display:flex;gap:7px;margin-bottom:8px">
+        <div style="display:flex;gap:7px">
           <button onclick="kakaoNext(2)" style="flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">← 이전</button>
           <button onclick="kakaoComplete()" style="flex:2;padding:12px;border-radius:11px;background:#FEE500;color:#3C1E1E;font-family:var(--sans);font-size:12px;font-weight:900;border:none;cursor:pointer">동의 후 시작하기 🚀</button>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px">
-          <button onclick="closeKakaoAuth();openGuide();showGuideTab(2)" style="padding:12px;border-radius:11px;background:rgba(201,168,76,.12);border:1.5px solid rgba(201,168,76,.3);color:#E8C97A;font-family:var(--sans);font-size:11px;font-weight:800;cursor:pointer">📖 앱 사용방법</button>
-          <button onclick="closeKakaoAuth()" style="padding:12px;border-radius:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8A9AB0;font-family:var(--sans);font-size:11px;font-weight:700;cursor:pointer">✕ 창 닫기</button>
-        </div>
+      </div>
 
     </div>
   </div>
