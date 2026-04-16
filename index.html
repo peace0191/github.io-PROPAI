@@ -3158,28 +3158,253 @@ body{font-family:var(--sans);background:var(--ink);color:var(--txt);min-height:1
 
     <!-- ══ TAB 11: 시그니엘 레지던스 전체 ══ -->
     <div class="screen" id="tab11">
-      <div class="hero" style="position:relative;overflow:hidden">
-        <div style="position:absolute;inset:0;background:linear-gradient(160deg,#0A1628,#1A2840);pointer-events:none"></div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;position:relative">
-          <button onclick="goTab(6)" style="background:rgba(255,255,255,.07);border:1px solid var(--line2);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--txt2);cursor:pointer;font-family:var(--sans)">← 한강벨트</button>
-          <span style="font-size:9px;letter-spacing:2px;font-weight:700;color:var(--gold);text-transform:uppercase">LOTTE WORLD TOWER</span>
+
+      <!-- ══ HERO ══ -->
+      <div class="hero" style="position:relative;overflow:hidden;padding-bottom:14px">
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,#060E1C,#0D1929 60%,#162240);pointer-events:none"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;position:relative">
+          <div style="display:flex;align-items:center;gap:8px">
+            <button onclick="goTab(6)" style="background:rgba(255,255,255,.07);border:1px solid var(--line2);border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--txt2);cursor:pointer;font-family:var(--sans)">← 한강벨트</button>
+            <span style="font-size:9px;letter-spacing:2px;font-weight:700;color:var(--gold);text-transform:uppercase">LOTTE WORLD TOWER</span>
+          </div>
+          <div style="background:var(--gold);color:#08101C;font-size:8px;font-weight:900;padding:4px 12px;border-radius:20px;letter-spacing:.5px">PREMIUM</div>
         </div>
-        <div style="position:absolute;top:0;right:0;background:var(--gold);color:#08101C;font-size:8px;font-weight:900;padding:4px 12px;border-radius:0 0 0 10px;letter-spacing:.5px">PREMIUM</div>
-        <div class="hero-title" style="position:relative">✨ 시그니엘 레지던스</div>
-        <div class="hero-sub" style="position:relative">롯데월드타워 42~71층 · 한강·서울 파노라마뷰<br>국내 최고급 레지던스 · 호텔식 풀서비스</div>
-        <div class="hero-stats" style="position:relative">
+        <div class="hero-title" style="position:relative;font-size:22px;margin-bottom:4px">✨ 시그니엘 레지던스</div>
+        <div class="hero-sub" style="position:relative;margin-bottom:12px">롯데월드타워 42~71층 · 한강·서울 파노라마뷰<br>국내 최고급 레지던스 · 호텔식 풀서비스</div>
+        <div class="hero-stats" style="position:relative;margin-bottom:0">
           <div class="hstat" style="border-color:rgba(201,168,76,.25)"><div class="hstat-n" style="color:var(--g2)">5건</div><div class="hstat-l">매매 추천</div></div>
           <div class="hstat" style="border-color:rgba(201,168,76,.25)"><div class="hstat-n" style="color:var(--g2)">15건</div><div class="hstat-l">임대차</div></div>
           <div class="hstat" style="border-color:rgba(45,212,160,.2)"><div class="hstat-n" style="color:var(--jade)">저평가</div><div class="hstat-l">AI 분석</div></div>
         </div>
       </div>
 
-      <div style="margin:0 16px 14px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:11px;padding:12px 13px;font-size:10px;color:var(--g3);line-height:1.7">
+      <!-- ══ 사진 갤러리 ══ -->
+      <div style="position:relative;background:#060E1C;overflow:hidden">
+        <div id="sig-gallery" style="overflow:hidden;position:relative;height:220px">
+          <div id="sig-slides" style="display:flex;transition:transform .38s cubic-bezier(.4,0,.2,1);height:100%">
+
+            <!-- 슬라이드 1: 한강뷰 거실 -->
+            <div style="min-width:100%;height:220px;position:relative;flex-shrink:0;overflow:hidden">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+                <defs>
+                  <linearGradient id="sg_sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0A1E40"/><stop offset="55%" stop-color="#1A3A6A"/><stop offset="100%" stop-color="#1E4878"/></linearGradient>
+                  <linearGradient id="sg_river" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E4A78"/><stop offset="100%" stop-color="#0D2840"/></linearGradient>
+                  <linearGradient id="sg_floor" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1A1208"/><stop offset="50%" stop-color="#2A1F10"/><stop offset="100%" stop-color="#1A1208"/></linearGradient>
+                  <linearGradient id="sg_glow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(201,168,76,.5)"/><stop offset="100%" stop-color="rgba(201,168,76,0)"/></linearGradient>
+                  <linearGradient id="sg_overlay" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(6,14,28,0)"/><stop offset="75%" stop-color="rgba(6,14,28,.1)"/><stop offset="100%" stop-color="rgba(6,14,28,.75)"/></linearGradient>
+                </defs>
+                <rect width="360" height="220" fill="url(#sg_sky)"/>
+                <!-- 별 -->
+                <circle cx="30" cy="18" r="1.2" fill="#fff" opacity=".7"/><circle cx="80" cy="10" r=".8" fill="#fff" opacity=".5"/><circle cx="160" cy="22" r="1" fill="#fff" opacity=".8"/><circle cx="240" cy="8" r="1.2" fill="#fff" opacity=".6"/><circle cx="310" cy="20" r=".8" fill="#fff" opacity=".7"/><circle cx="345" cy="12" r="1" fill="#fff" opacity=".5"/>
+                <!-- 한강 -->
+                <rect y="130" width="360" height="28" fill="url(#sg_river)" opacity=".9"/>
+                <!-- 빌딩 실루엣 -->
+                <rect x="10" y="95" width="22" height="65" fill="#071422" opacity=".85"/>
+                <rect x="38" y="88" width="14" height="72" fill="#071422" opacity=".8"/>
+                <rect x="58" y="100" width="18" height="60" fill="#071422" opacity=".75"/>
+                <rect x="265" y="90" width="22" height="70" fill="#071422" opacity=".8"/>
+                <rect x="293" y="82" width="16" height="78" fill="#071422" opacity=".85"/>
+                <rect x="315" y="95" width="28" height="65" fill="#071422" opacity=".75"/>
+                <!-- 빌딩 창문 불빛 -->
+                <rect x="13" y="100" width="4" height="3" fill="rgba(254,229,0,.5)" rx="1"/><rect x="20" y="100" width="4" height="3" fill="rgba(254,229,0,.3)" rx="1"/>
+                <rect x="13" y="110" width="4" height="3" fill="rgba(254,229,0,.4)" rx="1"/><rect x="20" y="108" width="4" height="3" fill="rgba(254,229,0,.5)" rx="1"/>
+                <rect x="268" y="98" width="4" height="3" fill="rgba(254,229,0,.4)" rx="1"/><rect x="275" y="95" width="4" height="3" fill="rgba(254,229,0,.5)" rx="1"/>
+                <rect x="318" y="100" width="4" height="3" fill="rgba(254,229,0,.3)" rx="1"/><rect x="325" y="105" width="4" height="3" fill="rgba(254,229,0,.5)" rx="1"/>
+                <!-- 조명 글로우 -->
+                <ellipse cx="180" cy="8" rx="90" ry="22" fill="url(#sg_glow)" opacity=".7"/>
+                <!-- 창문 프레임 -->
+                <rect x="1" y="1" width="358" height="158" fill="none" stroke="rgba(201,168,76,.35)" stroke-width="3" rx="2"/>
+                <line x1="121" y1="1" x2="121" y2="159" stroke="rgba(201,168,76,.18)" stroke-width="1.5"/>
+                <line x1="239" y1="1" x2="239" y2="159" stroke="rgba(201,168,76,.18)" stroke-width="1.5"/>
+                <!-- 바닥 -->
+                <rect y="158" width="360" height="62" fill="url(#sg_floor)"/>
+                <rect y="158" width="360" height="2" fill="rgba(201,168,76,.2)"/>
+                <!-- 소파 -->
+                <rect x="55" y="168" width="170" height="38" rx="9" fill="#2A1F14"/>
+                <rect x="60" y="163" width="160" height="18" rx="7" fill="#362818"/>
+                <rect x="55" y="162" width="28" height="46" rx="6" fill="#362818"/>
+                <rect x="197" y="162" width="28" height="46" rx="6" fill="#362818"/>
+                <!-- 쿠션 -->
+                <rect x="70" y="164" width="32" height="26" rx="6" fill="rgba(201,168,76,.42)"/>
+                <rect x="110" y="164" width="32" height="26" rx="6" fill="rgba(74,158,224,.3)"/>
+                <rect x="150" y="164" width="32" height="26" rx="6" fill="rgba(201,168,76,.38)"/>
+                <!-- 커피테이블 -->
+                <rect x="132" y="200" width="56" height="10" rx="4" fill="#14100A"/>
+                <rect x="138" y="210" width="7" height="10" rx="2" fill="#14100A"/><rect x="177" y="210" width="7" height="10" rx="2" fill="#14100A"/>
+                <!-- 오버레이 -->
+                <rect width="360" height="220" fill="url(#sg_overlay)"/>
+              </svg>
+              <div style="position:absolute;bottom:10px;left:14px;right:60px">
+                <div style="font-size:14px;font-weight:900;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.9);margin-bottom:3px">한강뷰 프리미엄 거실</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.75)">42~71층 · 파노라마 한강·올림픽공원 조망</div>
+              </div>
+              <div style="position:absolute;top:10px;right:10px;background:rgba(201,168,76,.92);color:#08101C;font-size:8px;font-weight:900;padding:4px 9px;border-radius:6px;letter-spacing:.3px">🏆 LUXURY</div>
+            </div>
+
+            <!-- 슬라이드 2: 아일랜드 키친 -->
+            <div style="min-width:100%;height:220px;position:relative;flex-shrink:0;overflow:hidden">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+                <defs>
+                  <linearGradient id="kt_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1A2535"/><stop offset="100%" stop-color="#0D1520"/></linearGradient>
+                  <linearGradient id="kt_marble" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D0C4AE"/><stop offset="45%" stop-color="#EDE0CC"/><stop offset="100%" stop-color="#D0C4AE"/></linearGradient>
+                  <linearGradient id="kt_overlay" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(13,21,32,0)"/><stop offset="100%" stop-color="rgba(13,21,32,.72)"/></linearGradient>
+                </defs>
+                <rect width="360" height="220" fill="url(#kt_bg)"/>
+                <rect width="360" height="135" fill="#1E2D40" opacity=".55"/>
+                <!-- 아일랜드 -->
+                <rect x="50" y="118" width="260" height="58" rx="6" fill="url(#kt_marble)"/>
+                <rect x="52" y="115" width="256" height="8" rx="4" fill="#F5EDD8"/>
+                <!-- 서랍 -->
+                <rect x="62" y="130" width="50" height="33" rx="4" fill="rgba(190,175,150,.45)"/><rect x="85" y="144" width="4" height="6" rx="2" fill="#A08060"/>
+                <rect x="120" y="130" width="50" height="33" rx="4" fill="rgba(190,175,150,.45)"/><rect x="143" y="144" width="4" height="6" rx="2" fill="#A08060"/>
+                <rect x="178" y="130" width="50" height="33" rx="4" fill="rgba(190,175,150,.45)"/><rect x="201" y="144" width="4" height="6" rx="2" fill="#A08060"/>
+                <rect x="236" y="130" width="50" height="33" rx="4" fill="rgba(190,175,150,.45)"/><rect x="259" y="144" width="4" height="6" rx="2" fill="#A08060"/>
+                <!-- 인덕션 -->
+                <ellipse cx="135" cy="120" rx="20" ry="6" fill="#444" opacity=".6"/><ellipse cx="225" cy="120" rx="20" ry="6" fill="#444" opacity=".6"/>
+                <!-- 펜던트 조명 -->
+                <line x1="130" y1="0" x2="130" y2="44" stroke="rgba(201,168,76,.45)" stroke-width="1.5"/>
+                <circle cx="130" cy="60" r="22" fill="none" stroke="rgba(201,168,76,.55)" stroke-width="1.5"/>
+                <circle cx="130" cy="60" r="17" fill="rgba(201,168,76,.18)"/>
+                <ellipse cx="130" cy="92" rx="34" ry="18" fill="rgba(201,168,76,.12)"/>
+                <line x1="230" y1="0" x2="230" y2="44" stroke="rgba(201,168,76,.45)" stroke-width="1.5"/>
+                <circle cx="230" cy="60" r="22" fill="none" stroke="rgba(201,168,76,.55)" stroke-width="1.5"/>
+                <circle cx="230" cy="60" r="17" fill="rgba(201,168,76,.18)"/>
+                <ellipse cx="230" cy="92" rx="34" ry="18" fill="rgba(201,168,76,.12)"/>
+                <!-- 의자 -->
+                <rect x="72" y="168" width="30" height="6" rx="3" fill="#1A1208"/><rect x="79" y="174" width="6" height="18" fill="#1A1208"/><rect x="91" y="174" width="6" height="18" fill="#1A1208"/>
+                <rect x="142" y="168" width="30" height="6" rx="3" fill="#1A1208"/><rect x="149" y="174" width="6" height="18" fill="#1A1208"/><rect x="161" y="174" width="6" height="18" fill="#1A1208"/>
+                <rect x="212" y="168" width="30" height="6" rx="3" fill="#1A1208"/><rect x="219" y="174" width="6" height="18" fill="#1A1208"/><rect x="231" y="174" width="6" height="18" fill="#1A1208"/>
+                <rect width="360" height="220" fill="url(#kt_overlay)"/>
+              </svg>
+              <div style="position:absolute;bottom:10px;left:14px;right:60px">
+                <div style="font-size:14px;font-weight:900;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.9);margin-bottom:3px">이탈리안 마블 아일랜드 키친</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.75)">이탈리안 대리석 · 독일식 빌트인 · 호텔급 설비</div>
+              </div>
+              <div style="position:absolute;top:10px;right:10px;background:rgba(74,158,224,.92);color:#fff;font-size:8px;font-weight:900;padding:4px 9px;border-radius:6px">🍽️ KITCHEN</div>
+            </div>
+
+            <!-- 슬라이드 3: 마스터 베드룸 -->
+            <div style="min-width:100%;height:220px;position:relative;flex-shrink:0;overflow:hidden">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+                <defs>
+                  <linearGradient id="bd_bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1A2030"/><stop offset="100%" stop-color="#0A1218"/></linearGradient>
+                  <linearGradient id="bd_sheet" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EAE0D0"/><stop offset="100%" stop-color="#D5CABC"/></linearGradient>
+                  <linearGradient id="bd_overlay" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(10,18,24,0)"/><stop offset="100%" stop-color="rgba(10,18,24,.72)"/></linearGradient>
+                </defs>
+                <rect width="360" height="220" fill="url(#bd_bg)"/>
+                <!-- 벽 패널 -->
+                <rect width="360" height="125" fill="#162030"/>
+                <rect x="18" y="14" width="105" height="85" rx="4" fill="rgba(201,168,76,.06)" stroke="rgba(201,168,76,.22)" stroke-width="1"/>
+                <rect x="133" y="14" width="94" height="85" rx="4" fill="rgba(201,168,76,.06)" stroke="rgba(201,168,76,.22)" stroke-width="1"/>
+                <rect x="237" y="14" width="105" height="85" rx="4" fill="rgba(201,168,76,.06)" stroke="rgba(201,168,76,.22)" stroke-width="1"/>
+                <!-- 헤드보드 -->
+                <rect x="40" y="100" width="280" height="48" rx="10" fill="#1C1408"/>
+                <rect x="46" y="104" width="268" height="40" rx="8" fill="#2A1E10"/>
+                <!-- 침대 프레임 + 매트리스 -->
+                <rect x="40" y="143" width="280" height="60" rx="6" fill="#1E1A14"/>
+                <rect x="43" y="145" width="274" height="32" rx="5" fill="url(#bd_sheet)"/>
+                <!-- 베개 -->
+                <rect x="56" y="148" width="55" height="25" rx="7" fill="#F8F2EA"/><rect x="118" y="148" width="55" height="25" rx="7" fill="#F8F2EA"/>
+                <rect x="192" y="148" width="55" height="25" rx="7" fill="#F8F2EA"/><rect x="254" y="148" width="55" height="25" rx="7" fill="#F8F2EA"/>
+                <!-- 협탁 + 조명 -->
+                <rect x="8" y="148" width="28" height="36" rx="4" fill="#14100A"/>
+                <ellipse cx="22" cy="143" rx="22" ry="9" fill="rgba(201,168,76,.22)"/>
+                <rect x="324" y="148" width="28" height="36" rx="4" fill="#14100A"/>
+                <ellipse cx="338" cy="143" rx="22" ry="9" fill="rgba(201,168,76,.22)"/>
+                <!-- 카펫 -->
+                <rect x="28" y="198" width="304" height="10" rx="3" fill="#1A1508" opacity=".8"/>
+                <rect width="360" height="220" fill="url(#bd_overlay)"/>
+              </svg>
+              <div style="position:absolute;bottom:10px;left:14px;right:60px">
+                <div style="font-size:14px;font-weight:900;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.9);margin-bottom:3px">마스터 베드룸 스위트</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.75)">호텔식 턴다운 서비스 · 1:1 컨시어지 · 전동 커튼</div>
+              </div>
+              <div style="position:absolute;top:10px;right:10px;background:rgba(45,212,160,.88);color:#08101C;font-size:8px;font-weight:900;padding:4px 9px;border-radius:6px">🛏️ SUITE</div>
+            </div>
+
+            <!-- 슬라이드 4: 한강 야경 -->
+            <div style="min-width:100%;height:220px;position:relative;flex-shrink:0;overflow:hidden">
+              <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+                <defs>
+                  <linearGradient id="nv_sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#020608"/><stop offset="55%" stop-color="#071428"/><stop offset="100%" stop-color="#0D2040"/></linearGradient>
+                  <radialGradient id="nv_tglow" cx="50%" cy="85%" r="55%"><stop offset="0%" stop-color="rgba(201,168,76,.35)"/><stop offset="100%" stop-color="rgba(201,168,76,0)"/></radialGradient>
+                  <linearGradient id="nv_overlay" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(2,6,8,0)"/><stop offset="100%" stop-color="rgba(2,6,8,.75)"/></linearGradient>
+                </defs>
+                <rect width="360" height="220" fill="url(#nv_sky)"/>
+                <!-- 별 -->
+                <circle cx="18" cy="14" r="1.2" fill="#fff" opacity=".85"/><circle cx="48" cy="7" r=".8" fill="#fff" opacity=".6"/><circle cx="92" cy="20" r="1.1" fill="#fff" opacity=".9"/><circle cx="155" cy="5" r=".9" fill="#fff" opacity=".7"/><circle cx="225" cy="15" r="1" fill="#fff" opacity=".8"/><circle cx="288" cy="6" r=".8" fill="#fff" opacity=".6"/><circle cx="338" cy="19" r="1.1" fill="#fff" opacity=".75"/>
+                <!-- 롯데월드타워 -->
+                <polygon points="168,4 192,4 198,220 162,220" fill="#0C1828"/>
+                <polygon points="172,4 188,4 192,65 168,65" fill="#182840"/>
+                <!-- 타워 창문 -->
+                <rect x="173" y="18" width="5" height="4" fill="rgba(254,229,0,.65)" rx="1"/><rect x="181" y="18" width="5" height="4" fill="rgba(254,229,0,.4)" rx="1"/>
+                <rect x="173" y="28" width="5" height="4" fill="rgba(254,229,0,.7)" rx="1"/><rect x="181" y="28" width="5" height="4" fill="rgba(254,229,0,.5)" rx="1"/>
+                <rect x="173" y="38" width="5" height="4" fill="rgba(254,229,0,.6)" rx="1"/>
+                <rect x="173" y="72" width="4" height="4" fill="rgba(254,229,0,.5)" rx="1"/><rect x="180" y="72" width="4" height="4" fill="rgba(254,229,0,.6)" rx="1"/>
+                <rect x="173" y="85" width="4" height="4" fill="rgba(254,229,0,.4)" rx="1"/>
+                <rect x="173" y="105" width="4" height="3" fill="rgba(254,229,0,.5)" rx="1"/><rect x="179" y="105" width="4" height="3" fill="rgba(254,229,0,.45)" rx="1"/>
+                <rect x="173" y="118" width="4" height="3" fill="rgba(254,229,0,.4)" rx="1"/>
+                <!-- 글로우 -->
+                <ellipse cx="180" cy="220" rx="130" ry="45" fill="url(#nv_tglow)"/>
+                <!-- 한강 -->
+                <rect y="158" width="360" height="62" fill="#040C18"/>
+                <rect y="156" width="360" height="5" fill="#1A3A5A" opacity=".5"/>
+                <!-- 한강 반사 -->
+                <ellipse cx="55" cy="172" rx="28" ry="6" fill="rgba(254,229,0,.14)"/>
+                <ellipse cx="180" cy="178" rx="40" ry="7" fill="rgba(254,229,0,.22)"/>
+                <ellipse cx="305" cy="170" rx="22" ry="5" fill="rgba(254,229,0,.12)"/>
+                <!-- 주변 빌딩 -->
+                <rect x="15" y="105" width="32" height="115" fill="#0A1422"/><rect x="55" y="118" width="22" height="102" fill="#091320"/>
+                <rect x="285" y="98" width="38" height="122" fill="#0A1422"/><rect x="328" y="122" width="26" height="98" fill="#091320"/>
+                <rect width="360" height="220" fill="url(#nv_overlay)"/>
+              </svg>
+              <div style="position:absolute;bottom:10px;left:14px;right:60px">
+                <div style="font-size:14px;font-weight:900;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.9);margin-bottom:3px">롯데월드타워 한강 야경</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.75)">서울 최고층 42~71F · 한강·남산·올림픽공원 360° 뷰</div>
+              </div>
+              <div style="position:absolute;top:10px;right:10px;background:rgba(139,92,246,.92);color:#fff;font-size:8px;font-weight:900;padding:4px 9px;border-radius:6px">🌃 NIGHT VIEW</div>
+            </div>
+
+          </div><!-- /sig-slides -->
+        </div><!-- /sig-gallery -->
+
+        <!-- 이전/다음 버튼 -->
+        <button onclick="sigSlide('prev')" style="position:absolute;left:8px;top:50%;transform:translateY(-60%);background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.18);border-radius:50%;width:32px;height:32px;color:#fff;font-size:15px;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;font-family:var(--sans)">‹</button>
+        <button onclick="sigSlide('next')" style="position:absolute;right:8px;top:50%;transform:translateY(-60%);background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.18);border-radius:50%;width:32px;height:32px;color:#fff;font-size:15px;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;font-family:var(--sans)">›</button>
+        <!-- 인디케이터 -->
+        <div style="position:absolute;bottom:10px;right:12px;display:flex;gap:5px;z-index:5" id="sig-dots">
+          <div class="_sdot" data-i="0" onclick="sigSlide(0)" style="width:22px;height:4px;border-radius:2px;background:rgba(201,168,76,.95);cursor:pointer;transition:.25s"></div>
+          <div class="_sdot" data-i="1" onclick="sigSlide(1)" style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:.25s"></div>
+          <div class="_sdot" data-i="2" onclick="sigSlide(2)" style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:.25s"></div>
+          <div class="_sdot" data-i="3" onclick="sigSlide(3)" style="width:6px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);cursor:pointer;transition:.25s"></div>
+        </div>
+        <!-- 카운터 -->
+        <div style="position:absolute;top:10px;left:12px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:3px 9px;font-size:9px;color:#fff;font-weight:700;z-index:5" id="sig-counter">1 / 4</div>
+      </div>
+
+      <!-- ══ 헤더 바로 아래 CTA 버튼 3개 ══ -->
+      <div style="padding:12px 14px 4px;display:flex;flex-direction:column;gap:8px">
+        <button onclick="document.getElementById('sig-sale-section').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:13px 16px;border-radius:12px;background:linear-gradient(135deg,#C9A84C,#8A6A1A);color:#08101C;font-family:var(--sans);font-size:13px;font-weight:900;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between">
+          <span>🏆 레지던스 저평가 매물 보기</span>
+          <span style="font-size:10px;background:rgba(0,0,0,.2);padding:3px 9px;border-radius:6px">5건 →</span>
+        </button>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button onclick="openKakaoNotify()" style="padding:13px 8px;border-radius:12px;background:linear-gradient(135deg,rgba(45,212,160,.18),rgba(45,212,160,.07));border:1.5px solid rgba(45,212,160,.45);color:#2DD4A0;font-family:var(--sans);font-size:11px;font-weight:900;cursor:pointer;line-height:1.5;text-align:center">
+            📋 수요자<br><span style="font-size:10px;font-weight:700">입주예정 등록</span>
+          </button>
+          <button onclick="openModal('demand')" style="padding:13px 8px;border-radius:12px;background:linear-gradient(135deg,rgba(74,158,224,.18),rgba(74,158,224,.07));border:1.5px solid rgba(74,158,224,.45);color:#A8D4F5;font-family:var(--sans);font-size:11px;font-weight:900;cursor:pointer;line-height:1.5;text-align:center">
+            🤖 AI<br><span style="font-size:10px;font-weight:700">자동매칭 신청</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 설명 박스 -->
+      <div style="margin:10px 16px 14px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:11px;padding:12px 13px;font-size:10px;color:var(--g3);line-height:1.7">
         🏆 <strong>시그니엘 레지던스</strong>는 송파구 잠실동 롯데월드타워 42~71층에 위치한 국내 최고급 레지던스입니다. 한강·올림픽공원·서울 전경의 파노라마뷰, 호텔 수준의 컨시어지 서비스, 프라이빗 라운지 등 최상급 주거환경을 제공합니다.
       </div>
 
       <!-- 매매 5건 -->
-      <div class="sh"><span class="sh-t">🏆 저평가 추천 매매 5선</span></div>
+      <div class="sh" id="sig-sale-section"><span class="sh-t">🏆 저평가 추천 매매 5선</span></div>
       <div style="padding:0 16px 8px;display:flex;flex-direction:column;gap:7px">
         <div style="background:var(--s1);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
           <div><div style="font-size:11px;font-weight:900;margin-bottom:2px">42평형 42층 (한강뷰)</div><div style="font-size:9px;color:var(--txt2);margin-bottom:3px">전용 139㎡ · 남향</div><div style="display:flex;gap:3px"><span class="ptag t-lux">LUXURY</span><span class="ptag t-ai">AI 97</span><span class="ptag t-low">저평가</span></div></div>
@@ -5437,6 +5662,28 @@ function showAdminTab(key){
       el.style.color='#8A9AB0';
     }
   });
+/* ── 시그니엘 갤러리 슬라이더 ── */
+var _sigIdx=0,_sigTimer=null;
+function sigSlide(dir){
+  var total=4;
+  if(dir==='next')_sigIdx=(_sigIdx+1)%total;
+  else if(dir==='prev')_sigIdx=(_sigIdx-1+total)%total;
+  else _sigIdx=parseInt(dir);
+  var s=document.getElementById('sig-slides');
+  if(s)s.style.transform='translateX(-'+(_sigIdx*100)+'%)';
+  var c=document.getElementById('sig-counter');
+  if(c)c.textContent=(_sigIdx+1)+' / '+total;
+  document.querySelectorAll('._sdot').forEach(function(d,i){
+    d.style.width=i===_sigIdx?'22px':'6px';
+    d.style.background=i===_sigIdx?'rgba(201,168,76,.95)':'rgba(255,255,255,.3)';
+  });
+}
+if(_sigTimer)clearInterval(_sigTimer);
+_sigTimer=setInterval(function(){
+  var t=document.getElementById('tab11');
+  if(t&&(t.style.display==='block'||t.classList.contains('active')))sigSlide('next');
+},5000);
+
   if(key === 'joint') setTimeout(renderAdminPartners, 100);
   if(key === 'loginlog') setTimeout(renderLoginLogs, 100);
   if(key === 'shorts') setTimeout(renderShortsRequests, 100);
